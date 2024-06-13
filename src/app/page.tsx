@@ -13,7 +13,7 @@ import { UserContext } from "@/hooks/UserContext";
 export default function Home() {
   let { getItem, setItem } = useCloudStorage();
   const [show404, setShow404] = useState(false);
-  const [userDataHook, setUserDataHook] = useState<UserData | null>(null);
+  const [userDataHook, setUserDataHook] = useState<UserData>();
   const webApp = useWebApp();
 
   useEffect(() => {
