@@ -6,6 +6,7 @@ import { IoMdWallet } from "react-icons/io";
 import { IoMdAdd } from "react-icons/io";
 import Profile from './Profile';
 import Wallet from './Wallet';
+import { useUserContext } from '@/hooks/UserContext';
 
 
 
@@ -19,7 +20,7 @@ interface ClickEffect {
 export default function Dashboard() {
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState("dashboard");
-
+    const user = useUserContext();
 
 
     const handleImageClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -45,7 +46,7 @@ export default function Dashboard() {
                             <div className="profile w-[10vw] ">
                                 <Image className='profile-avater p-1' src="/robot.png" width={50} height={50} alt="" />
                             </div>
-                            <p className='text-base font-semibold ml-1'>{"Your Name"}</p>
+                            <p className='text-base font-semibold ml-1'>{user.username}</p>
                         </div>
                         <div className="right-child w-[35%] flex-end ">
                             <div className="icon-container p-1">
