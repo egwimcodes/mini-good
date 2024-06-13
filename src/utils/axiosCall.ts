@@ -1,10 +1,14 @@
 /* eslint-disable no-useless-catch */
 import Axios from "axios";
 import { ApiRequestConfig } from "@/types";
+import { useCloudStorage } from "@vkruglikov/react-telegram-web-app";
 
 const SERVER_HOST =  "https://clownfish-app-lqqur.ondigitalocean.app";
 const SERVER_VERSION = "v1";
 const baseURL: string = `${SERVER_HOST}`;
+
+const { getItem } = useCloudStorage();
+
 
 export async function MakeRequest(
     requestObj: ApiRequestConfig,
@@ -16,8 +20,9 @@ export async function MakeRequest(
 
         let token: string | null = null;
         if (!removeAuth) {
-            const tokenData = localStorage.getItem("authitem");
-            token = tokenData !== null ? JSON.parse(tokenData).access_token : null;
+             const tokenData = await getItem("userData");
+            const parsedToken = JSON.parse(tokenData).token.access
+            token = parsedToken !== null ? parsedToken : null;
         }
 
         // Set up headers
