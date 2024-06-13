@@ -61,9 +61,6 @@ export default function Home() {
         (e) => alert(`Error from Register ${JSON.stringify(e)}`));
   }, [webApp]);
 
-  const userContextData = (typeof window !== 'undefined' && window.localStorage) ? window.localStorage.getItem('UserData') : null;
-  const parsedUserDataContext = userContextData ? JSON.parse(userContextData) : {};
-
   return (
     <>
       {show404 ? (
@@ -74,7 +71,7 @@ export default function Home() {
           webApp.platform === "ios") &&
         webApp.initDataUnsafe &&
         (
-          <UserContext.Provider value={parsedUserDataContext}>
+          <UserContext.Provider value={userDataHook}>
             <HomePage />
           </UserContext.Provider>
         )
