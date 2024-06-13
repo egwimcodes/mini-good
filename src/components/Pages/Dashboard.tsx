@@ -21,7 +21,7 @@ export default function Dashboard() {
     const user = useUserContext();
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState("dashboard");
-    const [balance, setBalance] = useState(user.balance);
+    const [balance] = useState(user.balance);
 
 
     const handleImageClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
