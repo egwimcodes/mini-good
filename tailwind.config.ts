@@ -12,6 +12,15 @@ const config: Config = {
         satoshi: ['Satoshi', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
       },
+
+      screens: {
+        'xxxsm': '200px',
+        'xxsm': '300px',
+        'xsm': '400px',
+        'sm': '640px',
+        
+      }
+,
       fontSize: {
         'xxs': '0.625rem', // 10px
         'xxxs': '0.5rem',  // 8px

@@ -2,10 +2,8 @@ import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { IoMdTime } from "react-icons/io";
 import { GetDailyStreakCreate } from '@/utils/requests';
-import { useUserContext } from '@/hooks/UserContext';
 
 export default function DailyRewards() {
-    const user = useUserContext();
     useEffect(() => {     
         GetDailyStreakCreate().then((e) => {
             alert(`Daily streak created: ${e}`);
