@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { IoCloseSharp } from "react-icons/io5";
-import coinsack from "../../assets/coin-stack.png";
+// import coinsack from "../../assets/coin-stack.png";
 
 interface PopUpComfirmationProps {
     isopen: boolean;

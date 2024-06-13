@@ -37,7 +37,7 @@ export default function Home() {
 
   useEffect(() => {
     if (
-      data.platform &&
+      data && data.platform &&
       (data.platform === "unknown" ||
         data.platform === "tdesktop")
     ) {

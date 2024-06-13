@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Image from "next/image";
 import Task from "./Task";
 import DailyRewards from "./DailyRewards";
 import Boost from "./Boost";

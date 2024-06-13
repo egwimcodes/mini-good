@@ -1,9 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
-import { IoMdAdd } from 'react-icons/io';
 import { BsCopy } from "react-icons/bs";
 
-export default function Wallet({ setShowProfile }: any) {
+type WalletProps = {
+    setShowProfile: (value: string) => void;
+};
+export default function Wallet({ setShowProfile }: WalletProps) {
   return (
       <>
           <div className='w-[100vw] h-[90vh] text-light flex-col ' onClick={() => setShowProfile("wallet")}>

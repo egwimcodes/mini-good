@@ -1,6 +1,10 @@
 import Image from "next/image"
 import { MdNavigateNext } from "react-icons/md"
-export default function Profile({ setShowProfile }: any) {
+type ProfileProps = {
+    setShowProfile: (value: string) => void;
+};
+
+export default function Profile({ setShowProfile }: ProfileProps) {
     return (
         <div className='w-[100vw] h-[90vh] text-light flex-col ' onClick={() => setShowProfile("profile")}>
             <div className="profile-content w-[95vw] h-[30vh] flex-col flex-center">

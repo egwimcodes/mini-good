@@ -2,11 +2,13 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 
+type BottomNavigationProps = {
+    currentPage: (value: string) => void;
+};
 
-
-export default function BottomNavigation(props: any) {
+export default function BottomNavigation(props: BottomNavigationProps) {
     const [active, setActive] = useState('home')
-    
+
   return (
         <div className='b_nav z-10 absolute w-[100vw] h-[9vh] bottom-0 flex-row flex-evenly'>
           <div className={`b_nav-item  w-[15vw] h-[7vh] flex-col flex-center ${active === 'task' ? 'active' : ''}`}  onClick={() => (setActive('task'), props.currentPage('task'))}>

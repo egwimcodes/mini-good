@@ -1,8 +1,8 @@
 "use client"
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { IoMdWallet } from "react-icons/io";
-import { BsQuestionCircleFill } from "react-icons/bs";
+// import { BsQuestionCircleFill } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
 import Profile from './Profile';
 import Wallet from './Wallet';

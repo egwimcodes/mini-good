@@ -1,22 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
 import { IoMdTime } from "react-icons/io";
-import { useEffect, useState } from "react";
-import DailyPopUpComfirmation from "@/components/DailyPopUpComfirmation";
-import ClaimDailyRewards from "@/components/ClaimDailyRewards";
-// import { DailyStreak } from "../utils/requests";
+
 export default function DailyRewards() {
-    // const retrievedUserInfo = getItems('userLocalData');
-    // const retrievedTelegramUserInfo = getItems('telegramData');
-    const [dailyClaim, setDailyClaim] = useState(false);
-    const [dailyRewardsClaimed, setDailyRewardsClaimed] = useState(false);
-
-    useEffect(() => {
-
-
-    },
-        [])
-
+    
     return (
         <div className="rewards-container w-full h-[80vh]  flex flex-col items-center justify-evenly ">
             <div className="rewards-header w-full h-[30vh] flex flex-col items-center justify-between ">
@@ -72,7 +59,7 @@ export default function DailyRewards() {
 
                         </div>
 
-                        <div className="reward-btn-claim w-full h-[7vh] flex flex-row items-center justify-center mt-3" onClick={() => setDailyRewardsClaimed(true)}><h3>CLAIM</h3></div>
+                        <div className="reward-btn-claim w-full h-[7vh] flex flex-row items-center justify-center mt-3" ><h3>CLAIM</h3></div>
                     </div>
                 </div>
             </div>
