@@ -105,7 +105,7 @@ export default function Home() {
             </UserContext.Provider>
             :
             (
-          <h1 className="text-3xl text-white flex items-center justify-center">Loading</h1>
+          <h1 className="text-3xl text-white flex items-center justify-center">Loading....</h1>
         )
       )}
     </>

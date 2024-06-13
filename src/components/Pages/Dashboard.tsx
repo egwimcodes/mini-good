@@ -23,6 +23,7 @@ export default function Dashboard() {
     useEffect(() => {
         localStorage.setItem('balance', String(balance));
     }, [balance])
+
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const x = event.clientX - rect.left;
@@ -43,7 +44,7 @@ export default function Dashboard() {
     return (
         <>
             {showProfile === "dashboard" && (
-                <div className='w-[100vw] h-[90vh] text-light flex-col flex-start'>
+                <div className='w-[100vw] h-[90%] text-light flex-col flex-start'>
                     <div className="dashboard-section w-[95vw] h-[25%] justify-self-start  mx-auto mb-[10%] ">
                         <div className="dashbord-up h-[10vh]  flex-between flex-row">
                             <div className="left-child flex flex-row items-center  w-[50%]" onClick={() => setShowProfile("profile")}>
@@ -59,7 +60,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                         <div className="dashboard-down h-[15vh] w-full flex-row flex-between">
-                            <div className="balance-section flex flex-col justify-between h-[10vh]min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400">
+                            <div className="balance-section flex flex-col justify-between h-[10%] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400">
                                 <p className='text-sm font-base'>Balance</p>
                                 <div className="balance-coin-amount flex-row flex-between">
                                     <div className="coin-balance w-[30vw] flex flex-row">
@@ -79,7 +80,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="tap-section w-[100vw] h-[60%] rounded-[20px]  border-2 border-orange-400  flex justify-center items-center justify-self-start">
+                    <div className="tap-section w-[95vw] h-[70%] rounded-[20px]  border-2 border-orange-400  flex justify-center items-center justify-self-start">
                         <div className="tap w-[60vw] relative" >
                             <Image src="/goodcoing.svg" className="coin-svg" width={500} height={100} alt="" />
                             <div className="png-coin w-full h-[100%] bg-red-800 ">
