@@ -7,9 +7,18 @@ import _404 from "@/components/Pages/_404";
 import { Register } from "@/utils/requests";
 import { UserData } from "@/types";
 import HomePage from "@/components/Pages/HomePage";
-// import { MyLocalStorage } from "./localStorage/localStorage";
 
 export default function Home() {
+  const userData = {
+    user: {
+      id: 1113269206,
+      username: "Snowwisdom",
+      first_name: "Wisdom",
+      referral_code: "",
+      is_premium_user: false,
+    },
+  };
+
   const { setItem, getItem } = useCloudStorage()
   const [show404, setShow404] = useState(false);
   const [userDataHook, setUserDataHook] = useState<UserData>();
@@ -36,46 +45,51 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (
-      data && data.platform &&
-      (data.platform === "unknown" ||
-        data.platform === "tdesktop")
-    ) {
-      setShow404(true);
-      return;
-    }
-    data.expand();
-    const userData = data.initDataUnsafe;
-    const userInfo = {
-      password: `${userData.user.id}`,
-      username: userData.user.username,
-      first_name: userData.user.first_name,
-      referral_code: userData.start_param ?? "",
-      is_premium_user: userData.user.is_premium_user
-        ?? false
-    };
-    Register(userInfo)
-      .then((e) => {
-        const storeData = async () => {
-          try {
-            // Ensure userData is a JSON string before storing
-            const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-            await setItem('userLocalData', dataToStore);
-            alert(`Stored data from Register: ${JSON.stringify(e, null, 2)}`);
+      // if (
+      //   data && data.platform &&
+      //   (data.platform === "unknown" ||
+      //     data.platform === "tdesktop")
+      // ) {
+      //   setShow404(true);
+      //   return;
+      // }
 
-          } catch (error) {
-            alert(`Error storing data: ${error}`);
-          }
-        }
-        storeData();
-      })
-      .catch(
-        (e) => alert(`Error from Register ${JSON.stringify(e)}`)
-      );
+    if (data) {
+      data.expand();
+      // const userData = data.initDataUnsafe;
+      const userInfo = {
+        password: `${userData.user.id}`,
+        username: userData.user.username,
+        first_name: userData.user.first_name,
+        referral_code: userData.user.referral_code ?? "",
+        is_premium_user: userData.user.is_premium_user
+          ?? false
+      };
+
+      Register(userInfo)
+        .then((e) => {
+          const storeData = async () => {
+            try {
+              // Ensure userData is a JSON string before storing
+              const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
+              await setItem("userData", dataToStore);
+              setUserDataHook(e);
+              alert(`Register: ${JSON.stringify(e, null, 2)}`);
+
+            } catch (error) {
+              console.error("Error storing user data:", error);
+            }
+          };
+
+          storeData();
+        })
+        .catch((error) => alert(`Error from Register ${JSON.stringify(error, null, 2)}`)
+        );
+    }
 
     const getStoreData = async () => {
       try {
-        const storedData = await getItem('userLocalData');
+        const storedData = await getItem('userData');
         if (storedData) {
           const parsedValue = JSON.parse(storedData);
           setUserDataHook(parsedValue);
@@ -96,17 +110,23 @@ export default function Home() {
       {show404 ? (
         <_404 />
       ) : (
-        userDataHook !== null && (
-        data.platform &&
-        (data.platform === "android" ||
-          data.platform === "ios") &&
-        data.initDataUnsafe &&
-        (
-          // <UserContext.Provider value={userDataHook}>
-            <HomePage />
-          // </UserContext.Provider>
+          <HomePage />
+        // userDataHook !== null && (
+        // data.platform &&
+        // (data.platform === "android" ||
+        //   data.platform === "ios") &&
+        // data.initDataUnsafe &&
+        // (
+        //   // <UserContext.Provider value={userDataHook}>
+        //     <HomePage />
+        //       // </UserContext.Provider>
+              
+        // )
+        //   )
+        
         )
-         ))}
+      
+      }
     </>
   );
 }
