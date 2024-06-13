@@ -21,16 +21,15 @@ export default function Dashboard() {
     const user = useUserContext();
 
 
-    localStorage.setItem("coinBalance", "0")
     const getActualbalnce = parseInt(localStorage.getItem("coinBalance") ?? "0");
 
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState("dashboard");
-    const [balance, setBalance] = useState(0);
-    const [showBalance] = useState(user.balance + balance + getActualbalnce );
+    const [showBalance, setShowBalance] = useState(user.balance + getActualbalnce );
 
     useEffect(() => {
-        
+        const balanceToStore = showBalance.toString();
+        localStorage.setItem("coinBalance", balanceToStore)   
     }, [showBalance])
     const handleImageClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
@@ -87,7 +86,7 @@ export default function Dashboard() {
                 </div>
                 <div className="tap-section w-[100vw] h-[60%] rounded-[20px]  border-2 border-orange-400  flex justify-center items-center justify-self-start">
                     <div className="tap w-[60vw] relative" >
-                        <Image src="/goodcoing.svg" className="coin-svg" width={500} height={100} alt="" onClick={()=> setBalance(prev => prev + user.earn_per_tap)} />
+                        <Image src="/goodcoing.svg" className="coin-svg" width={500} height={100} alt="" onClick={()=> setShowBalance(prev => prev + user.earn_per_tap)} />
                         <div className="png-coin w-full h-[100%] bg-red-800 ">
                             <Image src="/goodcoing.png" className="coin-png shrink-on-click absolute" width={500} height={100} alt="" onClick={handleImageClick} />
                             {clickEffects.map(effect => (
