@@ -63,7 +63,7 @@ export default function Dashboard() {
                         <div className="balance-section flex flex-col justify-between h-[10vh]min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400">
                             <p className='text-sm font-base'>Earning Per hour</p>
                             <div className="balance-coin-amount flex-row flex-between">
-                                <p>116,066</p>
+                                <p>216,066</p>
                             </div>
                         </div>
                     </div>
