@@ -45,11 +45,11 @@ export default function Home() {
 
             const userData = await getItem('userLocalData');
 
-            if (userData) {
+            if (userData !== null) {
               setUserDataHook(JSON.parse(userData));
             }
 
-            alert(`Data stored successfully...: ${JSON.stringify(userDataHook)}`);
+            alert(`Data stored successfully :): ${JSON.stringify(userDataHook)}`);
 
           } catch (error) {
             alert(`Error storing data: ${error}`);
@@ -59,7 +59,7 @@ export default function Home() {
       })
       .catch(
         (e) => alert(`Error from Register ${JSON.stringify(e)}`));
-  });
+  }, [webApp]);
 
   const userContextData = (typeof window !== 'undefined' && window.localStorage) ? window.localStorage.getItem('UserData') : null;
   const parsedUserDataContext = userContextData ? JSON.parse(userContextData) : {};
@@ -68,7 +68,7 @@ export default function Home() {
     <>
       {show404 ? (
         <_404 />
-      ) : (userDataHook && (
+      ) : (userDataHook !== null && (
         webApp.platform &&
         (webApp.platform === "android" ||
           webApp.platform === "ios") &&
