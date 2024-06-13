@@ -1,0 +1,373 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+/* globals.css or your main CSS file */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent scrolling */
+  box-sizing: border-box;
+  background: #000000;
+}
+
+.gradient-border {
+  position: relative;
+  background: linear-gradient(
+    to right,
+    #d97706,
+    #c2410c,
+    #facc15
+  ); /* amber-500, orange-600, yellow-500 */
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 9.5vh;
+  background: #000000;
+  margin: 0 auto;
+  border-radius: inherit;
+  /* Inherit border radius */
+}
+
+.b_nav-item {
+  backdrop-filter: blur(10px);
+  border: 1px solid #a74b0e;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.b_nav-item.active {
+  backdrop-filter: blur(10px);
+  border: 1px solid #a74b0e;
+  background: orange;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.profile-avater {
+  border: 2px solid orange;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.icon-container {
+  backdrop-filter: blur(10px);
+  border: 1px solid #a74b0e;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.icon-add {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.coin-svg {
+  filter: invert(90%) sepia(10%) saturate(4245%) hue-rotate(1deg) brightness(1%)
+    contrast(98%) drop-shadow(4px 4px 20px rgba(0, 225, 255, 0.295));
+  animation: filterGrow 2s infinite alternate;
+}
+
+/* @keyframes filterGrow {
+  0% {
+    filter: invert(90%) sepia(10%) saturate(4245%) hue-rotate(1deg) brightness(1%) contrast(98%) drop-shadow(4px 4px 20px rgba(0, 225, 255, 0.295));
+  }
+  100% {
+    filter: invert(100%) sepia(100%) saturate(1000%) hue-rotate(360deg) brightness(2%) contrast(200%) drop-shadow(10px 10px 30px rgba(255, 0, 0, 0.5));
+  }
+} */
+
+.coin-png {
+}
+
+.tap {
+  position: relative;
+}
+.coin-png {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.coin-png:active {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  font-size: 0.5rem;
+
+  border-radius: 2px;
+  padding: 10px;
+}
+input[type="checkbox"]::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+ clip-path: polygon(10% 45%, 30% 65%, 80% 15%, 100% 35%, 30% 95%, 0% 65%);
+
+  transform: scale(0);
+  background-color: orange;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+.r-arrow{
+  color: orange;
+}
+
+
+.down.active{
+  @apply bg-orange-400
+}
+
+
+.click-effect {
+  position: absolute;
+  font-size: 24px;
+  opacity: 1;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: slide-fade 2s forwards;
+
+   -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+@keyframes slide-fade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-200px);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.tap_bg {
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 120px 24px 160px 24px;
+  @apply bg-orange-400;
+}
+
+.tap_bg:before {
+  background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 0) 0,
+    theme("colors.light") 100%
+  );
+  position: absolute;
+  content: "";
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.tap_bg:after {
+  content: "";
+  background-image: url("/good-coin.png");
+  background-repeat: no-repeat;
+  background-position: center; /* Center the background image */
+  background-size: contain; /* Adjust this as needed (cover, contain, auto) */
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0; /* Ensure the pseudo-element covers the entire .main element */
+  opacity: 0.4; /* Adjust opacity as needed */
+  background-color: orange; /* Set the background color to orange */
+  mix-blend-mode: multiply; /* Blend the image with the orange color */
+}
+
+.gradient {
+  height: fit-content;
+  z-index: 3;
+  width: 100%;
+  max-width: 640px;
+  background-image: radial-gradient(
+      at 27% 37%,
+      hsla(215, 98%, 61%, 1) 0px,
+      transparent 0%
+    ),
+    radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
+    radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
+    radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
+    radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
+    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  filter: blur(100px) saturate(150%);
+  top: 80px;
+  opacity: 0.15;
+}
+
+@media screen and (max-width: 640px) {
+  .body {
+    padding: 0;
+  }
+}
+
+/* Tailwind Styles */
+
+.app {
+  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+}
+
+.black_btn {
+  @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
+}
+
+.outline_btn {
+  @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+}
+
+.head_text {
+  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+}
+
+.orange_gradient {
+  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+}
+
+.green_gradient {
+  @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
+}
+
+.blue_gradient {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}
+
+.desc {
+  @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
+}
+
+.search_input {
+  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+}
+
+.copy_btn {
+  @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
+}
+
+.glassmorphism {
+  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+}
+
+.prompt_layout {
+  @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
+}
+
+/* Feed Component */
+.feed {
+  @apply mt-16 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
+}
+
+/* Form Component */
+.form_textarea {
+  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+
+.form_input {
+  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+
+/* Nav Component */
+.logo_text {
+  @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
+}
+
+.dropdown {
+  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+}
+
+.dropdown_link {
+  @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-medium;
+}
+
+/* PromptCard Component */
+.prompt_card {
+  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
+}
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.flex-start {
+  @apply flex justify-start items-start;
+}
+
+.flex-end {
+  @apply flex justify-end items-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
+
+.flex-evenly {
+  @apply flex justify-evenly items-center;
+}
