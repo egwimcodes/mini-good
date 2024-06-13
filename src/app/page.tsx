@@ -74,7 +74,6 @@ export default function Home() {
               const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
               await setItem("userData", dataToStore);
               setUserDataHook(e);
-              alert(`Register: ${JSON.stringify(e, null, 2)}`);
 
             } catch (error) {
               console.error("Error storing user data:", error);
@@ -90,12 +89,12 @@ export default function Home() {
     const getStoreData = async () => {
       try {
         const storedData = await getItem('userData');
-        if (storedData) {
           const parsedValue = JSON.parse(storedData);
           setUserDataHook(parsedValue);
+          alert(`from userdataHook: ${JSON.stringify(userDataHook, null, 2)}`);
+
 
           // alert(`Stored data from Register: ${JSON.stringify(parsedValue, null, 2)}`);
-        }
       }
       catch (error) {
         alert(`Error fetching data from localStorage: ${error}`);
