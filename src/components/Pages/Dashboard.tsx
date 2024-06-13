@@ -66,10 +66,10 @@ export default function Dashboard() {
                         </div>
                         <div className="dashboard-down h-[60%] w-full flex-row flex-between">
                             <div className="balance-section flex flex-col justify-between h-[80%] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400 ">
-                                <p className='xxxsm:text-[1opx] xxsm:text-[16px] xsm:text-[20px] font-base h-[40%] '>Balance</p>
+                                <h1 className='text-sm '>Balance</h1>
                                 <div className="balance-coin-amount flex-row flex-between h-[60%] ">
                                     <div className="coin-balance w-[80%] h-[100%] flex-center">
-                                        <Image src="/goodcoing.png" className="xxxsm:w-[20%] xxsm:w-[25%] xsm:w-[20%]  sm:w-[17%]" width={25} height={25} alt="" />
+                                        <Image src="/goodcoing.png" className="xxxsm:w-[20%] xxsm:w-[20%] xsm:w-[20%]  sm:w-[17%]" width={25} height={25} alt="" />
                                         <p className='text-2xl h-[100%] w-[70%] flex-row flex-evenly'>{balance}</p>
                                     </div>
                                     <div className="icon-add border-1 xxxsm:w-[20%] xxsm:w-[20%] xsm:w-[20%] h-[80%] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center ">
@@ -78,7 +78,7 @@ export default function Dashboard() {
                                 </div>
                             </div>
                             <div className="balance-section flex flex-col justify-between h-[80%] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400 ">
-                                <p className='xxxsm:text-[1opx] xxsm:text-[16px] xsm:text-[20px] font-base h-[40%] '>Earning Per hour</p>
+                                <p className='text-sm font-base h-[40%] '>Earning Per hour</p>
                                 <div className="balance-coin-amount flex-row flex-between h-[60%] ">
                                     <p className='text-2xl h-[100%] w-[70%] flex-row flex-start'>{user.profit_per_hour}</p>
                                 </div>

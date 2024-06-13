@@ -99,6 +99,27 @@ body {
   transform: translate(-50%, -50%) scale(0.9);
 }
 
+.buttom-btn{
+  backdrop-filter: blur(10px);
+  border: 1px solid #F090001E;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 2px 2px #A7B5F3FD;
+  }
+  
+  .buttom-btn.active {
+  backdrop-filter: blur(10px);
+  border: 3px solid #BE7507FD;
+  background: orange;
+  border-radius: 10px;
+
+}
+
+.b_nav-item.active > h4 {
+  
+  color: #000000 ;
+}
+
 
 input[type="checkbox"] {
   appearance: none;
@@ -109,7 +130,6 @@ input[type="checkbox"] {
   font-size: 0.5rem;
 
   border-radius: 2px;
-  padding: 10px;
 }
 input[type="checkbox"]::before {
   content: "";
