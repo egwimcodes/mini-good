@@ -10,7 +10,7 @@ export default function Wallet({ setShowProfile }: any) {
               <div className="profile-content w-[95vw] h-[30vh] flex-col flex-center">
                   
                   <p className='text-3xl font-bold'>Wallet</p>
-                  <div className="children-body xsm:flex-2 flex-col items-center justify-center w-full" data-aos="fade-right" data-aos-delay="5000" data-aos-duration="1000">
+                  <div className="children-body xsm:flex-2 flex-col items-center justify-center w-full" >
                       {/* <ChargeLevel level={100} availableGoodCoin={100} chargedGoodCoin={100} /> */}
                       <div className="level flex flex-row items-center justify-center flex-nowrap">
                           <p className="text-base text-gray font-bold text-orange-400 mx-1">0.00 USDT</p>

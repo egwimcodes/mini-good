@@ -79,7 +79,7 @@ export default function Dashboard() {
                                     key={effect.id}
                                     className="click-effect text-2xl text-light font-bold"
                                     style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
-                                    data-aos="zoom-in"
+                                    
                                     draggable="false"
                                 >
                                     +1

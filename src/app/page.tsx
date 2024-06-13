@@ -14,46 +14,6 @@ export default function Home() {
   useEffect(() => {
     console.log(data)
     
-    // if (
-    //   data.platform &&
-    //   (data.platform === "unknown" ||
-    //     data.platform === "tdesktop")
-    // ) {
-    //   setShow404(true);
-    //   return;
-    // }
-
-    // data.expand();
-    // const userData = data.initDataUnsafe;
-    // const userInfo = {
-    //   password: `${userData.user.id}`,
-    //   username: userData.user.username,
-    //   first_name: userData.user.first_name,
-    //   referral_code: userData.start_param ?? "",
-    //   is_premium_user: userData.user.is_premium_user
-    //     ?? false
-    // };
-    // Register(userInfo)
-    //   .then((e) => {
-    //     const storeData = async () => {
-    //       try {
-    //         // Ensure userData is a JSON string before storing
-    //         const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-    //         // await setItem('userLocalData', dataToStore);
-    //         alert(JSON.stringify(dataToStore))
-    //         console.log(dataToStore)
-
-    //       } catch (error) {
-    //         alert(`Error storing data: ${error}`);
-    //         console.log(error);
-    //       }
-    //     }
-    //     storeData();
-    //   })
-    //   .catch(
-    //     (e) => alert(`Error from Register ${JSON.stringify(e)}`)
-    //   );
-
   }, [data]);
 
   return (

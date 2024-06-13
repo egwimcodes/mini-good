@@ -8,7 +8,7 @@ export default function Profile({ setShowProfile }: any) {
                     <Image src="/robot.png" width={100} height={100} alt="" />
                 </div>
                 <p className='text-3xl font-bold'>DebugTitan</p>
-                <div className="children-body xsm:flex-2 flex-col items-center justify-center w-full" data-aos="fade-right" data-aos-delay="5000" data-aos-duration="1000">
+                <div className="children-body xsm:flex-2 flex-col items-center justify-center w-full">
                     {/* <ChargeLevel level={100} availableGoodCoin={100} chargedGoodCoin={100} /> */}
                     <div className="level flex flex-row items-center justify-center flex-nowrap">
                         <Image className="w-8" width={100} height={100} src='/regendcup.png' draggable="false" alt="" />
