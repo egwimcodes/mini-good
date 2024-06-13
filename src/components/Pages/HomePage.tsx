@@ -8,19 +8,18 @@ import Referral from './Referral'
 import TaskPage from './TaskPage'
 
 export default function HomePage() {
-  const [tap, setTap] = useState(0)
+  // const [tap, setTap] = useState(0)
   const [currentPage, setCurrentPage] = useState('home')
-
   const selectedBtn = (data: string) => {
     setCurrentPage(data);
   };
-  const handleTap = () => {
-    setTap(prev => prev + 1)
-  }
+  // const handleTap = () => {
+  //   setTap(prev => prev + 1)
+  // }
   return (
     <>
-      <div className="container w-[100vw] h-[100vh] flex flex-col justify-between items-center relative">
-        <div className="body-content">
+      <div className="container w-[100vw] h-[100%] flex flex-col justify-start items-center relative">
+        <div className="body-content h-[90%] flex flex-start">
           {currentPage === 'task' && <TaskPage />}
           {currentPage === 'home' && <Dashboard />}
           {currentPage === 'refer' && <Referral />}

@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
+
 export default function Referral() {
   return (
       <>
@@ -45,7 +46,7 @@ export default function Referral() {
                           <div className="referal-head"></div>
                       </div>
                       <div className="referal-body w-inherit h-[15vh] flex flex-col items-center justify-center">
-                          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-slate-600">You Don&#39;t Have Referals Yet</p>
+                          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-slate-600">You Don't Have Referals Yet</p>
                       </div>
 
                   </div>
