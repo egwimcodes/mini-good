@@ -57,9 +57,9 @@ export default function Home() {
               // Ensure userData is a JSON string before storing
               const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
               await setItem("userData", dataToStore);
-              const accessToken = e.access;
+              const accessToken = e.token.access;
               await setItem("accessToken", accessToken);
-              alert(`from Register: ${JSON.stringify(e.access, null, 2)}`);
+              alert(`from Register: ${JSON.stringify(e.token.access, null, 2)}`);
 
               setUserDataHook(e);
             } catch (error) {
