@@ -33,6 +33,7 @@ export default function Home() {
         ?? false
     };
     alert(JSON.stringify(userInfo))
+    alert("dev")
     // Register(userInfo)
     //   .then((e) => {
     //     const storeData = async () => {
