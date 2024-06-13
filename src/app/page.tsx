@@ -58,10 +58,11 @@ export default function Home() {
     <>
       {show404 ? (
         <_404 />
-      ) : (
-        <UserContext.Provider value={parsedUserDataContext}>
-          <HomePage />
-        </UserContext.Provider>
+      ) : (userDataHook && (
+          <UserContext.Provider value={parsedUserDataContext}>
+            <HomePage />
+          </UserContext.Provider>
+      )
       )}
     </>
   );
