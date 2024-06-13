@@ -49,7 +49,7 @@ export default function Home() {
               setUserDataHook(JSON.parse(userData));
             }
 
-            alert(`Data stored successfully :): ${JSON.stringify(userDataHook)}`);
+            alert(`Data stored successfully: ${JSON.stringify(userDataHook)}`);
 
           } catch (error) {
             alert(`Error storing data: ${error}`);
