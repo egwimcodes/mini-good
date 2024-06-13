@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import Image from 'next/image'
 import { IoMdWallet } from "react-icons/io";
 // import { BsQuestionCircleFill } from "react-icons/bs";
@@ -21,7 +21,7 @@ export default function Dashboard() {
     const user = useUserContext();
 
 
-    const getActualbalnce = parseInt(localStorage.getItem("coinBalance") ?? "0");
+    // const getActualbalnce = parseInt(localStorage.getItem("coinBalance") ?? "0");
 
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState("dashboard");
