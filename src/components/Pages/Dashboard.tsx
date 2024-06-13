@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { IoMdWallet } from "react-icons/io";
 // import { BsQuestionCircleFill } from "react-icons/bs";
@@ -19,11 +19,19 @@ interface ClickEffect {
 
 export default function Dashboard() {
     const user = useUserContext();
+
+
+    localStorage.setItem("coinBalance", "0")
+    const getActualbalnce = parseInt(localStorage.getItem("coinBalance") ?? "0");
+
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState("dashboard");
-    const [balance] = useState(user.balance);
+    const [balance, setBalance] = useState(0);
+    const [showBalance] = useState(user.balance + balance + getActualbalnce );
 
-
+    useEffect(() => {
+        
+    }, [showBalance])
     const handleImageClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const x = event.clientX - rect.left;
@@ -61,7 +69,7 @@ export default function Dashboard() {
                             <div className="balance-coin-amount flex-row flex-between">
                                 <div className="coin-balance w-[30vw] flex flex-row">
                                     <Image src="/goodcoing.png" width={25} height={25} alt="" />
-                                    <p className='ml-1'>{balance}</p>
+                                    <p className='ml-1'>{showBalance}</p>
                                 </div>
                                 <div className="icon-add border-1 w-[5vw] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900">
                                     <IoMdAdd className='text-purple-700' />
@@ -79,7 +87,7 @@ export default function Dashboard() {
                 </div>
                 <div className="tap-section w-[100vw] h-[60%] rounded-[20px]  border-2 border-orange-400  flex justify-center items-center justify-self-start">
                     <div className="tap w-[60vw] relative" >
-                        <Image src="/goodcoing.svg" className="coin-svg" width={500} height={100} alt="" />
+                        <Image src="/goodcoing.svg" className="coin-svg" width={500} height={100} alt="" onClick={()=> setBalance(prev => prev + user.earn_per_tap)} />
                         <div className="png-coin w-full h-[100%] bg-red-800 ">
                             <Image src="/goodcoing.png" className="coin-png shrink-on-click absolute" width={500} height={100} alt="" onClick={handleImageClick} />
                             {clickEffects.map(effect => (
