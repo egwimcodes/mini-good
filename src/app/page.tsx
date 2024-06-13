@@ -90,8 +90,10 @@ export default function Home() {
       try {
         const storedData = await getItem('userData');
           const parsedValue = JSON.parse(storedData);
-          setUserDataHook(parsedValue);
-          alert(`from userdataHook: ${JSON.stringify(userDataHook, null, 2)}`);
+          if (parsedValue) {
+            setUserDataHook(parsedValue);
+            alert(`from userdataHook: ${JSON.stringify(userDataHook, null, 2)}`);
+          }
 
 
           // alert(`Stored data from Register: ${JSON.stringify(parsedValue, null, 2)}`);
@@ -102,7 +104,7 @@ export default function Home() {
     }
 
     getStoreData();
-  }, [data, setItem, getItem]);
+  }, [data, setItem, getItem, userDataHook, setUserDataHook]);
 
   return (
     <>
