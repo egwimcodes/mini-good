@@ -61,6 +61,7 @@ export default function Home() {
             // Ensure userData is a JSON string before storing
             const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
             await setItem('userLocalData', dataToStore);
+            alert(`Stored data from Register: ${JSON.stringify(e, null, 2)}`);
 
           } catch (error) {
             alert(`Error storing data: ${error}`);
@@ -95,19 +96,17 @@ export default function Home() {
       {show404 ? (
         <_404 />
       ) : (
-        // userDataHook !== null && (
-        // webApp.platform &&
-        // (webApp.platform === "android" ||
-        //   webApp.platform === "ios") &&
-        // webApp.initDataUnsafe &&
+        userDataHook !== null && (
+        data.platform &&
+        (data.platform === "android" ||
+          data.platform === "ios") &&
+        data.initDataUnsafe &&
         (
           // <UserContext.Provider value={userDataHook}>
             <HomePage />
           // </UserContext.Provider>
         )
-        // ))}
-      )
-}
+         ))}
     </>
   );
 }
