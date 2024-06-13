@@ -53,7 +53,7 @@ export default function Dashboard() {
                             <div className="balance-coin-amount flex-row flex-between">
                                 <div className="coin-balance w-[30vw] flex flex-row">
                                     <Image src="/goodcoing.png" width={25} height={25} alt="" />
-                                    <p className='ml-1'>116,066</p>
+                                    <p className='ml-1'>216,066</p>
                                 </div>
                                 <div className="icon-add border-1 w-[5vw] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900">
                                     <IoMdAdd className='text-purple-700' />
