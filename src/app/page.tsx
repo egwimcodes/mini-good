@@ -89,7 +89,7 @@ export default function Home() {
 
   useEffect(() => {
     if (userDataHook) {
-      alert(`from userDataHook: ${JSON.stringify(userDataHook, null, 2)}`);
+      // alert(`from userDataHook: ${JSON.stringify(userDataHook, null, 2)}`);
     }
   }, [userDataHook]);
 
