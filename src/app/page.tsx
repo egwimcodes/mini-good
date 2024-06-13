@@ -71,8 +71,7 @@ export default function Home() {
     const getStoreData = async () => {
       try {
         const tokenData = await getItem("userData");
-
-        alert(`tokenData: ${JSON.parse(tokenData).token.access}`)
+        alert(`tokenData: ${typeof JSON.parse(tokenData).token.access}`)
         
 
         const storedData = await getItem('userData');
