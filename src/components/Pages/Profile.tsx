@@ -1,3 +1,4 @@
+import { useUserContext } from "@/hooks/UserContext";
 import Image from "next/image"
 import { MdNavigateNext } from "react-icons/md"
 type ProfileProps = {
@@ -5,18 +6,19 @@ type ProfileProps = {
 };
 
 export default function Profile({ setShowProfile }: ProfileProps) {
+    const user = useUserContext();
     return (
         <div className='w-[100vw] h-[90vh] text-light flex-col ' onClick={() => setShowProfile("profile")}>
             <div className="profile-content w-[95vw] h-[30vh] flex-col flex-center">
                 <div className="avater-profile w-[20vw] border-2 border-orange-400 rounded-[50%]">
                     <Image src="/robot.png" width={100} height={100} alt="" />
                 </div>
-                <p className='text-3xl font-bold'>DebugTitan</p>
+                <p className='text-3xl font-bold'>{user.username}</p>
                 <div className="children-body xsm:flex-2 flex-col items-center justify-center w-full">
                     {/* <ChargeLevel level={100} availableGoodCoin={100} chargedGoodCoin={100} /> */}
                     <div className="level flex flex-row items-center justify-center flex-nowrap">
                         <Image className="w-8" width={100} height={100} src='/regendcup.png' draggable="false" alt="" />
-                        <p className="text-base text-gray font-bold text-orange-400 mx-1">Gold</p>
+                        <p className="text-base text-gray font-bold text-orange-400 mx-1">{user.rank}</p>
                         <MdNavigateNext className="text-xl text-gray text-slate-400" />
                     </div>
                 </div>

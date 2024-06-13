@@ -18,9 +18,10 @@ interface ClickEffect {
 }
 
 export default function Dashboard() {
+    const user = useUserContext();
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState("dashboard");
-    const user = useUserContext();
+    const [balance, setBalance] = useState(user.balance);
 
 
     const handleImageClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -60,7 +61,7 @@ export default function Dashboard() {
                             <div className="balance-coin-amount flex-row flex-between">
                                 <div className="coin-balance w-[30vw] flex flex-row">
                                     <Image src="/goodcoing.png" width={25} height={25} alt="" />
-                                    <p className='ml-1'>216,066</p>
+                                    <p className='ml-1'>{balance}</p>
                                 </div>
                                 <div className="icon-add border-1 w-[5vw] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900">
                                     <IoMdAdd className='text-purple-700' />
@@ -70,7 +71,7 @@ export default function Dashboard() {
                         <div className="balance-section flex flex-col justify-between h-[10vh]min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400">
                             <p className='text-sm font-base'>Earning Per hour</p>
                             <div className="balance-coin-amount flex-row flex-between">
-                                <p>216,066</p>
+                                <p>{user.profit_per_hour}</p>
                             </div>
                         </div>
                     </div>
@@ -89,7 +90,7 @@ export default function Dashboard() {
                                     
                                     draggable="false"
                                 >
-                                    +1
+                                    {user.earn_per_tap}
                                 </span>
                             ))}
                         </div>
