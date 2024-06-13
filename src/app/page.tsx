@@ -17,7 +17,14 @@ export default function Home() {
   const webApp = useWebApp();
 
   useEffect(() => {
-
+    if (
+      webApp.platform &&
+      (webApp.platform === "unknown" ||
+        webApp.platform === "tdesktop")
+    ) {
+      setShow404(true);
+      return;
+    }
     webApp.expand();
     const userData = webApp.initDataUnsafe;
     const userInfo = {
@@ -59,11 +66,16 @@ export default function Home() {
       {show404 ? (
         <_404 />
       ) : (userDataHook && (
+        webApp.platform &&
+        (webApp.platform === "android" ||
+          webApp.platform === "ios") &&
+        webApp.initDataUnsafe &&
+        (
           <UserContext.Provider value={parsedUserDataContext}>
             <HomePage />
           </UserContext.Provider>
-      )
-      )}
+        )
+      ))}
     </>
   );
 }
