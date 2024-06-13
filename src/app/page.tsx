@@ -7,6 +7,7 @@ import _404 from "@/components/Pages/_404";
 import { Register } from "@/utils/requests";
 import { UserData } from "@/types";
 import HomePage from "@/components/Pages/HomePage";
+import { UserContext } from "@/hooks/UserContext";
 
 export default function Home() {
   const userData = {
@@ -93,8 +94,12 @@ export default function Home() {
       {show404 ? (
         <_404 />
       ) : (
-          userDataHook?
-        <HomePage /> : (
+          userDataHook ?
+            <UserContext.Provider value={userDataHook}>
+              <HomePage />
+            </UserContext.Provider>
+            :
+            (
           <h1 className="text-3xl text-white flex items-center justify-center">Loading</h1>
         )
       )}
