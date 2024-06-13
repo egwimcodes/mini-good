@@ -70,6 +70,11 @@ export default function Home() {
 
     const getStoreData = async () => {
       try {
+        const tokenData = await getItem("userData");
+
+        alert(`tokenData: ${JSON.parse(tokenData).token.access}`)
+        
+
         const storedData = await getItem('userData');
         const parsedValue = JSON.parse(storedData);
         if (parsedValue) {

@@ -16,13 +16,7 @@ export async function MakeRequest(
 
         let token: string | null = null;
         if (!removeAuth) {
-
-            // const tokenData = await getItem("userData"); 
-            // token = tokenData !== null ? JSON.parse(tokenData).token.access : null;
-            // alert(token)
-
             const tokenData = localStorage.getItem("authitem");
-            alert(`tokenData: ${tokenData}`)
             token = tokenData !== null ? JSON.parse(tokenData).access_token : null;
         }
 
