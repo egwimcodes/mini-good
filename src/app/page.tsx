@@ -19,9 +19,9 @@ export default function Home() {
     },
   };
 
-  const { setItem, getItem } = useCloudStorage()
+  const { setItem, getItem } = useCloudStorage();
   const [show404, setShow404] = useState(false);
-  const [userDataHook, setUserDataHook] = useState<UserData>();
+  const [userDataHook, setUserDataHook] = useState<UserData | null>(null);
   //TODO: create usestate to store registered user data
 
   const data = useWebApp();
@@ -31,39 +31,22 @@ export default function Home() {
       event.preventDefault();
     };
 
-    document.addEventListener(
-      "contextmenu",
-      handleContextMenu
-    );
+    document.addEventListener("contextmenu", handleContextMenu);
 
     return () => {
-      document.removeEventListener(
-        "contextmenu",
-        handleContextMenu
-      );
+      document.removeEventListener("contextmenu", handleContextMenu);
     };
   }, []);
 
   useEffect(() => {
-      // if (
-      //   data && data.platform &&
-      //   (data.platform === "unknown" ||
-      //     data.platform === "tdesktop")
-      // ) {
-      //   setShow404(true);
-      //   return;
-      // }
-
     if (data) {
       data.expand();
-      // const userData = data.initDataUnsafe;
       const userInfo = {
         password: `${userData.user.id}`,
         username: userData.user.username,
         first_name: userData.user.first_name,
         referral_code: userData.user.referral_code ?? "",
-        is_premium_user: userData.user.is_premium_user
-          ?? false
+        is_premium_user: userData.user.is_premium_user ?? false
       };
 
       Register(userInfo)
@@ -74,7 +57,6 @@ export default function Home() {
               const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
               await setItem("userData", dataToStore);
               setUserDataHook(e);
-
             } catch (error) {
               console.error("Error storing user data:", error);
             }
@@ -82,52 +64,40 @@ export default function Home() {
 
           storeData();
         })
-        .catch((error) => alert(`Error from Register ${JSON.stringify(error, null, 2)}`)
-        );
+        .catch((error) => alert(`Error from Register ${JSON.stringify(error, null, 2)}`));
     }
 
     const getStoreData = async () => {
       try {
         const storedData = await getItem('userData');
-          const parsedValue = JSON.parse(storedData);
-          if (parsedValue) {
-            setUserDataHook(parsedValue);
-            alert(`from userdataHook: ${JSON.stringify(userDataHook, null, 2)}`);
-          }
-
-
-          // alert(`Stored data from Register: ${JSON.stringify(parsedValue, null, 2)}`);
-      }
-      catch (error) {
+        const parsedValue = JSON.parse(storedData);
+        if (parsedValue) {
+          setUserDataHook(parsedValue);
+        }
+      } catch (error) {
         alert(`Error fetching data from localStorage: ${error}`);
       }
-    }
+    };
 
     getStoreData();
-  }, [data, setItem, getItem, userDataHook, setUserDataHook]);
+  }, [data, setItem, getItem]);
+
+  useEffect(() => {
+    if (userDataHook) {
+      alert(`from userDataHook: ${JSON.stringify(userDataHook, null, 2)}`);
+    }
+  }, [userDataHook]);
 
   return (
     <>
       {show404 ? (
         <_404 />
       ) : (
-          <HomePage />
-        // userDataHook !== null && (
-        // data.platform &&
-        // (data.platform === "android" ||
-        //   data.platform === "ios") &&
-        // data.initDataUnsafe &&
-        // (
-        //   // <UserContext.Provider value={userDataHook}>
-        //     <HomePage />
-        //       // </UserContext.Provider>
-              
-        // )
-        //   )
-        
+          userDataHook?
+        <HomePage /> : (
+          <h1 className="text-3xl text-white flex items-center justify-center">Loading</h1>
         )
-      
-      }
+      )}
     </>
   );
 }
