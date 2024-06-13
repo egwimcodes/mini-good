@@ -113,9 +113,3 @@ export interface UserData {
   is_premium_user: boolean;
   token: TokenAuth;
 }
-
-
-export interface DailySteakCreate{
-  last_checkin_date: string;
-  owner: number;
-}

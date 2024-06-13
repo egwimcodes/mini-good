@@ -61,7 +61,6 @@ export default function Home() {
 
               const accessToken = JSON.parse(dataToStore).token.access;
               localStorage.setItem("authToken", accessToken);
-              alert(`Registration successful. Welcome, ${JSON.stringify(accessToken, null, 2)}!`);
             } catch (error) {
               console.error("Error storing user data:", error);
             }

@@ -6,25 +6,11 @@ import { useUserContext } from '@/hooks/UserContext';
 
 export default function DailyRewards() {
     const user = useUserContext();
-    useEffect(() => {
-        // getCurrent Date
-        function formatDate(date: Date): string {
-            return date.toISOString().split('T')[0];
-        }
-        const today = new Date();
-        const formattedDate = formatDate(today);
-
-        const dailyStreak = {
-            last_checkin_date: formattedDate,
-            owner: Number(user.id)
-        }
-        
-        GetDailyStreakCreate(dailyStreak).then((e) => {
-            alert(`Daily streak log ${dailyStreak}`);
+    useEffect(() => {     
+        GetDailyStreakCreate().then((e) => {
             alert(`Daily streak created: ${e}`);
         }).catch((e) => {
             alert(`Error: ${JSON.stringify(e.message)}`);
-            alert(`Error: ${JSON.stringify(dailyStreak)}`);
         })
     })
 

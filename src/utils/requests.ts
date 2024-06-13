@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-catch */
 import { MakeRequest } from "./axiosCall";
 import { AuthRoutes } from "./authEndpoints";
-import { Auth, DailySteakCreate } from "@/types";
+import { Auth } from "@/types";
 
 interface RequestConfig {
     path: string;
@@ -38,16 +38,12 @@ async function Register({ password, username, first_name, is_premium_user, refer
 
 // Daily Streak
 
-async function GetDailyStreakCreate({ last_checkin_date, owner }: DailySteakCreate) {
+async function GetDailyStreakCreate() {
     try {
     const requeststreakCreate= {
         path: '/daily-streak/',
         method: 'POST',
         contentType: 'application/json', // You can omit this if using the default
-        data: {
-            last_checkin_date,
-            owner
-        },
         removeAuth: false // Assuming you need authentication
     };
 
