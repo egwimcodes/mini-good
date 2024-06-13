@@ -6,7 +6,7 @@ export const UserContext = createContext<UserData | undefined>(undefined)
 export function useUserContext() {
     const user = useContext(UserContext);
 
-    if (!user) {
+    if (user === undefined) {
        alert("UserContext is undefined in useUserContext function");
        throw new Error("UserContext is undefined");
     }

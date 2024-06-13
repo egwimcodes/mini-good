@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useCloudStorage, useWebApp } from "@vkruglikov/react-telegram-web-app";
 import _404 from "@/components/Pages/_404";
 import { Register } from "@/utils/requests";
-import { UserContext } from "@/hooks/UserContext";
 import { UserData } from "@/types";
 import HomePage from "@/components/Pages/HomePage";
 // import { MyLocalStorage } from "./localStorage/localStorage";
@@ -102,9 +101,9 @@ export default function Home() {
         //   webApp.platform === "ios") &&
         // webApp.initDataUnsafe &&
         (
-          <UserContext.Provider value={userDataHook}>
+          // <UserContext.Provider value={userDataHook}>
             <HomePage />
-          </UserContext.Provider>
+          // </UserContext.Provider>
         )
         // ))}
       )
