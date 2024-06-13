@@ -44,9 +44,12 @@ export default function Home() {
             await setItem('userLocalData', dataToStore);
 
             const userData = await getItem('userLocalData');
-            setUserDataHook(JSON.parse(userData));
 
-              alert(`Data stored successfully...: ${JSON.stringify(userDataHook)}`);
+            if (userData) {
+              setUserDataHook(JSON.parse(userData));
+            }
+
+            alert(`Data stored successfully...: ${JSON.stringify(userDataHook)}`);
 
           } catch (error) {
             alert(`Error storing data: ${error}`);
