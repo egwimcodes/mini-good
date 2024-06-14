@@ -2,9 +2,9 @@
 import { useState } from 'react'
 import React from 'react'
 import BottomNavigation from '../BottomNavigation'
-import Dashboard from './Dashboard'
-import Referral from './Referral'
-import TaskPage from './TaskPage'
+// import Dashboard from './Dashboard'
+// import Referral from './Referral'
+// import TaskPage from './TaskPage'
 
 export default function HomePage() {
   // const [tap, setTap] = useState(0)
