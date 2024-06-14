@@ -49,7 +49,7 @@ async function GetDailyStreakCreate(data: DailySteakCreate) {
 
     try {
         const response = await MakeRequest(requestObj);
-        alert(`Daily streak created: ${JSON.stringify(response)}`);
+        return response;
     } catch (error) {
         console.error('Error fetching daily streak data:', error);
     }
