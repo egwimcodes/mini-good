@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { IoMdTime } from "react-icons/io";
+import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
+import ClaimDailyRewards from '../ClaimDailyRewards';
 
 export default function DailyRewards() {
-   
+    const [dailyClaim, setDailyClaim] = useState(false);
+    const [dailyRewardsClaimed, setDailyRewardsClaimed] = useState(false);
 
     return (
         <div className="rewards-container w-100% h-[100%]  flex flex-col items-center justify-evenly ">
@@ -30,7 +33,7 @@ export default function DailyRewards() {
                     </div>
                     <div className="reward-content flex flex-col w-[100%] h-[80%] items-center justify-center">
                         <div className="reward-check flex flex-col justify-between w-[80%] h-[80%]">
-                            <div className="rewardinput flex-between flex-row items-center justify-evenly ">
+                            <div className="rewardinput flex-between flex-row items-center justify-evenly " onClick={() => setDailyClaim(true)}>
                                 <p className="text-light xxxsm:text-xxxs xxsm:text-xsxs xsm:text-1rem sm:text-1rem">Day1</p>
                                 <hr className='h-2 border-2 bg-green-500 border-orange-400 rounded-full w-[80%]' />
                                 <input className="daily-check text-light border-orange-400 border-2" type="checkbox" name="" id="" checked />
@@ -69,14 +72,21 @@ export default function DailyRewards() {
                         </div>
 
                         <div className="reward-btn-claim h-[25%] w-[100%] flex flex-row items-center justify-center " >
-                            <div className="reward-claim-btn bg-green-500 w-[80%] h-[70%] mx-auto rounded-[20px] flex-center">
+                            <div className="reward-claim-btn bg-green-500 w-[80%] h-[70%] mx-auto rounded-[20px] flex-center" onClick={() => setDailyRewardsClaimed(true)}>
 
                                 <h3 className='xxxsm:text-xxxs xxsm:text-xs xsm:text-1rem sm:text-1rem text-white font-semibold'>CLAIM</h3></div>
                             </div>
                     </div>
                 </div>
             </div>
-
+            {dailyClaim && (
+                <DailyPopUpComfirmation isopen={true} isClose={() => setDailyClaim(false)} />
+            )
+            }
+            {dailyRewardsClaimed && (
+                <ClaimDailyRewards isopen={true} isClose={() => setDailyRewardsClaimed(false)} />
+            )
+            }
 
         </div>
     )
