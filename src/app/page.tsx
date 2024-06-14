@@ -29,21 +29,6 @@ export default function Home() {
             is_premium_user: webAppData.platform.user.is_premium_user ?? false
           };
           alert(` User info ${JSON.stringify(userInfo)}`);
-
-          // Register(userInfo)
-          //   .then((e) => {
-          //     const storeData = async () => {
-          //       try {
-          //         const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-          //         // Handle storing data logic here
-          //       } catch (error) {
-          //         console.error("Error storing user data:", error);
-          //       }
-          //     };
-
-          //     storeData();
-          //   })
-          //   .catch((error) => console.error(error.message));
       }
     }
   }, [webAppData]);
