@@ -49,7 +49,7 @@ export default function Dashboard() {
     return (
         <>
             {showProfile === "dashboard" && (
-                <div className='w-[100vw] h-[90%] text-light flex-col flex-start'>
+                <div className='w-[100%] h-[100%] text-light flex-col flex-start'>
                     <div className="dashboard-section w-[95vw] h-[25%] justify-self-start  mx-auto mb-[10%] ">
                         <div className="dashbord-up h-[10vh]  flex-between flex-row">
                             <div className="left-child flex flex-row items-center  w-[50%]" onClick={() => setShowProfile("profile")}>
