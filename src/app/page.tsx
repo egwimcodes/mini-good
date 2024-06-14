@@ -7,6 +7,7 @@ import _404 from "@/components/Pages/_404";
 // import { Register } from "@/utils/requests";
 // import { UserData } from "@/types";
 import HomePage from "@/components/Pages/HomePage";
+import { Register } from "@/utils/requests";
 // import { UserContext } from "@/hooks/UserContext";
 
 export default function Home() {
@@ -27,55 +28,55 @@ export default function Home() {
 
   const webAppData = useWebApp();
 
-  
+
 
   useEffect(() => {
 
-      if (
-        webAppData.platform &&
-        (webAppData.platform === "unknown" ||
-          webAppData.platform === "tdesktop")
-      ) {
-        setShow404(true);
-        return;
-      }
-      // if (webAppData) {
-      //   webAppData.expand();
-      //   const userInfo = {
-      //     password: `${webAppData.platform.user.id}`,
-      //     username: webAppData.platform.user.username,
-      //     first_name: webAppData.platform.user.first_name,
-      //     referral_code: webAppData.platform.user.referral_code ?? "",
-      //     is_premium_user: webAppData.platform.user.is_premium_user ?? false
-      //   };
-      //   alert(webAppData.platform)
-      //   alert(userInfo)
-     
+    if (
+      webAppData.platform &&
+      (webAppData.platform === "unknown" ||
+        webAppData.platform === "tdesktop")
+    ) {
+      setShow404(true);
+      return;
+    }
+    webAppData.expand();
+    const userInfo = {
+      password: `${webAppData.platform.user.id}`,
+      username: webAppData.platform.user.username,
+      first_name: webAppData.platform.user.first_name,
+      referral_code: webAppData.platform.user.referral_code ?? "",
+      is_premium_user: webAppData.platform.user.is_premium_user ?? false
+    };
+    alert(webAppData.platform)
+    alert(userInfo)
 
-      // Register(userInfo)
-      //   .then((e) => {
-      //     const storeData = async () => {
-      //       try {
-      //         // const session = getSession()
-      //         // Ensure userData is a JSON string before storing
-      //         const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-      //         setUserDataHook(e);
 
-      //         // const accessToken = JSON.parse(dataToStore).token.access;
-      //         // localStorage.setItem("authToken", accessToken);
-      //       } catch (error) {
-      //         console.error("Error storing user data:", error);
-      //       }
-      //     };
+    Register(userInfo)
+      .then((e) => {
+        const storeData = async () => {
+          try {
+            // const session = getSession()
+            // Ensure userData is a JSON string before storing
+            const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
+            setUserDataHook(e);
+            alert(`dataToStore: ${dataToStore}`);
+            // const accessToken = JSON.parse(dataToStore).token.access;
+            // localStorage.setItem("authToken", accessToken);
+          } catch (error) {
+            console.error("Error storing user data:", error);
+            alert(`Error from rgister: ${error}`);
+          }
+        };
 
-      //     storeData();
-      //   }).catch((error) => alert(error.message));
-    //}
+        storeData();
+      }).catch((error) => alert(error.message));
+
 
     // const getStoreData = async () => {
     //   try {
-       
-        
+
+
 
     //     const storedData = await getItem('userData');
     //     const parsedValue = JSON.parse(storedData);
@@ -110,20 +111,24 @@ export default function Home() {
       {show404 ? (
         <_404 />
       ) : (
-          ( webAppData?.platform && (
-            webAppData.platform === "android" ||
-            webAppData.platform === "ios") &&
+        (webAppData?.platform && (
+          webAppData.platform === "android" ||
+          webAppData.platform === "ios") &&
           webAppData.initDataUnsafe && (
-          // userDataHook ?
+            // userDataHook ?
             // <UserContext.Provider value={userDataHook}>
-              <HomePage />
+            <HomePage />
             // </UserContext.Provider>
-        //     :
-        //     (
-        //   <h1 className="text-3xl text-white flex items-center justify-center">Loading....</h1>
+            //     :
+            //     (
+            //   <h1 className="text-3xl text-white flex items-center justify-center">Loading....</h1>
             // )
           ))
       )}
     </>
   );
 }
+function setUserDataHook(e: any) {
+  throw new Error("Function not implemented.");
+}
+
