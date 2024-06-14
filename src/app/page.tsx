@@ -59,7 +59,6 @@ export default function Home() {
             // const session = getSession()
             // Ensure userData is a JSON string before storing
             const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-            setUserDataHook(e);
             alert(`dataToStore: ${dataToStore}`);
             // const accessToken = JSON.parse(dataToStore).token.access;
             // localStorage.setItem("authToken", accessToken);
@@ -91,7 +90,7 @@ export default function Home() {
     // getStoreData();
 
 
-  }, []);
+  }, [webAppData]);
 
 
   useEffect(() => {
@@ -127,8 +126,5 @@ export default function Home() {
       )}
     </>
   );
-}
-function setUserDataHook(e: any) {
-  throw new Error("Function not implemented.");
 }
 
