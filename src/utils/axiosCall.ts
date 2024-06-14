@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-catch */
 import Axios from "axios";
 import { ApiRequestConfig } from "@/types";
-import { useCloudStorage } from "@vkruglikov/react-telegram-web-app";
+// import { useCloudStorage } from "@vkruglikov/react-telegram-web-app";
 
 const SERVER_HOST =  "https://clownfish-app-lqqur.ondigitalocean.app";
 const SERVER_VERSION = "v1";
