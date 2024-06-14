@@ -20,7 +20,16 @@ export default function Home() {
         webAppData.expand();
 
           alert(` User web data ${JSON.stringify(webAppData, null, 2)}`);
-
+        const userData = webAppData.initDataUnsafe;
+        const userInfo = {
+          password: `${userData.user.id}`,
+          username: userData.user.username,
+          first_name: userData.user.first_name,
+          referral_code: userData.start_param ?? "",
+          is_premium_user: userData.user.is_premium_user
+            ?? false
+        };
+          alert(` User info ${JSON.stringify(userInfo, null, 2)}`);
       }
     }
   }, [webAppData]);
