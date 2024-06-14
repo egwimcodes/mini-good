@@ -18,7 +18,7 @@ export default function Task() {
                                 <h3 className="text-light font-semibold">Join Our Facebook</h3>
                                 <div className="coin-task-container flex flex-row items-center">
                                     <Image className="w-5" draggable="false" width={50} height={50} src="/good-coin.png" alt="" />
-                                    <h3 className="text-yellow-500 text-sm ml-1">40,000</h3>
+                                    <h3 className="text-main text-sm ml-1">+40,000</h3>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@ export default function Task() {
                                 <h3 className="text-light font-semibold">Join Our Facebook</h3>
                                 <div className="coin-task-container flex flex-row items-center">
                                     <Image className="w-5" draggable="false" width={50} height={50} src="/good-coin.png" alt="" />
-                                    <h3 className="text-yellow-500 text-sm ml-1">40,000</h3>
+                                    <h3 className="text-main text-sm ml-1">+40,000</h3>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@ export default function Task() {
                                 <h3 className="text-light font-semibold">Join Our Facebook</h3>
                                 <div className="coin-task-container flex flex-row items-center">
                                     <Image className="w-5" draggable="false" width={50} height={50} src="/good-coin.png" alt="" />
-                                    <h3 className="text-yellow-500 text-sm ml-1">40,000</h3>
+                                    <h3 className="text-main text-sm ml-1">+40,000</h3>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +63,7 @@ export default function Task() {
                                 <h3 className="text-light font-semibold">Join Our Facebook</h3>
                                 <div className="coin-task-container flex flex-row items-center">
                                     <Image className="w-5" draggable="false" width={50} height={50} src="/good-coin.png" alt="" />
-                                    <h3 className="text-yellow-500 text-sm ml-1">40,000</h3>
+                                    <h3 className="text-main text-sm ml-1">+40,000</h3>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@ export default function Task() {
                                 <h3 className="text-light font-semibold">Join Our Facebook</h3>
                                 <div className="coin-task-container flex flex-row items-center">
                                     <Image className="w-5" draggable="false" width={50} height={50} src="/good-coin.png" alt="" />
-                                    <h3 className="text-yellow-500 text-sm ml-1">40,000</h3>
+                                    <h3 className="text-main text-sm ml-1">+40,000</h3>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@ export default function Task() {
                                 <h3 className="text-light font-semibold">Join Our Facebook</h3>
                                 <div className="coin-task-container flex flex-row items-center">
                                     <Image className="w-5" draggable="false" width={50} height={50} src="/good-coin.png" alt="" />
-                                    <h3 className="text-yellow-500 text-sm ml-1">40,000</h3>
+                                    <h3 className="text-main text-sm ml-1">+40,000</h3>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@ export default function Task() {
                                 <h3 className="text-light font-semibold">Join Our Facebook</h3>
                                 <div className="coin-task-container flex flex-row items-center">
                                     <Image className="w-5" draggable="false" width={50} height={50} src="/good-coin.png" alt="" />
-                                    <h3 className="text-yellow-500 text-sm ml-1">40,000</h3>
+                                    <h3 className="text-main text-sm ml-1">+40,000</h3>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@ export default function Task() {
                                 <h3 className="text-light font-semibold">Join Our Facebook</h3>
                                 <div className="coin-task-container flex flex-row items-center">
                                     <Image className="w-5" draggable="false" width={50} height={50} src="/good-coin.png" alt="" />
-                                    <h3 className="text-yellow-500 text-sm ml-1">40,000</h3>
+                                    <h3 className="text-main text-sm ml-1">+40,000</h3>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +138,7 @@ export default function Task() {
                                 <h3 className="text-light font-semibold">Join Our Facebook</h3>
                                 <div className="coin-task-container flex flex-row items-center">
                                     <Image className="w-5" draggable="false" width={50} height={50} src="/good-coin.png" alt="" />
-                                    <h3 className="text-yellow-500 text-sm ml-1">40,000</h3>
+                                    <h3 className="text-main text-sm ml-1">+40,000</h3>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,7 @@ export default function Task() {
                                 <h3 className="text-light font-semibold">Join Our Facebook</h3>
                                 <div className="coin-task-container flex flex-row items-center">
                                     <Image className="w-5" draggable="false" width={50} height={50} src="/good-coin.png" alt="" />
-                                    <h3 className="text-yellow-500 text-sm ml-1">40,000</h3>
+                                    <h3 className="text-main text-sm ml-1">+40,000</h3>
                                 </div>
                             </div>
                         </div>
