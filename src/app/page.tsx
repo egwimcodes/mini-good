@@ -27,6 +27,7 @@ export default function Home() {
             referral_code: webAppData.platform.user.referral_code ?? "",
             is_premium_user: webAppData.platform.user.is_premium_user ?? false
           };
+          alert(JSON.stringify(userInfo));
 
           // Register(userInfo)
           //   .then((e) => {
