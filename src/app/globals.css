@@ -41,10 +41,10 @@ body {
 
 .b_nav-item {
   backdrop-filter: blur(10px);
-  border: 1px solid #F090001E;
+  border: 1px solid #0ECE8E;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  box-shadow: 0 2px 2px 2px #A7B5F3FD;
+  box-shadow: 0 2px 2px 2px #97E7CDC2;
   }
   
   .b_nav-item.active {
@@ -112,10 +112,10 @@ body {
 
 .buttom-btn{
   backdrop-filter: blur(10px);
-  border: 1px solid #F090001E;
+  border: 1px solid #0ECE8E ;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  box-shadow: 0 2px 2px 2px #A7B5F3FD;
+  box-shadow: 0 2px 2px 2px #97E7CDC2;
   }
   
   .buttom-btn.active {
