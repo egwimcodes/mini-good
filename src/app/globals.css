@@ -44,7 +44,7 @@ body {
   border: 1px solid #F090001E;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 2px 2px #A7B5F3FD;
   }
   
   .b_nav-item.active {
