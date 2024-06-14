@@ -2,7 +2,6 @@
 import Axios from "axios";
 import { ApiRequestConfig } from "@/types";
 import { useCloudStorage } from "@vkruglikov/react-telegram-web-app";
-import { useCloudStorageCustomHook } from "@/hooks/CloudStorageHook";
 
 const SERVER_HOST =  "https://clownfish-app-lqqur.ondigitalocean.app";
 const SERVER_VERSION = "v1";
@@ -12,7 +11,7 @@ export async function MakeRequest(
     requestObj: ApiRequestConfig,
     config = {}
 ) {
-     const { getItem } =  await useCloudStorageCustomHook();
+     const { getItem } =  useCloudStorage();
 
     // Destructure properties from requestObj
     try {
