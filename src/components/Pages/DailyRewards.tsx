@@ -23,7 +23,7 @@ export default function DailyRewards() {
             alert(`Daily streak log ${dailyStreak}`);
             alert(`Daily streak created: ${e}`);
         }).catch((e) => {
-            alert(`Error: ${JSON.stringify(e)}`);
+            alert(`Error: ${JSON.stringify(e.message)}`);
         })
     })
 

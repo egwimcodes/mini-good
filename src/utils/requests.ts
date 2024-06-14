@@ -38,17 +38,20 @@ async function Register({ password, username, first_name, is_premium_user, refer
 
 // Daily Streak
 
-async function GetDailyStreakCreate(data: DailySteakCreate) {
-    const requestObj = {
+async function GetDailyStreakCreate({ last_checkin_date, owner }: DailySteakCreate) {
+    try {
+    const requeststreakCreate= {
         path: '/daily-streak/',
         method: 'POST',
         contentType: 'application/json', // You can omit this if using the default
-        data: data,
+        data: {
+            last_checkin_date,
+            owner
+        },
         removeAuth: false // Assuming you need authentication
     };
 
-    try {
-        const response = await MakeRequest(requestObj);
+        const response = await MakeRequest(requeststreakCreate);
         return response;
     } catch (error) {
         console.error('Error fetching daily streak data:', error);
