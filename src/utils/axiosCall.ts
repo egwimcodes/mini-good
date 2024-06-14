@@ -8,8 +8,6 @@ const SERVER_HOST =  "https://clownfish-app-lqqur.ondigitalocean.app";
 const SERVER_VERSION = "v1";
 const baseURL: string = `${SERVER_HOST}`;
 
-
-const { getItem } = useCloudStorage();
 export async function MakeRequest(
     requestObj: ApiRequestConfig,
     config = {}
