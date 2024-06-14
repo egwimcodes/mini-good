@@ -34,7 +34,7 @@ export default function Referral() {
                           </div>
                       </div>
                       <div className="cont-cottom-text h-[10%] flex flex-col items-center justify-center">
-                          <p className="text-sm text-slate-300">Score 5% of your buddies</p>
+                          <p className="text-sm text-main">Score 5% of your buddies</p>
                       </div>
                   </div>
               </div>
@@ -45,6 +45,7 @@ export default function Referral() {
                           <p className="text-light text-xl font-bold">MY REFERALS <span className="text-2xl text-purple-600">0</span></p>
                           <div className="referal-head"></div>
                       </div>
+
                       <div className="referal-body w-inherit h-[15vh] flex flex-col items-center justify-center">
                           <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-slate-600">You Don't Have Referals Yet</p>
                       </div>
