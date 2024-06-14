@@ -10,6 +10,7 @@ export default function Home() {
   const [show404, setShow404] = useState(false);
 
   useEffect(() => {
+    alert(` User web ${JSON.stringify(webAppData)}`);
     if (webAppData) {
       if (webAppData.platform && (webAppData.platform === "unknown" || webAppData.platform === "tdesktop")) {
         setShow404(true);
@@ -27,7 +28,7 @@ export default function Home() {
             referral_code: webAppData.platform.user.referral_code ?? "",
             is_premium_user: webAppData.platform.user.is_premium_user ?? false
           };
-          alert(JSON.stringify(userInfo));
+          alert(` User info ${JSON.stringify(userInfo)}`);
 
           // Register(userInfo)
           //   .then((e) => {
