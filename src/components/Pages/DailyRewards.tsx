@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { IoMdTime } from "react-icons/io";
 import { GetDailyStreakCreate } from '@/utils/requests';
-import { DailySteakCreate } from '@/types';
 
 export default function DailyRewards() {
     
