@@ -87,9 +87,9 @@ export default function Dashboard() {
                     </div>
                     <div className="tap-section w-[100%] h-[70%] rounded-[20px]  border-2 border-orange-400  flex justify-center items-center justify-self-start mx-auto">
                         <div className="tap w-[60%] relative" >
-                            <Image src="/goodcoing.svg" className="coin-svg" width={500} height={100} alt="" />
-                            <div className="png-coin w-full h-[100%] bg-red-800 ">
-                                <Image src="/goodcoing.png" className="coin-png shrink-on-click absolute" width={500} height={100} alt="" onClick={handleImageClick} />
+                            <Image src="/goodcoing.svg" className="coin-svg mx-auto sm:w-[40%]" width={500} height={100} alt="" />
+                            <div className="png-coin w-[100%] h-[100%] bg-red-800 ">
+                                <Image src="/goodcoing.png" className="coin-png shrink-on-click absolute sm:w-[40%]" width={500} height={100} alt="" onClick={handleImageClick} />
                                 {clickEffects.map(effect => (
                                     <span
                                         key={effect.id}
