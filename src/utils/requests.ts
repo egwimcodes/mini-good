@@ -52,6 +52,7 @@ async function GetDailyStreakCreate(data: DailySteakCreate) {
         return response;
     } catch (error) {
         console.error('Error fetching daily streak data:', error);
+        throw error;
     }
 }
 

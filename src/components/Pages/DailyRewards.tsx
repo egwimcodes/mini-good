@@ -20,7 +20,8 @@ export default function DailyRewards() {
         }
         
         GetDailyStreakCreate(dailyStreak).then((e) => {
-            alert(`Daily streak created: ${dailyStreak}`);
+            alert(`Daily streak log ${dailyStreak}`);
+            alert(`Daily streak created: ${e}`);
         }).catch((e) => {
             alert(`Error: ${JSON.stringify(e)}`);
         })
