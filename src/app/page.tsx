@@ -22,7 +22,7 @@ export default function Home() {
   // };
 
   // const { setItem, getItem } = useCloudStorage();
-  const [show404] = useState(false);
+  const [show404, setShow404] = useState(false);
   // const [userDataHook, setUserDataHook] = useState<UserData | null>(null);
   //TODO: create usestate to store registered user data
 
@@ -37,8 +37,7 @@ export default function Home() {
       (webAppData.platform === "unknown" ||
         webAppData.platform === "tdesktop")
     ) {
-      alert("Unsupported platform: " + webAppData.platform);
-      // setShow404(true);
+      setShow404(true);
       return;
     }
     webAppData.expand();
@@ -60,11 +59,13 @@ export default function Home() {
             // const session = getSession()
             // Ensure userData is a JSON string before storing
             const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-            alert(`dataToStore: ${dataToStore}`);
+            setUserDataHook(e);
+            alert(dataToStore)
+
             // const accessToken = JSON.parse(dataToStore).token.access;
             // localStorage.setItem("authToken", accessToken);
           } catch (error) {
-            alert(`Error from rgister: ${error}`);
+            console.error("Error storing user data:", error);
           }
         };
 
@@ -90,7 +91,7 @@ export default function Home() {
     // getStoreData();
 
 
-  }, [webAppData]);
+  }, []);
 
 
   useEffect(() => {
@@ -126,5 +127,8 @@ export default function Home() {
       )}
     </>
   );
+}
+function setUserDataHook(e: any) {
+  throw new Error("Function not implemented.");
 }
 
