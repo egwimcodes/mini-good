@@ -3,7 +3,7 @@ import HomePage from '@/components/Pages/HomePage';
 import _404 from '@/components/Pages/_404';
 import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 import React, { useState, useEffect } from 'react';
-import { useCookies } from '@/lib/cookies';
+import { getAccessToken, useCookies } from '@/lib/cookies';
 
 export default function Home() {
   const webAppData = useWebApp();
@@ -29,7 +29,7 @@ export default function Home() {
             ?? false
         };
         
-        const hasCookie = cookieStore.get('AccessToken')
+        const hasCookie = getAccessToken()
 
         if (hasCookie && hasCookie.value) {
 
