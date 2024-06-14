@@ -22,7 +22,7 @@ export default function Home() {
   // };
 
   // const { setItem, getItem } = useCloudStorage();
-  const [show404, setShow404] = useState(false);
+  const [show404] = useState(false);
   // const [userDataHook, setUserDataHook] = useState<UserData | null>(null);
   //TODO: create usestate to store registered user data
 
@@ -38,7 +38,8 @@ export default function Home() {
         (webAppData.platform === "unknown" ||
           webAppData.platform === "tdesktop")
       ) {
-        setShow404(true);
+        // setShow404(true);
+        alert(webAppData.platform)
         return;
       }
       webAppData.expand();
