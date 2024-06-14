@@ -11,7 +11,7 @@ export async function MakeRequest(
     requestObj: ApiRequestConfig,
     config = {}
 ) {
-     const { getItem } =  useCloudStorage();
+    //  const { getItem } =  useCloudStorage();
 
     // Destructure properties from requestObj
     try {
