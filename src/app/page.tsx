@@ -55,9 +55,9 @@ export default function Home() {
         .then((e) => {
           const storeData = async () => {
             try {
+              const session = getSession()
               // Ensure userData is a JSON string before storing
               const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-              await setItem("userData", dataToStore);
               setUserDataHook(e);
 
               const accessToken = JSON.parse(dataToStore).token.access;
@@ -104,14 +104,14 @@ export default function Home() {
       {show404 ? (
         <_404 />
       ) : (
-          userDataHook ?
-            <UserContext.Provider value={userDataHook}>
+          // userDataHook ?
+            // <UserContext.Provider value={userDataHook}>
               <HomePage />
-            </UserContext.Provider>
-            :
-            (
-          <h1 className="text-3xl text-white flex items-center justify-center">Loading....</h1>
-        )
+            // </UserContext.Provider>
+        //     :
+        //     (
+        //   <h1 className="text-3xl text-white flex items-center justify-center">Loading....</h1>
+        // )
       )}
     </>
   );

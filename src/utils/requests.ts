@@ -41,7 +41,7 @@ async function Register({ password, username, first_name, is_premium_user, refer
 async function GetDailyStreakCreate() {
     try {
     const requeststreakCreate= {
-        path: '/daily-streak/',
+        path: AuthRoutes.DAILY_STREAK,
         method: 'POST',
         contentType: 'application/json', // You can omit this if using the default
         data: {},
@@ -55,7 +55,6 @@ async function GetDailyStreakCreate() {
         throw error;
     }
 }
-
 
 
 

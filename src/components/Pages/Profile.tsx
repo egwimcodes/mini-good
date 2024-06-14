@@ -1,4 +1,4 @@
-import { useUserContext } from "@/hooks/UserContext";
+// import { useUserContext } from "@/hooks/UserContext";
 import Image from "next/image"
 import { MdNavigateNext } from "react-icons/md"
 type ProfileProps = {
@@ -6,7 +6,11 @@ type ProfileProps = {
 };
 
 export default function Profile({ setShowProfile }: ProfileProps) {
-    const user = useUserContext();
+    const user = {
+        username: 'anony',
+        rank: "ROKIE"
+    }
+    // const user = useUserContext();
     return (
         <div className='w-[100vw] h-[90vh] text-light flex-col ' onClick={() => setShowProfile("profile")}>
             <div className="profile-content w-[95vw] h-[30vh] flex-col flex-center">

@@ -113,3 +113,8 @@ export interface UserData {
   is_premium_user: boolean;
   token: TokenAuth;
 }
+
+export interface Login{
+  username: string;
+  password: string
+}
