@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { IoMdWallet } from "react-icons/io";
 import { IoMdAdd } from "react-icons/io";
@@ -15,11 +15,14 @@ interface ClickEffect {
 
 export default function Dashboard() {
     const user = useUserContext();
-
+    const prevBalance = localStorage.getItem('balance');
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState("dashboard");
-    const [balance, setBalance] = useState(0);
+    const [balance, setBalance] = useState(0 + parseInt(prevBalance || '0'));
 
+    useEffect(() => {
+        localStorage.setItem('balance', String(balance));
+    }, [balance])
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const x = event.clientX - rect.left;
