@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useCloudStorage, useWebApp } from "@vkruglikov/react-telegram-web-app";
 import _404 from "@/components/Pages/_404";
 // import { Register } from "@/utils/requests";
-import { UserData } from "@/types";
+// import { UserData } from "@/types";
 import HomePage from "@/components/Pages/HomePage";
 // import { UserContext } from "@/hooks/UserContext";
 
@@ -25,7 +25,7 @@ export default function Home() {
   // const [userDataHook, setUserDataHook] = useState<UserData | null>(null);
   //TODO: create usestate to store registered user data
 
-  const data = useWebApp();
+  const webAppData = useWebApp();
 
   useEffect(() => {
     const handleContextMenu = (event: MouseEvent) => {
@@ -40,8 +40,16 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (data) {
-      data.expand();
+    if (
+      webAppData.platform &&
+      (webAppData.platform === "unknown" ||
+        webAppData.platform === "tdesktop")
+    ) {
+      setShow404(true);
+      return;
+    }
+    if (webAppData) {
+      webAppData.expand();
       const userInfo = {
         password: `${userData.user.id}`,
         username: userData.user.username,
@@ -49,6 +57,7 @@ export default function Home() {
         referral_code: userData.user.referral_code ?? "",
         is_premium_user: userData.user.is_premium_user ?? false
       };
+      alert(webAppData.platform)
 
       // Register(userInfo)
       //   .then((e) => {
@@ -88,7 +97,7 @@ export default function Home() {
     // getStoreData();
 
 
-  }, [data, setItem, getItem]);
+  }, [webAppData, setItem, getItem]);
 
 
 
@@ -97,6 +106,10 @@ export default function Home() {
       {show404 ? (
         <_404 />
       ) : (
+          webAppData.platform &&
+          (webAppData.platform === "android" ||
+            webAppData.platform === "ios") &&
+          webAppData.initDataUnsafe && (
           // userDataHook ?
             // <UserContext.Provider value={userDataHook}>
               <HomePage />
@@ -104,7 +117,8 @@ export default function Home() {
         //     :
         //     (
         //   <h1 className="text-3xl text-white flex items-center justify-center">Loading....</h1>
-        // )
+            // )
+          )
       )}
     </>
   );
