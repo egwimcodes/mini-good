@@ -19,7 +19,7 @@ export default function HomePage() {
     <>
       <div className="w-[100%] h-[100vh] flex flex-col items-center relative bg-slate-300">
         <div className="body-content h-[90%] w-[70vw] mx-auto">
-         
+         {currentPage}
         </div>
         <div className=" w-[60%] h-[10vh] absolute bottom-0 bg-transparent  flex-center ">
           <div className="gradient-border rounded-3xl w-[100vw]  bg-light gradient-border z--1">
