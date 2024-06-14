@@ -20,7 +20,7 @@ export default function Home() {
         webAppData.expand();
 
         if (webAppData.platform.user) {
-          alert(` User web data ${JSON.stringify(webAppData)}`);
+          alert(` User web data ${JSON.stringify(webAppData, null, 2)}`);
 
           const userInfo = {
             password: `${webAppData.platform.user.id}`,
