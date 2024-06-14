@@ -50,8 +50,8 @@ export default function Dashboard() {
         <>
             {showProfile === "dashboard" && (
                 <div className='w-[100%] h-[100%] text-light flex-col flex-start'>
-                    <div className="dashboard-section w-[95vw] h-[25%] justify-self-start  mx-auto mb-[10%] ">
-                        <div className="dashbord-up h-[10vh]  flex-between flex-row">
+                    <div className="dashboard-section w-[100%] h-[30%] justify-self-start  mx-auto ] ">
+                        <div className="dashbord-up h-[40%]  flex-between flex-row ">
                             <div className="left-child flex flex-row items-center  w-[50%]" onClick={() => setShowProfile("profile")}>
                                 <div className="profile w-[10vw] ">
                                     <Image className='profile-avater p-1' src="/robot.png" width={50} height={50} alt="" />
@@ -64,29 +64,29 @@ export default function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <div className="dashboard-down h-[15vh] w-full flex-row flex-between">
-                            <div className="balance-section flex flex-col justify-between h-[10vh] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400">
-                                <p className='text-sm font-base'>Balance</p>
-                                <div className="balance-coin-amount flex-row flex-between">
-                                    <div className="coin-balance w-[30vw] flex flex-row">
-                                        <Image src="/goodcoing.png" width={25} height={25} alt="" />
-                                        <p className='ml-1'>{balance}</p>
+                        <div className="dashboard-down h-[60%] w-full flex-row flex-between">
+                            <div className="balance-section flex flex-col justify-between h-[80%] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400 ">
+                                <p className='xxxsm:text-[1opx] xxsm:text-[16px] xsm:text-[20px] font-base h-[40%] '>Balance</p>
+                                <div className="balance-coin-amount flex-row flex-between h-[60%] ">
+                                    <div className="coin-balance w-[80%] h-[100%] flex-center">
+                                        <Image src="/goodcoing.png" className="xxxsm:w-[20%] xxsm:w-[25%] xsm:w-[20%]  sm:w-[17%]" width={25} height={25} alt="" />
+                                        <p className='text-2xl h-[100%] w-[70%] flex-row flex-evenly'>{balance}</p>
                                     </div>
-                                    <div className="icon-add border-1 w-[5vw] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900">
-                                        <IoMdAdd className='text-purple-700' />
+                                    <div className="icon-add border-1 xxxsm:w-[20%] xxsm:w-[20%] xsm:w-[20%] h-[80%] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center ">
+                                        <IoMdAdd className='text-orange-400' />
                                     </div>
                                 </div>
                             </div>
-                            <div className="balance-section flex flex-col justify-between h-[10vh] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400">
-                                <p className='text-sm font-base'>Earning Per hour</p>
-                                <div className="balance-coin-amount flex-row flex-between">
-                                    <p>{user.profit_per_hour}</p>
+                            <div className="balance-section flex flex-col justify-between h-[80%] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400 ">
+                                <p className='xxxsm:text-[1opx] xxsm:text-[16px] xsm:text-[20px] font-base h-[40%] '>Earning Per hour</p>
+                                <div className="balance-coin-amount flex-row flex-between h-[60%] ">
+                                    <p className='text-2xl h-[100%] w-[70%] flex-row flex-start'>{user.profit_per_hour}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="tap-section w-[95vw] h-[70%] rounded-[20px]  border-2 border-orange-400  flex justify-center items-center justify-self-start mx-auto">
-                        <div className="tap w-[60vw] relative" >
+                    <div className="tap-section w-[100%] h-[70%] rounded-[20px]  border-2 border-orange-400  flex justify-center items-center justify-self-start mx-auto">
+                        <div className="tap w-[60%] relative" >
                             <Image src="/goodcoing.svg" className="coin-svg" width={500} height={100} alt="" />
                             <div className="png-coin w-full h-[100%] bg-red-800 ">
                                 <Image src="/goodcoing.png" className="coin-png shrink-on-click absolute" width={500} height={100} alt="" onClick={handleImageClick} />
