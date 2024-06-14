@@ -8,6 +8,7 @@ import { Register } from "@/utils/requests";
 import { UserData } from "@/types";
 import HomePage from "@/components/Pages/HomePage";
 import { UserContext } from "@/hooks/UserContext";
+import { getSession } from "@/lib/actions";
 
 export default function Home() {
   const userData = {
@@ -86,13 +87,17 @@ export default function Home() {
     };
 
     getStoreData();
+
+
   }, [data, setItem, getItem]);
 
   useEffect(() => {
-    if (userDataHook) {
-      // alert(`from userDataHook: ${JSON.stringify(userDataHook, null, 2)}`);
-    }
-  }, [userDataHook]);
+    const  fetchCookie =async () =>{
+      const session = await getSession()
+      alert(`from page ${session}`)
+    } 
+    fetchCookie();
+  });
 
   return (
     <>
