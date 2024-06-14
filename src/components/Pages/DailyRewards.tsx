@@ -15,20 +15,20 @@ export default function DailyRewards() {
         const formattedDate = formatDate(today);
 
         const dailyStreak = {
-            "last_checkin_date": formattedDate,
-            "owner": Number(user.id)
+            last_checkin_date: formattedDate,
+            owner: Number(user.id)
         }
         GetDailyStreakCreate(dailyStreak).then((e) => {
-            alert(`Daily streak created: ${JSON.stringify(e)}`);
+            alert(`Daily streak created: ${e}`);
         }).catch((e) => {
             alert(`Error: ${JSON.stringify(e)}`);
         })
     })
-    
+
     return (
         <div className="rewards-container w-full h-[80vh]  flex flex-col items-center justify-evenly ">
             <div className="rewards-header w-full h-[30vh] flex flex-col items-center justify-between ">
-                <Image className="w-1/3" draggable="false" src="/daily.png" width={100} height={100} alt=""  />
+                <Image className="w-1/3" draggable="false" src="/daily.png" width={100} height={100} alt="" />
                 <h1 className="text-3xl font-bold text-light">Daily Rewards</h1>
                 <p className="text-sm g   text-light">Claim Good coin daily without missing a day</p>
             </div>
@@ -85,7 +85,7 @@ export default function DailyRewards() {
                 </div>
             </div>
 
-            
+
         </div>
     )
 }
