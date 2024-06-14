@@ -2,7 +2,7 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
-import { useCloudStorage, useWebApp } from "@vkruglikov/react-telegram-web-app";
+import { useWebApp } from "@vkruglikov/react-telegram-web-app";
 import _404 from "@/components/Pages/_404";
 // import { Register } from "@/utils/requests";
 // import { UserData } from "@/types";
@@ -27,38 +27,30 @@ export default function Home() {
 
   const webAppData = useWebApp();
 
-  useEffect(() => {
-    const handleContextMenu = (event: MouseEvent) => {
-      event.preventDefault();
-    };
-
-    document.addEventListener("contextmenu", handleContextMenu);
-
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-    };
-  }, []);
+  
 
   useEffect(() => {
-    if (
-      webAppData.platform &&
-      (webAppData.platform === "unknown" ||
-        webAppData.platform === "tdesktop")
-    ) {
-      setShow404(true);
-      return;
-    }
-    if (webAppData) {
-      webAppData.expand();
-      const userInfo = {
-        password: `${webAppData.platform.user.id}`,
-        username: webAppData.platform.user.username,
-        first_name: webAppData.platform.user.first_name,
-        referral_code: webAppData.platform.user.referral_code ?? "",
-        is_premium_user: webAppData.platform.user.is_premium_user ?? false
-      };
-      alert(webAppData.platform)
-      alert(userInfo)
+
+      if (
+        webAppData.platform &&
+        (webAppData.platform === "unknown" ||
+          webAppData.platform === "tdesktop")
+      ) {
+        setShow404(true);
+        return;
+      }
+      // if (webAppData) {
+      //   webAppData.expand();
+      //   const userInfo = {
+      //     password: `${webAppData.platform.user.id}`,
+      //     username: webAppData.platform.user.username,
+      //     first_name: webAppData.platform.user.first_name,
+      //     referral_code: webAppData.platform.user.referral_code ?? "",
+      //     is_premium_user: webAppData.platform.user.is_premium_user ?? false
+      //   };
+      //   alert(webAppData.platform)
+      //   alert(userInfo)
+     
 
       // Register(userInfo)
       //   .then((e) => {
@@ -78,7 +70,7 @@ export default function Home() {
 
       //     storeData();
       //   }).catch((error) => alert(error.message));
-    }
+    //}
 
     // const getStoreData = async () => {
     //   try {
@@ -98,17 +90,28 @@ export default function Home() {
     // getStoreData();
 
 
-  }, [webAppData]);
+  }, []);
 
 
+  useEffect(() => {
+    const handleContextMenu = (event: MouseEvent) => {
+      event.preventDefault();
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
 
   return (
     <>
       {show404 ? (
         <_404 />
       ) : (
-          webAppData.platform &&
-          (webAppData.platform === "android" ||
+          ( webAppData?.platform && (
+            webAppData.platform === "android" ||
             webAppData.platform === "ios") &&
           webAppData.initDataUnsafe && (
           // userDataHook ?
@@ -119,7 +122,7 @@ export default function Home() {
         //     (
         //   <h1 className="text-3xl text-white flex items-center justify-center">Loading....</h1>
             // )
-          )
+          ))
       )}
     </>
   );
