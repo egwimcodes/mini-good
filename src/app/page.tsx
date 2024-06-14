@@ -65,7 +65,7 @@ export default function Home() {
 
           storeData();
         })
-        .catch((error) => alert(`Error from Register ${JSON.stringify(error, null, 2)}`));
+        .catch((error) => alert(error));
     }
 
     const getStoreData = async () => {
