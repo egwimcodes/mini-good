@@ -14,11 +14,9 @@ html,
 body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
   overflow: hidden; /* Prevent scrolling */
   box-sizing: border-box;
-  background: #000000;
+  background: #FCA2A2;
 }
 
 .gradient-border {
@@ -35,8 +33,6 @@ body {
   content: "";
   position: absolute;
   bottom: 0;
-  width: 100vw;
-  height: 9.5vh;
   background: #000000;
   margin: 0 auto;
   border-radius: inherit;
@@ -45,20 +41,25 @@ body {
 
 .b_nav-item {
   backdrop-filter: blur(10px);
-  border: 1px solid #a74b0e;
+  border: 1px solid #F090001E;
   background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-}
-
-.b_nav-item.active {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .b_nav-item.active {
+  box-shadow: 0 2px 2px 2px #F09000FD;
   backdrop-filter: blur(10px);
-  border: 1px solid #a74b0e;
+  border: 3px solid #BE7507FD;
   background: orange;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+
 }
 
+.b_nav-item.active > h4 {
+  
+  color: #000000 ;
+}
 .profile-avater {
   border: 2px solid orange;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

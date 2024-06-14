@@ -7,11 +7,11 @@ export default function TaskPage() {
     const [active, setActive] = useState('dailyrewards');
     return (
         <>
-            <div className="taskpage-container h-[90vh] w-[100%] flex flex-col items-center  justify-between ">
+            <div className="taskpage-container h-[90vh] w-inherit bg-red-950 flex flex-col items-center  justify-between ">
 
 
 
-                <div className="h-[10vh] w-[80vw] border-2 border-orange-400 rounded-full">
+                <div className="h-[10vh] w-[80%] border-2 border-orange-400 rounded-full">
                     <div
                         className={`min-w-[100%]  button-nav-bg down border-x-slate-800 border-y-slate-800 border-3 h-[10vh]  rounded-full flex items-center justify-evenly`}
                     >
@@ -42,7 +42,7 @@ export default function TaskPage() {
                 </div>
 
                 {/* Top nav start    */}
-                <div className="taskpage-content h-[80vh] w-screen overflow-y-scroll scroll-smooth ">
+                <div className="taskpage-content h-[80vh] w-inherit overflow-y-scroll scroll-smooth ">
                     {active === 'task' && <Task />}
                     {active === 'dailyrewards' && <DailyRewards />}
                     {active === 'boost' && <Boost />}

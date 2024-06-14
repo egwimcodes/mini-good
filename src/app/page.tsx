@@ -4,10 +4,10 @@
 import { useEffect, useState } from "react";
 import { useCloudStorage, useWebApp } from "@vkruglikov/react-telegram-web-app";
 import _404 from "@/components/Pages/_404";
-import { Register } from "@/utils/requests";
+// import { Register } from "@/utils/requests";
 import { UserData } from "@/types";
 import HomePage from "@/components/Pages/HomePage";
-import { UserContext } from "@/hooks/UserContext";
+// import { UserContext } from "@/hooks/UserContext";
 
 export default function Home() {
   const userData = {
@@ -22,7 +22,7 @@ export default function Home() {
 
   const { setItem, getItem } = useCloudStorage();
   const [show404, setShow404] = useState(false);
-  const [userDataHook, setUserDataHook] = useState<UserData | null>(null);
+  // const [userDataHook, setUserDataHook] = useState<UserData | null>(null);
   //TODO: create usestate to store registered user data
 
   const data = useWebApp();
@@ -50,42 +50,42 @@ export default function Home() {
         is_premium_user: userData.user.is_premium_user ?? false
       };
 
-      Register(userInfo)
-        .then((e) => {
-          const storeData = async () => {
-            try {
-              // const session = getSession()
-              // Ensure userData is a JSON string before storing
-              const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-              setUserDataHook(e);
+      // Register(userInfo)
+      //   .then((e) => {
+      //     const storeData = async () => {
+      //       try {
+      //         // const session = getSession()
+      //         // Ensure userData is a JSON string before storing
+      //         const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
+      //         setUserDataHook(e);
 
-              // const accessToken = JSON.parse(dataToStore).token.access;
-              // localStorage.setItem("authToken", accessToken);
-            } catch (error) {
-              console.error("Error storing user data:", error);
-            }
-          };
+      //         // const accessToken = JSON.parse(dataToStore).token.access;
+      //         // localStorage.setItem("authToken", accessToken);
+      //       } catch (error) {
+      //         console.error("Error storing user data:", error);
+      //       }
+      //     };
 
-          storeData();
-        }).catch((error) => alert(error.message));
+      //     storeData();
+      //   }).catch((error) => alert(error.message));
     }
 
-    const getStoreData = async () => {
-      try {
+    // const getStoreData = async () => {
+    //   try {
        
         
 
-        const storedData = await getItem('userData');
-        const parsedValue = JSON.parse(storedData);
-        if (parsedValue) {
-          setUserDataHook(parsedValue);
-        }
-      } catch (error) {
-        alert(`Error fetching data from localStorage: ${error}`);
-      }
-    };
+    //     const storedData = await getItem('userData');
+    //     const parsedValue = JSON.parse(storedData);
+    //     if (parsedValue) {
+    //       setUserDataHook(parsedValue);
+    //     }
+    //   } catch (error) {
+    //     alert(`Error fetching data from localStorage: ${error}`);
+    //   }
+    // };
 
-    getStoreData();
+    // getStoreData();
 
 
   }, [data, setItem, getItem]);

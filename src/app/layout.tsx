@@ -21,7 +21,7 @@ export default function RootLayout({
           <Script src="https://telegram.org/js/telegram-web-app.js" strategy="beforeInteractive" async />
       </head>
 
-      <body className={`${inter.className} body sm:hidden`}>{children}</body>
+      <body className={`${inter.className} body`}>{children}</body>
     </html>
   );
 }

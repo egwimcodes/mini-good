@@ -17,14 +17,12 @@ export default function HomePage() {
   // }
   return (
     <>
-      <div className="container w-[100vw] h-[100%] flex flex-col justify-start items-center relative">
-        <div className="body-content h-[90%] flex flex-start">
-          {currentPage === 'task' && <TaskPage />}
-          {currentPage === 'home' && <Dashboard />}
-          {currentPage === 'refer' && <Referral />}
+      <div className="w-[100%] h-[100vh] flex flex-col items-center relative bg-slate-300">
+        <div className="body-content h-[90%] w-[70vw] mx-auto">
+         
         </div>
-        <div className=" w-full h-[10vh] absolute bottom-0 bg-transparent">
-          <div className="gradient-border  rounded-tl-3xl rounded-tr-3xl w-[100vw] h-[10vh] bg-light gradient-border z--1">
+        <div className=" w-[60%] h-[10vh] absolute bottom-0 bg-transparent  flex-center ">
+          <div className="gradient-border rounded-3xl w-[100vw]  bg-light gradient-border z--1">
             <BottomNavigation currentPage={selectedBtn} />
           </div>
         </div>
