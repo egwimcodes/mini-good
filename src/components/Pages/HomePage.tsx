@@ -17,11 +17,11 @@ export default function HomePage() {
   // }
   return (
     <>
-      <div className="w-[100%] h-[100vh] bg-yellow-500 flex flex-col items-center relative ">
+      <div className="w-[100%] h-[100vh] bg-orange-500 xxxsm:bg-yellow-500 xxsm:bg-red-500 xsm:bg-purple-500 flex flex-col items-center relative ">
         <div className="body-content h-[90%] w-[70vw] mx-auto">
          {currentPage}
         </div>
-        <div className=" w-[60%] h-[10%] absolute bottom-0 bg-transparent  flex-center bg-red-600">
+        <div className=" w-[60%] h-[10%] absolute bottom-0 bg-transparent  flex-center ">
           <div className="gradient-border rounded-3xl w-[100vw]  bg-light gradient-border z--1">
             <BottomNavigation currentPage={selectedBtn} />
           </div>
