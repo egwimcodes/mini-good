@@ -59,7 +59,7 @@ export default function Home() {
               await setItem("userData", dataToStore);
               setUserDataHook(e);
 
-              const accessToken = JSON.parse(dataToStore).token;
+              const accessToken = JSON.parse(dataToStore).token.access;
               localStorage.setItem("authToken", accessToken);
               alert(`Registration successful. Welcome, ${JSON.stringify(accessToken, null, 2)}!`);
             } catch (error) {
