@@ -10,17 +10,17 @@ import HomePage from "@/components/Pages/HomePage";
 // import { UserContext } from "@/hooks/UserContext";
 
 export default function Home() {
-  const userData = {
-    user: {
-      id: 1113269206,
-      username: "Snowwisdom",
-      first_name: "Wisdom",
-      referral_code: "",
-      is_premium_user: false,
-    },
-  };
+  // const userData = {
+  //   user: {
+  //     id: 1113269206,
+  //     username: "Snowwisdom",
+  //     first_name: "Wisdom",
+  //     referral_code: "",
+  //     is_premium_user: false,
+  //   },
+  // };
 
-  const { setItem, getItem } = useCloudStorage();
+  // const { setItem, getItem } = useCloudStorage();
   const [show404, setShow404] = useState(false);
   // const [userDataHook, setUserDataHook] = useState<UserData | null>(null);
   //TODO: create usestate to store registered user data
@@ -51,13 +51,14 @@ export default function Home() {
     if (webAppData) {
       webAppData.expand();
       const userInfo = {
-        password: `${userData.user.id}`,
-        username: userData.user.username,
-        first_name: userData.user.first_name,
-        referral_code: userData.user.referral_code ?? "",
-        is_premium_user: userData.user.is_premium_user ?? false
+        password: `${webAppData.platform.user.id}`,
+        username: webAppData.platform.user.username,
+        first_name: webAppData.platform.user.first_name,
+        referral_code: webAppData.platform.user.referral_code ?? "",
+        is_premium_user: webAppData.platform.user.is_premium_user ?? false
       };
       alert(webAppData.platform)
+      alert(userInfo)
 
       // Register(userInfo)
       //   .then((e) => {
@@ -97,7 +98,7 @@ export default function Home() {
     // getStoreData();
 
 
-  }, [webAppData, setItem, getItem]);
+  }, [webAppData]);
 
 
 
