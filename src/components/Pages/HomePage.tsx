@@ -17,8 +17,8 @@ export default function HomePage() {
   // }
   return (
     <>
-      <div className="w-[100%] h-[100vh] bg-orange-500 xxxsm:bg-yellow-500 xxsm:bg-red-500 xsm:bg-purple-500 flex flex-col items-center relative ">
-        <div className="body-content h-[90%] w-[70vw] mx-auto">
+      <div className="w-[100%] h-[100vh] bg-orange-500 xxxsm:bg-yellow-500 xxsm:bg-red-500 xsm:bg-purple-500 sm:bg-green-500 flex flex-col items-center relative ">
+        <div className="body-content h-[90%] w-[70vw] mx-auto bg-blue-800">
          {currentPage}
         </div>
         <div className=" w-[60%] h-[10%] absolute bottom-0 bg-transparent  flex-center ">
