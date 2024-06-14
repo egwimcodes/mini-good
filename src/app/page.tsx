@@ -31,46 +31,48 @@ export default function Home() {
 
 
   useEffect(() => {
+    if (webAppData !== null) {
 
-    if (
-      webAppData.platform &&
-      (webAppData.platform === "unknown" ||
-        webAppData.platform === "tdesktop")
-    ) {
-      setShow404(true);
-      return;
+      if (
+        webAppData.platform &&
+        (webAppData.platform === "unknown" ||
+          webAppData.platform === "tdesktop")
+      ) {
+        setShow404(true);
+        return;
+      }
+      webAppData.expand();
+      const userInfo = {
+        password: `${webAppData.platform.user.id}`,
+        username: webAppData.platform.user.username,
+        first_name: webAppData.platform.user.first_name,
+        referral_code: webAppData.platform.user.referral_code ?? "",
+        is_premium_user: webAppData.platform.user.is_premium_user ?? false
+      };
+      alert(webAppData.platform)
+      alert(userInfo)
+
+
+      Register(userInfo)
+        .then((e) => {
+          const storeData = async () => {
+            try {
+              // const session = getSession()
+              // Ensure userData is a JSON string before storing
+              const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
+              alert(dataToStore)
+
+              // const accessToken = JSON.parse(dataToStore).token.access;
+              // localStorage.setItem("authToken", accessToken);
+            } catch (error) {
+              console.error("Error storing user data:", error);
+            }
+          };
+
+          storeData();
+
+        }).catch((error) => alert(error.message));
     }
-    webAppData.expand();
-    const userInfo = {
-      password: `${webAppData.platform.user.id}`,
-      username: webAppData.platform.user.username,
-      first_name: webAppData.platform.user.first_name,
-      referral_code: webAppData.platform.user.referral_code ?? "",
-      is_premium_user: webAppData.platform.user.is_premium_user ?? false
-    };
-    alert(webAppData.platform)
-    alert(userInfo)
-
-
-    Register(userInfo)
-      .then((e) => {
-        const storeData = async () => {
-          try {
-            // const session = getSession()
-            // Ensure userData is a JSON string before storing
-            const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-            alert(dataToStore)
-
-            // const accessToken = JSON.parse(dataToStore).token.access;
-            // localStorage.setItem("authToken", accessToken);
-          } catch (error) {
-            console.error("Error storing user data:", error);
-          }
-        };
-
-        storeData();
-      }).catch((error) => alert(error.message));
-
 
     // const getStoreData = async () => {
     //   try {
