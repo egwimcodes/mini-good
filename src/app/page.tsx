@@ -19,7 +19,6 @@ export default function Home() {
       if (webAppData.platform) {
         webAppData.expand();
 
-        if (webAppData.platform.user) {
           alert(` User web data ${JSON.stringify(webAppData, null, 2)}`);
 
           const userInfo = {
@@ -45,7 +44,6 @@ export default function Home() {
           //     storeData();
           //   })
           //   .catch((error) => console.error(error.message));
-        }
       }
     }
   }, [webAppData]);
