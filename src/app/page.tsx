@@ -55,7 +55,7 @@ export default function Home() {
         .then((e) => {
           const storeData = async () => {
             try {
-              const session = getSession()
+              // const session = getSession()
               // Ensure userData is a JSON string before storing
               const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
               setUserDataHook(e);
