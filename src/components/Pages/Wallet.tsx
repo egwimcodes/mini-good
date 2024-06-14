@@ -15,7 +15,7 @@ export default function Wallet({ setShowProfile }: WalletProps) {
                   <div className="children-body xsm:flex-2 flex-col items-center justify-center w-full" >
                       {/* <ChargeLevel level={100} availableGoodCoin={100} chargedGoodCoin={100} /> */}
                       <div className="level flex flex-row items-center justify-center flex-nowrap">
-                          <p className="text-base text-gray font-bold text-main mx-1">0.00 USDT</p>
+                          <p className="text-base text-gray font-bold text-main mx-1">1.00 USDT</p>
                       </div>
                       <div className="credit w-[50vw] mx-auto mt-1 flex-row flex-center h-[5vh] bg-main rounded-3xl">
                           <h3>Connect Wallet</h3>
