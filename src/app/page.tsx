@@ -64,8 +64,7 @@ export default function Home() {
           };
 
           storeData();
-          alert(`Registration successful: ${JSON.stringify(e, null, 2)}`);
-        })
+        }).catch((error) => alert(error.message));
     }
 
     const getStoreData = async () => {

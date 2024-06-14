@@ -8,12 +8,12 @@ const SERVER_VERSION = "v1";
 const baseURL: string = `${SERVER_HOST}`;
 
 
-
+const { getItem } = useCloudStorage();
 export async function MakeRequest(
     requestObj: ApiRequestConfig,
     config = {}
 ) {
-const { getItem } = useCloudStorage();
+
 
     // Destructure properties from requestObj
     try {
@@ -21,9 +21,11 @@ const { getItem } = useCloudStorage();
 
         let token: string | null = null;
         if (!removeAuth) {
-             const tokenData = await getItem("userData");
-            const parsedToken = JSON.parse(tokenData).token.access
-            token = parsedToken !== null ? parsedToken : null;
+            const tokenData = await getItem("userData");
+            if (tokenData) {
+                const parsedToken = JSON.parse(tokenData).token.access;
+                token = parsedToken || null;
+            }
         }
 
         // Set up headers
@@ -41,7 +43,10 @@ const { getItem } = useCloudStorage();
         if (response.status === 200 || response.status === 201) {
             const result = response && response.data;
             return result;
+        }else {
+            throw new Error(`Request failed with status code ${response.status}`);
         }
+
     } catch (e) {
         throw e
     }
