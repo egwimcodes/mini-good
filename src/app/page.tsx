@@ -108,10 +108,11 @@ export default function Home() {
       {show404 ? (
         <_404 />
       ) : (
-        (webAppData?.platform && (
-          webAppData.platform === "android" ||
-          webAppData.platform === "ios") &&
-          webAppData.initDataUnsafe && (
+          //(
+          //   webAppData?.platform && (
+          // webAppData.platform === "android" ||
+          // webAppData.platform === "ios") &&
+          // webAppData.initDataUnsafe && (
             // userDataHook ?
             // <UserContext.Provider value={userDataHook}>
             <HomePage />
@@ -120,7 +121,7 @@ export default function Home() {
             //     (
             //   <h1 className="text-3xl text-white flex items-center justify-center">Loading....</h1>
             // )
-          ))
+         // ))
       )}
     </>
   );
