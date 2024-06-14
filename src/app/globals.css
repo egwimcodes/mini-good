@@ -121,7 +121,7 @@ body {
   .buttom-btn.active {
   backdrop-filter: blur(10px);
   border: 3px solid #BE7507FD;
-  background: orange;
+  background: #0ECE8E;
   border-radius: 10px;
 
 }
@@ -161,7 +161,7 @@ input[type="checkbox"]:checked::before {
 
 
 .down.active{
-  @apply bg-orange-400
+  background: #0ECE8E;
 }
 
 
