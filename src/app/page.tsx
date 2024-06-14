@@ -131,12 +131,57 @@
 //   );
 // }
 
+"use client"
 
 import HomePage from '@/components/Pages/HomePage'
-import React from 'react'
+import _404 from '@/components/Pages/_404';
+import { useWebApp } from '@vkruglikov/react-telegram-web-app';
+import React, { useState, useEffect } from 'react'
 
 export default function Home() {
+  const webAppData = useWebApp();
+  const [show404, setShow404] = useState(false);
+
+  useEffect(() => { 
+    if (
+            webAppData.platform &&
+            (webAppData.platform === "unknown" ||
+              webAppData.platform === "tdesktop")
+          ) {
+            setShow404(true);
+            alert(webAppData.platform)
+            return;
+    }else alert(webAppData.platform)
+    
+
+  },[webAppData])
+
   return (
-    <div><HomePage /></div>
+    <>
+      {
+        show404 ?
+          (
+              <_404 />
+            ) : (
+              (webAppData?.platform && (
+                webAppData.platform === "android" ||
+                webAppData.platform === "ios") &&
+                webAppData.initDataUnsafe && (
+                  // userDataHook ?
+                  // <UserContext.Provider value={userDataHook}>
+                  <HomePage />
+                  // </UserContext.Provider>
+                  //     :
+                  //     (
+                  //   <h1 className="text-3xl text-white flex items-center justify-center">Loading....</h1>
+                  // )
+                ))
+            
+      )
+      
+    }
+
+
+    </>
   )
 }
