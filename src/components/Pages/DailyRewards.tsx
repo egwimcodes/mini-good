@@ -2,14 +2,19 @@ import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { IoMdTime } from "react-icons/io";
 import { GetDailyStreakCreate } from '@/utils/requests';
+import { login } from '@/lib/actions';
 
 export default function DailyRewards() {
     useEffect(() => {     
-        GetDailyStreakCreate().then((e) => {
-            alert(`Daily streak created: ${e}`);
-        }).catch((e) => {
-            alert(`Error: ${JSON.stringify(e.message)}`);
-        })
+        // GetDailyStreakCreate().then((e) => {
+        //     alert(`Daily streak created: ${e}`);
+        // }).catch((e) => {
+        //     alert(`Error: ${JSON.stringify(e.message)}`);
+        // })
+        const callLogin = async () => {
+            await login()
+        }
+        callLogin();
     })
 
     return (
