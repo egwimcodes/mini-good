@@ -1,187 +1,73 @@
-// "use client"
+"use client";
 
-// /* eslint-disable @typescript-eslint/no-unused-vars */
-// import { useEffect, useState } from "react";
-// import { useWebApp } from "@vkruglikov/react-telegram-web-app";
-// import _404 from "@/components/Pages/_404";
-// // import { Register } from "@/utils/requests";
-// // import { UserData } from "@/types";
-// import HomePage from "@/components/Pages/HomePage";
-// import { Register } from "@/utils/requests";
-// // import { UserContext } from "@/hooks/UserContext";
-
-// export default function Home() {
-//   // const userData = {
-//   //   user: {
-//   //     id: 1113269206,
-//   //     username: "Snowwisdom",
-//   //     first_name: "Wisdom",
-//   //     referral_code: "",
-//   //     is_premium_user: false,
-//   //   },
-//   // };
-
-//   // const { setItem, getItem } = useCloudStorage();
-//   const [show404] = useState(false);
-//   // const [userDataHook, setUserDataHook] = useState<UserData | null>(null);
-//   //TODO: create usestate to store registered user data
-
-//   const webAppData = useWebApp();
-
-
-
-//   useEffect(() => {
-//     if (webAppData !== null) {
-
-//       if (
-//         webAppData.platform &&
-//         (webAppData.platform === "unknown" ||
-//           webAppData.platform === "tdesktop")
-//       ) {
-//         // setShow404(true);
-//         alert(webAppData.platform)
-//         return;
-//       }
-//       webAppData.expand();
-//       const userInfo = {
-//         password: `${webAppData.platform.user.id}`,
-//         username: webAppData.platform.user.username,
-//         first_name: webAppData.platform.user.first_name,
-//         referral_code: webAppData.platform.user.referral_code ?? "",
-//         is_premium_user: webAppData.platform.user.is_premium_user ?? false
-//       };
-//       alert(webAppData.platform)
-//       alert(userInfo)
-
-
-//       Register(userInfo)
-//         .then((e) => {
-//           const storeData = async () => {
-//             try {
-//               // const session = getSession()
-//               // Ensure userData is a JSON string before storing
-//               const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-//               alert(dataToStore)
-
-//               // const accessToken = JSON.parse(dataToStore).token.access;
-//               // localStorage.setItem("authToken", accessToken);
-//             } catch (error) {
-//               console.error("Error storing user data:", error);
-//             }
-//           };
-
-//           storeData();
-
-//         }).catch((error) => alert(error.message));
-//     }
-
-//     // const getStoreData = async () => {
-//     //   try {
-
-
-
-//     //     const storedData = await getItem('userData');
-//     //     const parsedValue = JSON.parse(storedData);
-//     //     if (parsedValue) {
-//     //       setUserDataHook(parsedValue);
-//     //     }
-//     //   } catch (error) {
-//     //     alert(`Error fetching data from localStorage: ${error}`);
-//     //   }
-//     // };
-
-//     // getStoreData();
-
-
-//   }, []);
-
-
-//   useEffect(() => {
-//     const handleContextMenu = (event: MouseEvent) => {
-//       event.preventDefault();
-//     };
-
-//     document.addEventListener("contextmenu", handleContextMenu);
-
-//     return () => {
-//       document.removeEventListener("contextmenu", handleContextMenu);
-//     };
-//   }, []);
-
-//   return (
-//     <>
-//       {show404 ? (
-//         <_404 />
-//       ) : (
-//         (webAppData?.platform && (
-//           webAppData.platform === "android" ||
-//           webAppData.platform === "ios") &&
-//           webAppData.initDataUnsafe && (
-//             // userDataHook ?
-//             // <UserContext.Provider value={userDataHook}>
-//             <HomePage />
-//             // </UserContext.Provider>
-//             //     :
-//             //     (
-//             //   <h1 className="text-3xl text-white flex items-center justify-center">Loading....</h1>
-//             // )
-//           ))
-//       )}
-//     </>
-//   );
-// }
-
-"use client"
-
-import HomePage from '@/components/Pages/HomePage'
+import HomePage from '@/components/Pages/HomePage';
 import _404 from '@/components/Pages/_404';
 import { useWebApp } from '@vkruglikov/react-telegram-web-app';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
 export default function Home() {
   const webAppData = useWebApp();
   const [show404, setShow404] = useState(false);
 
-  useEffect(() => { 
-    if (
-            webAppData.platform &&
-            (webAppData.platform === "unknown" ||
-              webAppData.platform === "tdesktop")
-          ) {
-            setShow404(true);
-            alert(webAppData.platform)
-            return;
-    }else alert(webAppData.platform)
-    
+  useEffect(() => {
+    if (webAppData) {
+      if (webAppData.platform && (webAppData.platform === "unknown" || webAppData.platform === "tdesktop")) {
+        setShow404(true);
+        return;
+      }
 
-  },[webAppData])
+      if (webAppData.platform) {
+        webAppData.expand();
+
+        if (webAppData.platform.user) {
+          const userInfo = {
+            password: `${webAppData.platform.user.id}`,
+            username: webAppData.platform.user.username,
+            first_name: webAppData.platform.user.first_name,
+            referral_code: webAppData.platform.user.referral_code ?? "",
+            is_premium_user: webAppData.platform.user.is_premium_user ?? false
+          };
+
+          // Register(userInfo)
+          //   .then((e) => {
+          //     const storeData = async () => {
+          //       try {
+          //         const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
+          //         // Handle storing data logic here
+          //       } catch (error) {
+          //         console.error("Error storing user data:", error);
+          //       }
+          //     };
+
+          //     storeData();
+          //   })
+          //   .catch((error) => console.error(error.message));
+        }
+      }
+    }
+  }, [webAppData]);
+
+  useEffect(() => {
+    const handleContextMenu = (event: MouseEvent) => {
+      event.preventDefault();
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
 
   return (
     <>
-      {
-        show404 ?
-          (
-              <_404 />
-            ) : (
-              (webAppData?.platform && (
-                webAppData.platform === "android" ||
-                webAppData.platform === "ios") &&
-                webAppData.initDataUnsafe && (
-                  // userDataHook ?
-                  // <UserContext.Provider value={userDataHook}>
-                  <HomePage />
-                  // </UserContext.Provider>
-                  //     :
-                  //     (
-                  //   <h1 className="text-3xl text-white flex items-center justify-center">Loading....</h1>
-                  // )
-                ))
-            
-      )
-      
-    }
-
-
+      {show404 ? (
+        <_404 />
+      ) : (
+        webAppData?.platform && (webAppData.platform === "android" || webAppData.platform === "ios") && webAppData.initDataUnsafe && (
+          <HomePage />
+        )
+      )}
     </>
-  )
+  );
 }
