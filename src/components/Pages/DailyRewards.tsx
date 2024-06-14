@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { IoMdTime } from "react-icons/io";
 import { GetDailyStreakCreate } from '@/utils/requests';
+import { useUserContext } from '@/hooks/UserContext';
 
 export default function DailyRewards() {
-    
+    const user = useUserContext();
     useEffect(() => {
         // getCurrent Date
         function formatDate(date: Date): string {
@@ -15,7 +16,7 @@ export default function DailyRewards() {
 
         const dailyStreak = {
             "last_checkin_date": formattedDate,
-            "owner": 0
+            "owner": Number(user.id)
         }
         GetDailyStreakCreate(dailyStreak).then((e) => {
             alert(`Daily streak created: ${JSON.stringify(e)}`);
