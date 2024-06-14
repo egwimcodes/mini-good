@@ -60,7 +60,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                         <div className="dashboard-down h-[15vh] w-full flex-row flex-between">
-                            <div className="balance-section flex flex-col justify-between h-[10%] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400">
+                            <div className="balance-section flex flex-col justify-between h-[10vh] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400">
                                 <p className='text-sm font-base'>Balance</p>
                                 <div className="balance-coin-amount flex-row flex-between">
                                     <div className="coin-balance w-[30vw] flex flex-row">

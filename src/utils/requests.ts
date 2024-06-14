@@ -44,6 +44,7 @@ async function GetDailyStreakCreate() {
         path: '/daily-streak/',
         method: 'POST',
         contentType: 'application/json', // You can omit this if using the default
+        data: {},
         removeAuth: false // Assuming you need authentication
     };
 
