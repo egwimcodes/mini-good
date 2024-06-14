@@ -7,7 +7,7 @@ import _404 from "@/components/Pages/_404";
 // import { Register } from "@/utils/requests";
 // import { UserData } from "@/types";
 import HomePage from "@/components/Pages/HomePage";
-// import { Register } from "@/utils/requests";
+import { Register } from "@/utils/requests";
 // import { UserContext } from "@/hooks/UserContext";
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
   // };
 
   // const { setItem, getItem } = useCloudStorage();
-  const [show404, setShow404] = useState(false);
+  const [show404] = useState(false);
   // const [userDataHook, setUserDataHook] = useState<UserData | null>(null);
   //TODO: create usestate to store registered user data
 
@@ -37,7 +37,8 @@ export default function Home() {
       (webAppData.platform === "unknown" ||
         webAppData.platform === "tdesktop")
     ) {
-      setShow404(true);
+      alert("Unsupported platform: " + webAppData.platform);
+      // setShow404(true);
       return;
     }
     webAppData.expand();
@@ -49,25 +50,26 @@ export default function Home() {
       is_premium_user: webAppData.platform.user.is_premium_user ?? false
     };
     alert(webAppData.platform)
-    alert(JSON.stringify(userInfo));
+    alert(userInfo)
 
 
-    // Register(userInfo)
-    //   .then((e) => {
-    //     const storeData = async () => {
-    //       try {
-    //         // const session = getSession()
-    //         // Ensure userData is a JSON string before storing
-    //         const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-    //         alert(`dataToStore: ${dataToStore}`);
-    //         // const accessToken = JSON.parse(dataToStore).token.access;
-    //         // localStorage.setItem("authToken", accessToken);
-    //       } catch (error) {
-    //         alert(`Error from rgister: ${error}`);
-    //       }
-    //     };
-    //     storeData();
-    //   }).catch((error) => alert(error.message));
+    Register(userInfo)
+      .then((e) => {
+        const storeData = async () => {
+          try {
+            // const session = getSession()
+            // Ensure userData is a JSON string before storing
+            const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
+            alert(`dataToStore: ${dataToStore}`);
+            // const accessToken = JSON.parse(dataToStore).token.access;
+            // localStorage.setItem("authToken", accessToken);
+          } catch (error) {
+            alert(`Error from rgister: ${error}`);
+          }
+        };
+
+        storeData();
+      }).catch((error) => alert(error.message));
 
 
     // const getStoreData = async () => {
@@ -108,11 +110,10 @@ export default function Home() {
       {show404 ? (
         <_404 />
       ) : (
-          //(
-          //   webAppData?.platform && (
-          // webAppData.platform === "android" ||
-          // webAppData.platform === "ios") &&
-          // webAppData.initDataUnsafe && (
+        (webAppData?.platform && (
+          webAppData.platform === "android" ||
+          webAppData.platform === "ios") &&
+          webAppData.initDataUnsafe && (
             // userDataHook ?
             // <UserContext.Provider value={userDataHook}>
             <HomePage />
@@ -121,7 +122,7 @@ export default function Home() {
             //     (
             //   <h1 className="text-3xl text-white flex items-center justify-center">Loading....</h1>
             // )
-         // ))
+          ))
       )}
     </>
   );
