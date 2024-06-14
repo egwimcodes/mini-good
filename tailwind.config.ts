@@ -40,6 +40,7 @@ const config: Config = {
 
       
       colors: {
+        'main': '#0ECE8E',
         'light': '#FFFFFFD0',
         'main-bg': 'rgb(251 146 0)',
         'primary-orange': '#FF5722',

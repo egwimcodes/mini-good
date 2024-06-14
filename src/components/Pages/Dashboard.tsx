@@ -65,7 +65,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                         <div className="dashboard-down h-[60%] w-full flex-row flex-between">
-                            <div className="balance-section flex flex-col justify-between h-[80%] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400 ">
+                            <div className="balance-section flex flex-col justify-between h-[80%] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-main ">
                                 <h1 className='text-sm '>Balance</h1>
                                 <div className="balance-coin-amount flex-row flex-between h-[60%] ">
                                     <div className="coin-balance w-[80%] h-[100%] flex-center">
@@ -73,11 +73,11 @@ export default function Dashboard() {
                                         <p className='text-2xl h-[100%] w-[70%] flex-row flex-evenly'>{balance}</p>
                                     </div>
                                     <div className="icon-add border-1 xxxsm:w-[20%] xxsm:w-[20%] xsm:w-[20%] h-[80%] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center ">
-                                        <IoMdAdd className='text-orange-400' />
+                                        <IoMdAdd className='text-main' />
                                     </div>
                                 </div>
                             </div>
-                            <div className="balance-section flex flex-col justify-between h-[80%] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-orange-400 ">
+                            <div className="balance-section flex flex-col justify-between h-[80%] min-h-fit w-[49%] bg-gradient-to-b from-gray-800  rounded-[10px] p-2 border-2 border-main ">
                                 <p className='text-sm font-base h-[40%] '>Earning Per hour</p>
                                 <div className="balance-coin-amount flex-row flex-between h-[60%] ">
                                     <p className='text-2xl h-[100%] w-[70%] flex-row flex-start'>{user.profit_per_hour}</p>
@@ -85,7 +85,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="tap-section w-[100%] h-[70%] rounded-[20px]  border-2 border-orange-400  flex justify-center items-center justify-self-start mx-auto">
+                    <div className="tap-section w-[100%] h-[70%] rounded-[20px]  border-2 border-main  flex justify-center items-center justify-self-start mx-auto">
                         <div className="tap w-[60%] relative" >
                             <Image src="/goodcoing.svg" className="coin-svg mx-auto sm:w-[40%]" width={500} height={100} alt="" />
                             <div className="png-coin w-[100%] h-[100%] bg-red-800 ">
