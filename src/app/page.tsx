@@ -132,10 +132,11 @@
 // }
 
 
+import HomePage from '@/components/Pages/HomePage'
 import React from 'react'
 
 export default function Home() {
   return (
-    <div><h1>Home</h1></div>
+    <div><HomePage /></div>
   )
 }
