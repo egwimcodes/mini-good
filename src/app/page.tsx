@@ -1,13 +1,13 @@
 "use client";
-import { cookies } from 'next/headers'
 import HomePage from '@/components/Pages/HomePage';
 import _404 from '@/components/Pages/_404';
 import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 import React, { useState, useEffect } from 'react';
+import { useCookies } from '@/lib/cookies';
 
 export default function Home() {
   const webAppData = useWebApp();
-  const cookieStore = cookies()
+  const cookieStore = useCookies()
   const [show404, setShow404] = useState(false);
 
   useEffect(() => {
