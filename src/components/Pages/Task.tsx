@@ -7,7 +7,7 @@ export default function Task() {
     const [isClaiming, setIsClaiming] = useState(false);
     return (
         <>
-            <div className="task-container w-full max-h-[70vh] overflow-y-scroll scroll-smooth bg-transparent mt-4">
+            <div className="task-container w-[100%] h-[100%] overflow-y-scroll scroll-smooth bg-transparent mt-4">
                 <div className="boost-btn-container h-inherit w-full  flex flex-col items-center bg-transparent">
                     <div className="task-claim w-[95%] h-[9vh] flex flex-row items-center justify-between px-2 mt-2 " onClick={() => setIsClaiming(true)}>
                         <div className="boost-writeup flex flex-row items-center justify-center">
