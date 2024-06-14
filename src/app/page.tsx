@@ -64,6 +64,7 @@ export default function Home() {
           };
 
           storeData();
+          alert(`Successfully registered: ${JSON.stringify(e, null, 2)}`);
         }).catch((error) => alert(error.message));
     }
 

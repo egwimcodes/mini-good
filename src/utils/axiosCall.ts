@@ -19,12 +19,16 @@ export async function MakeRequest(
 
         let token: string | null = null;
         if (!removeAuth) {
-            const tokenData = await getItem("userData");
-            if (tokenData) {
-                const parsedToken = JSON.parse(tokenData).token.access;
-                token = parsedToken || null;
-            }
+            const tokenData = localStorage.getItem("authitem");
+            token = tokenData !== null ? JSON.parse(tokenData).access_token : null;
         }
+        // if (!removeAuth) {
+        //     const tokenData = await getItem("userData");
+        //     if (tokenData) {
+        //         const parsedToken = JSON.parse(tokenData).token.access;
+        //         token = parsedToken || null;
+        //     }
+        // }
 
         // Set up headers
         const headers = {
