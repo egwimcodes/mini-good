@@ -7,7 +7,7 @@ import _404 from "@/components/Pages/_404";
 // import { Register } from "@/utils/requests";
 // import { UserData } from "@/types";
 import HomePage from "@/components/Pages/HomePage";
-import { Register } from "@/utils/requests";
+// import { Register } from "@/utils/requests";
 // import { UserContext } from "@/hooks/UserContext";
 
 export default function Home() {
@@ -49,25 +49,25 @@ export default function Home() {
       is_premium_user: webAppData.platform.user.is_premium_user ?? false
     };
     alert(webAppData.platform)
-    alert(userInfo)
+    alert(JSON.stringify(userInfo));
 
 
-    Register(userInfo)
-      .then((e) => {
-        const storeData = async () => {
-          try {
-            // const session = getSession()
-            // Ensure userData is a JSON string before storing
-            const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-            alert(`dataToStore: ${dataToStore}`);
-            // const accessToken = JSON.parse(dataToStore).token.access;
-            // localStorage.setItem("authToken", accessToken);
-          } catch (error) {
-            alert(`Error from rgister: ${error}`);
-          }
-        };
-        storeData();
-      }).catch((error) => alert(error.message));
+    // Register(userInfo)
+    //   .then((e) => {
+    //     const storeData = async () => {
+    //       try {
+    //         // const session = getSession()
+    //         // Ensure userData is a JSON string before storing
+    //         const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
+    //         alert(`dataToStore: ${dataToStore}`);
+    //         // const accessToken = JSON.parse(dataToStore).token.access;
+    //         // localStorage.setItem("authToken", accessToken);
+    //       } catch (error) {
+    //         alert(`Error from rgister: ${error}`);
+    //       }
+    //     };
+    //     storeData();
+    //   }).catch((error) => alert(error.message));
 
 
     // const getStoreData = async () => {
