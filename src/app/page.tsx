@@ -58,6 +58,9 @@ export default function Home() {
               const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
               await setItem("userData", dataToStore);
               setUserDataHook(e);
+              const accessToken = JSON.parse(dataToStore).token.access;
+              localStorage.setItem("authToken", accessToken);
+              alert(`Successfully registered: ${localStorage.getItem("authToken")}`);
             } catch (error) {
               console.error("Error storing user data:", error);
             }
