@@ -10,7 +10,6 @@ export default function Home() {
   const [show404, setShow404] = useState(false);
 
   useEffect(() => {
-    alert(` User web ${JSON.stringify(webAppData)}`);
     if (webAppData) {
       if (webAppData.platform && (webAppData.platform === "unknown" || webAppData.platform === "tdesktop")) {
         setShow404(true);
@@ -21,6 +20,8 @@ export default function Home() {
         webAppData.expand();
 
         if (webAppData.platform.user) {
+          alert(` User web data ${JSON.stringify(webAppData)}`);
+
           const userInfo = {
             password: `${webAppData.platform.user.id}`,
             username: webAppData.platform.user.username,
