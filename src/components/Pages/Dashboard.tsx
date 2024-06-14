@@ -20,7 +20,7 @@ const user = {
 }
 export default function Dashboard() {
     // const user = useUserContext();
-    const prevBalance = localStorage.getItem('balance');
+    const prevBalance = '0';
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState("dashboard");
     const [balance, setBalance] = useState(0 + parseInt(prevBalance || '0'));

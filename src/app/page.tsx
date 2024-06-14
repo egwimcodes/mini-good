@@ -8,7 +8,6 @@ import { Register } from "@/utils/requests";
 import { UserData } from "@/types";
 import HomePage from "@/components/Pages/HomePage";
 import { UserContext } from "@/hooks/UserContext";
-import { getSession } from "@/lib/actions";
 
 export default function Home() {
   const userData = {
@@ -60,8 +59,8 @@ export default function Home() {
               const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
               setUserDataHook(e);
 
-              const accessToken = JSON.parse(dataToStore).token.access;
-              localStorage.setItem("authToken", accessToken);
+              // const accessToken = JSON.parse(dataToStore).token.access;
+              // localStorage.setItem("authToken", accessToken);
             } catch (error) {
               console.error("Error storing user data:", error);
             }
@@ -91,13 +90,7 @@ export default function Home() {
 
   }, [data, setItem, getItem]);
 
-  useEffect(() => {
-    const  fetchCookie =async () =>{
-      const session = await getSession()
-      alert(`from page ${session}`)
-    } 
-    fetchCookie();
-  });
+
 
   return (
     <>
