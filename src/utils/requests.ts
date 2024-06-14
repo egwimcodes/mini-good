@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-catch */
 import { MakeRequest } from "./axiosCall";
 import { AuthRoutes } from "./authEndpoints";
-import { Auth } from "../types";
+import { Auth, DailySteakCreate } from "@/types";
 
 interface RequestConfig {
     path: string;
@@ -11,6 +11,7 @@ interface RequestConfig {
     data: Auth;
 }
 
+// Register
 async function Register({ password, username, first_name, is_premium_user, referral_code }: Auth) {
     try {
         const requestConfig: RequestConfig = {
@@ -35,6 +36,43 @@ async function Register({ password, username, first_name, is_premium_user, refer
     }
 }
 
+// Daily Streak
+
+async function GetDailyStreakCreate(data: DailySteakCreate) {
+    const requestObj = {
+        path: '/daily-streak/',
+        method: 'POST',
+        contentType: 'application/json', // You can omit this if using the default
+        data: data,
+        removeAuth: false // Assuming you need authentication
+    };
+
+    try {
+        const response = await MakeRequest(requestObj);
+        alert(`Daily streak created: ${JSON.stringify(response)}`);
+    } catch (error) {
+        console.error('Error fetching daily streak data:', error);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export {
     Register,
+    GetDailyStreakCreate
 }

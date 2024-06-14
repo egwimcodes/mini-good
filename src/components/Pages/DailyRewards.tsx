@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { IoMdTime } from "react-icons/io";
+import { GetDailyStreakCreate } from '@/utils/requests';
+import { DailySteakCreate } from '@/types';
 
 export default function DailyRewards() {
+    
+    useEffect(() => {
+        // getCurrent Date
+        function formatDate(date: Date): string {
+            return date.toISOString().split('T')[0];
+        }
+        const today = new Date();
+        const formattedDate = formatDate(today);
+
+        const dailyStreak = {
+            "last_checkin_date": formattedDate,
+            "owner": 0
+        }
+        GetDailyStreakCreate(dailyStreak)
+    }, [])
     
     return (
         <div className="rewards-container w-full h-[80vh]  flex flex-col items-center justify-evenly ">

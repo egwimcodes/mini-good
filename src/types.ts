@@ -114,3 +114,8 @@ export interface UserData {
   token: TokenAuth;
 }
 
+
+export interface DailySteakCreate{
+  last_checkin_date: string;
+  owner: number;
+}
