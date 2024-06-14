@@ -17,8 +17,12 @@ export default function DailyRewards() {
             "last_checkin_date": formattedDate,
             "owner": 0
         }
-        GetDailyStreakCreate(dailyStreak)
-    }, [])
+        GetDailyStreakCreate(dailyStreak).then((e) => {
+            alert(`Daily streak created: ${JSON.stringify(e)}`);
+        }).catch((e) => {
+            alert(`Error: ${JSON.stringify(e)}`);
+        })
+    })
     
     return (
         <div className="rewards-container w-full h-[80vh]  flex flex-col items-center justify-evenly ">
