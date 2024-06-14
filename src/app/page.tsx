@@ -1,5 +1,5 @@
 "use client";
-
+import { cookies } from 'next/headers'
 import HomePage from '@/components/Pages/HomePage';
 import _404 from '@/components/Pages/_404';
 import { useWebApp } from '@vkruglikov/react-telegram-web-app';
@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 
 export default function Home() {
   const webAppData = useWebApp();
+  const cookieStore = cookies()
   const [show404, setShow404] = useState(false);
 
   useEffect(() => {
@@ -18,8 +19,6 @@ export default function Home() {
 
       if (webAppData.platform) {
         webAppData.expand();
-
-          alert(` User web data ${JSON.stringify(webAppData, null, 2)}`);
         const userData = webAppData.initDataUnsafe;
         const userInfo = {
           password: `${userData.user.id}`,
@@ -29,7 +28,15 @@ export default function Home() {
           is_premium_user: userData.user.is_premium_user
             ?? false
         };
-          alert(` User info ${JSON.stringify(userInfo, null, 2)}`);
+        
+        const hasCookie = cookieStore.get('AccessToken')
+
+        if (hasCookie && hasCookie.value) {
+
+          alert("You are already logged in")
+
+        } else alert("You are not logged in")
+         
       }
     }
   }, [webAppData]);
