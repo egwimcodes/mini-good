@@ -21,14 +21,6 @@ export default function Home() {
 
           alert(` User web data ${JSON.stringify(webAppData, null, 2)}`);
 
-          const userInfo = {
-            password: `${webAppData.platform.user.id}`,
-            username: webAppData.platform.user.username,
-            first_name: webAppData.platform.user.first_name,
-            referral_code: webAppData.platform.user.referral_code ?? "",
-            is_premium_user: webAppData.platform.user.is_premium_user ?? false
-          };
-          alert(` User info ${JSON.stringify(userInfo)}`);
       }
     }
   }, [webAppData]);
