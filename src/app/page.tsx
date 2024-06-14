@@ -64,8 +64,7 @@ export default function Home() {
           };
 
           storeData();
-        })
-        .catch((error) => alert(error));
+        }).catch((error) => alert(error.message));
     }
 
     const getStoreData = async () => {
