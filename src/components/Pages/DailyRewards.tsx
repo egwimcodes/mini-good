@@ -18,8 +18,9 @@ export default function DailyRewards() {
             last_checkin_date: formattedDate,
             owner: Number(user.id)
         }
+        
         GetDailyStreakCreate(dailyStreak).then((e) => {
-            alert(`Daily streak created: ${e}`);
+            alert(`Daily streak created: ${dailyStreak}`);
         }).catch((e) => {
             alert(`Error: ${JSON.stringify(e)}`);
         })
