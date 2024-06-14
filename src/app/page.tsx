@@ -63,11 +63,9 @@ export default function Home() {
             // const accessToken = JSON.parse(dataToStore).token.access;
             // localStorage.setItem("authToken", accessToken);
           } catch (error) {
-            console.error("Error storing user data:", error);
             alert(`Error from rgister: ${error}`);
           }
         };
-
         storeData();
       }).catch((error) => alert(error.message));
 
