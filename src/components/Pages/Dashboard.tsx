@@ -15,10 +15,11 @@ interface ClickEffect {
 
 export default function Dashboard() {
     const user = useUserContext();
+    const strorag = localStorage.getItem('balance');
     const prevBalance = '0';
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState("dashboard");
-    const [balance, setBalance] = useState(0 + parseInt(prevBalance || '0'));
+    const [balance, setBalance] = useState(0 + (Number(strorag) || 0));
 
     useEffect(() => {
         localStorage.setItem('balance', String(balance));
@@ -38,7 +39,7 @@ export default function Dashboard() {
         }, 2000);
 
         // Increment balance when image is clicked
-        setBalance(prev => prev + 5);
+        setBalance(prev => prev + user.earn_per_tap);
     };
 
     return (
