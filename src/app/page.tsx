@@ -19,13 +19,8 @@ const Home = () => {
         // User is not authenticated
 
         const response = await fetchAccessToken();
-        alert(`accessToken cookie 1 ${response.data.accessToken.value} `)
-        const data = await response.json();
-        alert(`accessToken cookie2 ${response.data.accessToken.value} `)
-        alert(`accessToken cookie3 ${response.data.accessToken.value} `)
-        alert(`accessToken cookie4 ${data.data.accessToken.value} `)
 
-        if (data && data.data.accessToken.value === "") {
+        if (response && response === "") {
           try {
             const userData = webAppData.initDataUnsafe;
             const userInfo = {
@@ -95,7 +90,7 @@ const Home = () => {
           // User is authenticated
           alert(`accessToken cookie4 ${response.data.accessToken.value} `)
           
-          alert(`debug4 ${data.data.accessToken.value}`);
+          alert(`debug4 ${response}`);
 
           try {
 
