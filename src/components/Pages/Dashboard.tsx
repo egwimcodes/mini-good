@@ -16,7 +16,6 @@ interface ClickEffect {
 export default function Dashboard() {
     const user = useUserContext();
     const strorag = localStorage.getItem('balance');
-    const prevBalance = '0';
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState("dashboard");
     const [balance, setBalance] = useState(0 + (Number(strorag) || 0));
