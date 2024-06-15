@@ -33,8 +33,8 @@ export default function Home() {
         if (token !== null) {
           alert(token)
           cookies.remove("accessToken", { path: '/' })
-          alert(`New Token ${token}`)
-        }else alert("null token")
+          }else alert("null token")
+        alert(`New Token ${token}`)
          
       }
     }
