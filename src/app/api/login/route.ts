@@ -9,6 +9,7 @@ export async function GET(req: NextRequest) {
       data: { accessToken: req.cookies.get('accessToken') },
 
   });
+
     
     response.cookies.get('accessToken');
   // Return the response with the cookie
