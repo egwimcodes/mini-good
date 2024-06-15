@@ -6,12 +6,15 @@ import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 import React, { useState, useEffect } from 'react';
 import { fetchAccessToken } from '@/utils/api';
 import LoadingPage from '@/components/Pages/LoadingPage';
+import { UserContext } from '@/hooks/UserContext';
+import { UserData } from '@/types';
 
 
 const Home = () => {
   const webAppData = useWebApp();
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<UserData>();
 
 
   useEffect(() => {
@@ -91,6 +94,9 @@ const Home = () => {
           // User is authenticated
           //alert(`accessToken cookie4 ${response.data.accessToken.value} `)
           RetriveMe().then((e) => {
+            const storeData = JSON.stringify(e);
+            alert(`RetriveMe ${storeData} `)
+            setUser(e);
             setIsLoading(false);
           }).catch((e) => {
             console.error('Error posting data:', e);
@@ -145,7 +151,14 @@ const Home = () => {
       ) : (
         webAppData?.platform &&
         (webAppData.platform === 'android' || webAppData.platform === 'ios') &&
-        webAppData.initDataUnsafe && (isLoading ? <LoadingPage /> : <HomePage />)
+          webAppData.initDataUnsafe &&
+          (isLoading ? <LoadingPage /> : (
+            <UserContext.Provider value={user}>
+              <HomePage />
+            </UserContext.Provider>
+              )
+
+          )
       )}
     </>
   );
