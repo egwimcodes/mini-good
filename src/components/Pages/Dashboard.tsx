@@ -5,7 +5,7 @@ import { IoMdWallet } from "react-icons/io";
 import { IoMdAdd } from "react-icons/io";
 import Profile from './Profile';
 import Wallet from './Wallet';
-// import { useUserContext } from '@/hooks/UserContext';
+import { useUserContext } from '@/hooks/UserContext';
 
 interface ClickEffect {
     id: number;
@@ -19,7 +19,7 @@ const user = {
     earn_per_tap: 1
 }
 export default function Dashboard() {
-    // const user = useUserContext();
+    const user = useUserContext();
     const prevBalance = '0';
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState("dashboard");

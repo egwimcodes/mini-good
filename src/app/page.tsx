@@ -95,7 +95,6 @@ const Home = () => {
           //alert(`accessToken cookie4 ${response.data.accessToken.value} `)
           RetriveMe().then((e) => {
             const storeData = JSON.stringify(e);
-            alert(`RetriveMe ${storeData} `)
             setUser(e);
             setIsLoading(false);
           }).catch((e) => {
