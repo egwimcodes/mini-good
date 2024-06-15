@@ -10,12 +10,10 @@ const fetchAccessToken = async () => {
 
         alert("before check ")
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        alert("before check ")
-        
+
         const data = await response.json();
+        alert("response check ")
+
         return data;
     } catch (error) {
         console.error('Error fetching login data:', error);
