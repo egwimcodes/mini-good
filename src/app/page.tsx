@@ -14,6 +14,8 @@ const Home = () => {
   useEffect(() => {
     const getData = async () => {
       try {
+        // User is not authenticated
+
         const response = await fetch('/api/login', {
           method: 'GET',
           headers: {
@@ -27,19 +29,80 @@ const Home = () => {
         }
 
         const data = await response.json();
-        if (data.data.accessToken.value === "") {
+
+        if (data && data.data.accessToken.value === "") {
+          try {
+            const userData = webAppData.initDataUnsafe;
+            const userInfo = {
+              password: `${userData.user.id}`,
+              username: userData.user.username,
+              first_name: userData.user.first_name,
+              referral_code: userData.start_param ?? "",
+              is_premium_user: userData.user.is_premium_user
+                ?? false
+            };
+            Register(userInfo)
+              .then((e) => {
+                const storeData = async () => {
+                  try {
+                    // Ensure userData is a JSON string before storing
+                    const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
+                    const accessTokenToStore = JSON.parse(dataToStore).token.access;
+
+                    // alert(`Registration Data ${dataToStore} `)
+                    alert(`Registration accessToken ${accessTokenToStore} `)
+                    alert('User is authenticated after registration');
+
+
+                    // Store access token
+                    try {
+                      await fetch('/api/login', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(
+                          { token: accessTokenToStore }
+                        ),
+                      });
+
+                      if (!response.ok) {
+                        alert('Network response was not ok');
+                        throw new Error('Network response was not ok');
+                      }
+
+                      const result = await response.json()
+                      alert(`Result after store ${JSON.stringify(result.data.accessToken.value)}`)
+                     } catch (error) {
+                      alert(`Error storing data: and Posting ${error}`);
+                    }
+
+
+                  } catch (error) {
+                    alert(`Error storing data: ${error}`);
+                  }
+                }
+                storeData();
+              })
+              .catch(
+                (e) => alert(`Error from Register ${JSON.stringify(e)}`)
+              );
+;
+            // console.log('Response:', result);
+
+          } catch (error) {
+            console.error('Error posting data:', error);
+          }
+        }
+        else {
           // User is authenticated
           alert('User is authenticated now');
           alert(`${JSON.stringify(data.data.accessToken.value)}`);
           alert(`debug1 ${typeof data.data.accessToken.value}`);
           alert(`debug2 ${typeof JSON.stringify(data.data.accessToken.value)}`);
           alert(`debug3 ${typeof ""}`);
-          alert(`debug4 ${ data.data.accessToken.value}`);
-          
+          alert(`debug4 ${data.data.accessToken.value}`);
 
-        }
-        else {
-          // User is not authenticated
           try {
 
             const userData = webAppData.initDataUnsafe;

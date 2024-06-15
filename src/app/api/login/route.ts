@@ -20,21 +20,21 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    // Parse the request body
-    const body = await req.json();
+    // Parse the request body to get the token
+    const { token } = await req.json();
 
     // Process the data (e.g., log it, save it to a database, etc.)
-    console.log('Request body:', body);
+    console.log('Token received:', token);
 
-    // Create a response
+    // Create a response with the token as data
     const response = NextResponse.json({
       success: true,
-      message: 'Data received successfully',
-      data: body, // Echo the received data
+      message: 'Token received successfully',
+      data: { accessToken: token }, // Echo the received token
     });
 
-    // Optionally set a cookie
-    response.cookies.set('accessToken', 'test', {
+    // Set the token as a cookie
+    response.cookies.set('accessToken', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV !== 'development',
       sameSite: 'strict',
@@ -51,6 +51,5 @@ export async function POST(req: NextRequest) {
     }, { status: 500 });
   }
 }
-
 
 
