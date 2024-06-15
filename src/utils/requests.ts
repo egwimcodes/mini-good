@@ -115,6 +115,22 @@ async function TaskCompletion({ title, reward, task_url, avater }: TaskCompletio
 }
 
 
+async function RetriveWallet() {
+    try {
+    const requestMe= {
+        path: AuthRoutes.WALLET,
+        method: 'GET',
+        contentType: 'application/json', // You can omit this if using the default
+        removeAuth: false // Assuming you need authentication
+    };
+
+        const response = await MakeRequest(requestMe);
+        return response;
+    } catch (error) {
+        alert(`{'Error fetching referrals data:', ${error}}`);
+        throw error;
+    }
+}
 
 
 
@@ -128,5 +144,6 @@ export {
     RetriveMe,
     RetriveReferrals,
     RetriveTasks,
-    TaskCompletion
+    TaskCompletion,
+    RetriveWallet
 }

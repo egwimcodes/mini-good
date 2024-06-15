@@ -116,8 +116,8 @@ export interface UserData {
 
 
 export type TaskCompletionType = {
-  "title": "string",
-  "reward": number,
-  "task_url": "string",
-  "avater": "string"
+  title: string,
+  reward: number,
+  task_url: string,
+  avater: string
 }
