@@ -24,7 +24,7 @@ const Home = () => {
 
         const response = await fetchAccessToken();
 
-        if (response && response.data.accessToken.value === "") {
+        if (response && response.data.accessToken.value === "" || response.data.accessToken === undefined) {
           try {
             const userData = webAppData.initDataUnsafe;
             const userInfo = {
