@@ -3,11 +3,10 @@ import HomePage from '@/components/Pages/HomePage';
 import _404 from '@/components/Pages/_404';
 import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 import React, { useState, useEffect } from 'react';
-import { getAccessToken, useCookies } from '@/lib/cookies';
+import Cookies from 'universal-cookie';
 
 export default function Home() {
   const webAppData = useWebApp();
-  const cookieStore = useCookies()
   const [show404, setShow404] = useState(false);
 
   useEffect(() => {
@@ -28,14 +27,10 @@ export default function Home() {
           is_premium_user: userData.user.is_premium_user
             ?? false
         };
-        
-        const hasCookie = getAccessToken()
-
-        if (hasCookie && hasCookie.value) {
-
-          alert("You are already logged in")
-
-        } else alert("You are not logged in")
+        console.log('user', userInfo)
+        const cookies = new Cookies();
+        const token = cookies.get('accessToken');
+        alert(token)
          
       }
     }
@@ -65,3 +60,4 @@ export default function Home() {
     </>
   );
 }
+
