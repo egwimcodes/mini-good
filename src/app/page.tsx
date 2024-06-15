@@ -1,10 +1,10 @@
 "use client"
 import HomePage from '@/components/Pages/HomePage';
 import _404 from '@/components/Pages/_404';
-//import { Register, RetriveMe } from '@/utils/requests';
+import { Register, RetriveMe } from '@/utils/requests';
 import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 import React, { useState, useEffect } from 'react';
-//import { fetchAccessToken } from '@/utils/api';
+import { fetchAccessToken } from '@/utils/api';
 import LoadingPage from '@/components/Pages/LoadingPage';
 import { UserContext } from '@/hooks/UserContext';
 import { UserData } from '@/types';
@@ -18,96 +18,94 @@ const Home = () => {
 
 
   useEffect(() => {
-    setUser(webAppData.initDataUnsafe.user);
-    setIsLoading(true);
     const getData = async () => {
       
       try {
-        // const response = await fetchAccessToken();
+        const response = await fetchAccessToken();
        
 
-        // User is not authenticated
-        // if (response && response.data.accessToken.value=== "") {
+        //User is not authenticated
+        if (response && response.data.accessToken.value=== "") {
 
-        //   try {
+          try {
             
-        //     const userData = webAppData.initDataUnsafe;
+            const userData = webAppData.initDataUnsafe;
           
-        //     const userInfo = {
-        //       password: `${userData.user.id}`,
-        //       username: userData.user.username,
-        //       first_name: userData.user.first_name,
-        //       referral_code: userData.start_param ?? "",
-        //       is_premium_user: userData.user.is_premium_user
-        //         ?? false
-        //     };
+            const userInfo = {
+              password: `${userData.user.id}`,
+              username: userData.user.username,
+              first_name: userData.user.first_name,
+              referral_code: userData.start_param ?? "",
+              is_premium_user: userData.user.is_premium_user
+                ?? false
+            };
 
-        //     // Register user function
-        //     Register(userInfo)
-        //       .then((e) => {
-        //         const storeData = async () => {
-        //           try {
-        //             // Ensure userData is a JSON string before storing
-        //             const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-        //             const accessTokenToStore = JSON.parse(dataToStore).token.access;
+            // Register user function
+            Register(userInfo)
+              .then((e) => {
+                const storeData = async () => {
+                  try {
+                    // Ensure userData is a JSON string before storing
+                    const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
+                    const accessTokenToStore = JSON.parse(dataToStore).token.access;
 
-        //             // alert(`Registration Data ${dataToStore} `)
-        //             // alert(`Registration accessToken ${accessTokenToStore} `)
-        //             // alert('User is authenticated after registration');
-
-
-        //             // Store access token
-        //             try {
-        //               const res = await fetch('/api/login', {
-        //                 method: 'POST',
-        //                 headers: {
-        //                   'Content-Type': 'application/json',
-        //                 },
-        //                 body: JSON.stringify(
-        //                   { token: accessTokenToStore }
-        //                 ),
-        //               });
-
-        //               if (!response.ok) {
-        //                 alert('Network response was not ok');
-        //                 throw new Error('Network response was not ok');
-        //               }
-
-        //               const result = await res.json()
-        //               alert(`Result after store ${JSON.stringify(result.data.accessToken.value)}`)
-        //             } catch (error) {
-        //               alert(`Error storing data: and Posting ${error}`);
-        //             }
+                    // alert(`Registration Data ${dataToStore} `)
+                    // alert(`Registration accessToken ${accessTokenToStore} `)
+                    // alert('User is authenticated after registration');
 
 
-        //           } catch (error) {
-        //             alert(`Error storing data: ${error}`);
-        //           }
-        //         }
-        //         storeData();
-        //       })
-        //       .catch(
-        //         (e) => alert(`Error from Register ${JSON.stringify(e)}`)
-        //     );
+                    // Store access token
+                    try {
+                      const res = await fetch('/api/login', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(
+                          { token: accessTokenToStore }
+                        ),
+                      });
 
-        //     ;
-        //     // console.log('Response:', result);
+                      if (!response.ok) {
+                        alert('Network response was not ok');
+                        throw new Error('Network response was not ok');
+                      }
 
-        //   } catch (error) {
-        //     console.error('Error from Register / login:', error);
-        //   }
-        // }
-        // else {
+                      const result = await res.json()
+                      alert(`Result after store ${JSON.stringify(result.data.accessToken.value)}`)
+                    } catch (error) {
+                      alert(`Error storing data: and Posting ${error}`);
+                    }
 
-        //   // User is authenticated
-        //   //alert(`accessToken cookie4 ${response.data.accessToken.value} `)
-        //   RetriveMe().then((e) => {
-        //     setUser(e);
-        //     setIsLoading(false);
-        //   }).catch((e) => {
-        //     console.error('Error posting data:', e);
-        //   });
-        // }
+
+                  } catch (error) {
+                    alert(`Error storing data: ${error}`);
+                  }
+                }
+                storeData();
+              })
+              .catch(
+                (e) => alert(`Error from Register ${JSON.stringify(e)}`)
+            );
+
+            ;
+            // console.log('Response:', result);
+
+          } catch (error) {
+            console.error('Error from Register / login:', error);
+          }
+        }
+        else {
+
+          // User is authenticated
+          //alert(`accessToken cookie4 ${response.data.accessToken.value} `)
+          RetriveMe().then((e) => {
+            setUser(e);
+            setIsLoading(false);
+          }).catch((e) => {
+            console.error('Error posting data:', e);
+          });
+        }
       } catch (error) {
         alert(`Error fetching login data in App: ${error}`);
       }
