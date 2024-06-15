@@ -9,6 +9,8 @@ const fetchAccessToken = async () => {
         });
 
         alert("before check ")
+        alert(` Before Json response ${response}`)
+        alert(`Json response ${response.json()}`)
 
 
         const data = await response.json();
