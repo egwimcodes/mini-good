@@ -95,7 +95,7 @@ async function RetriveTasks() {
 async function TaskCompletion({ title, reward, task_url, avater }: TaskCompletionType) {
     try {
     const requestMe= {
-        path: AuthRoutes.TASKS,
+        path: AuthRoutes.TASKS_COMPLETE,
         method: 'POST',
         contentType: 'application/json', // You can omit this if using the default
         removeAuth: false, // Assuming you need authentication

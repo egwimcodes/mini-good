@@ -60,24 +60,19 @@ export default function Referral() {
                         </div>
                         {totalReferrals?.referrals ? (
                             <div className="referal-body w-inherit h-[15vh] w-[100%] flex flex-col overflow-y-auto">
-
                                 {totalReferrals?.referrals?.map((e, i) => (
-                                    <p key={i} className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-main">{JSON.stringify(e)}</p>
-                                )
-                                )
-                                }
+                                    <p key={i} className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-main">
+                                        {JSON.stringify(e)}
+                                    </p>
+                                ))}
                             </div>
-
                         ) : (
-
                             <div className="referal-body w-inherit h-[15vh] flex flex-col items-center justify-center">
-                                <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-slate-600">You Don't Have Referals Yet</p>
+                                <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-slate-600">
+                                    You Don't Have Referrals Yet
+                                </p>
                             </div>
-                        )
-
-                        }
-
-
+                        )}
                     </div>
                     <div className="referal-btn flex w-[95vw] h-[18%] flex-col justify-center items-center border-2 border-main rounded-[20px]">
                         <p>INIVITE FRIENDS</p>
