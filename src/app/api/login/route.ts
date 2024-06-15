@@ -1,22 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
-  // Get the accessToken from cookies
-  const accessToken = req.cookies.get('accessToken');
 
-
-  // Create a new response object with the accessToken in the data
+  // Create a new response object
   const response = NextResponse.json({
-    success: true,
-    data: { accessToken: accessToken ? accessToken.value : '' },
-  });
-  response.cookies.set('accessToken',  '');
-  // Set the accessToken cookie
-  
+      success: true,
+      // Add some data to the response
+      data: { accessToken: req.cookies.get('accessToken') },
 
+  });
+
+    
+    response.cookies.get('accessToken');
   // Return the response with the cookie
   return response;
 }
+
 
 
 export async function POST(req: NextRequest) {
