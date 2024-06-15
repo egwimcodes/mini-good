@@ -1,7 +1,7 @@
 "use client"
 import HomePage from '@/components/Pages/HomePage';
 import _404 from '@/components/Pages/_404';
-import { Register } from '@/utils/requests';
+// import { Register } from '@/utils/requests';
 import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 import React, { useState, useEffect } from 'react';
 
