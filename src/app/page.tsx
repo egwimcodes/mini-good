@@ -19,14 +19,10 @@ const Home = () => {
         // User is not authenticated
 
         const response = await fetchAccessToken();
-
-       
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-
+        alert(`accessToken cookie 1 ${response.data.accessToken.value} `)
         const data = await response.json();
+        alert(`accessToken cookie2 ${response.data.accessToken.value} `)
+        alert(`accessToken cookie3 ${response.data.accessToken.value} `)
 
         if (data && data.data.accessToken.value === "") {
           try {
@@ -96,7 +92,7 @@ const Home = () => {
         else {
 
           // User is authenticated
-          alert(`accessToken cookie ${response.data.accessToken.value} `)
+          alert(`accessToken cookie4 ${response.data.accessToken.value} `)
           
           alert(`debug4 ${data.data.accessToken.value}`);
 
@@ -108,7 +104,7 @@ const Home = () => {
           }
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        alert(`Error fetching login data: ${error}`);
       }
     }
     getData();
