@@ -14,6 +14,7 @@ const fetchAccessToken = async () => {
 
 
         const data = await response.json();
+        alert(`Json response ${data}`)
         alert("response check ")
 
         return data;
