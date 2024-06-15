@@ -19,11 +19,10 @@ const Home = () => {
 
   useEffect(() => {
     const getData = async () => {
+      const response = await fetchAccessToken();
       try {
+        
         // User is not authenticated
-
-        const response = await fetchAccessToken();
-
         if (response && response.data.accessToken.value === "" || response.data.accessToken === undefined) {
           try {
             const userData = webAppData.initDataUnsafe;
@@ -101,7 +100,7 @@ const Home = () => {
           });
         }
       } catch (error) {
-        alert(`Error fetching login data: ${error}`);
+        alert(`Error fetching login data in App: ${error}`);
       }
     }
     getData();
