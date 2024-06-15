@@ -38,20 +38,19 @@ async function Register({ password, username, first_name, is_premium_user, refer
 
 // Daily Streak
 
-async function GetDailyStreakCreate() {
+async function RetriveMe() {
     try {
-    const requeststreakCreate= {
-        path: AuthRoutes.DAILY_STREAK,
-        method: 'POST',
+    const requestMe= {
+        path: AuthRoutes.ME,
+        method: 'GET',
         contentType: 'application/json', // You can omit this if using the default
-        data: {},
         removeAuth: false // Assuming you need authentication
     };
 
-        const response = await MakeRequest(requeststreakCreate);
+        const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        console.error('Error fetching daily streak data:', error);
+        alert(`{'Error fetching daily streak data:', ${error}}`);
         throw error;
     }
 }
@@ -74,5 +73,5 @@ async function GetDailyStreakCreate() {
 
 export {
     Register,
-    GetDailyStreakCreate
+    RetriveMe
 }

@@ -32,6 +32,8 @@ export default function Home() {
         const token = cookies.get('accessToken');
         if (token !== null) {
           alert(token)
+          cookies.remove("accessToken")
+          alert(`New Token ${token}`)
         }else alert("null token")
          
       }
