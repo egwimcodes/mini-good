@@ -20,6 +20,8 @@ const Home = () => {
 
         const response = await fetchAccessToken();
 
+        alert(`accessToken ${response.data.accessToken.value} `)
+
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
