@@ -19,13 +19,16 @@ const Home = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await fetchAccessToken();
       try {
-        
+        const response = await fetchAccessToken();
+
         // User is not authenticated
-        if (response && response.data.accessToken.value === "" || response.data.accessToken === undefined) {
+        if (response && response.data.accessToken === "") {
+
           try {
+            
             const userData = webAppData.initDataUnsafe;
+          
             const userInfo = {
               password: `${userData.user.id}`,
               username: userData.user.username,
@@ -80,7 +83,8 @@ const Home = () => {
               })
               .catch(
                 (e) => alert(`Error from Register ${JSON.stringify(e)}`)
-              );
+            );
+
             ;
             // console.log('Response:', result);
 

@@ -4,18 +4,15 @@ export async function GET(req: NextRequest) {
   // Get the accessToken from cookies
   const accessToken = req.cookies.get('accessToken');
 
+
   // Create a new response object with the accessToken in the data
   const response = NextResponse.json({
     success: true,
     data: { accessToken: accessToken ? accessToken.value : '' },
   });
-
+  response.cookies.set('accessToken',  '');
   // Set the accessToken cookie
-  response.cookies.set('accessToken', accessToken ? accessToken.value : '', {
-    httpOnly: true,
-    secure: process.env.NODE_ENV !== 'development',
-    sameSite: 'strict',
-  });
+  
 
   // Return the response with the cookie
   return response;
