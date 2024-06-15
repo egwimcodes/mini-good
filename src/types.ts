@@ -121,12 +121,3 @@ export type TaskCompletionType = {
   "task_url": "string",
   "avater": "string"
 }
-
-export type TaskCompletionTypeResponse = {
-  id: number;
-  completed_users: any[]; // Adjust type if you know the exact type
-  title: string;
-  reward: number;
-  task_url: string;
-  avatar: string; // Typo corrected from "avater"
-}

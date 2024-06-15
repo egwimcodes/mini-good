@@ -6,7 +6,7 @@ import Image from "next/image";
 
 interface Task {
     id: number;
-    completed_users: any[]; // Adjust type if you know the exact type
+    completed_users: []; // Adjust type if you know the exact type
     title: string;
     reward: number;
     task_url: string;
