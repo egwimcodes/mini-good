@@ -1,7 +1,6 @@
 // import { useUserContext } from "@/hooks/UserContext";
 import { useUserContext } from "@/hooks/UserContext";
 import Image from "next/image"
-import { useContext } from "react";
 import { MdNavigateNext } from "react-icons/md"
 type ProfileProps = {
     setShowProfile: (value: string) => void;
