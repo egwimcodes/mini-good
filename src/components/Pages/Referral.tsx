@@ -56,11 +56,10 @@ export default function Referral() {
                     <div className="my-referals w-[100%] h-[80%] p-5 border-2 border-main rounded-[30px]">
                         <div className="referal-item">
                             <p className="text-light text-xl font-bold">MY REFERALS <span className="text-2xl text-purple-600">{totalReferrals?.total_refers}</span></p>
-                            <div className="referal-head"></div>
                         </div>
-                        {totalReferrals?.referrals ? (
+                        {(totalReferrals?.referrals && totalReferrals?.referrals?.length > 0 )?(
                             <div className="referal-body w-inherit h-[15vh] w-[100%] flex flex-col overflow-y-auto">
-                                {totalReferrals?.referrals?.map((e, i) => (
+                                {totalReferrals.referrals.map((e, i) => (
                                     <p key={i} className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-main">
                                         {JSON.stringify(e)}
                                     </p>
