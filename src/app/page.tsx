@@ -30,7 +30,7 @@ const Home = () => {
         if (data && data.data.accessToken) {
           // User is authenticated
           alert('User is authenticated now');
-          alert(`${data.data.accessToken}`);
+          alert(`${JSON.stringify(data.data.accessToken)}`);
 
         } else {
           // User is not authenticated
