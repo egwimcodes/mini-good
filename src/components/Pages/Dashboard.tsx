@@ -13,11 +13,6 @@ interface ClickEffect {
     y: number;
 }
 
-const user = {
-    username: "anony",
-    profit_per_hour: 1,
-    earn_per_tap: 1
-}
 export default function Dashboard() {
     const user = useUserContext();
     const prevBalance = '0';
