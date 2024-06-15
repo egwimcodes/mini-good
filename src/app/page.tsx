@@ -30,6 +30,7 @@ const Home = () => {
         if (data && data.data.accessToken) {
           // User is authenticated
           alert('User is authenticated now');
+          alert(`${data.data.accessToken}`);
 
         } else {
           // User is not authenticated
@@ -53,7 +54,7 @@ const Home = () => {
                     const accessTokenToStore = JSON.parse(dataToStore).token.access;
 
                     // alert(`Registration Data ${dataToStore} `)
-                     alert(`Registration Data ${accessTokenToStore} `)
+                     alert(`Registration accessToken ${accessTokenToStore} `)
                     alert('User is authenticated after registration');
                   } catch (error) {
                     alert(`Error storing data: ${error}`);
