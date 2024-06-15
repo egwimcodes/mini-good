@@ -20,7 +20,7 @@ const Home = () => {
 
         const response = await fetchAccessToken();
 
-        if (response && response === "") {
+        if (response && response.data.accessToken.value === "") {
           try {
             const userData = webAppData.initDataUnsafe;
             const userInfo = {
@@ -89,9 +89,6 @@ const Home = () => {
 
           // User is authenticated
           alert(`accessToken cookie4 ${response.data.accessToken.value} `)
-          
-          alert(`debug4 ${response}`);
-
           try {
 
 
