@@ -19,6 +19,7 @@ const Home = () => {
 
   useEffect(() => {
     const getData = async () => {
+      try {
         // User is not authenticated
 
         const response = await fetchAccessToken();
@@ -99,7 +100,9 @@ const Home = () => {
             console.error('Error posting data:', e);
           });
         }
-     
+      } catch (error) {
+        alert(`Error fetching login data: ${error}`);
+      }
     }
     getData();
     if (webAppData) {
