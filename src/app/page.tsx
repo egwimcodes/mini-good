@@ -1,7 +1,7 @@
 "use client"
 import HomePage from '@/components/Pages/HomePage';
 import _404 from '@/components/Pages/_404';
-import { Register } from '@/utils/requests';
+import { Register, RetriveMe } from '@/utils/requests';
 import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 import React, { useState, useEffect } from 'react';
 import { fetchAccessToken } from '@/utils/api';
@@ -89,12 +89,11 @@ const Home = () => {
 
           // User is authenticated
           alert(`accessToken cookie4 ${response.data.accessToken.value} `)
-          try {
-
-
-          } catch (error) {
-            alert('Error ');
-          }
+          RetriveMe().then((e) => {
+            alert(`accessToken cookie5 ${JSON.stringify(e)}`)
+          }).catch((e) => {
+            console.error('Error posting data:', e);
+          });
         }
       } catch (error) {
         alert(`Error fetching login data: ${error}`);
