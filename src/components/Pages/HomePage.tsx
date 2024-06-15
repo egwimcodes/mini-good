@@ -17,7 +17,7 @@ export default function HomePage() {
   // }
   return (
     <>
-      <div className="w-[100%] h-[100vh] bg-orange-500 xxxsm:bg-yellow-500 xxsm:bg-red-500 xsm:bg-black sm:bg-green-500 flex flex-col items-center relative ">
+      <div className="w-[100%] h-[100vh] bg-black s flex flex-col items-center relative ">
         <div className="body-content h-[85%] w-[95vw] mx-auto ">
           {currentPage === 'referral' ? <Referral /> : null}
           {currentPage === 'home' ? <Dashboard /> : null}
