@@ -17,6 +17,7 @@ export async function MakeRequest(
 
         let token: string | null = null;
         if (!removeAuth) {
+            
             const tokenData = localStorage.getItem("authToken");
             token = tokenData !== null ? tokenData : null;
         }

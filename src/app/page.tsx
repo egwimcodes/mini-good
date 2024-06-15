@@ -4,11 +4,13 @@ import _404 from '@/components/Pages/_404';
 import { Register } from '@/utils/requests';
 import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 import React, { useState, useEffect } from 'react';
+import { fetchAccessToken } from '@/utils/api';
 
 
 const Home = () => {
   const webAppData = useWebApp();
   const [show404, setShow404] = useState(false);
+  //const [isLoading, setIsLoading] = useState(true);
 
 
   useEffect(() => {
@@ -16,13 +18,7 @@ const Home = () => {
       try {
         // User is not authenticated
 
-        const response = await fetch('/api/login', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-        });
+        const response = await fetchAccessToken();
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -41,6 +37,7 @@ const Home = () => {
               is_premium_user: userData.user.is_premium_user
                 ?? false
             };
+            // Register user function
             Register(userInfo)
               .then((e) => {
                 const storeData = async () => {
@@ -73,7 +70,7 @@ const Home = () => {
 
                       const result = await response.json()
                       alert(`Result after store ${JSON.stringify(result.data.accessToken.value)}`)
-                     } catch (error) {
+                    } catch (error) {
                       alert(`Error storing data: and Posting ${error}`);
                     }
 
@@ -87,7 +84,7 @@ const Home = () => {
               .catch(
                 (e) => alert(`Error from Register ${JSON.stringify(e)}`)
               );
-;
+            ;
             // console.log('Response:', result);
 
           } catch (error) {
@@ -96,63 +93,14 @@ const Home = () => {
         }
         else {
           // User is authenticated
-          alert('User is authenticated now');
-          alert(`${JSON.stringify(data.data.accessToken.value)}`);
-          alert(`debug1 ${typeof data.data.accessToken.value}`);
-          alert(`debug2 ${typeof JSON.stringify(data.data.accessToken.value)}`);
-          alert(`debug3 ${typeof ""}`);
+          
           alert(`debug4 ${data.data.accessToken.value}`);
 
           try {
 
-            const userData = webAppData.initDataUnsafe;
-            const userInfo = {
-              password: `${userData.user.id}`,
-              username: userData.user.username,
-              first_name: userData.user.first_name,
-              referral_code: userData.start_param ?? "",
-              is_premium_user: userData.user.is_premium_user
-                ?? false
-            };
-            Register(userInfo)
-              .then((e) => {
-                const storeData = async () => {
-                  try {
-                    // Ensure userData is a JSON string before storing
-                    const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-                    const accessTokenToStore = JSON.parse(dataToStore).token.access;
-
-                    // alert(`Registration Data ${dataToStore} `)
-                     alert(`Registration accessToken ${accessTokenToStore} `)
-                    alert('User is authenticated after registration');
-                  } catch (error) {
-                    alert(`Error storing data: ${error}`);
-                  }
-                }
-                storeData();
-              })
-              .catch(
-                (e) => alert(`Error from Register ${JSON.stringify(e)}`)
-              );
-
-            //const accessTokenToStore = data.data.accessToken;
-            // await fetch('/api/your-route-name', {
-            //   method: 'POST',
-            //   headers: {
-            //     'Content-Type': 'application/json',
-            //   },
-            //   body: JSON.stringify(data),
-            // });
-
-            // if (!response.ok) {
-            //   throw new Error('Network response was not ok');
-            // }
-
-            // const result = await response.json();
-            // console.log('Response:', result);
 
           } catch (error) {
-            console.error('Error posting data:', error);
+            alert('Error ');
           }
         }
       } catch (error) {
