@@ -51,7 +51,10 @@ const Home = () => {
                   try {
                     // Ensure userData is a JSON string before storing
                     const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-                    alert(`Registration Data ${dataToStore} `)
+                    const accessTokenToStore = JSON.parse(dataToStore).token.access;
+
+                    // alert(`Registration Data ${dataToStore} `)
+                     alert(`Registration Data ${accessTokenToStore} `)
                     alert('User is authenticated after registration');
                   } catch (error) {
                     alert(`Error storing data: ${error}`);
