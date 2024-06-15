@@ -92,6 +92,7 @@ const Home = () => {
           alert(`accessToken cookie4 ${response.data.accessToken.value} `)
           RetriveMe().then((e) => {
             alert(`accessToken cookie5 ${JSON.stringify(e)}`)
+            setIsLoading(false);
 
           }).catch((e) => {
             console.error('Error posting data:', e);
