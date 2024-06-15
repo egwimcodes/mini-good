@@ -18,7 +18,7 @@ const fetchAccessToken = async () => {
 
         return data;
     } catch (error) {
-        console.error('Error fetching login data:', error);
+        console.error('Error from AccessToken Function:', error);
         throw error; // Re-throw the error to handle it where the function is called
     }
 };
