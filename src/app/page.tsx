@@ -66,8 +66,8 @@ const Home = () => {
                         ),
                       });
 
-                      if (!response.ok) {
-                        alert('Network response was not ok');
+                      if (!res.ok) {
+                        alert('Network response was not ok....');
                         throw new Error('Network response was not ok');
                       }
 
