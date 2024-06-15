@@ -71,8 +71,6 @@ const Home = () => {
                         throw new Error('Network response was not ok');
                       }
 
-                      const result = await res.json()
-                      alert(`Result after store ${JSON.stringify(result.data.accessToken.value)}`)
                     } catch (error) {
                       alert(`Error storing data: and Posting ${error}`);
                     }
