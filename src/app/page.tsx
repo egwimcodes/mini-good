@@ -30,7 +30,9 @@ export default function Home() {
         console.log('user', userInfo)
         const cookies = new Cookies();
         const token = cookies.get('accessToken');
-        alert(token)
+        if (token !== null) {
+          alert(token)
+        }else alert("null token")
          
       }
     }
