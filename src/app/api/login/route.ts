@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
 
   // Set the cookie using NextResponse
 
-    response.cookies.set('accessToken', 'test', {
+    response.cookies.set('accessToken', '', {
     httpOnly: true,
     secure: process.env.NODE_ENV !== 'development',
     sameSite: 'strict',
