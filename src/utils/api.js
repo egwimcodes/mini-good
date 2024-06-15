@@ -8,10 +8,13 @@ const fetchAccessToken = async () => {
             credentials: 'include', // Include credentials (cookies) in the request
         });
 
+        alert("before check ")
+
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-
+        alert("before check ")
+        
         const data = await response.json();
         return data;
     } catch (error) {
