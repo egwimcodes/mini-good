@@ -12,7 +12,7 @@ export default function Task() {
     useEffect(()=> {
         try {
             RetriveTasks().then((e) =>
-                alert(JSON.stringify(e))
+                alert(JSON.stringify(e, null, 2))
             )
         } catch {
          alert('error while fetching tasks')
