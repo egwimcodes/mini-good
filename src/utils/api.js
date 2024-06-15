@@ -8,18 +8,14 @@ const fetchAccessToken = async () => {
             credentials: 'include', // Include credentials (cookies) in the request
         });
 
-        alert("before check ")
-        alert(` Before Json response ${response}`)
-        alert(`Json response ${response.json()}`)
-
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
 
         const data = await response.json();
-        alert(`Json response ${data}`)
-        alert("response check ")
-
         return data;
     } catch (error) {
-        console.error('Error from AccessToken Function:', error);
+        console.error('Error fetching login data:', error);
         throw error; // Re-throw the error to handle it where the function is called
     }
 };

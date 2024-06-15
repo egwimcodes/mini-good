@@ -51,7 +51,7 @@ const Home = () => {
 
                     // Store access token
                     try {
-                      await fetch('/api/login', {
+                      const res = await fetch('/api/login', {
                         method: 'POST',
                         headers: {
                           'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ const Home = () => {
                         throw new Error('Network response was not ok');
                       }
 
-                      const result = await response.json()
+                      const result = await res.json()
                       alert(`Result after store ${JSON.stringify(result.data.accessToken.value)}`)
                     } catch (error) {
                       alert(`Error storing data: and Posting ${error}`);
