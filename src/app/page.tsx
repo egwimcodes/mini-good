@@ -31,6 +31,10 @@ const Home = () => {
           // User is authenticated
           alert('User is authenticated now');
           alert(`${JSON.stringify(data.data.accessToken.value)}`);
+          alert(`debug1 ${typeof data.data.accessToken.value}`);
+          alert(`debug2 ${typeof JSON.stringify(data.data.accessToken.value)}`);
+          alert(`debug3 ${typeof ""}`);
+          
 
         }
         else {
