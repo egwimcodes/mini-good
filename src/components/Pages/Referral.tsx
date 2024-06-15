@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
+import { RetriveReferrals } from '@/utils/requests'
 
 
 export default function Referral() {
+    useEffect(() => {
+        async function fetchData() {
+            RetriveReferrals().then(
+                (e)=> alert(`Fetched Referrals ${JSON.stringify(e)}`)
+            )
+        }
+        fetchData()
+    })
   return (
       <>
           <div className="conatiner h-[100%] w-[100%] flex flex-col items-center justify-evenly text-xl text-bold text-light " >

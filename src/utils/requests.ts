@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-catch */
 import { MakeRequest } from "./axiosCall";
 import { AuthRoutes } from "./authEndpoints";
-import { Auth } from "@/types";
+import { Auth, TaskCompletionType } from "@/types";
 
 interface RequestConfig {
     path: string;
@@ -56,11 +56,63 @@ async function RetriveMe() {
 }
 
 
+async function RetriveReferrals() {
+    try {
+    const requestMe= {
+        path: AuthRoutes.REFERRALS,
+        method: 'GET',
+        contentType: 'application/json', // You can omit this if using the default
+        removeAuth: false // Assuming you need authentication
+    };
+
+        const response = await MakeRequest(requestMe);
+        return response;
+    } catch (error) {
+        alert(`{'Error fetching referrals data:', ${error}}`);
+        throw error;
+    }
+}
 
 
+async function RetriveTasks() {
+    try {
+    const requestMe= {
+        path: AuthRoutes.TASKS,
+        method: 'GET',
+        contentType: 'application/json', // You can omit this if using the default
+        removeAuth: false // Assuming you need authentication
+    };
+
+        const response = await MakeRequest(requestMe);
+        return response;
+    } catch (error) {
+        alert(`{'Error fetching referrals data:', ${error}}`);
+        throw error;
+    }
+}
 
 
-
+async function TaskCompletion({ title, reward, task_url, avater }: TaskCompletionType) {
+    try {
+    const requestMe= {
+        path: AuthRoutes.TASKS,
+        method: 'POST',
+        contentType: 'application/json', // You can omit this if using the default
+        removeAuth: false, // Assuming you need authentication
+        data: {
+            title, 
+            reward, 
+            task_url, 
+            avater
+    },
+    };
+        const response = await MakeRequest(requestMe);
+        return response;
+    } catch (error) {
+        alert(`{'Error fetching referrals data:', ${error}}`);
+        throw error;
+    }
+}
 
 
 
@@ -73,5 +125,8 @@ async function RetriveMe() {
 
 export {
     Register,
-    RetriveMe
+    RetriveMe,
+    RetriveReferrals,
+    RetriveTasks,
+    TaskCompletion
 }

@@ -114,7 +114,10 @@ export interface UserData {
   token: TokenAuth;
 }
 
-export interface Login{
-  username: string;
-  password: string
+
+export type TaskCompletionType = {
+  "title": "string",
+  "reward": number,
+  "task_url": "string",
+  "avater": "string"
 }

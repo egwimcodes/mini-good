@@ -2,9 +2,23 @@
 import Image from "next/image";
 import { MdNavigateNext } from "react-icons/md";
 import PopUpComfirmationTask from "@/components/PopUpComfirmation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { RetriveTasks } from "@/utils/requests";
+//import { TaskCompletionType } from "@/types";
 export default function Task() {
     const [isClaiming, setIsClaiming] = useState(false);
+    // const [retriverTasks, setRetrivedTask] = useState<TaskCompletionType>()
+
+    useEffect(()=> {
+        try {
+            RetriveTasks().then((e) =>
+                alert(JSON.stringify(e))
+            )
+        } catch {
+         alert('error while fetching tasks')
+        }
+        }
+    )
     return (
         <>
             <div className="task-container w-[100%] h-[100%] overflow-y-scroll scroll-smooth bg-transparent mt-4">
