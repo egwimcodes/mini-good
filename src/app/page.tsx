@@ -23,6 +23,7 @@ const Home = () => {
         const data = await response.json();
         alert(`accessToken cookie2 ${response.data.accessToken.value} `)
         alert(`accessToken cookie3 ${response.data.accessToken.value} `)
+        alert(`accessToken cookie4 ${data.data.accessToken.value} `)
 
         if (data && data.data.accessToken.value === "") {
           try {
