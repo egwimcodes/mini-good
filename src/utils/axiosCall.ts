@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-catch */
 import Axios from "axios";
 import { ApiRequestConfig } from "@/types";
+import { fetchAccessToken } from "./api";
 
 const SERVER_HOST =  "https://clownfish-app-lqqur.ondigitalocean.app";
 const SERVER_VERSION = "v1";
@@ -17,8 +18,9 @@ export async function MakeRequest(
 
         let token: string | null = null;
         if (!removeAuth) {
-            
-            const tokenData = localStorage.getItem("authToken");
+          
+            const accessToken = await fetchAccessToken();
+            const tokenData = accessToken.data.accessToken.value;
             token = tokenData !== null ? tokenData : null;
         }
 
