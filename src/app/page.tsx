@@ -29,7 +29,8 @@ const Home = () => {
         const data = await response.json();
         if (data && data.data.accessToken) {
           // User is authenticated
-          alert('User is authenticated');
+          alert('User is authenticated now');
+          return;
 
         } else {
           // User is not authenticated
