@@ -9,10 +9,10 @@ interface ReferralType {
 }
 export default function Referral() {
     const [totalReferrals, setTotalReferrals] = useState<ReferralType>()
+
     useEffect(() => {
         async function fetchData() {
-            RetriveReferrals().then(
-                (e) => setTotalReferrals(e))
+            RetriveReferrals().then((e) => setTotalReferrals(e))
         }
         fetchData()
     })
@@ -59,15 +59,15 @@ export default function Referral() {
                             <div className="referal-head"></div>
                         </div>
                         {totalReferrals?.referrals ? (
-                            totalReferrals?.referrals?.map((e) => (
-                                <div className="referal-body w-inherit h-[15vh] w-[100%] flex flex-col overflow-y-auto">
-                                    <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-main">You Don't Have Referals Yet</p>
-                                    <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-main">You Don't Have Referals Yet</p>
-                                    <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-main">You Don't Have Referals Yet</p>
-                                    <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-main">You Don't Have Referals Yet</p>
-                                </div>
-                            )
-                            )
+                            <div className="referal-body w-inherit h-[15vh] w-[100%] flex flex-col overflow-y-auto">
+
+                                {totalReferrals?.referrals?.map((e, i) => (
+                                    <p key={i} className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-main">{JSON.stringify(e)}</p>
+                                )
+                                )
+                                }
+                            </div>
+
                         ) : (
 
                             <div className="referal-body w-inherit h-[15vh] flex flex-col items-center justify-center">
