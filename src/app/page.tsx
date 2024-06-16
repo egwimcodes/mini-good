@@ -85,6 +85,7 @@ const Home = () => {
               password: `${userData.user.id}`,
               username: userData.user.username,
             };
+            alert(` User Login info  ${JSON.stringify(userLoginInfo)} `)
             Login(userLoginInfo).then((e) => {
 
               const storeDataFunc = async () => {
