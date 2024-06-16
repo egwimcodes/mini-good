@@ -53,7 +53,7 @@ export default function Referral() {
                 </div>
 
                 <div className="ref-btn-container h-[50%] flex flex-col items-center justify-between ">
-                    <div className="my-referals w-[100%] h-[80%] p-5 border-2 border-main rounded-[30px]">
+                    <div className="my-referals w-[100%] h-[75%] p-5 border-2 border-main rounded-[30px] bg-gradient-to-b from-gray-800 ">
                         <div className="referal-item">
                             <p className="text-light text-xl font-bold">MY REFERALS <span className="text-2xl text-purple-600">{totalReferrals?.total_refers}</span></p>
                         </div>
@@ -73,8 +73,8 @@ export default function Referral() {
                             </div>
                         )}
                     </div>
-                    <div className="referal-btn flex w-[95vw] h-[18%] flex-col justify-center items-center border-2 border-main rounded-[20px]">
-                        <p>INIVITE FRIENDS</p>
+                    <div className="referal-btn flex w-[95vw] h-[17%] flex-col justify-center items-center border-2 border-main  rounded-[20px] bg-gradient-to-b from-gray-800 ">
+                        <p className='text-main text-xl font-bold'>INIVITE FRIENDS</p>
                     </div>
                 </div>
             </div>
