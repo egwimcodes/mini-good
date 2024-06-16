@@ -21,8 +21,9 @@ const Home = () => {
     const getData = async () => {
       const userData = webAppData.initDataUnsafe;
       
+      const response = await fetchAccessToken();
+      alert(`Response ${JSON.stringify(response.data.accessToken.value)}`)
       try {
-        const response = await fetchAccessToken();
         //User is not authenticated
         if (response && response.data.accessToken.value=== "") {
 
