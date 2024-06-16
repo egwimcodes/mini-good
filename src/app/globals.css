@@ -50,25 +50,25 @@ body {
 }
 
 
-
-.gradient-border {
+.cyan-gradient {
   position: relative;
   background: linear-gradient(
     to right,
-    #d97706,
-    #c2410c,
-    #facc15
-  ); /* amber-500, orange-600, yellow-500 */
+    #0ECE8E,
+    #00BFFF,
+    #0ECE8E,
+    #0080FF,
+    #0ECE8E
+  );
 }
 
-.gradient-border::before {
+.cyan-gradient::before {
   content: "";
   position: absolute;
   bottom: 0;
-  background: #000000;
+  background: #ffffff; /* Keep this as hex color for white */
   margin: 0 auto;
   border-radius: inherit;
-  /* Inherit border radius */
 }
 
 .b_nav-item {

@@ -10,7 +10,7 @@ export default function BottomNavigation(props: BottomNavigationProps) {
     const [active, setActive] = useState('home')
 
   return (
-        <div className='b_nav z-10 absolute w-[100%] h-[100%] bottom-0 flex-row flex-evenly'>
+      <div className='b_nav z-10 w-[100%] h-[100%] bottom-0 flex-row flex-evenly'>
           <div className={`b_nav-item  w-[15vw] h-[7vh] flex-col flex-center ${active === 'task' ? 'active  text-dark' : ''}`}  onClick={() => (setActive('task'), props.currentPage('task'))}>
               <Image className='xxsm:w-[30%] xsm:w-[40%] sm:w-[35%]' src="/data-mining.png" alt="" width={25} height={20} />
               <h4 className='text-light text-xs font-semibold'>Task</h4>
