@@ -21,11 +21,9 @@ const Home = () => {
 
       try {
         const response = await fetchAccessToken();
-        alert(`Response ${JSON.stringify(response.data.accessToken.value)}`);
         // try {
         //   //User is not authenticated
         if (response.data.accessToken.value === "") {
-          alert("Stage 1");
 
           try {
             const userInfo = {
@@ -35,27 +33,17 @@ const Home = () => {
               referral_code: userData.start_param ?? "",
               is_premium_user: userData.user.is_premium_user ?? false,
             };
-            alert("Stage 2");
             // Register user function
             Register(userInfo)
               .then((e) => {
-                alert("Stage 3");
                 const storeData = async () => {
-                  alert("Stage 4");
                   try {
-                    alert("Stage 5");
                     // Ensure userData is a JSON string before storing
                     const dataToStore =
                       typeof e === "string" ? e : JSON.stringify(e);
                     const accessTokenToStore =
                       JSON.parse(dataToStore).token.access;
-                    alert(`Registration Token${accessTokenToStore} `);
-                    alert(`Registration data ${dataToStore} `);
-
-                    // alert(`Registration Data ${dataToStore} `)
-                    // alert(`Registration accessToken ${accessTokenToStore} `)
-                    // alert('User is authenticated after registration');
-
+                    
                     //setToken Function
                     //
                     await setAccessToken(accessTokenToStore);
@@ -68,11 +56,6 @@ const Home = () => {
                         console.error("Error when retriving me:", e);
                       });
                     const rsa = await fetchAccessToken();
-                    alert(
-                      `Registration Token Registered SuccessFull${JSON.stringify(
-                        rsa.data.accessToken.value
-                      )} Compared ${accessTokenToStore} `
-                    );
                   } catch (error) {
                     alert(`Error storing data on register: ${error}`);
                   }
@@ -92,14 +75,6 @@ const Home = () => {
               username: userData.user.username,
               password: `${userData.user.id}`,
             };
-            alert(`response from User Login info1`);
-            const rep = await fetchAccessToken();
-            alert(
-              `response from User Login info  ${JSON.stringify(
-                rep.data.accessToken.value
-              )}`
-            );
-
             try {
               Login(userLoginInfo)
                 .then((e) => {
@@ -129,16 +104,13 @@ const Home = () => {
                               alert(`Registration Token${accessTokenToStore} `);
                               alert(`Registration data ${dataToStore} `);
 
-                              // alert(`Registration Data ${dataToStore} `)
-                              // alert(`Registration accessToken ${accessTokenToStore} `)
-                              // alert('User is authenticated after registration');
-
                               //setToken Function
                               //
                               await setAccessToken(accessTokenToStore);
                               RetriveMe()
                                 .then((e) => {
                                   setUser(e);
+                                  alert(JSON.stringify(user));
                                   setIsLoading(false);
                                 })
                                 .catch((e) => {
