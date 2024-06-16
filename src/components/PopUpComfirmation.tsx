@@ -1,45 +1,49 @@
 import { IoCloseSharp } from "react-icons/io5";
 import Image from "next/image";
+import { MdNavigateNext } from "react-icons/md";
 interface PopUpComfirmationProps {
     isopen: boolean;
     isClose: () => void;
     title?: string;
     content?: string;
+    avatar?: string;
+    reward?: number;
 
 }
 
-export default function PopUpComfirmationTask({ isopen, isClose}: PopUpComfirmationProps) {
+export default function PopUpComfirmationTask({ isopen, isClose, title, content, avatar, reward }: PopUpComfirmationProps) {
     return (
         <>{
             isopen && (
 
-                <div className="absolute top-0 h-screen w-screen bg-black bg-opacity-50 flex flex-col items-center justify-center">
-                    <div className="claim-content h-[50vh] w-[90vw] bg-slate-800 rounded flex flex-col items-center justify-evenly p-3">
-                        <div className="claim-content-header w-full flex flex-row items-center justify-between" >
-                            <h1 className="text-light text-3xl font-semibold">Join our Twitter</h1>
-                            <IoCloseSharp className="text-light text-3xl" onClick={() => { isClose() }} />
-                        </div>  
-
-                        <div className="claim-guild">
-                            <h4 className="text-light font-semibold">What To Be Done ?</h4>
-                            <p className="text-gray text-sm">Subscribe to the GoodCoin on Twitter for the latest insight and get EXTRA coin.</p>
-                            <p className="text-gray text-sm">Participate in various community activities, learn more about GoodCoin and reive fresh new about GoodCoin.</p>
-                            
+                <div className="absolute top-0 left-0 h-screen w-screen bg-black bg-opacity-50 flex items-center justify-center">
+                    <div className="claim-content h-[60vh] w-[80%] bg-black border-2 border-main rounded-[10px] flex flex-col items-center justify-evenly p-3 relative">
+                        <div className="claim-content-header w-full flex flex-row items-center justify-between">
+                            <h1 className="text-light xxxsm:text-xxs xxsm:text-1xl xsm:text-0.5rem sm:text-1rem font-semibold">{title}</h1>
+                            <IoCloseSharp className="text-main text-3xl" onClick={() => { isClose() }} />
                         </div>
 
-                        <div className="claim-gift w-[85vw] h-[10vh] bg-slate-800 flex flex-row items-center justify-start px-2 xsm:mb-2">
-                            <Image className="shine-coin w-10" src="/good-coin.png" alt="" />
+                        <div className="claim-guild text-center">
+                            <h4 className="text-main xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs font-semibold">What To Be Done ?</h4>
+                            <p className="text-gray xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-slate-100">Subscribe to the GoodCoin on Twitter for the latest insight and get EXTRA coin.{content}</p>
+                        </div>
+
+                        <div className="claim-gift w-[100%] h-[20%] bg-emerald-700 flex items-center justify-start px-2 xsm:mb-2 rounded-[10px]">
+                            <Image className="shine-coin w-10" width={50} height={50} src={avatar ? avatar : "/good-coin.png"} alt="" />
                             <div className="amount-to-claim ml-2">
-                                <h3 className="text-light ">40,000</h3>
-                                <p className=" font-semibold text-yellow-500">GoodCoin</p>
+                                <h3 className="text-light">+{reward}</h3>
+                                <p className="font-semibold text-orange-400">GoodCoin</p>
                             </div>
-
                         </div>
-                        <div className="claim-gift-btn w-[85vw] h-[8vh] bg-orange flex flex-row items-center justify-center" >
+
+                        <div className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly">
+                            <div></div>
                             <h4 className="text-light font-semibold">Start</h4>
+                            <MdNavigateNext className="text-2xl text-light font-bold" />
                         </div>
                     </div>
                 </div>
+
             )}
         </>
     )
