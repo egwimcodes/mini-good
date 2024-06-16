@@ -1,10 +1,10 @@
 "use client"
 import HomePage from '@/components/Pages/HomePage';
 import _404 from '@/components/Pages/_404';
-import { Register, RetriveMe } from '@/utils/requests';
+import { Login, Register, RetriveMe } from '@/utils/requests';
 import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 import React, { useState, useEffect } from 'react';
-import { fetchAccessToken } from '@/utils/api';
+import { fetchAccessToken, setAccessToken } from '@/utils/api';
 import LoadingPage from '@/components/Pages/LoadingPage';
 import { UserContext } from '@/hooks/UserContext';
 import { UserData } from '@/types';
@@ -21,6 +21,7 @@ const Home = () => {
     const getData = async () => {
       
       try {
+        const userData = webAppData.initDataUnsafe;
         const response = await fetchAccessToken();
        
 
@@ -29,7 +30,7 @@ const Home = () => {
 
           try {
             
-            const userData = webAppData.initDataUnsafe;
+           
           
             const userInfo = {
               password: `${userData.user.id}`,
@@ -53,29 +54,15 @@ const Home = () => {
                     // alert(`Registration accessToken ${accessTokenToStore} `)
                     // alert('User is authenticated after registration');
 
-
-                    // Store access token
-                    try {
-                      const res = await fetch('/api/login', {
-                        method: 'POST',
-                        headers: {
-                          'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(
-                          { token: accessTokenToStore }
-                        ),
-                      });
-
-                      if (!res.ok) {
-                        alert('Network response was not ok....');
-                        throw new Error('Network response was not ok');
-                      }
-
-                    } catch (error) {
-                      alert(`Error storing data: and Posting ${error}`);
-                    }
-
-
+                    //setToken Function
+                    // 
+                    await setAccessToken(accessTokenToStore);
+                    RetriveMe().then((e) => {
+                      setUser(e);
+                      setIsLoading(false);
+                    }).catch((e) => {
+                      console.error('Error when retriving me:', e);
+                    });
                   } catch (error) {
                     alert(`Error storing data: ${error}`);
                   }
@@ -86,7 +73,6 @@ const Home = () => {
                 (e) => alert(`Error from Register ${JSON.stringify(e)}`)
             );
 
-            ;
             // console.log('Response:', result);
 
           } catch (error) {
@@ -94,15 +80,34 @@ const Home = () => {
           }
         }
         else {
+          const  storeToken = async () => {
+            const userLoginInfo = {
+              password: `${userData.user.id}`,
+              username: userData.user.username,
+            };
+            Login(userLoginInfo).then((e) => {
 
-          // User is authenticated
-          //alert(`accessToken cookie4 ${response.data.accessToken.value} `)
-          RetriveMe().then((e) => {
-            setUser(e);
-            setIsLoading(false);
-          }).catch((e) => {
-            console.error('Error posting data:', e);
-          });
+              const storeDataFunc = async () => {
+                await setAccessToken(e.token.access);
+                setIsLoading(false);
+              }
+              storeDataFunc();
+
+              // RetriveMe().then((e) => {
+              //   setUser(e);
+              //   setIsLoading(false);
+              // }).catch((e) => {
+              //   console.error('Error when retriving me:', e);
+              // });
+            }).catch((e) => {
+              alert(`Error from Login call ${JSON.stringify(e)}`)
+            })
+            // User is authenticated
+            //alert(`accessToken cookie4 ${response.data.accessToken.value} `)
+          }
+
+          storeToken();
+          
         }
       } catch (error) {
         alert(`Error fetching login data in App: ${error}`);

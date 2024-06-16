@@ -40,7 +40,7 @@ export type ApiRequestConfig = {
 export type Auth = {
   password: string;
   username: string;
-  first_name: string;
+  first_name?: string;
   is_premium_user?: boolean;
   referral_code?: string;
 }
@@ -114,7 +114,10 @@ export interface UserData {
   token: TokenAuth;
 }
 
-
+export interface AuthLogin {
+  username: string;
+  password: string;
+}
 export type TaskCompletionType = {
   title: string,
   reward: number,

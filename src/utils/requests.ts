@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-catch */
 import { MakeRequest } from "./axiosCall";
 import { AuthRoutes } from "./authEndpoints";
-import { Auth, TaskCompletionType } from "@/types";
+import { Auth, AuthLogin, TaskCompletionType } from "@/types";
 
 interface RequestConfig {
     path: string;
@@ -36,6 +36,25 @@ async function Register({ password, username, first_name, is_premium_user, refer
     }
 }
 
+async function Login({ username, password }: AuthLogin) {
+    try {
+        const requestConfig: RequestConfig = {
+            path: AuthRoutes.LOGIN,
+            method: "POST",
+            contentType: "application/json",
+            removeAuth: true,
+            data: {
+                password,
+                username,
+            },
+        };
+        const response = await MakeRequest(requestConfig);
+        return response;
+    } catch (error) {
+        alert("Error during Login: " + error); // Using alert to show error message
+        throw error; // Optional: Re-throw the error to be handled by the caller
+    }
+}
 // Daily Streak
 
 async function RetriveMe() {
@@ -141,6 +160,7 @@ async function RetriveWallet() {
 
 export {
     Register,
+    Login,
     RetriveMe,
     RetriveReferrals,
     RetriveTasks,

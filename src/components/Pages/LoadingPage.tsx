@@ -7,6 +7,7 @@ export default function LoadingPage() {
   const [text] = useTypewriter({
     words: ['Loading...', 'Good Coin',],
     loop: 1,
+    
   })
 
   return (

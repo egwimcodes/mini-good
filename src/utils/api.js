@@ -20,4 +20,30 @@ const fetchAccessToken = async () => {
     }
 };
 
-export { fetchAccessToken };
+
+const setAccessToken = async (accessTokenToStore) => {
+    // Store access token
+    try {
+        const res = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(
+                { token: accessTokenToStore }
+            ),
+        });
+
+        if (!res.ok) {
+            alert('Network response was not ok....');
+            throw new Error('Network response was not ok');
+        }
+
+    } catch (error) {
+        alert(`Error storing data: and Posting ${error}`);
+    }
+ }
+
+
+
+export { fetchAccessToken, setAccessToken };
