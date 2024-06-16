@@ -19,19 +19,15 @@ const Home = () => {
 
   useEffect(() => {
     const getData = async () => {
+      const userData = webAppData.initDataUnsafe;
       
       try {
-        const userData = webAppData.initDataUnsafe;
         const response = await fetchAccessToken();
-       
-
         //User is not authenticated
         if (response && response.data.accessToken.value=== "") {
 
           try {
-            
-           
-          
+
             const userInfo = {
               password: `${userData.user.id}`,
               username: userData.user.username,
@@ -64,7 +60,7 @@ const Home = () => {
                       console.error('Error when retriving me:', e);
                     });
                   } catch (error) {
-                    alert(`Error storing data: ${error}`);
+                    alert(`Error storing data on register: ${error}`);
                   }
                 }
                 storeData();
@@ -80,26 +76,27 @@ const Home = () => {
           }
         }
         else {
+
+          // Always Login User
           const  storeToken = async () => {
             const userLoginInfo = {
-              password: `${userData.user.id}`,
               username: userData.user.username,
+              password: `${userData.user.id}`,
             };
-            alert(` User Login info  ${JSON.stringify(userLoginInfo)} `)
             Login(userLoginInfo).then((e) => {
+              alert(`response from User Login info  ${JSON.stringify(e)}`)
 
               const storeDataFunc = async () => {
                 await setAccessToken(e.token.access);
+                RetriveMe().then((e) => {
+                  setUser(e);
+                  setIsLoading(false);
+                }).catch((e) => {
+                  console.error('Error when retriving me:', e);
+                });
                 setIsLoading(false);
               }
               storeDataFunc();
-
-              // RetriveMe().then((e) => {
-              //   setUser(e);
-              //   setIsLoading(false);
-              // }).catch((e) => {
-              //   console.error('Error when retriving me:', e);
-              // });
             }).catch((e) => {
               alert(`Error from Login call ${JSON.stringify(e)}`)
             })
