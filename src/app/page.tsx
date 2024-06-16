@@ -1,7 +1,7 @@
 "use client"
 import HomePage from '@/components/Pages/HomePage';
 import _404 from '@/components/Pages/_404';
-import { Register, RetriveMe } from '@/utils/requests';
+import { Login, Register, RetriveMe } from '@/utils/requests';
 import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 import React, { useState, useEffect } from 'react';
 import { fetchAccessToken, setAccessToken } from '@/utils/api';
@@ -20,6 +20,14 @@ const Home = () => {
   useEffect(() => {
     const getData = async () => {
       const userData = webAppData.initDataUnsafe;
+      alert(`User Data {
+              password: ${ userData.user.id },
+              username: ${userData.user.username},
+              first_name: ${userData.user.first_name},
+              referral_code: ${userData.start_param} ?? "",
+              is_premium_user: ${userData.user.is_premium_user}
+                ?? false
+            }`)
       
       const response = await fetchAccessToken();
       alert(`Response ${JSON.stringify(response.data.accessToken.value)}`)
@@ -82,40 +90,40 @@ const Home = () => {
         }
         else {
 
-          // // Always Login User
-          // const  storeToken = async () => {
-          //   const userLoginInfo = {
-          //     username: userData.user.username,
-          //     password: `${userData.user.id}`,
-          //   };
-          //   alert(`response from User Login info1`)
-          //   const rep = await fetchAccessToken()
-          //   alert(`response from User Login info  ${JSON.stringify(response.data.accessToken.value)}`)
+          // Always Login User
+          const  storeToken = async () => {
+            const userLoginInfo = {
+              username: userData.user.username,
+              password: `${userData.user.id}`,
+            };
+            alert(`response from User Login info1`)
+            const rep = await fetchAccessToken();
+            alert(`response from User Login info  ${JSON.stringify(rep.data.accessToken.value)}`)
 
 
-          //   Login(userLoginInfo).then((e) => {
-          //     alert(`response from User Login info  ${JSON.stringify(e)}`)
+            Login(userLoginInfo).then((e) => {
+              alert(`response from User Login info  ${JSON.stringify(e)}`)
 
-          //     const storeDataFunc = async () => {
-          //       alert(`Loginn Token${e.token.access} `)
-          //       await setAccessToken(e.token.access);
-          //       RetriveMe().then((e) => {
-          //         setUser(e);
-          //         setIsLoading(false);
-          //       }).catch((e) => {
-          //         console.error('Error when retriving me:', e);
-          //       });
-          //       setIsLoading(false);
-          //     }
-          //     storeDataFunc();
-          //   }).catch((e) => {
-          //     alert(`Error from Login call ${JSON.stringify(e)}`)
-          //   })
-          //   // User is authenticated
-          //   //alert(`accessToken cookie4 ${response.data.accessToken.value} `)
-          // }
+              const storeDataFunc = async () => {
+                alert(`Loginn Token${e.token.access} `)
+                await setAccessToken(e.token.access);
+                RetriveMe().then((e) => {
+                  setUser(e);
+                  setIsLoading(false);
+                }).catch((e) => {
+                  console.error('Error when retriving me:', e);
+                });
+                setIsLoading(false);
+              }
+              storeDataFunc();
+            }).catch((e) => {
+              alert(`Error from Login call ${JSON.stringify(e)}`)
+            })
+            // User is authenticated
+            //alert(`accessToken cookie4 ${response.data.accessToken.value} `)
+          }
 
-          // storeToken();
+          storeToken();
           
         }
       } catch (error) {
