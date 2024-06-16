@@ -85,6 +85,10 @@ const Home = () => {
               password: `${userData.user.id}`,
             };
             alert(`response from User Login info1`)
+            const rep = await fetchAccessToken()
+            alert(`response from User Login info  ${JSON.stringify(rep.data.accessToken.value)}`)
+
+
             Login(userLoginInfo).then((e) => {
               alert(`response from User Login info  ${JSON.stringify(e)}`)
 
