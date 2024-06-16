@@ -222,9 +222,10 @@ const Home = () => {
         webAppData?.platform &&
         (webAppData.platform === "android" || webAppData.platform === "ios") &&
         webAppData.initDataUnsafe &&
-        (isLoading && user ? (
+        (isLoading ? (
           <LoadingPage />
-        ) : (
+          ) : (
+              isLoading === false &&
             <UserContext.Provider value={user}>
               <HomePage />
             </UserContext.Provider>
