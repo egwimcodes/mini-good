@@ -76,7 +76,7 @@ export default function Dashboard() {
                                 <p className='text-sm font-base h-[40%] '>Earning Per hour</p>
                                 <div className="balance-coin-amount flex-row flex-between h-[60%] ">
                                     <p className='text-2xl h-[100%] w-[60%] flex-row flex-start'>{user.profit_per_hour}</p>
-                                    <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[20%] h-[80%] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center ">
+                                    <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[80%] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center ">
                                         <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem'>Buy Bot</p>
                                     </div>
                                 </div>
