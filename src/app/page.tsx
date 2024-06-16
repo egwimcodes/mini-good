@@ -150,11 +150,6 @@ const Home = () => {
                       await setAccessToken(e.access);
                       RetriveMe()
                         .then((res) => {
-                          alert(
-                            `response from User Login info  ${JSON.stringify(
-                              res
-                            )}`
-                          );
                           setUser(res);
                           setIsLoading(false);
                         })
