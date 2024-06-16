@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { useTypewriter, Cursor } from 'react-simple-typewriter'
+import { useTypewriter } from 'react-simple-typewriter'
 export default function LoadingPage() {
 
 
