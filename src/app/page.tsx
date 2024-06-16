@@ -225,7 +225,7 @@ const Home = () => {
         (isLoading ? (
           <LoadingPage />
           ) : (
-              isLoading === false &&
+              isLoading === false && user &&
             <UserContext.Provider value={user}>
               <HomePage />
             </UserContext.Provider>
