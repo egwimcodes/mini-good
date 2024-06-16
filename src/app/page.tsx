@@ -105,8 +105,8 @@ const Home = () => {
               const storeDataFunc = async () => {
                 alert(`Loginn Token${e.access} `)
                 await setAccessToken(e.access);
-                RetriveMe().then((e) => {
-                  setUser(e);
+                RetriveMe().then((res) => {
+                  setUser(res);
                   setIsLoading(false);
                 }).catch((e) => {
                   console.error('Error when retriving me:', e);
