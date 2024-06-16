@@ -61,7 +61,7 @@ const Home = () => {
                       console.error('Error when retriving me:', e);
                     });
                     const rsa = await fetchAccessToken();
-                    alert(`Registration Token Registered SuccessFull${JSON.stringify(rsa.data.accessToken.value)} `)
+                    alert(`Registration Token Registered SuccessFull${JSON.stringify(rsa.data.accessToken.value)} Compared ${accessTokenToStore} `)
                     
                   } catch (error) {
                     alert(`Error storing data on register: ${error}`);
