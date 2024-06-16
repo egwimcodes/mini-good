@@ -34,7 +34,8 @@ const Home = () => {
       alert(`Response ${JSON.stringify(response.data.accessToken.value)}`)
       // try {
       //   //User is not authenticated
-        if (response && response.data.accessToken.value=== "") {
+      if (response && response.data.accessToken.value === "") {
+          alert("Stage 1");
 
           try {
 
@@ -46,12 +47,15 @@ const Home = () => {
               is_premium_user: userData.user.is_premium_user
                 ?? false
             };
-
+            alert("Stage 2");
             // Register user function
             Register(userInfo)
               .then((e) => {
+                alert("Stage 3");
                 const storeData = async () => {
+                  alert("Stage 4");
                   try {
+                    alert("Stage 5");
                     // Ensure userData is a JSON string before storing
                     const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
                     const accessTokenToStore = JSON.parse(dataToStore).token.access;
