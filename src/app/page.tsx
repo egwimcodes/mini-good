@@ -84,22 +84,22 @@ const Home = () => {
                         referral_code: userData.start_param ?? "",
                         is_premium_user: userData.user.is_premium_user ?? false,
                       };
-                      alert("Stage 2");
+                     // alert("Stage 2");
                       // Register user function
                       Register(userInfo)
                         .then((e) => {
-                          alert("Stage 3");
+                         //alert("Stage 3");
                           const storeData = async () => {
-                            alert("Stage 4");
+                          //  alert("Stage 4");
                             try {
-                              alert("Stage 5");
+                              //alert("Stage 5");
                               // Ensure userData is a JSON string before storing
                               const dataToStore =
                                 typeof e === "string" ? e : JSON.stringify(e);
                               const accessTokenToStore =
                                 JSON.parse(dataToStore).token.access;
-                              alert(`Registration Token${accessTokenToStore} `);
-                              alert(`Registration data ${dataToStore} `);
+                            //  alert(`Registration Token${accessTokenToStore} `);
+                           //   alert(`Registration data ${dataToStore} `);
 
                               //setToken Function
                               //
@@ -116,12 +116,12 @@ const Home = () => {
                                     e
                                   );
                                 });
-                              const rsa = await fetchAccessToken();
-                              alert(
-                                `Registration Token Registered SuccessFull${JSON.stringify(
-                                  rsa.data.accessToken.value
-                                )} Compared ${accessTokenToStore} `
-                              );
+                            //  const rsa = await fetchAccessToken();
+                              // alert(
+                              //   `Registration Token Registered SuccessFull${JSON.stringify(
+                              //     rsa.data.accessToken.value
+                              //   )} Compared ${accessTokenToStore} `
+                              // );
                             } catch (error) {
                               alert(
                                 `Error storing data on register after login fail: ${error}`
