@@ -45,6 +45,7 @@ const Home = () => {
                     // Ensure userData is a JSON string before storing
                     const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
                     const accessTokenToStore = JSON.parse(dataToStore).token.access;
+                    alert(`Registration Token${accessTokenToStore} `)
 
                     // alert(`Registration Data ${dataToStore} `)
                     // alert(`Registration accessToken ${accessTokenToStore} `)
@@ -83,10 +84,12 @@ const Home = () => {
               username: userData.user.username,
               password: `${userData.user.id}`,
             };
+            alert(`response from User Login info1`)
             Login(userLoginInfo).then((e) => {
               alert(`response from User Login info  ${JSON.stringify(e)}`)
 
               const storeDataFunc = async () => {
+                alert(`Loginn Token${e.token.access} `)
                 await setAccessToken(e.token.access);
                 RetriveMe().then((e) => {
                   setUser(e);
