@@ -104,7 +104,7 @@ const Home = () => {
 
             try {
               Login(userLoginInfo).then((e) => {
-                alert(e)
+                alert(e.name)
 
                 const storeDataFunc = async () => {
                   alert(`Loginn Token${e.access} `)
