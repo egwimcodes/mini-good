@@ -104,7 +104,9 @@ const Home = () => {
 
             try {
               Login(userLoginInfo).then((e) => {
-                alert(e.name === "AxiosError" ? e.message : e.name)
+                if (e.name === "AxiosError") {
+                  alert(`Error from Login call ${JSON.stringify(e)}`)
+                }
 
                 const storeDataFunc = async () => {
                   alert(`Loginn Token${e.access} `)
