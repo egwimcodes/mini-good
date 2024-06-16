@@ -104,7 +104,7 @@ const Home = () => {
 
             try {
               Login(userLoginInfo).then((e) => {
-                alert(`response from User Login info  ${JSON.stringify(e.code)}`)
+                alert(`response from User Login info  ${JSON.stringify(e.code) === "ERR_BAD_REQUEST"}`)
 
                 const storeDataFunc = async () => {
                   alert(`Loginn Token${e.access} `)
