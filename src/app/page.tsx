@@ -9,13 +9,11 @@ import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
 import { UserData } from "@/types";
 
-
 const Home = () => {
   const webAppData = useWebApp();
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData>();
-
 
   useEffect(() => {
     const userData = webAppData.initDataUnsafe;
@@ -25,7 +23,6 @@ const Home = () => {
         // try {
         //   //User is not authenticated
         if (response.data.accessToken.value === "") {
-
           try {
             const userInfo = {
               password: `${userData.user.id}`,
@@ -68,7 +65,6 @@ const Home = () => {
           } catch (error) {
             console.error("Error from Register || login:", error);
           }
-
         } else {
           // Always Login User
           const storeToken = async () => {
@@ -176,12 +172,10 @@ const Home = () => {
       } catch (error) {
         alert(`Error fetching login data in App: ${error}`);
       }
-    }
+    };
     getUserAuth();
-    
-  }, [  user, setUser ]);
+  }, [user, setUser, isLoading, setIsLoading]);
   useEffect(() => {
-
     if (webAppData) {
       if (
         webAppData.platform &&
@@ -230,10 +224,12 @@ const Home = () => {
         webAppData.initDataUnsafe &&
         (isLoading ? (
           <LoadingPage />
-        ) : (user &&
-          <UserContext.Provider value={user}>
-            <HomePage />
-          </UserContext.Provider>
+        ) : (
+          user && (
+            <UserContext.Provider value={user}>
+              <HomePage />
+            </UserContext.Provider>
+          )
         ))
       )}
     </>
