@@ -26,7 +26,10 @@ const Home = () => {
         alert(`Response ${JSON.stringify(response.data.accessToken.value)}`)
         // try {
         //   //User is not authenticated
-        if (response.data.accessToken.value === "") {
+        if (
+          false
+          // response.data.accessToken.value === ""
+        ) {
           alert("Stage 1");
 
           try {
