@@ -103,8 +103,8 @@ const Home = () => {
               alert(`response from User Login info  ${JSON.stringify(e)}`)
 
               const storeDataFunc = async () => {
-                alert(`Loginn Token${e.token.access} `)
-                await setAccessToken(e.token.access);
+                alert(`Loginn Token${e.access} `)
+                await setAccessToken(e.access);
                 RetriveMe().then((e) => {
                   setUser(e);
                   setIsLoading(false);

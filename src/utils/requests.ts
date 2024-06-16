@@ -44,8 +44,8 @@ async function Login({ username, password }: AuthLogin) {
             contentType: "application/json",
             removeAuth: true,
             data: {
-                password,
                 username,
+                password,
             },
         };
         const response = await MakeRequest(requestConfig);
