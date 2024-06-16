@@ -51,8 +51,7 @@ async function Login({ username, password }: AuthLogin) {
         const response = await MakeRequest(requestConfig);
         return response;
     } catch (error) {
-        alert(`${(error ) ? JSON.stringify(error) : "Error during login"}`); // Using alert to show error message
-        throw error; // Optional: Re-throw the error to be handled by the caller
+        return error;
     }
 }
 // Daily Streak

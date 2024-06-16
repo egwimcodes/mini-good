@@ -99,25 +99,29 @@ const Home = () => {
             alert(`response from User Login info  ${JSON.stringify(rep.data.accessToken.value)}`)
 
 
-            Login(userLoginInfo).then((e) => {
-              alert(`response from User Login info  ${JSON.stringify(e)}`)
+            try {
+              Login(userLoginInfo).then((e) => {
+                alert(`response from User Login info  ${JSON.stringify(e)}`)
 
-              const storeDataFunc = async () => {
-                alert(`Loginn Token${e.access} `)
-                await setAccessToken(e.access);
-                RetriveMe().then((res) => {
-                  alert(`response from User Login info  ${JSON.stringify(res)}`)
-                  setUser(res);
+                const storeDataFunc = async () => {
+                  alert(`Loginn Token${e.access} `)
+                  await setAccessToken(e.access);
+                  RetriveMe().then((res) => {
+                    alert(`response from User Login info  ${JSON.stringify(res)}`)
+                    setUser(res);
+                    setIsLoading(false);
+                  }).catch((e) => {
+                    console.error('Error when retriving me:', e);
+                  });
                   setIsLoading(false);
-                }).catch((e) => {
-                  console.error('Error when retriving me:', e);
-                });
-                setIsLoading(false);
-              }
-              storeDataFunc();
-            }).catch((e) => {
-              alert(`Error from Login call ${JSON.stringify(e)}`)
-            })
+                }
+                storeDataFunc();
+              }).catch((e) => {
+                alert(`Error from Login call ${JSON.stringify(e)}`)
+              })
+            }catch (error) {
+              alert(`Error from login this user: ${error}`);
+            }
             // User is authenticated
             //alert(`accessToken cookie4 ${response.data.accessToken.value} `)
           }
