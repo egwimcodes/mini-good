@@ -1,10 +1,10 @@
 "use client"
 import HomePage from '@/components/Pages/HomePage';
 import _404 from '@/components/Pages/_404';
-import { Register, RetriveMe } from '@/utils/requests';
+//import { Register, RetriveMe } from '@/utils/requests';
 import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 import React, { useState, useEffect } from 'react';
-import { fetchAccessToken, setAccessToken } from '@/utils/api';
+import { fetchAccessToken } from '@/utils/api';
 import LoadingPage from '@/components/Pages/LoadingPage';
 import { UserContext } from '@/hooks/UserContext';
 import { UserData } from '@/types';
@@ -14,13 +14,13 @@ const Home = () => {
   const webAppData = useWebApp();
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState<UserData>();
+  const [user] = useState<UserData>();
 
 
   useEffect(() => {
     setIsLoading(true)
     const getData = async () => {
-      const userData = webAppData.initDataUnsafe;
+      const userData = webAppData.initDataUnsafe; 
       alert(`User Data {
               password: ${ userData.user.id },
               username: ${userData.user.username},
@@ -37,62 +37,62 @@ const Home = () => {
       if (response.data.accessToken.value === "") {
           alert("Stage 1");
 
-          try {
+          // try {
 
-            const userInfo = {
-              password: `${userData.user.id}`,
-              username: userData.user.username,
-              first_name: userData.user.first_name,
-              referral_code: userData.start_param ?? "",
-              is_premium_user: userData.user.is_premium_user
-                ?? false
-            };
-            alert("Stage 2");
-            // Register user function
-            Register(userInfo)
-              .then((e) => {
-                alert("Stage 3");
-                const storeData = async () => {
-                  alert("Stage 4");
-                  try {
-                    alert("Stage 5");
-                    // Ensure userData is a JSON string before storing
-                    const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
-                    const accessTokenToStore = JSON.parse(dataToStore).token.access;
-                    alert(`Registration Token${accessTokenToStore} `)
-                    alert(`Registration data ${dataToStore} `)
+          //   const userInfo = {
+          //     password: `${userData.user.id}`,
+          //     username: userData.user.username,
+          //     first_name: userData.user.first_name,
+          //     referral_code: userData.start_param ?? "",
+          //     is_premium_user: userData.user.is_premium_user
+          //       ?? false
+          //   };
+          //   alert("Stage 2");
+          //   // Register user function
+          //   Register(userInfo)
+          //     .then((e) => {
+          //       alert("Stage 3");
+          //       const storeData = async () => {
+          //         alert("Stage 4");
+          //         try {
+          //           alert("Stage 5");
+          //           // Ensure userData is a JSON string before storing
+          //           const dataToStore = typeof e === 'string' ? e : JSON.stringify(e);
+          //           const accessTokenToStore = JSON.parse(dataToStore).token.access;
+          //           alert(`Registration Token${accessTokenToStore} `)
+          //           alert(`Registration data ${dataToStore} `)
 
-                    // alert(`Registration Data ${dataToStore} `)
-                    // alert(`Registration accessToken ${accessTokenToStore} `)
-                    // alert('User is authenticated after registration');
+          //           // alert(`Registration Data ${dataToStore} `)
+          //           // alert(`Registration accessToken ${accessTokenToStore} `)
+          //           // alert('User is authenticated after registration');
 
-                    //setToken Function
-                    // 
-                    await setAccessToken(accessTokenToStore);
-                    RetriveMe().then((e) => {
-                      setUser(e);
-                      setIsLoading(false);
-                    }).catch((e) => {
-                      console.error('Error when retriving me:', e);
-                    });
-                    const rsa = await fetchAccessToken();
-                    alert(`Registration Token Registered SuccessFull${JSON.stringify(rsa.data.accessToken.value)} Compared ${accessTokenToStore} `)
+          //           //setToken Function
+          //           // 
+          //           await setAccessToken(accessTokenToStore);
+          //           RetriveMe().then((e) => {
+          //             setUser(e);
+          //             setIsLoading(false);
+          //           }).catch((e) => {
+          //             console.error('Error when retriving me:', e);
+          //           });
+          //           const rsa = await fetchAccessToken();
+          //           alert(`Registration Token Registered SuccessFull${JSON.stringify(rsa.data.accessToken.value)} Compared ${accessTokenToStore} `)
                     
-                  } catch (error) {
-                    alert(`Error storing data on register: ${error}`);
-                  }
-                }
-                storeData();
-              })
-              .catch(
-                (e) => alert(`Error from Register ${JSON.stringify(e)}`)
-            );
+          //         } catch (error) {
+          //           alert(`Error storing data on register: ${error}`);
+          //         }
+          //       }
+          //       storeData();
+          //     })
+          //     .catch(
+          //       (e) => alert(`Error from Register ${JSON.stringify(e)}`)
+          //   );
 
-            // console.log('Response:', result);
+          //   // console.log('Response:', result);
 
-          } catch (error) {
-            console.error('Error from Register / login:', error);
-          }
+          // } catch (error) {
+          //   console.error('Error from Register / login:', error);
+          // }
         }
       //   else {
 
