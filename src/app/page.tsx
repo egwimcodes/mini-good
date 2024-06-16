@@ -55,7 +55,6 @@ const Home = () => {
                       .catch((e) => {
                         console.error("Error when retriving me:", e);
                       });
-                    const rsa = await fetchAccessToken();
                   } catch (error) {
                     alert(`Error storing data on register: ${error}`);
                   }
@@ -207,7 +206,7 @@ const Home = () => {
         // Example POST request
       }
     }
-  }, [webAppData]);
+  }, [webAppData, user]);
 
   useEffect(() => {
     const handleContextMenu = (event: MouseEvent) => {
