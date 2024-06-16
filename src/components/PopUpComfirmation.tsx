@@ -17,10 +17,10 @@ export default function PopUpComfirmationTask({ isopen, isClose, title, content,
             isopen && (
 
                 <div className="absolute top-0 left-0 h-screen w-screen bg-black bg-opacity-50 flex items-center justify-center">
-                    <div className="claim-content h-[60vh] w-[80%] bg-black border-2 border-main rounded-[10px] flex flex-col items-center justify-evenly p-3 relative">
-                        <div className="claim-content-header w-full flex flex-row items-center justify-between">
-                            <h1 className="text-light xxxsm:text-xxs xxsm:text-1xl xsm:text-0.5rem sm:text-1rem font-semibold">{title}</h1>
-                            <IoCloseSharp className="text-main text-3xl" onClick={() => { isClose() }} />
+                    <div className="claim-content h-[60vh] w-[90%] bg-black border-2 border-main rounded-[10px] flex flex-col items-center justify-evenly p-3 relative">
+                        <div className="claim-content-header w-[100%] flex flex-row items-center justify-between">
+                            <h1 className="text-light xxxsm:text-xs xxsm:text-2xl xsm:text-0.5rem sm:text-1rem font-semibold w-[80%]">{title}</h1>
+                            <IoCloseSharp className="text-main text-3xl w-[20%] " onClick={() => { isClose() }} />
                         </div>
 
                         <div className="claim-guild text-center">
@@ -43,7 +43,6 @@ export default function PopUpComfirmationTask({ isopen, isClose, title, content,
                         </div>
                     </div>
                 </div>
-
             )}
         </>
     )
