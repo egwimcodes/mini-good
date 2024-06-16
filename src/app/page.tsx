@@ -5,7 +5,7 @@ import { Login, Register, RetriveMe } from "@/utils/requests";
 import { useWebApp } from "@vkruglikov/react-telegram-web-app";
 import React, { useState, useEffect } from "react";
 import { fetchAccessToken, setAccessToken } from "@/utils/api";
-//import LoadingPage from "@/components/Pages/LoadingPage";
+import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
 import { UserData } from "@/types";
 
@@ -218,16 +218,16 @@ const Home = () => {
     <>
       {show404 ? (
         <_404 />
-      ) : (isLoading &&
+      ) : (
         webAppData?.platform &&
         (webAppData.platform === "android" || webAppData.platform === "ios") &&
         webAppData.initDataUnsafe &&
-        ((
-          user && (
+        (isLoading && user ? (
+          <LoadingPage />
+        ) : (
             <UserContext.Provider value={user}>
               <HomePage />
             </UserContext.Provider>
-          )
         ))
       )}
     </>
