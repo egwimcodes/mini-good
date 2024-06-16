@@ -86,7 +86,7 @@ async function RetriveReferrals() {
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error fetching referrals data:', ${error}}`);
+        alert(`{'Error from RetriveReferrals data:', ${error}}`);
         throw error;
     }
 }
@@ -104,7 +104,7 @@ async function RetriveTasks() {
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error fetching referrals data:', ${error}}`);
+        alert(`{'Error from RetriveTasks :', ${error}}`);
         throw error;
     }
 }
@@ -127,7 +127,7 @@ async function TaskCompletion({ title, reward, task_url, avater }: TaskCompletio
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error fetching referrals data:', ${error}}`);
+        alert(`{'Error from RetriveTasksCompletion :', ${error}}`);
         throw error;
     }
 }
@@ -145,7 +145,7 @@ async function RetriveWallet() {
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error fetching referrals data:', ${error}}`);
+        alert(`{'Error from RetriveWallet:', ${error}}`);
         throw error;
     }
 }

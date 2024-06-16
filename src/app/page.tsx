@@ -1,27 +1,41 @@
 "use client";
+
 import HomePage from "@/components/Pages/HomePage";
 import _404 from "@/components/Pages/_404";
-import { Login, Register, RetriveMe } from "@/utils/requests";
 import { useWebApp } from "@vkruglikov/react-telegram-web-app";
 import React, { useState, useEffect } from "react";
-import { fetchAccessToken, setAccessToken } from "@/utils/api";
 import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
 import { UserData } from "@/types";
+import { fetchAccessToken, setAccessToken } from "@/utils/api"; // Adjust the imports as necessary
+import { Login, Register, RetriveMe } from "@/utils/requests";
 
 const Home = () => {
   const webAppData = useWebApp();
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState<UserData>();
+  const [user, setUser] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchAccessToken();
+        const userData = response.data; // Adjust based on your actual data structure
+        setUser(userData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const userData = webAppData.initDataUnsafe;
     const getUserAuth = async () => {
       try {
         const response = await fetchAccessToken();
-        // try {
-        //   //User is not authenticated
         if (response.data.accessToken.value === "") {
           try {
             const userInfo = {
@@ -31,19 +45,12 @@ const Home = () => {
               referral_code: userData.start_param ?? "",
               is_premium_user: userData.user.is_premium_user ?? false,
             };
-            // Register user function
             Register(userInfo)
               .then((e) => {
                 const storeData = async () => {
                   try {
-                    // Ensure userData is a JSON string before storing
-                    const dataToStore =
-                      typeof e === "string" ? e : JSON.stringify(e);
-                    const accessTokenToStore =
-                      JSON.parse(dataToStore).token.access;
-
-                    //setToken Function
-                    //
+                    const dataToStore = typeof e === "string" ? e : JSON.stringify(e);
+                    const accessTokenToStore = JSON.parse(dataToStore).token.access;
                     await setAccessToken(accessTokenToStore);
                     RetriveMe()
                       .then((e) => {
@@ -51,7 +58,7 @@ const Home = () => {
                         setIsLoading(false);
                       })
                       .catch((e) => {
-                        console.error("Error when retriving me:", e);
+                        console.error("Error when retrieving me:", e);
                       });
                   } catch (error) {
                     alert(`Error storing data on register: ${error}`);
@@ -60,13 +67,10 @@ const Home = () => {
                 storeData();
               })
               .catch((e) => alert(`Error from Register ${JSON.stringify(e)}`));
-
-            // console.log('Response:', result);
           } catch (error) {
             console.error("Error from Register || login:", error);
           }
         } else {
-          // Always Login User
           const storeToken = async () => {
             const userLoginInfo = {
               username: userData.user.username,
@@ -84,62 +88,30 @@ const Home = () => {
                         referral_code: userData.start_param ?? "",
                         is_premium_user: userData.user.is_premium_user ?? false,
                       };
-                     // alert("Stage 2");
-                      // Register user function
                       Register(userInfo)
                         .then((e) => {
-                         //alert("Stage 3");
                           const storeData = async () => {
-                          //  alert("Stage 4");
                             try {
-                              //alert("Stage 5");
-                              // Ensure userData is a JSON string before storing
-                              const dataToStore =
-                                typeof e === "string" ? e : JSON.stringify(e);
-                              const accessTokenToStore =
-                                JSON.parse(dataToStore).token.access;
-                            //  alert(`Registration Token${accessTokenToStore} `);
-                           //   alert(`Registration data ${dataToStore} `);
-
-                              //setToken Function
-                              //
+                              const dataToStore = typeof e === "string" ? e : JSON.stringify(e);
+                              const accessTokenToStore = JSON.parse(dataToStore).token.access;
                               await setAccessToken(accessTokenToStore);
                               RetriveMe()
                                 .then((e) => {
                                   setUser(e);
-                                  alert(JSON.stringify(user));
                                   setIsLoading(false);
                                 })
                                 .catch((e) => {
-                                  console.error(
-                                    "Error when retriving me after login fail:",
-                                    e
-                                  );
+                                  console.error("Error when retrieving me after login fail:", e);
                                 });
-                            //  const rsa = await fetchAccessToken();
-                              // alert(
-                              //   `Registration Token Registered SuccessFull${JSON.stringify(
-                              //     rsa.data.accessToken.value
-                              //   )} Compared ${accessTokenToStore} `
-                              // );
                             } catch (error) {
-                              alert(
-                                `Error storing data on register after login fail: ${error}`
-                              );
+                              alert(`Error storing data on register after login fail: ${error}`);
                             }
                           };
                           storeData();
                         })
-                        .catch((e) =>
-                          alert(`Error from Register ${JSON.stringify(e)}`)
-                        );
-
-                      // console.log('Response:', result);
+                        .catch((e) => alert(`Error from Register ${JSON.stringify(e)}`));
                     } catch (error) {
-                      console.error(
-                        "Error from Register || login after login fail:",
-                        error
-                      );
+                      console.error("Error from Register || login after login fail:", error);
                     }
                   } else {
                     const storeDataFunc = async () => {
@@ -150,7 +122,7 @@ const Home = () => {
                           setIsLoading(false);
                         })
                         .catch((e) => {
-                          console.error("Error when retriving me:", e);
+                          console.error("Error when retrieving me:", e);
                         });
                       setIsLoading(false);
                     };
@@ -163,10 +135,7 @@ const Home = () => {
             } catch (error) {
               alert(`Error from login this user: ${error}`);
             }
-            // User is authenticated
-            //alert(`accessToken cookie4 ${response.data.accessToken.value} `)
           };
-
           storeToken();
         }
       } catch (error) {
@@ -174,13 +143,13 @@ const Home = () => {
       }
     };
     getUserAuth();
-  }, [user, setUser, isLoading, setIsLoading]);
+  }, [webAppData]);
+
   useEffect(() => {
     if (webAppData) {
       if (
         webAppData.platform &&
-        (webAppData.platform === "unknown" ||
-          webAppData.platform === "tdesktop")
+        (webAppData.platform === "unknown" || webAppData.platform === "tdesktop")
       ) {
         setShow404(true);
         return;
@@ -197,10 +166,9 @@ const Home = () => {
           is_premium_user: userData.user.is_premium_user ?? false,
         };
         console.log(userInfo);
-        // Example POST request
       }
     }
-  }, [webAppData, user]);
+  }, [webAppData]);
 
   useEffect(() => {
     const handleContextMenu = (event: MouseEvent) => {
@@ -224,11 +192,14 @@ const Home = () => {
         webAppData.initDataUnsafe &&
         (isLoading ? (
           <LoadingPage />
-          ) : (
-              user ?
+        ) : (
+          user ? (
             <UserContext.Provider value={user}>
               <HomePage />
-            </UserContext.Provider> : <LoadingPage />
+            </UserContext.Provider>
+          ) : (
+            <LoadingPage />
+          )
         ))
       )}
     </>
