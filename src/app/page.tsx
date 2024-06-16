@@ -104,7 +104,7 @@ const Home = () => {
 
             try {
               Login(userLoginInfo).then((e) => {
-                alert(`response from User Login info  ${JSON.stringify(e.status)}`)
+                alert(`response from User Login info  ${JSON.stringify(e, null, 2)}`)
 
                 const storeDataFunc = async () => {
                   alert(`Loginn Token${e.access} `)
