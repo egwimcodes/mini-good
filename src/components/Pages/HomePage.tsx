@@ -24,7 +24,7 @@ export default function HomePage() {
           {currentPage === 'task' ? <TaskPage /> : null}
         </div>
         <div className="cyan-gradient  w-[100%] h-[10%] absolute bottom-0  left-0 flex-center gradient-border rounded-t-[20px] ">
-          <div className="rounded-t-[20px] w-[99%] bg-gradient-to-br from-gray-800 bg-gray-800 h-[99%] inset-1 relative bottom-0 left-0">
+          <div className="rounded-t-[20px] w-[99%] bg-gradient-to-br bg-black h-[99%] inset-1 relative bottom-0 left-0">
             <BottomNavigation currentPage={selectedBtn} />
           </div>
         </div>
