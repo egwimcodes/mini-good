@@ -17,7 +17,7 @@ export default function HomePage() {
   // }
   return (
     <>
-      <div className="w-[100%] h-[100vh] bg-black s flex flex-col items-center relative bg-gradient-to-b from-gray-800">
+      <div className="w-[100%] h-[100vh] bg-black s flex flex-col items-center relative bg-gradient-to-tl from-gray-800">
         <div className="body-content h-[85%] w-[95vw] mx-auto ">
           {currentPage === 'referral' ? <Referral /> : null}
           {currentPage === 'home' ? <Dashboard /> : null}
