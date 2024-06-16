@@ -9,16 +9,17 @@ import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
 import { UserData } from "@/types";
 
+
 const Home = () => {
   const webAppData = useWebApp();
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData>();
 
-  useEffect(() => {
-    const getData = async () => {
-      const userData = webAppData.initDataUnsafe;
 
+  useEffect(() => {
+    const userData = webAppData.initDataUnsafe;
+    const getUserAuth = async () => {
       try {
         const response = await fetchAccessToken();
         // try {
@@ -43,7 +44,7 @@ const Home = () => {
                       typeof e === "string" ? e : JSON.stringify(e);
                     const accessTokenToStore =
                       JSON.parse(dataToStore).token.access;
-                    
+
                     //setToken Function
                     //
                     await setAccessToken(accessTokenToStore);
@@ -67,6 +68,7 @@ const Home = () => {
           } catch (error) {
             console.error("Error from Register || login:", error);
           }
+
         } else {
           // Always Login User
           const storeToken = async () => {
@@ -179,8 +181,12 @@ const Home = () => {
       } catch (error) {
         alert(`Error fetching login data in App: ${error}`);
       }
-    };
-    getData();
+    }
+    getUserAuth();
+    
+  }, [  user, setUser ]);
+  useEffect(() => {
+
     if (webAppData) {
       if (
         webAppData.platform &&
