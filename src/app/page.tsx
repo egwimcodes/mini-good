@@ -218,13 +218,11 @@ const Home = () => {
     <>
       {show404 ? (
         <_404 />
-      ) : (
+      ) : (isLoading &&
         webAppData?.platform &&
         (webAppData.platform === "android" || webAppData.platform === "ios") &&
         webAppData.initDataUnsafe &&
-        (isLoading ? (
-          <LoadingPage />
-        ) : (
+        ((
           user && (
             <UserContext.Provider value={user}>
               <HomePage />
