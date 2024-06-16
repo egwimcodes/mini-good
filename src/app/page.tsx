@@ -174,7 +174,9 @@ const Home = () => {
       }
     };
     getUserAuth();
-  }, [user, setUser, isLoading, setIsLoading]);
+  }, [user, setUser]);
+
+
   useEffect(() => {
     if (webAppData) {
       if (
@@ -225,7 +227,6 @@ const Home = () => {
         (isLoading ? (
           <LoadingPage />
           ) : (
-              isLoading === false && user &&
             <UserContext.Provider value={user}>
               <HomePage />
             </UserContext.Provider>
