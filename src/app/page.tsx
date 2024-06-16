@@ -145,7 +145,6 @@ const Home = () => {
                     }
                   } else {
                     const storeDataFunc = async () => {
-                      alert(`Loginn Token${e.access} `);
                       await setAccessToken(e.access);
                       RetriveMe()
                         .then((res) => {
@@ -230,7 +229,7 @@ const Home = () => {
         webAppData.initDataUnsafe &&
         (isLoading ? (
           <LoadingPage />
-        ) : (
+        ) : (user &&
           <UserContext.Provider value={user}>
             <HomePage />
           </UserContext.Provider>
