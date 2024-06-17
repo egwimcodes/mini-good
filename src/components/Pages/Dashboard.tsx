@@ -124,7 +124,7 @@ console.log(charge)
                                 </div>
                             </div>
                             <div className="leverl w-[100%] h-[16%] bg-slate-800 rounded-lg">
-                                <div className={`level-child h-[100%] w-${100} progress rounded-lg`}></div>
+                                <div className={`level-child h-[100%]  progress rounded-lg`} style={{ width: `${progressBar}%` }}></div>
                             </div>
                         </div>
                     </div>
