@@ -1,6 +1,7 @@
 import { IoCloseSharp } from "react-icons/io5";
 import Image from "next/image";
 import { MdNavigateNext } from "react-icons/md";
+import Link from "next/link";
 interface PopUpComfirmationProps {
     isopen: boolean;
     isClose: () => void;
@@ -8,10 +9,11 @@ interface PopUpComfirmationProps {
     content?: string;
     avatar?: string;
     reward?: number;
+    task_url?: string;
 
 }
 
-export default function PopUpComfirmationTask({ isopen, isClose, title, avatar, reward }: PopUpComfirmationProps) {
+export default function PopUpComfirmationTask({ isopen, isClose, title, avatar, reward, task_url }: PopUpComfirmationProps) {
     return (
         <>{
             isopen && (
@@ -30,7 +32,7 @@ export default function PopUpComfirmationTask({ isopen, isClose, title, avatar, 
                                 <p className="font-semibold text-orange-400">GoodCoin</p>
                             </div>
                         </div>
-
+                        <Link href={task_url ? task_url : "/"} />
                         <div className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly">
                             <div></div>
                             <h4 className="text-light font-semibold">Start</h4>

@@ -72,6 +72,7 @@ export default function Task() {
                         title={selectedTask.title}
                         avatar={selectedTask.avater}
                         reward={selectedTask.reward}
+                        task_url={selectedTask.task_url}
                         content={"Are you sure you want to claim this task?"}
                     />
                 )}
