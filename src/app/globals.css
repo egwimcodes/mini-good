@@ -241,8 +241,8 @@ input[type="checkbox"]:checked::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px; /* Adjust margin as needed */
-   
+    margin: 10px;
+    /* Adjust margin as needed */
 }
 
 .reward-child {
@@ -251,6 +251,7 @@ input[type="checkbox"]:checked::before {
     flex-wrap: nowrap; /* Ensure items do not wrap to the next line */
     justify-content: center;
     align-items: center;
+    /*  */
 }
 
 .content {
