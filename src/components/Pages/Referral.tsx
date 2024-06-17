@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { RetriveReferrals } from '@/utils/requests'
 import { useUserContext } from '@/hooks/UserContext'
