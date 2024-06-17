@@ -95,6 +95,7 @@ export interface UserData {
   date_last_updated: Date;
   username: string;
   account_type: AccountType;
+  user_id?: number;
   balance: number;
   tap_energy_level: number;
   tap_energy: number;

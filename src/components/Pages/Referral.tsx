@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { RetriveReferrals } from '@/utils/requests'
 import { useUserContext } from '@/hooks/UserContext'
@@ -83,7 +83,7 @@ export default function Referral() {
                             </div>
                         )}
                     </div>
-                    <div className="referal-btn flex w-[95vw] h-[17%] flex-col justify-center items-center border-2 border-main  rounded-[20px] bg-gradient-to-b from-gray-800 " onClick={() => { navigator.clipboard.writeText(totalReferrals ? totalReferrals?.refer_link : ''); setCopy('Copied!')}}>
+                    <div className="referal-btn flex w-[95vw] h-[17%] flex-col justify-center items-center border-2 border-main  rounded-[20px] bg-gradient-to-b from-gray-800 " onClick={() => { navigator.clipboard.writeText(totalReferrals ? totalReferrals?.refer_link+user.user_id : ''); setCopy('Copied!')}}>
                         <p className='text-main text-xl font-bold'>{copy}</p>
                     </div>
                 </div>
