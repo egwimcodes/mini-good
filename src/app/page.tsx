@@ -42,6 +42,7 @@ const Home = () => {
                 // Retrieve user data after registration
                 RetriveMe()
                   .then((e) => {
+                    localStorage.setItem("balance", '0');
                     setUser(e);
                     setIsLoading(false);
                   })
