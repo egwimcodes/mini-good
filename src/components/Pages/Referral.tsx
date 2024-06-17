@@ -78,7 +78,7 @@ export default function Referral() {
                         )}
                     </div>
                     <div className="referal-btn flex w-[95vw] h-[17%] flex-col justify-center items-center border-2 border-main  rounded-[20px] bg-gradient-to-b from-gray-800 " onClick={() => { navigator.clipboard.writeText(copy); setCopy('Copied!')}}>
-                        <p className='text-main text-xl font-bold'>INIVITE FRIENDS</p>
+                        <p className='text-main text-xl font-bold'>{copy}</p>
                     </div>
                 </div>
             </div>
