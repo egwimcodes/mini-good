@@ -19,11 +19,10 @@ export default function Referral() {
     useEffect(() => {
         async function fetchData() {
             RetriveReferrals().then(
-                (e) => { setTotalReferrals(e); alert(JSON.stringify(e)); setStillFetching(false) }
+                (e) => { setTotalReferrals(e); setStillFetching(false) }
             ).catch((e) => { `Error Fetching Referrals: ${alert(JSON.stringify(e))}` })
         }
         fetchData()
-        alert(JSON.stringify(user))
     })
     if (stillFetching) return <MiniPreloader />;
     return (
