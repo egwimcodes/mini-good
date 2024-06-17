@@ -50,6 +50,22 @@ body {
 }
 
 
+
+.progress{
+  position: relative;
+  background: linear-gradient(
+    to right,
+    #0ECE8E,
+    #82EEAB,
+    #A4E934,
+    #EC52EC,
+    #E648F5,
+    #EA00FF,
+    #810ECE
+  );
+}
+
+
 .cyan-gradient {
   position: relative;
   background: linear-gradient(

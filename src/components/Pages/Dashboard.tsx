@@ -6,6 +6,7 @@ import Profile from './Profile';
 import Wallet from './Wallet';
 import { useUserContext } from '@/hooks/UserContext';
 import BuyBot_Boost from './BuyBot_Boost';
+import { MdNavigateNext } from 'react-icons/md';
 
 interface ClickEffect {
     id: number;
@@ -100,6 +101,22 @@ export default function Dashboard() {
                                         {user.earn_per_tap}
                                     </span>
                                 ))}
+                            </div>
+                        </div>
+
+                        <div className='h-[13%] absolute bottom-0 w-[80%] flex flex-col'>
+                            <div className="progress-text w-[100%] flex justify-between items-center">
+                                <div className="left-progress-text flex flex-nowrap">
+                                    <p className='text-sm font-semibold'>Rokie</p>
+                                    <MdNavigateNext className="r-arrow text-2xl font-bold" />
+                                </div>
+                                <div className="right-progress-text flex flex-row">
+                                    <p className='text-sm font-semibold'>Level</p>
+                                    <p className='ml-1 text-sm font-semibold'>1/10</p>
+                                </div>
+                            </div>
+                            <div className="leverl w-[100%] h-[16%] bg-slate-800 rounded-lg">
+                                <div className={`level-child h-[100%] w-${100} progress rounded-lg`}></div>
                             </div>
                         </div>
                     </div>
