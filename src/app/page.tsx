@@ -116,7 +116,6 @@ const Home = () => {
                   .then((res) => {
                     setUser(res);
                     setIsLoading(false);
-                    alert(`Welcome, ${JSON.stringify(res)}!`);
                   })
                   .catch((e) => {
                     console.error("Error when retrieving me:", e);
