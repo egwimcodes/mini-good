@@ -86,7 +86,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="tap-section w-[100%] h-[70%] rounded-[20px] border-2 border-main flex justify-center items-center justify-self-start mx-auto">
+                    <div className="tap-section w-[100%] h-[70%] relative rounded-[20px] border-2 border-main flex justify-center items-center justify-self-start mx-auto">
                         <div className="tap w-[60%] relative">
                             <Image src="/goodcoing.svg" className="coin-svg mx-auto sm:w-[40%]" width={500} height={100} alt="" />
                             <div className="png-coin w-[100%] h-[100%] bg-red-800">
