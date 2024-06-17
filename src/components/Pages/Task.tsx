@@ -53,7 +53,7 @@ export default function Task() {
                                 <div className="icon-container">
                                     <Image className="w-10" draggable={false} width={50} height={50} src={task.avater} alt={task.title} />
                                 </div>
-                                <div className="task-writeup ml-3 flex flex-col justify-between">
+                                <div className="task-writeup ml-3 min-w-[60%] flex flex-col justify-between">
                                     <h3 className="text-light font-semibold">{task.avater}</h3>
                                     <div className="coin-task-container flex flex-row items-center">
                                         <Image className="w-5" draggable={false} width={50} height={50} src="/good-coin.png" alt="Reward" />
