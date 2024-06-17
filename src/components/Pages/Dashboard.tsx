@@ -115,12 +115,12 @@ console.log(charge)
                         <div className='h-[13%] absolute bottom-0 w-[80%] flex flex-col'>
                             <div className="progress-text w-[100%] flex justify-between items-center">
                                 <div className="left-progress-text flex flex-nowrap">
-                                    <p className='text-sm font-semibold'>Rokie</p>
+                                    <p className='text-sm font-semibold'>{user.rank}</p>
                                     <MdNavigateNext className="r-arrow text-2xl font-bold" />
                                 </div>
                                 <div className="right-progress-text flex flex-row">
                                     <p className='text-sm font-semibold'>Level</p>
-                                    <p className='ml-1 text-sm font-semibold'>1/10</p>
+                                    <p className='ml-1 text-sm font-semibold'>{user.tap_energy_level}/10</p>
                                 </div>
                             </div>
                             <div className="leverl w-[100%] h-[16%] bg-slate-800 rounded-lg">
