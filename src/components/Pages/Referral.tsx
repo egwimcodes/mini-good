@@ -4,6 +4,7 @@ import { RetriveReferrals } from '@/utils/requests'
 
 
 interface ReferralType {
+    refer_link: string
     total_refers: number
     referrals: []
 }
@@ -77,7 +78,7 @@ export default function Referral() {
                             </div>
                         )}
                     </div>
-                    <div className="referal-btn flex w-[95vw] h-[17%] flex-col justify-center items-center border-2 border-main  rounded-[20px] bg-gradient-to-b from-gray-800 " onClick={() => { navigator.clipboard.writeText(copy); setCopy('Copied!')}}>
+                    <div className="referal-btn flex w-[95vw] h-[17%] flex-col justify-center items-center border-2 border-main  rounded-[20px] bg-gradient-to-b from-gray-800 " onClick={() => { navigator.clipboard.writeText(totalReferrals ? totalReferrals?.refer_link : ''); setCopy('Copied!')}}>
                         <p className='text-main text-xl font-bold'>{copy}</p>
                     </div>
                 </div>
