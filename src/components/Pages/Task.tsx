@@ -54,7 +54,7 @@ export default function Task() {
                                     <Image className="w-10" draggable={false} width={50} height={50} src={task.avatar} alt={task.title} />
                                 </div>
                                 <div className="task-writeup ml-3 flex flex-col justify-between">
-                                    <h3 className="text-light font-semibold">{task.title}</h3>
+                                    <h3 className="text-light font-semibold">{task.avatar}</h3>
                                     <div className="coin-task-container flex flex-row items-center">
                                         <Image className="w-5" draggable={false} width={50} height={50} src="/good-coin.png" alt="Reward" />
                                         <h3 className="text-main text-sm ml-1">+{task.reward}</h3>
