@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { RetriveReferrals } from '@/utils/requests'
 import { useUserContext } from '@/hooks/UserContext'
-
+import MiniPreloader from "./MiniPleloader";
 
 interface ReferralType {
     refer_link: string
@@ -13,17 +13,19 @@ export default function Referral() {
     const user = useUserContext()
     const [totalReferrals, setTotalReferrals] = useState<ReferralType>()
     const [copy, setCopy] = useState('Copy Link');
+    const [stillFetching, setStillFetching] = useState<boolean>(true);
 
 
     useEffect(() => {
         async function fetchData() {
             RetriveReferrals().then(
-                (e) => { setTotalReferrals(e);  alert(JSON.stringify(e)) }
-            )
+                (e) => { setTotalReferrals(e); alert(JSON.stringify(e)); setStillFetching(false) }
+            ).catch((e) => { `Error Fetching Referrals: ${alert(JSON.stringify(e))}` })
         }
         fetchData()
         alert(JSON.stringify(user))
     })
+    if (stillFetching) return <MiniPreloader />;
     return (
         <>
             <div className="conatiner h-[100%] w-[100%] flex flex-col items-center justify-evenly text-xl text-bold text-light " >
