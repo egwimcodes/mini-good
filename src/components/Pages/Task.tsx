@@ -11,7 +11,7 @@ interface Task {
     title: string;
     reward: number;
     task_url: string;
-    avatar: string; // Typo corrected from "avater"
+    avater: string; // Typo corrected from "avater"
 }
 
 export default function Task() {
@@ -51,10 +51,10 @@ export default function Task() {
                         >
                             <div className="boost-writeup flex flex-row items-center justify-center">
                                 <div className="icon-container">
-                                    <Image className="w-10" draggable={false} width={50} height={50} src={task.avatar} alt={task.title} />
+                                    <Image className="w-10" draggable={false} width={50} height={50} src={task.avater} alt={task.title} />
                                 </div>
                                 <div className="task-writeup ml-3 flex flex-col justify-between">
-                                    <h3 className="text-light font-semibold">{task.avatar}</h3>
+                                    <h3 className="text-light font-semibold">{task.title}</h3>
                                     <div className="coin-task-container flex flex-row items-center">
                                         <Image className="w-5" draggable={false} width={50} height={50} src="/good-coin.png" alt="Reward" />
                                         <h3 className="text-main text-sm ml-1">+{task.reward}</h3>
@@ -70,7 +70,7 @@ export default function Task() {
                         isClose={() => setIsClaiming(false)}
                         isopen={true}
                         title={selectedTask.title}
-                        avatar={selectedTask.avatar}
+                        avatar={selectedTask.avater}
                         reward={selectedTask.reward}
                         content={"Are you sure you want to claim this task?"}
                     />
