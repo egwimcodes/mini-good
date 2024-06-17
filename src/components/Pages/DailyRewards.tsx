@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
+import { RetriveDailyStreak } from '@/utils/requests';
 
 export default function DailyRewards() {
     const [dailyClaim, setDailyClaim] = useState(false);
     const [dailyRewardsClaimed, setDailyRewardsClaimed] = useState(false);
+
+    useEffect(() => {
+        RetriveDailyStreak()
+            .then((streak) => {
+                JSON.stringify(streak);
+            })
+            .catch(() => {
+                alert('Error while fetching tasks');
+            });
+    }, []);
 
     return (
         <div className="rewards-container w-100% h-[100%]  flex flex-col items-center justify-evenly ">

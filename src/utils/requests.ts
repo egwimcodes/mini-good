@@ -151,6 +151,22 @@ async function RetriveWallet() {
 }
 
 
+async function RetriveDailyStreak() {
+    try {
+    const requestMe= {
+        path: AuthRoutes.DAILY_STREAK,
+        method: 'GET',
+        contentType: 'application/json', // You can omit this if using the default
+        removeAuth: false // Assuming you need authentication
+    };
+
+        const response = await MakeRequest(requestMe);
+        return response;
+    } catch (error) {
+        alert(`{'Error from RetrivDailyStreak:', ${error}}`);
+        throw error;
+    }
+}
 
 
 
@@ -164,5 +180,6 @@ export {
     RetriveReferrals,
     RetriveTasks,
     TaskCompletion,
-    RetriveWallet
+    RetriveWallet,
+    RetriveDailyStreak
 }
