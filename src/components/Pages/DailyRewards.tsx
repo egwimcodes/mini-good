@@ -34,17 +34,10 @@ export default function DailyRewards() {
                     <div className="reward-content flex flex-col w-[90%] h-[80%] mx-auto flex-center">
                         <div className="h-[100%] flex justify-center items-center ">
                             <div className="reward-child w-[100%] h-[100%] z-10  flex-col justify-center">
-                                <div className="reward-header w-[90vw] h-[10%] flex flex-row items-center justify-between mx-auto">
-                                    <h1 className="xxxsm:text-xs xxsm:text-2xl xsm:text-1rem sm:text-1rem  font-bold text-light">DAILY CLAIM</h1>
-                                    <div className="time-remaining flex flex-row items-center flex-nowrap">
-                                        <div className="time-remainig-header h-[3vh]">
-                                            <p className="text-sm timing-show text-light">Available in</p>
-                                            <p className="xxxsm:text-xxxs xxsm:text-xsxs xsm:text-1rem sm:text-1rem  timing-show text-light font-semibold">9:00:00 P:M</p>
-                                        </div>
-                                        <div className="timing ml-3">
-                                            <IoMdTime className="text-light" />
-                                        </div>
-                                    </div>
+                                <div id="diamond-narrow" className="z-10 relative w-fit bg-black">
+                                    <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 1</p>
+                                        <div className="text-claim rounded-[40px]">
+                                            <h1 className='text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]'>Claim</h1></div> </div>
                                 </div>
                                 <div id="diamond-narrow" className="z-10 relative">
                                     <div className="content bg-orange-400 w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 2</h1> </div>
