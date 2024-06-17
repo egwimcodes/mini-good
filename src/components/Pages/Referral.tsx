@@ -9,7 +9,7 @@ interface ReferralType {
 }
 export default function Referral() {
     const [totalReferrals, setTotalReferrals] = useState<ReferralType>()
-    const [copy, setCopy] = useState('copy');
+    const [copy, setCopy] = useState('Copy Link');
 
 
     useEffect(() => {
@@ -77,7 +77,7 @@ export default function Referral() {
                             </div>
                         )}
                     </div>
-                    <div className="referal-btn flex w-[95vw] h-[17%] flex-col justify-center items-center border-2 border-main  rounded-[20px] bg-gradient-to-b from-gray-800 " onClick={() => { navigator.clipboard.writeText('Copy this text to clipboard'); setCopy('Copied!')}}>
+                    <div className="referal-btn flex w-[95vw] h-[17%] flex-col justify-center items-center border-2 border-main  rounded-[20px] bg-gradient-to-b from-gray-800 " onClick={() => { navigator.clipboard.writeText(copy); setCopy('Copied!')}}>
                         <p className='text-main text-xl font-bold'>INIVITE FRIENDS</p>
                     </div>
                 </div>
