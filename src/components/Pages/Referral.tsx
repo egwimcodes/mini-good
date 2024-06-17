@@ -12,7 +12,9 @@ export default function Referral() {
 
     useEffect(() => {
         async function fetchData() {
-            RetriveReferrals().then((e) => setTotalReferrals(e))
+            RetriveReferrals().then(
+                (e) => { setTotalReferrals(e);  alert(JSON.stringify(e)) }
+            )
         }
         fetchData()
     })
