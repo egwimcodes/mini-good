@@ -3,6 +3,7 @@ import { MdNavigateNext } from "react-icons/md";
 import Image from "next/image";
 import { useState } from "react";
 import PopUpComfirmationTask from "@/components/PopUpComfirmation";
+import BuyBot_Boost from "./BuyBot_Boost";
 
 export default function Boost() {
     const [isClaiming, setIsClaiming] = useState(false);
@@ -33,7 +34,7 @@ export default function Boost() {
 
 
             </div>
-            {isClaiming && <PopUpComfirmationTask isClose={() => setIsClaiming(false)} isopen={true} />}
+            {isClaiming && <BuyBot_Boost isClose={() => setIsClaiming(false)} isopen={true} title={"Buy Boost"} content={"Buy Boost"} avatar={"https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg"} />}
 
         </>
     );
