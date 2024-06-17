@@ -31,51 +31,38 @@ export default function DailyRewards() {
                             </div>
                         </div>
                     </div>
-                    <div className="reward-content flex flex-col w-[100%] h-[80%] items-center justify-center">
-                        <div className="reward-check flex flex-col justify-between w-[80%] h-[80%]">
-                            <div className="rewardinput flex-between flex-row items-center justify-evenly " onClick={() => setDailyClaim(true)}>
-                                <p className="text-light xxxsm:text-xxxs xxsm:text-xsxs xsm:text-1rem sm:text-1rem">Day1</p>
-                                <hr className='h-2 border-2 bg-green-500 border-orange-400 rounded-full w-[80%]' />
-                                <input className="daily-check text-light border-orange-400 border-2" type="checkbox" name="" id="" checked />
+                    <div className="reward-content flex flex-col w-[90%] h-[80%] mx-auto flex-center">
+                        <div className="h-[100%] flex justify-center items-center ">
+                            <div className="reward-child w-[100%] h-[100%] z-10  flex-col justify-center">
+                                <div id="diamond-narrow" className="z-10 relative">
+                                    <div className="content bg-main w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 1</h1> </div>
+                                </div>
+                                <div id="diamond-narrow" className="z-10 relative">
+                                    <div className="content bg-orange-400 w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 2</h1> </div>
+                                </div>
+                                <div id="diamond-narrow" className="z-10 relative">
+                                    <div className="content bg-orange-400  w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 3</h1> </div>
+                                </div>
+                                <div id="diamond-narrow" className="z-10 relative">
+                                    <div className="content bg-orange-400  w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 4</h1> </div>
+                                </div>
+                                <div id="diamond-narrow" className="z-10 relative">
+                                    <div className="content bg-orange-400   w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 5</h1> </div>
+                                </div>
+                                <div id="diamond-narrow" className="z-10 relative">
+                                    <div className="content bg-orange-400 w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 6</h1> </div>
+                                </div>
+                                <div id="diamond-narrow" className="z-10 relative">
+                                    <div className="content bg-orange-400 border-main w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 7</h1> </div>
+                                </div>
                             </div>
-                            <div className="rewardinput flex-between flex-row items-center justify-center">
-                                <p className="text-light xxxsm:text-xxxs xxsm:text-xsxs xsm:text-1rem sm:text-1rem text-orange-400">Day2</p>
-                                <hr className='h-2 border-2  border-orange-400 rounded-full w-[80%]' />
-                                <input className="daily-check text-light border-light border-orange-400 border-2" type="checkbox" name="" id="" />
-                            </div>
-                            <div className="rewardinput flex-between flex-row items-center justify-center">
-                                <p className="text-light xxxsm:text-xxxs xxsm:text-xsxs xsm:text-1rem sm:text-1rem text-orange-400">Day3</p>
-                                <hr className='h-2 border-2  border-orange-400 rounded-full w-[80%]' />
-                                <input className="daily-check text-light border-orange-400 border-2" type="checkbox" name="" id="" />
-                            </div>
-                            <div className="rewardinput flex-between flex-row items-center justify-center">
-                                <p className="text-light xxxsm:text-xxxs xxsm:text-xsxs xsm:text-1rem sm:text-1rem text-orange-400">Day4</p>
-                                <hr className='h-2 border-2  border-orange-400 rounded-full w-[80%]' />
-                                <input className="daily-check text-light border-orange-400 border-2" type="checkbox" name="" id="" />
-                            </div>
-                            <div className="rewardinput flex-between flex-row items-center justify-center">
-                                <p className="text-light xxxsm:text-xxxs xxsm:text-xsxs xsm:text-1rem sm:text-1rem text-orange-400">Day5</p>
-                                <hr className='h-2 border-2  border-orange-400 rounded-full w-[80%]' />
-                                <input className="daily-check text-light border-orange-400 border-2" type="checkbox" name="" id="" />
-                            </div>
-                            <div className="rewardinput flex-between flex-row items-center justify-center">
-                                <p className="text-light xxxsm:text-xxxs xxsm:text-xsxs xsm:text-1rem sm:text-1rem text-orange-400">Day6</p>
-                                <hr className='h-2 border-2  border-orange-400 rounded-full w-[80%]' />
-                                <input className="daily-check twhite border-orange-400 border-2" type="checkbox" name="" id="" />
-                            </div>
-                            <div className="rewardinput flex-between flex-row items-center justify-center">
-                                <p className="text-light xxxsm:text-xxxs xxsm:text-xsxs xsm:text-1rem sm:text-1rem text-orange-400">Day 7</p>
-                                <hr className='h-2 border-2 border-orange-400 rounded-full w-[80%]' />
-                                <input className="daily-check text-light border-orange-400 border-2" type="checkbox" name="" id="" />
-                            </div>
-
+                        </div>
+                        <div className="rewards-footer w-[100%] h-[10%] mx-auto flex-center">
+                            <h1 className='text-main'>
+                                Comeback Tomorrow
+                            </h1>
                         </div>
 
-                        <div className="reward-btn-claim h-[25%] w-[100%] flex flex-row items-center justify-center " >
-                            <div className="reward-claim-btn bg-green-500 w-[80%] h-[70%] mx-auto rounded-[20px] flex-center" onClick={() => setDailyRewardsClaimed(true)}>
-
-                                <h3 className='xxxsm:text-xxxs xxsm:text-xs xsm:text-1rem sm:text-1rem text-white font-semibold'>CLAIM</h3></div>
-                            </div>
                     </div>
                 </div>
             </div>

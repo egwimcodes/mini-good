@@ -229,6 +229,40 @@ input[type="checkbox"]:checked::before {
 
 
 
+#diamond-narrow {
+    position: relative;
+    width: 100px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background-image: url('/goodcoing.png');
+     /* Replace with your background image URL */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px; /* Adjust margin as needed */
+   
+}
+
+.reward-child {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap; /* Ensure items do not wrap to the next line */
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    color: white; /* Adjust text color as needed */
+    text-align: center;
+    font-size: 1em; /* Adjust font size as needed */
+    z-index: 20;
+}
+
+
+
+
 
 
 
