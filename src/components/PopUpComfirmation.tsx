@@ -11,7 +11,7 @@ interface PopUpComfirmationProps {
 
 }
 
-export default function PopUpComfirmationTask({ isopen, isClose, title, content, avatar, reward }: PopUpComfirmationProps) {
+export default function PopUpComfirmationTask({ isopen, isClose, title, avatar, reward }: PopUpComfirmationProps) {
     return (
         <>{
             isopen && (
@@ -21,11 +21,6 @@ export default function PopUpComfirmationTask({ isopen, isClose, title, content,
                         <div className="claim-content-header w-[100%] flex flex-row items-center justify-between">
                             <h1 className="text-light xxxsm:text-xs xxsm:text-2xl xsm:text-0.5rem sm:text-1rem font-semibold w-[80%]">{title}</h1>
                             <IoCloseSharp className="text-main text-3xl w-[20%] " onClick={() => { isClose() }} />
-                        </div>
-
-                        <div className="claim-guild text-center">
-                            <h4 className="text-main xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs font-semibold">What To Be Done ?</h4>
-                            <p className="text-gray xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-slate-100">Subscribe to the GoodCoin on Twitter for the latest insight and get EXTRA coin.{content}</p>
                         </div>
 
                         <div className="claim-gift w-[100%] h-[20%] bg-emerald-700 flex items-center justify-start px-2 xsm:mb-2 rounded-[10px]">
