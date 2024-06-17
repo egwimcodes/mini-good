@@ -5,6 +5,7 @@ import { IoMdAdd } from 'react-icons/io';
 import Profile from './Profile';
 import Wallet from './Wallet';
 import { useUserContext } from '@/hooks/UserContext';
+import BuyBot_Boost from './BuyBot_Boost';
 
 interface ClickEffect {
     id: number;
@@ -18,6 +19,7 @@ export default function Dashboard() {
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState('dashboard');
     const [balance, setBalance] = useState(0 + (Number(storageBalance) || 0));
+    const [isClaiming, setIsClaiming] = useState(false);
 
     useEffect(() => {
         localStorage.setItem('balance', String(balance));
@@ -76,7 +78,7 @@ export default function Dashboard() {
                                 <p className='text-sm font-base h-[40%] '>Earning Per hour</p>
                                 <div className="balance-coin-amount flex-row flex-between h-[60%] ">
                                     <p className='text-2xl h-[100%] w-[60%] flex-row flex-start'>{user.profit_per_hour}</p>
-                                    <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[80%] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center ">
+                                    <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[80%] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center " onClick={() => setIsClaiming(true)}>
                                         <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem'>Buy Bot</p>
                                     </div>
                                 </div>
@@ -105,6 +107,7 @@ export default function Dashboard() {
             )}
             {showProfile === "profile" && <Profile setShowProfile={setShowProfile} />}
             {showProfile === "wallet" && <Wallet setShowProfile={setShowProfile} />}
+            {isClaiming && <BuyBot_Boost isClose={() => setIsClaiming(false)} isopen={true} title={"Buy Boost"} content={"Buy Boost"} avatar={"https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg"} />}
         </>
     );
 }
