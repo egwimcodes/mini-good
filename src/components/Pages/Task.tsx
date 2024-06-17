@@ -3,12 +3,11 @@ import { RetriveTasks } from "@/utils/requests";
 import { MdNavigateNext } from "react-icons/md";
 import PopUpComfirmationTask from "@/components/PopUpComfirmation";
 import Image from "next/image";
-import LoadingPage from '@/components/Pages/LoadingPage';
 import MiniPreloader from "./MiniPleloader";
 
 interface Task {
     id: number;
-    completed_users: any[]; // Adjust type if you know the exact type
+    completed_users: []; // Adjust type if you know the exact type
     title: string;
     reward: number;
     task_url: string;
