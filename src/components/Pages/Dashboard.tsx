@@ -21,6 +21,8 @@ export default function Dashboard() {
     const [showProfile, setShowProfile] = useState('dashboard');
     const [balance, setBalance] = useState(0 + (Number(storageBalance) || 0));
     const [isClaiming, setIsClaiming] = useState(false);
+    const [charge, setCharge] = useState(5000);
+    const [progressBar, setProgressBar] = useState(100);
 
     useEffect(() => {
         localStorage.setItem('balance', String(balance));
@@ -40,9 +42,15 @@ export default function Dashboard() {
         }, 2000);
 
         // Increment balance when image is clicked
-        setBalance(prev => prev + user.earn_per_tap);
+        // Increment balance when image is clicked
+        if (progressBar > 0) {
+            setBalance(prev => prev + user.earn_per_tap);
+        }
+        setCharge(prev => prev - 50);
+        setProgressBar(prev => prev - user.earn_per_tap);
+        
     };
-
+console.log(charge)
     return (
         <>
             {showProfile === 'dashboard' && (
@@ -98,7 +106,7 @@ export default function Dashboard() {
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                        {user.earn_per_tap}
+                                        {progressBar > 0 ? `+${user.earn_per_tap}` : ""}
                                     </span>
                                 ))}
                             </div>
