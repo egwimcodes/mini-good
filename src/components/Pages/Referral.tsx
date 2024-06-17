@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { RetriveReferrals } from '@/utils/requests'
+import { useUserContext } from '@/hooks/UserContext'
 
 
 interface ReferralType {
@@ -9,6 +10,7 @@ interface ReferralType {
     referrals: []
 }
 export default function Referral() {
+    const user = useUserContext()
     const [totalReferrals, setTotalReferrals] = useState<ReferralType>()
     const [copy, setCopy] = useState('Copy Link');
 
@@ -20,6 +22,7 @@ export default function Referral() {
             )
         }
         fetchData()
+        alert(JSON.stringify(user))
     })
     return (
         <>
