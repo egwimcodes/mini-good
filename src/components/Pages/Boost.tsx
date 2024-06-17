@@ -2,7 +2,7 @@
 import { MdNavigateNext } from "react-icons/md";
 import Image from "next/image";
 import { useState } from "react";
-import PopUpComfirmationTask from "@/components/PopUpComfirmation";
+//import PopUpComfirmationTask from "@/components/PopUpComfirmation";
 import BuyBot_Boost from "./BuyBot_Boost";
 
 export default function Boost() {
