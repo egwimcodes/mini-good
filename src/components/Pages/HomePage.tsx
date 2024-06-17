@@ -17,13 +17,13 @@ export default function HomePage() {
   // }
   return (
     <>
-      <div className="w-[100%] h-[100vh] bg-black s flex flex-col items-center relative bg-gradient-to-br from-gray-800">
+      <div className="w-[100%] h-[100vh] bg-black flex flex-col items-center justify-between relative bg-gradient-to-br from-gray-800">
         <div className="body-content h-[85%] w-[95vw] mx-auto ">
           {currentPage === 'referral' ? <Referral /> : null}
           {currentPage === 'home' ? <Dashboard /> : null}
           {currentPage === 'task' ? <TaskPage /> : null}
         </div>
-        <div className="cyan-gradient  w-[100%] h-[10%] absolute bottom-0  left-0 flex-center gradient-border rounded-t-[20px] ">
+        <div className="cyan-gradient  w-[100%] h-[12%] absolute bottom-0  left-0 flex-center gradient-border rounded-t-[20px] ">
           <div className="rounded-t-[20px] w-[99%] bg-gradient-to-br bg-black h-[99%] inset-1 relative bottom-0 left-0">
             <BottomNavigation currentPage={selectedBtn} />
           </div>
