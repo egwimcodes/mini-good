@@ -4,7 +4,7 @@ import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak } from '@/utils/requests';
-import { DailyStreakCreateType } from '@/types';
+//import { DailyStreakCreateType } from '@/types';
 
 interface DailyStreakRetrival {
     id: number,
