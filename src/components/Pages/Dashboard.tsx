@@ -19,7 +19,7 @@ export default function Dashboard() {
     const storageBalance = localStorage.getItem('balance');
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState('dashboard');
-    const [balance, setBalance] = useState(0 + (Number(storageBalance) || 0));
+    const [balance, setBalance] = useState(user.balance);
     const [isClaiming, setIsClaiming] = useState(false);
     const [charge, setCharge] = useState(5000);
     const [progressBar, setProgressBar] = useState(100);
