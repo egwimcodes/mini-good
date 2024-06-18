@@ -25,7 +25,7 @@ export default function DailyRewards() {
         RetriveDailyStreak()
             .then((streak) => {
                 const lastCheckin = streak.last_checkin_date || streak.date_started;
-                const canClaim = isStreakContinued(lastCheckin);
+                const canClaim = isStreakContinued(lastCheckin) && !isWithin24Hours(lastCheckin);
 
                 setCanClaim(canClaim);
                 setStreak(streak);
@@ -34,6 +34,13 @@ export default function DailyRewards() {
                 alert('Error while fetching streak data');
             });
     }, []);
+
+    const isWithin24Hours = (lastCheckin: string) => {
+        const lastCheckinDate = new Date(lastCheckin);
+        const currentDate = new Date();
+        const timeDiff = currentDate.getTime() - lastCheckinDate.getTime();
+        return timeDiff < 24 * 60 * 60 * 1000;
+    };
 
     const handleClaim = async (day: number) => {
         if (!claimedDays.includes(day) && streak) {
@@ -123,4 +130,5 @@ export default function DailyRewards() {
             )}
         </div>
     );
+
 }
