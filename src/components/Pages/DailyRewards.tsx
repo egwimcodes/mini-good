@@ -45,7 +45,7 @@ export default function DailyRewards() {
                     <div className="reward-content flex flex-col w-[90%] h-[80%] mx-auto flex-center">
                         <div className="h-[100%] flex justify-center items-center ">
                             <div className="reward-child w-[100%] h-[100%] z-10  flex-col justify-center">
-                                <div id="diamond-narrow" className="z-10 relative w-fit bg-black">
+                                <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
                                     <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 1</p>
                                         <div className="text-claim rounded-[40px]">
                                             <h1 className='text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]'>Claim</h1></div> </div>
