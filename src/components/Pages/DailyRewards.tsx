@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
-import { RetriveDailyStreak } from '@/utils/requests';
+import { RetriveDailyStreak, DailyStreakCreate } from '@/utils/requests';
 import { isStreakContinued } from '@/utils/dateUtils';
 
 interface DailyStreakRetrival {
@@ -19,12 +19,14 @@ export default function DailyRewards() {
     const [dailyRewardsClaimed, setDailyRewardsClaimed] = useState(false);
     const [streak, setStreak] = useState<DailyStreakRetrival | null>(null);
     const [canClaim, setCanClaim] = useState(false);
-    const [claimedDays, setClaimedDays] = useState<number[]>([]); // Track claimed days
+    const [claimedDays, setClaimedDays] = useState<number[]>([]);
+    const [lastCheck, setLastCheck] = useState<string>('');
 
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
                 const lastCheckin = streak.last_checkin_date || streak.date_started;
+                setLastCheck(lastCheckin);
                 const canClaim = isStreakContinued(lastCheckin);
 
                 setCanClaim(canClaim);
@@ -35,10 +37,20 @@ export default function DailyRewards() {
             });
     }, []);
 
-    const handleClaim = (day: number) => {
-        if (!claimedDays.includes(day)) {
-            setClaimedDays([...claimedDays, day]);
-            setDailyRewardsClaimed(true);
+    const handleClaim = async (day: number) => {
+        if (!claimedDays.includes(day) && streak) {
+            try {
+                const currentDate = new Date().toISOString().split('T')[0];
+                await DailyStreakCreate({
+                    last_checkin_date: currentDate, // Using the current date for claim
+                    owner: streak.owner ?? 0, // Ensure streak is not null before accessing owner
+                });
+                setClaimedDays([...claimedDays, day]);
+                setDailyRewardsClaimed(true);
+            } catch (error) {
+                console.error('Error claiming daily reward:', error);
+                alert('Error claiming daily reward');
+            }
         }
     };
 
@@ -59,7 +71,7 @@ export default function DailyRewards() {
                     {canClaimDay && (
                         <div className="text-claim rounded-[40px]">
                             <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
-                                {isClaimed ? 'Done' : 'Claim'}
+                                {isClaimed ? 'Claimed' : 'Claim'}
                             </h1>
                         </div>
                     )}
