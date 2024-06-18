@@ -12,7 +12,7 @@ export default function DailyRewards() {
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
-                JSON.stringify(streak);
+                alert(`${JSON.stringify(streak)}`);
             })
             .catch(() => {
                 alert('Error while fetching tasks');
