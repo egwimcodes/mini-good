@@ -24,6 +24,7 @@ export default function DailyRewards() {
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
+                alert(JSON.stringify(streak.last_checkin_date, null, 2));
                 const lastCheckin = streak.last_checkin_date || streak.date_started;
                 const canClaim = isStreakContinued(lastCheckin) && !isWithin24Hours(lastCheckin);
 
