@@ -19,16 +19,18 @@ export default function DailyRewards() {
     const [dailyClaim, setDailyClaim] = useState(false);
     const [dailyRewardsClaimed, setDailyRewardsClaimed] = useState(false);
     const [streak, setStreak] = useState<DailyStreakRetrival>();
+    const [canClaim, setCanClaim] = useState(false);
 
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
-                const lastDate = streak.last_checkin_date;
-                if (streak.last_checkin_date === null) {
+                if (streak.last_checkin_date === '') {
                     alert(isStreakContinued(streak.date_started))
+                    setCanClaim(isStreakContinued(streak.date_started))
                 } else {
-                    isStreakContinued(lastDate);
-                    alert(`From not Null ${JSON.stringify(lastDate, null, 2)}`);
+                    alert(isStreakContinued(streak.date_started))
+                    // isStreakContinued(streak.last_checkin_date);
+                    alert(`From not Null ${JSON.stringify(streak.date_started, null, 2)}`);
                     alert(JSON.stringify(streak, null, 2));
                 }
                 setStreak(streak);
@@ -68,7 +70,7 @@ export default function DailyRewards() {
                     <div className="reward-content flex flex-col w-[90%] h-[80%] mx-auto flex-center">
                         <div className="h-[100%] flex justify-center items-center ">
                             <div className="reward-child w-[100%] h-[100%] z-10  flex-col justify-center">
-                                {streak?.current_streak === 1 ? (
+                                {canClaim && streak?.current_streak === 1 ? (
                                     <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
                                             <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 1</p>
                                                 <div className="text-claim rounded-[40px]">
@@ -81,7 +83,7 @@ export default function DailyRewards() {
                                         </div>
                                     )
                                 }
-                                {streak?.current_streak === 2 ? (
+                                {canClaim && streak?.current_streak === 2 ? (
                                     <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
                                         <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 2</p>
                                             <div className="text-claim rounded-[40px]">
@@ -94,7 +96,7 @@ export default function DailyRewards() {
                                         </div>
                                     )
                                 }
-                                {streak?.current_streak === 3 ? (
+                                {canClaim && streak?.current_streak === 3 ? (
                                     <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
                                         <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 3</p>
                                             <div className="text-claim rounded-[40px]">
@@ -107,7 +109,7 @@ export default function DailyRewards() {
                                         </div>
                                     )
                                 }
-                                {streak?.current_streak === 4 ? (
+                                {canClaim && streak?.current_streak === 4 ? (
                                     <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
                                         <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 4</p>
                                             <div className="text-claim rounded-[40px]">
@@ -120,7 +122,7 @@ export default function DailyRewards() {
                                         </div>
                                     )
                                 }
-                                {streak?.current_streak === 5 ? (
+                                {canClaim && streak?.current_streak === 5 ? (
                                     <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
                                         <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 5</p>
                                             <div className="text-claim rounded-[40px]">
@@ -133,7 +135,7 @@ export default function DailyRewards() {
                                         </div>
                                     )
                                 }
-                                {streak?.current_streak === 6 ? (
+                                {canClaim && streak?.current_streak === 6 ? (
                                     <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
                                         <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 6</p>
                                             <div className="text-claim rounded-[40px]">
@@ -146,7 +148,7 @@ export default function DailyRewards() {
                                         </div>
                                     )
                                 }
-                                {streak?.current_streak === 7 ? (
+                                {canClaim && streak?.current_streak === 7 ? (
                                     <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
                                         <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 7</p>
                                             <div className="text-claim rounded-[40px]">
