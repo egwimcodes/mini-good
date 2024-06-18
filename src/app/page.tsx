@@ -19,7 +19,6 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchAccessToken();
-      alert(`Before Try ${JSON.stringify(response.data.accessToken.value, null, 2)}`);
 
       try {
         if (response.data.accessToken.value === "") {
@@ -128,7 +127,6 @@ const Home = () => {
                 RetriveMe()
                   .then((res) => {
                     setUser(res);
-                    alert(`okey ${JSON.stringify(res, null, 2)}`);
                     setIsLoading(false);
                   })
                   .catch((e) => {
