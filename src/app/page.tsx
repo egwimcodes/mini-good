@@ -46,6 +46,10 @@ const Home = () => {
                     setUser(e);
                     const balance = e.balance;
                     localStorage.setItem('balance', String(balance));
+                    const b_toSave = localStorage.getItem('balance');
+                    alert(b_toSave);
+
+                    alert(JSON.stringify(e, null, 2));
                     setIsLoading(false);
                   })
                   .catch((e) => {
