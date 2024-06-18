@@ -25,9 +25,9 @@ export default function DailyRewards() {
         RetriveDailyStreak()
             .then((streak) => {
                 const lastCheckin = streak.last_checkin_date || streak.date_started;
-                const canClaimStreak = isStreakContinued(lastCheckin) && !isWithin24Hours(lastCheckin);
+                const canClaim = isStreakContinued(lastCheckin);
 
-                setCanClaim(canClaimStreak);
+                setCanClaim(canClaim);
                 setStreak(streak);
             })
             .catch(() => {
@@ -35,24 +35,20 @@ export default function DailyRewards() {
             });
     }, []);
 
-    const isWithin24Hours = (lastCheckin: string) => {
-        const lastCheckinDate = new Date(lastCheckin);
-        const currentDate = new Date();
-        const timeDiff = currentDate.getTime() - lastCheckinDate.getTime();
-        return timeDiff < 24 * 60 * 60 * 1000;
-    };
-
     const handleClaim = async (day: number) => {
-        if (!claimedDays.includes(day) && streak && canClaim) {
+        if (!claimedDays.includes(day) && streak) {
             try {
                 const currentDate = new Date().toISOString().split('T')[0];
                 await DailyStreakCreate({
                     last_checkin_date: currentDate, // Using the current date for claim
                     owner: streak.owner ?? 0, // Ensure streak is not null before accessing owner
                 });
+
+                // Update the streak state with the new last_checkin_date
+                setStreak({ ...streak, last_checkin_date: currentDate });
+
                 setClaimedDays([...claimedDays, day]);
                 setDailyRewardsClaimed(true);
-                setCanClaim(false); // Prevent further claims until the next day
             } catch (error) {
                 console.error('Error claiming daily reward:', error);
                 alert('Error claiming daily reward');
@@ -61,9 +57,10 @@ export default function DailyRewards() {
     };
 
     const renderReward = (day: number) => {
+        const currentDate = new Date().toISOString().split('T')[0];
         const isCurrentDay = streak?.current_streak === day;
         const canClaimDay = canClaim && isCurrentDay;
-        const isClaimed = claimedDays.includes(day);
+        const isClaimed = claimedDays.includes(day) || (streak && streak.last_checkin_date === currentDate);
 
         return (
             <div
