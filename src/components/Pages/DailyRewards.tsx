@@ -31,9 +31,9 @@ export default function DailyRewards() {
             });
     }, []);
 
-    const updateStreak = ({ last_checkin_date, owner }: DailyStreakCreateType) => {
+    // const updateStreak = ({ last_checkin_date, owner }: DailyStreakCreateType) => {
 
-    };
+    // };
 
     return (
         <div className="rewards-container w-100% h-[100%]  flex flex-col items-center justify-evenly ">
