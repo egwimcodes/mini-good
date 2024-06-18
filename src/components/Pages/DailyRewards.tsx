@@ -22,9 +22,14 @@ export default function DailyRewards() {
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
-                const data = streak.last_checkin_date;
-                alert(JSON.stringify(data, null, 2));
-                alert(JSON.stringify(streak, null, 2));
+                const lastDate = streak.last_checkin_date;
+                if (lastDate === null) {
+                    alert(JSON.stringify(lastDate, null, 2));
+                    alert(JSON.stringify(streak, null, 2));
+                }else{
+                    alert(`From not Null ${JSON.stringify(lastDate, null, 2)}`);
+                    alert(JSON.stringify(streak, null, 2));
+                }
                 setStreak(streak);
             })
             .catch(() => {
