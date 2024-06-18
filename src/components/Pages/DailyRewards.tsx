@@ -59,7 +59,7 @@ export default function DailyRewards() {
                     {canClaimDay && (
                         <div className="text-claim rounded-[40px]">
                             <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
-                                {isClaimed ? 'Claimed' : 'Claim'}
+                                {isClaimed ? 'Done' : 'Claim'}
                             </h1>
                         </div>
                     )}
