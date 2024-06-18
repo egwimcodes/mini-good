@@ -4,20 +4,33 @@ import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak } from '@/utils/requests';
+//import { DailyStreakCreateType } from '@/types';
 
+interface DailyStreakRetrival {
+    id: number,
+    current_streak: number,
+    date_started: string,
+    last_checkin_date: string,
+    owner: number
+}
 export default function DailyRewards() {
     const [dailyClaim, setDailyClaim] = useState(false);
     const [dailyRewardsClaimed, setDailyRewardsClaimed] = useState(false);
+    const [streak, setStreak] = useState<DailyStreakRetrival>();
 
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
-                alert(`${JSON.stringify(streak)}`);
+                setStreak(streak);
             })
             .catch(() => {
                 alert('Error while fetching tasks');
             });
     }, []);
+
+    // const updateStreak = ({ last_checkin_date, owner }: DailyStreakCreateType) => {
+
+    // };
 
     return (
         <div className="rewards-container w-100% h-[100%]  flex flex-col items-center justify-evenly ">
@@ -45,29 +58,97 @@ export default function DailyRewards() {
                     <div className="reward-content flex flex-col w-[90%] h-[80%] mx-auto flex-center">
                         <div className="h-[100%] flex justify-center items-center ">
                             <div className="reward-child w-[100%] h-[100%] z-10  flex-col justify-center">
-                                <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
-                                    <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 1</p>
-                                        <div className="text-claim rounded-[40px]">
-                                            <h1 className='text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]'>Claim</h1></div> </div>
-                                </div>
-                                <div id="diamond-narrow" className="z-10 relative">
-                                    <div className="content bg-orange-400 w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 2</h1> </div>
-                                </div>
-                                <div id="diamond-narrow" className="z-10 relative">
-                                    <div className="content bg-orange-400  w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 3</h1> </div>
-                                </div>
-                                <div id="diamond-narrow" className="z-10 relative">
-                                    <div className="content bg-orange-400  w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 4</h1> </div>
-                                </div>
-                                <div id="diamond-narrow" className="z-10 relative">
-                                    <div className="content bg-orange-400   w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 5</h1> </div>
-                                </div>
-                                <div id="diamond-narrow" className="z-10 relative">
-                                    <div className="content bg-orange-400 w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 6</h1> </div>
-                                </div>
-                                <div id="diamond-narrow" className="z-10 relative">
-                                    <div className="content bg-orange-400 border-main w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 7</h1> </div>
-                                </div>
+                                {streak?.current_streak === 1 ? (
+                                    <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
+                                            <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 1</p>
+                                                <div className="text-claim rounded-[40px]">
+                                                    <h1 className='text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]'>Claim</h1></div> </div>
+                                        </div>
+                                ) :
+                                    (
+                                        <div id="diamond-narrow" className="z-10 relative">
+                                            <div className="content bg-orange-400 w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 1</h1> </div>
+                                        </div>
+                                    )
+                                }
+                                {streak?.current_streak === 2 ? (
+                                    <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
+                                        <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 2</p>
+                                            <div className="text-claim rounded-[40px]">
+                                                <h1 className='text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]'>Claim</h1></div> </div>
+                                    </div>
+                                ) :
+                                    (
+                                        <div id="diamond-narrow" className="z-10 relative">
+                                            <div className="content bg-orange-400 w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 2</h1> </div>
+                                        </div>
+                                    )
+                                }
+                                {streak?.current_streak === 3 ? (
+                                    <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
+                                        <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 3</p>
+                                            <div className="text-claim rounded-[40px]">
+                                                <h1 className='text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]'>Claim</h1></div> </div>
+                                    </div>
+                                ) :
+                                    (
+                                        <div id="diamond-narrow" className="z-10 relative">
+                                            <div className="content bg-orange-400 w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 3</h1> </div>
+                                        </div>
+                                    )
+                                }
+                                {streak?.current_streak === 4 ? (
+                                    <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
+                                        <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 4</p>
+                                            <div className="text-claim rounded-[40px]">
+                                                <h1 className='text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]'>Claim</h1></div> </div>
+                                    </div>
+                                ) :
+                                    (
+                                        <div id="diamond-narrow" className="z-10 relative">
+                                            <div className="content bg-orange-400 w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 4</h1> </div>
+                                        </div>
+                                    )
+                                }
+                                {streak?.current_streak === 5 ? (
+                                    <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
+                                        <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 5</p>
+                                            <div className="text-claim rounded-[40px]">
+                                                <h1 className='text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]'>Claim</h1></div> </div>
+                                    </div>
+                                ) :
+                                    (
+                                        <div id="diamond-narrow" className="z-10 relative">
+                                            <div className="content bg-orange-400 w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 5</h1> </div>
+                                        </div>
+                                    )
+                                }
+                                {streak?.current_streak === 6 ? (
+                                    <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
+                                        <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 6</p>
+                                            <div className="text-claim rounded-[40px]">
+                                                <h1 className='text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]'>Claim</h1></div> </div>
+                                    </div>
+                                ) :
+                                    (
+                                        <div id="diamond-narrow" className="z-10 relative">
+                                            <div className="content bg-orange-400 w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 6</h1> </div>
+                                        </div>
+                                    )
+                                }
+                                {streak?.current_streak === 7 ? (
+                                    <div id="diamond-narrow" className="z-10 relative w-fit bg-black" onClick={() => { setDailyRewardsClaimed(true) }}>
+                                        <div className="content bg-gradient-to-b from-cyan-600 w-[100%]"><p className='text-white text-xs font-bold'>Day 7</p>
+                                            <div className="text-claim rounded-[40px]">
+                                                <h1 className='text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]'>Claim</h1></div> </div>
+                                    </div>
+                                ) :
+                                    (
+                                        <div id="diamond-narrow" className="z-10 relative">
+                                            <div className="content bg-orange-400 w-[100%]"> <h1 className='text-white text-2xl font-bold '>Day 7</h1> </div>
+                                        </div>
+                                    )
+                                }
                             </div>
                         </div>
                         <div className="rewards-footer w-[100%] h-[10%] mx-auto flex-center">

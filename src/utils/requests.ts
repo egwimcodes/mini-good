@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-catch */
 import { MakeRequest } from "./axiosCall";
 import { AuthRoutes } from "./authEndpoints";
-import { Auth, AuthLogin, TaskCompletionType } from "@/types";
+import { Auth, AuthLogin, DailyStreakCreateType, TaskCompletionType } from "@/types";
 
 interface RequestConfig {
     path: string;
@@ -170,6 +170,25 @@ async function RetriveDailyStreak() {
 
 
 
+async function DailyStreakCreate({ last_checkin_date, owner }: DailyStreakCreateType) {
+    try {
+    const requestMe= {
+        path: AuthRoutes.DAILY_STREAK,
+        method: 'POST',
+        contentType: 'application/json', // You can omit this if using the default
+        removeAuth: false, // Assuming you need authentication
+        data: {
+            last_checkin_date, 
+            owner
+    },
+    };
+        const response = await MakeRequest(requestMe);
+        return response;
+    } catch (error) {
+        alert(`{'Error from RetriveTasksCompletion :', ${error}}`);
+        throw error;
+    }
+}
 
 
 
@@ -181,5 +200,6 @@ export {
     RetriveTasks,
     TaskCompletion,
     RetriveWallet,
-    RetriveDailyStreak
+    RetriveDailyStreak,
+    DailyStreakCreate
 }

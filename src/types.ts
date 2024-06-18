@@ -125,3 +125,9 @@ export type TaskCompletionType = {
   task_url: string,
   avater: string
 }
+
+
+export type DailyStreakCreateType = {
+  last_checkin_date: string,
+  owner: number,
+}
