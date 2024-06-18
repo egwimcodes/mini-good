@@ -18,9 +18,12 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const response = await fetchAccessToken();
+      alert(`Before Try ${JSON.stringify(response.data.accessToken.value, null, 2)}`);
+
       try {
-        const response = await fetchAccessToken();
         if (response.data.accessToken.value === "") {
+          alert(`After Try ${JSON.stringify(response.data.accessToken.value, null, 2)}`);
           localStorage.clear()
           try {
             const userData = webAppData.initDataUnsafe;
