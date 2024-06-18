@@ -23,7 +23,6 @@ const Home = () => {
 
       try {
         if (response.data.accessToken.value === "") {
-          alert(`After Try ${JSON.stringify(response.data.accessToken.value, null, 2)}`);
           localStorage.clear()
           try {
             const userData = webAppData.initDataUnsafe;
@@ -79,6 +78,7 @@ const Home = () => {
             .then(async (e) => {
               if (e.name === "AxiosError") {
                 try {
+                  localStorage.clear()
                   const userInfo = {
                     password: `${userData.user.id}`,
                     username: userData.user.username,
@@ -99,6 +99,10 @@ const Home = () => {
                       RetriveMe()
                         .then((e) => {
                           setUser(e);
+                          const balance = e.balance;
+                          localStorage.setItem('balance', String(balance));
+                          const b_toSave = localStorage.getItem('balance');
+                          alert(` Login Register ${b_toSave}`);
                           setIsLoading(false);
                         })
                         .catch((e) => {
@@ -124,6 +128,7 @@ const Home = () => {
                 RetriveMe()
                   .then((res) => {
                     setUser(res);
+                    alert(`okey ${JSON.stringify(res, null, 2)}`);
                     setIsLoading(false);
                   })
                   .catch((e) => {
