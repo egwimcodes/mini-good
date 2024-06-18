@@ -19,6 +19,7 @@ export default function DailyRewards() {
     const [dailyRewardsClaimed, setDailyRewardsClaimed] = useState(false);
     const [streak, setStreak] = useState<DailyStreakRetrival | null>(null);
     const [canClaim, setCanClaim] = useState(false);
+    const [claimedDays, setClaimedDays] = useState<number[]>([]); // Track claimed days
 
     useEffect(() => {
         RetriveDailyStreak()
@@ -34,21 +35,32 @@ export default function DailyRewards() {
             });
     }, []);
 
+    const handleClaim = (day: number) => {
+        if (!claimedDays.includes(day)) {
+            setClaimedDays([...claimedDays, day]);
+            setDailyRewardsClaimed(true);
+        }
+    };
+
     const renderReward = (day: number) => {
         const isCurrentDay = streak?.current_streak === day;
         const canClaimDay = canClaim && isCurrentDay;
+        const isClaimed = claimedDays.includes(day);
 
         return (
             <div
                 id="diamond-narrow"
+                key={day}
                 className={`z-10 relative ${canClaimDay ? 'bg-black' : ''}`}
-                onClick={() => { if (canClaimDay) setDailyRewardsClaimed(true) }}
+                onClick={() => { if (canClaimDay) handleClaim(day) }}
             >
                 <div className={`content ${canClaimDay ? 'bg-gradient-to-b from-cyan-600' : 'bg-orange-400'} w-[100%]`}>
                     <p className="text-white text-xs font-bold">Day {day}</p>
                     {canClaimDay && (
                         <div className="text-claim rounded-[40px]">
-                            <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">Claim</h1>
+                            <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
+                                {isClaimed ? 'Claimed' : 'Claim'}
+                            </h1>
                         </div>
                     )}
                 </div>
