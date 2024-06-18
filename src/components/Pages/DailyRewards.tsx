@@ -4,6 +4,7 @@ import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak } from '@/utils/requests';
+import { isStreakContinued } from '@/utils/dateUtils';
 //import { DailyStreakCreateType } from '@/types';
 
 interface DailyStreakRetrival {
@@ -23,10 +24,10 @@ export default function DailyRewards() {
         RetriveDailyStreak()
             .then((streak) => {
                 const lastDate = streak.last_checkin_date;
-                if (lastDate === null) {
-                    alert(JSON.stringify(lastDate, null, 2));
-                    alert(JSON.stringify(streak, null, 2));
-                }else{
+                if (streak.last_checkin_date === null) {
+                    alert(isStreakContinued(streak.date_started))
+                } else {
+                    isStreakContinued(lastDate);
                     alert(`From not Null ${JSON.stringify(lastDate, null, 2)}`);
                     alert(JSON.stringify(streak, null, 2));
                 }
