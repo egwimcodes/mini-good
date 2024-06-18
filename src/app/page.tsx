@@ -21,6 +21,7 @@ const Home = () => {
       try {
         const response = await fetchAccessToken();
         if (response.data.accessToken.value === "") {
+          localStorage.clear()
           try {
             const userData = webAppData.initDataUnsafe;
             const userInfo = {
@@ -42,8 +43,9 @@ const Home = () => {
                 // Retrieve user data after registration
                 RetriveMe()
                   .then((e) => {
-                    localStorage.setItem("balance", '0');
                     setUser(e);
+                    const balance = e.balance;
+                    localStorage.setItem('balance', String(balance));
                     setIsLoading(false);
                   })
                   .catch((e) => {
