@@ -20,13 +20,11 @@ export default function DailyRewards() {
     const [streak, setStreak] = useState<DailyStreakRetrival | null>(null);
     const [canClaim, setCanClaim] = useState(false);
     const [claimedDays, setClaimedDays] = useState<number[]>([]);
-    const [lastCheck, setLastCheck] = useState<string>('');
 
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
                 const lastCheckin = streak.last_checkin_date || streak.date_started;
-                setLastCheck(lastCheckin);
                 const canClaim = isStreakContinued(lastCheckin);
 
                 setCanClaim(canClaim);
