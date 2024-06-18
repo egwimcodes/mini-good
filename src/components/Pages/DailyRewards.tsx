@@ -24,11 +24,10 @@ export default function DailyRewards() {
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
-                alert(JSON.stringify(streak.last_checkin_date, null, 2));
                 const lastCheckin = streak.last_checkin_date || streak.date_started;
-                const canClaim = isStreakContinued(lastCheckin) && !isWithin24Hours(lastCheckin);
+                const canClaimStreak = isStreakContinued(lastCheckin) && !isWithin24Hours(lastCheckin);
 
-                setCanClaim(canClaim);
+                setCanClaim(canClaimStreak);
                 setStreak(streak);
             })
             .catch(() => {
@@ -44,7 +43,7 @@ export default function DailyRewards() {
     };
 
     const handleClaim = async (day: number) => {
-        if (!claimedDays.includes(day) && streak) {
+        if (!claimedDays.includes(day) && streak && canClaim) {
             try {
                 const currentDate = new Date().toISOString().split('T')[0];
                 await DailyStreakCreate({
@@ -53,6 +52,7 @@ export default function DailyRewards() {
                 });
                 setClaimedDays([...claimedDays, day]);
                 setDailyRewardsClaimed(true);
+                setCanClaim(false); // Prevent further claims until the next day
             } catch (error) {
                 console.error('Error claiming daily reward:', error);
                 alert('Error claiming daily reward');
@@ -131,5 +131,4 @@ export default function DailyRewards() {
             )}
         </div>
     );
-
 }
