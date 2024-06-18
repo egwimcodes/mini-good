@@ -4,7 +4,7 @@ import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak } from '@/utils/requests';
-//import { DailyStreakCreateType } from '@/types';
+import { DailyStreakCreateType } from '@/types';
 
 interface DailyStreakRetrival {
     id: number,
@@ -14,6 +14,7 @@ interface DailyStreakRetrival {
     owner: number
 }
 export default function DailyRewards() {
+    //const [streakData, setStreakData] = useState<DailyStreakRetrival>();
     const [dailyClaim, setDailyClaim] = useState(false);
     const [dailyRewardsClaimed, setDailyRewardsClaimed] = useState(false);
     const [streak, setStreak] = useState<DailyStreakRetrival>();
@@ -21,6 +22,8 @@ export default function DailyRewards() {
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
+                const data = streak.data
+                alert(JSON.stringify(data, null, 2));
                 setStreak(streak);
             })
             .catch(() => {
@@ -28,9 +31,9 @@ export default function DailyRewards() {
             });
     }, []);
 
-    // const updateStreak = ({ last_checkin_date, owner }: DailyStreakCreateType) => {
+    const updateStreak = ({ last_checkin_date, owner }: DailyStreakCreateType) => {
 
-    // };
+    };
 
     return (
         <div className="rewards-container w-100% h-[100%]  flex flex-col items-center justify-evenly ">
