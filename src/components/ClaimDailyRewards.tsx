@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 // import coinsack from "../../assets/coin-stack.png";
 
@@ -11,10 +12,7 @@ interface PopUpComfirmationProps {
 }
 
 export default function ClaimDailyRewards({ isopen, isClose }: PopUpComfirmationProps) {
-
-    const handleDailyStreak = () => {
-        alert("Daily Streak Claimed!")
-    }
+    const [showWin, setShowWin] = useState(false);
 
     return (
         <>
@@ -32,16 +30,22 @@ export default function ClaimDailyRewards({ isopen, isClose }: PopUpComfirmation
 
                             <div className="scroll-container  claim-streak h-[30%] w-[80vw] flex flex-row items-center justify-evenly overflow-x-auto my-5 py-2">
                                 <div className="streak w-[25vw] min-w-[25vw] h-[23%] relative flex flex-col item justify-center mr-1 ">
-                                    <div className="coin-stack-content flex flex-col items-center mb-5">
-                                        <Image className="shine-coin w-10" width={100} height={100} src="/good-coin.png" alt="" />
-                                        <h1 className="text-yellow-500 text-3xl font-semibold ">10K</h1>
-                                    </div>
+                                    {showWin ? (
+                                        <div className="coin-stack-content flex flex-col items-center mb-5">
+                                            <Image className="shine-coin w-[100%]" width={200} height={200} src="/win.png" alt="" />
+                                        </div>
+                                    ) :
+                                        <div className="coin-stack-content flex flex-col items-center mb-5">
+                                            <Image className="shine-coin w-10" width={100} height={100} src="/good-coin.png" alt="" />
+                                            <h1 className="text-yellow-500 text-3xl font-semibold ">10K</h1>
+                                        </div>
+                                    }
                                 </div>
                             </div>
 
                             <div className="daily-comfirmation-btn w-full h-[20%] flex flex-row items-center justify-evenly mb-4">
-                                <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[10vh] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center " onClick={handleDailyStreak}>
-                                    <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem'>Claim</p>
+                                <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[10vh] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center " onClick={() => setShowWin(true)}>
+                                    <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem'>{showWin ? "CLAIMED" : "CLAIM NOW"}</p>
                                 </div>
 
                             </div>
