@@ -51,7 +51,7 @@ export default function Dashboard() {
         
     };
     useEffect(() => {
-        if (taps > 0 && progressBar > 0) {
+        if (taps >= 0) {
             setClaimChange(false);
         }
     }, [taps])
