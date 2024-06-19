@@ -49,10 +49,11 @@ export default function Dashboard() {
 
         // Increment balance when image is clicked
         // Increment balance when image is clicked
+        if (taps > 0) {
+            setClaimChange(false);
+        }
         if (progressBar > 0) {
-            if (taps > 0) {
-                setClaimChange(false);
-            }
+          
             setBalance(prev => prev + user.earn_per_tap);
             setTaps(prev => prev + user.earn_per_tap);
            
