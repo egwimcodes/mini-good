@@ -11,8 +11,7 @@ export const AuthRoutes = Object.freeze({
     TASKS: "/tasks/",
     TASKS_COMPLETE: "/tasks-complete/",
     TOKEN_REFRESH: "/token/refresh/",
-    TOP_UP_CREATE: "/top-up-create/",
-    TOP_UP: "/top-up/",
+    TOP_UP_CREATE: "/top-up/",
     WALLET: "/wallet/",
 
 })

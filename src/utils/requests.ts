@@ -194,7 +194,7 @@ async function DailyStreakCreate({ last_checkin_date, owner }: DailyStreakCreate
 async function TopUpCreate(topUpData: TopUpCreateType) {
     try {
         const requestMe = {
-            path: AuthRoutes.DAILY_STREAK,
+            path: AuthRoutes.TOP_UP_CREATE,
             method: 'POST',
             contentType: 'application/json', // You can omit this if using the default
             removeAuth: false, // Assuming you need authentication
