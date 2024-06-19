@@ -34,11 +34,8 @@ export default function PopUpComfirmationTask({ isopen, isClose, title, avatar, 
                         </div>
                         <a target='_blank'
                             rel='noopener noreferrer' href={task_url} className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly">
-                        <div className="claim-gift-btn w-[100%] ">
-                            <div></div>
                             <h4 className="text-light font-semibold">Start</h4>
                             <MdNavigateNext className="text-2xl text-light font-bold" />
-                            </div>
                         </a>
                     </div>
                 </div>
