@@ -29,22 +29,7 @@ export default function Dashboard() {
     const balanceString = balance.toString().length;
 
     useEffect(() => {
-        if (user.user_id && user) {
-            const topUpData: TopUpCreateType = {
-                id: user.id,
-                username: user.username,
-                user_id: user.user_id ?? user.id,
-                amount: user.earn_per_tap, // Use the current value of balance
-            };
-            // Call TopUpCreate with the latest topUpData
-            TopUpCreate(topUpData)
-                .then(() => {
-                    // Handle success if needed
-                })
-                .catch((error) => {
-                    alert(`Error Updating Balance: ${JSON.stringify(error)}`);
-                });
-        }
+        
     }, [balance, user]); // Include user as a dependency if user might change
 
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
@@ -67,6 +52,22 @@ export default function Dashboard() {
         }
         setCharge(prev => prev - 50);
         setProgressBar(prev => prev - user.earn_per_tap);
+        if (user.user_id && user) {
+            const topUpData: TopUpCreateType = {
+                id: user.id,
+                username: user.username,
+                user_id: user.user_id ?? user.id,
+                amount: user.earn_per_tap, // Use the current value of balance
+            };
+            // Call TopUpCreate with the latest topUpData
+            TopUpCreate(topUpData)
+                .then(() => {
+                    // Handle success if needed
+                })
+                .catch((error) => {
+                    alert(`Error Updating Balance: ${JSON.stringify(error)}`);
+                });
+        }
 
     };
     console.log(charge)
