@@ -130,20 +130,6 @@ const Home = () => {
                     console.error("Error when retrieving me:", e);
                     setIsLoading(false); // Handle error and stop loading
                   });
-
-                const interval = setInterval(() => {
-                  RetriveMe()
-                    .then((res) => {
-                      setUser(res);
-                      setIsLoading(false);
-                    })
-                    .catch((e) => {
-                      console.error("Error when retrieving me:", e);
-                      setIsLoading(false); // Handle error and stop loading
-                    });
-                }, 2000); // Interval set to 5000 milliseconds (5 seconds)
-
-                return () => clearInterval(interval);
               }
             })
             .catch((e) => {
@@ -161,12 +147,6 @@ const Home = () => {
       fetchData(); // Fetch data only if user is not already set
     }
   }, [user, webAppData]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
-
-
-
-
-
-
 
   useEffect(() => {
     if (webAppData) {

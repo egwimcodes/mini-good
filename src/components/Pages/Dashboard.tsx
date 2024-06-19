@@ -19,13 +19,13 @@ interface ClickEffect {
 
 export default function Dashboard() {
     const user = useUserContext();
-   // const storageBalance = localStorage.getItem('balance');
+    // const storageBalance = localStorage.getItem('balance');
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState('dashboard');
     const [balance, setBalance] = useState(user.balance);
     const [isClaiming, setIsClaiming] = useState(false);
     const [charge, setCharge] = useState(5000);
-    const [progressBar, setProgressBar] = useState(100);
+    const [progressBar, setProgressBar] = useState(user.tap_energy);
 
     useEffect(() => {
         if (user.user_id && user) {
@@ -33,7 +33,7 @@ export default function Dashboard() {
                 id: user.id,
                 username: user.username,
                 user_id: user.user_id ?? user.id,
-                amount: balance, // Use the current value of balance
+                amount: user.earn_per_tap, // Use the current value of balance
             };
 
             // Call TopUpCreate with the latest topUpData
@@ -67,7 +67,7 @@ export default function Dashboard() {
         }
         setCharge(prev => prev - 50);
         setProgressBar(prev => prev - user.earn_per_tap);
-        
+
     };
     console.log(charge)
     return (
