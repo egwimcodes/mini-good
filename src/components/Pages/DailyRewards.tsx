@@ -4,7 +4,7 @@ import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak, DailyStreakCreate } from '@/utils/requests';
-import { isStreakContinued, isWithin24Hours } from '@/utils/dateUtils';
+import { isStreakContinued, isSameDate } from '@/utils/dateUtils';
 import MiniPreloader from "./MiniPleloader";
 
 interface DailyStreakRetrival {
@@ -29,7 +29,7 @@ export default function DailyRewards() {
                 const lastCheckin = streak.last_checkin_date || streak.date_started;
                 alert(` last checkin ${streak.last_checkin_date}`);
                 alert(` Date started ${streak.date_started}`);
-                const canClaimStreak = isStreakContinued(lastCheckin) && !isWithin24Hours(lastCheckin);
+                const canClaimStreak = isStreakContinued(lastCheckin) && !isSameDate(lastCheckin, new Date());
 
                 setCanClaim(canClaimStreak);
                 setStreak(streak);
@@ -69,7 +69,7 @@ export default function DailyRewards() {
         const currentDate = new Date().toISOString().split('T')[0];
         const isCurrentDay = streak?.current_streak === day;
         const canClaimDay = canClaim && isCurrentDay;
-        const isClaimed = claimedDays.includes(day) || (streak && streak.last_checkin_date === currentDate);
+        const isClaimed = claimedDays.includes(day) || (streak && isSameDate(streak.last_checkin_date, new Date()));
 
         return (
             <div
