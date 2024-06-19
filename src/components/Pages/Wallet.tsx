@@ -32,7 +32,7 @@ export default function Wallet({ setShowProfile }: WalletProps) {
             console.log(error)
             setStillFetching(false);
         }
-    })
+    }, [])
     if (stillFetching) return <MiniPreloader />;
 
   return (
