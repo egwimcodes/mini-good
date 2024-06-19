@@ -50,9 +50,12 @@ export default function Dashboard() {
 
         
     };
-    if (taps > 0) {
-        setClaimChange(false);
-    }
+    useEffect(() => {
+        if (taps > 0) {
+            setClaimChange(false);
+        }
+    }, [taps])
+   
     const claimTaps = () => {
         if (user.user_id && taps > 0) {
             const topUpData: TopUpCreateType = {
