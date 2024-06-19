@@ -26,6 +26,7 @@ export default function Dashboard() {
     const [isClaiming, setIsClaiming] = useState(false);
     const [charge, setCharge] = useState(5000); 
     const [taps, setTaps] = useState(0);
+    const [claimChange, setClaimChange] = useState(false);
     const [progressBar, setProgressBar] = useState(user.tap_energy);
     const balanceString = balance.toString().length;
 
@@ -66,6 +67,7 @@ export default function Dashboard() {
             // Call TopUpCreate with the latest topUpData
             TopUpCreate(topUpData)
                 .then(() => {
+                    setClaimChange(true);
                     // Handle success if needed
                 })
                 .catch((error) => {
@@ -136,8 +138,8 @@ export default function Dashboard() {
                         </div>
 
                         <div className='h-[20%] absolute bottom-0 w-[80%] flex flex-col'>
-                            <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[40%] rounded-[5px] p-1  bg-gradient-to-b from-slate-400 bg-slate-900 flex-center mx-auto flex-evenly border-2 border-main" onClick={claimTaps}>
-                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem'>{taps}</p>  <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem'>Claim</p>
+                            <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[40%] rounded-[5px] p-1  bg-gradient-to-b from-slate-400 bg-slate-900 flex-center mx-auto flex-evenly border-2 border-main" style={{ borderColor: claimChange ? "orange" : "" }} onClick={claimTaps}>
+                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem' style={{ color: claimChange ? "orange" : "" }}>{taps}</p>  <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem' style={{ color: claimChange ? "orange" : "" }}>Claim</p>
                             </div>
                             <div className="progress-text w-[100%] flex justify-between items-center">
                                 <div className="left-progress-text flex flex-nowrap">
