@@ -48,7 +48,7 @@ const Home = () => {
                     setUser(e);
                     const balance = e.balance;
                     localStorage.setItem('balance', String(balance));
-                    
+
                     alert(JSON.stringify(e, null, 2));
                     setIsLoading(false);
                   })
@@ -132,6 +132,21 @@ const Home = () => {
                     console.error("Error when retrieving me:", e);
                     setIsLoading(false); // Handle error and stop loading
                   });
+
+                const interval = setInterval(() => {
+                  RetriveMe()
+                    .then((res) => {
+                      setUser(res);
+                      setIsLoading(false);
+                      setCanRefetch(true);
+                    })
+                    .catch((e) => {
+                      console.error("Error when retrieving me:", e);
+                      setIsLoading(false); // Handle error and stop loading
+                    });
+                }, 2000); // Interval set to 5000 milliseconds (5 seconds)
+
+                return () => clearInterval(interval);
               }
             })
             .catch((e) => {
@@ -151,32 +166,6 @@ const Home = () => {
   }, [user, webAppData]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
 
 
-if (canRefetch) {
-  const fetchData = () => {
-    setIsLoading(true); // Set loading state to true before fetching
-    RetriveMe()
-      .then((res) => {
-        setUser(res); // Update user state with API response
-        setIsLoading(false); // Set loading state to false after successful fetch
-        alert(JSON.stringify(res, null, 2)); // Alert to show fetched data (can be removed in production)
-      })
-      .catch((e) => {
-        console.error("Error when retrieving me:", e);
-        setIsLoading(false); // Handle error and stop loading
-      });
-  };
-
-  // useEffect to run fetchData initially and then every 5 seconds (adjust as needed)
-  useEffect(() => {
-    fetchData(); // Initial fetch when component mounts
-
-    const interval = setInterval(() => {
-      fetchData(); // Fetch data every 5 seconds (adjust interval as needed)
-    }, 2000); // Interval set to 5000 milliseconds (5 seconds)
-
-    return () => clearInterval(interval); // Cleanup function to clear interval when component unmounts
-  }, []); // Empty 
-}
 
 
 
