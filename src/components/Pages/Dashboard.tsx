@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { IoMdWallet } from 'react-icons/io';
-import { IoMdAdd } from 'react-icons/io';
+import { IoMdWallet, IoMdAdd } from 'react-icons/io';
 import Profile from './Profile';
 import Wallet from './Wallet';
 import { useUserContext } from '@/hooks/UserContext';
@@ -9,7 +8,6 @@ import BuyBot_Boost from './BuyBot_Boost';
 import { MdNavigateNext } from 'react-icons/md';
 import { TopUpCreateType } from '@/types';
 import { TopUpCreate } from '@/utils/requests';
-//import { TopUpCreate } from '@/utils/requests';
 
 interface ClickEffect {
     id: number;
@@ -19,7 +17,6 @@ interface ClickEffect {
 
 export default function Dashboard() {
     const user = useUserContext();
-    // const storageBalance = localStorage.getItem('balance');
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState('dashboard');
     const [balance, setBalance] = useState(user.balance);
@@ -30,61 +27,50 @@ export default function Dashboard() {
     const [progressBar, setProgressBar] = useState(user.tap_energy);
     const balanceString = balance.toString().length;
 
-    useEffect(() => {
-
-    }, [balance, user]); // Include user as a dependency if user might change
-
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
 
         const newEffect: ClickEffect = { id: Date.now(), x, y };
-
         setClickEffects((prevEffects) => [...prevEffects, newEffect]);
 
         setTimeout(() => {
             setClickEffects((prevEffects) => prevEffects.filter(effect => effect.id !== newEffect.id));
         }, 2000);
 
-        // Increment balance when image is clicked
-        // Increment balance when image is clicked
+        // Update taps and claimChange based on conditions
+        if (progressBar > 0) {
+            setBalance(prev => prev + user.earn_per_tap);
+            setTaps(prev => prev + user.earn_per_tap);
+            setProgressBar(prev => prev - user.earn_per_tap);
+        }
+
+        setCharge(prev => prev - 50);
+
         if (taps > 0) {
             setClaimChange(false);
         }
-        if (progressBar > 0) {
-          
-            setBalance(prev => prev + user.earn_per_tap);
-            setTaps(prev => prev + user.earn_per_tap);
-           
-        }
-        setCharge(prev => prev - 50);
-        setProgressBar(prev => prev - user.earn_per_tap);
-
-
     };
 
     const claimTaps = () => {
-        if (user.user_id && user) {
-            if (taps > 0) {
-                const topUpData: TopUpCreateType = {
-                    amount: taps, // Use the current value of balance
-                };
-                // Call TopUpCreate with the latest topUpData
-                TopUpCreate(topUpData)
-                    .then(() => {
-                        setClaimChange(true);
-                        setTaps(0);
-                        // Handle success if needed
-                    })
-                    .catch((error) => {
-                        alert(`Error Updating Balance: ${JSON.stringify(error)}`);
-                    });
-            }
-
+        if (user.user_id && taps > 0) {
+            const topUpData: TopUpCreateType = {
+                amount: taps, // Use the current value of balance
+            };
+            // Call TopUpCreate with the latest topUpData
+            TopUpCreate(topUpData)
+                .then(() => {
+                    setClaimChange(true);
+                    setTaps(0); // Reset taps after claiming
+                    // Handle success if needed
+                })
+                .catch((error) => {
+                    alert(`Error Updating Balance: ${JSON.stringify(error)}`);
+                });
         }
-    }
-    console.log(charge)
+    };
+
     return (
         <>
             {showProfile === 'dashboard' && (
@@ -147,8 +133,9 @@ export default function Dashboard() {
                         </div>
 
                         <div className='h-[20%] absolute bottom-0 w-[80%] flex flex-col'>
-                            <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[40%] rounded-[5px] p-1  bg-gradient-to-b from-slate-400 bg-slate-900 flex-center mx-auto flex-evenly "  onClick={claimTaps}>
-                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{taps}</p>  <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{ claimChange ? "Claimed" : "Claim" }</p>
+                            <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[40%] rounded-[5px] p-1  bg-gradient-to-b from-slate-400 bg-slate-900 flex-center mx-auto flex-evenly " onClick={claimTaps}>
+                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{taps}</p>
+                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{claimChange ? "Claimed" : "Claim"}</p>
                             </div>
                             <div className="progress-text w-[100%] flex justify-between items-center">
                                 <div className="left-progress-text flex flex-nowrap">
