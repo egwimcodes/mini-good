@@ -33,7 +33,8 @@ export default function PopUpComfirmationTask({ isopen, isClose, title, avatar, 
                                 <p className="font-semibold text-orange-400">GoodCoin</p>
                             </div>
                         </div>
-                        <a href={task_url} className="text-light font-semibold  ">
+                        <a target='_blank'
+            rel='noopener noreferrer' href={task_url}>
                         <div className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly">
                             <div></div>
                             <h4 className="text-light font-semibold">Start</h4>
