@@ -25,7 +25,6 @@ export default function Task() {
             .then((tasks) => {
                 setRetrievedTasks(tasks);
                 setStillFetching(false); // Set fetching to false after tasks are retrieved
-                alert(JSON.stringify(tasks))
             })
             .catch(() => {
                 alert('Error while fetching tasks');
@@ -38,6 +37,7 @@ export default function Task() {
     const selectedTaskFunc = (task: Task) => {
         setSelectedTask(task);
         setIsClaiming(true);
+        alert(task.task_url);
     };
 
     return (
