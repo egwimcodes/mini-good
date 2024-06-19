@@ -37,7 +37,6 @@ export default function Task() {
     const selectedTaskFunc = (task: Task) => {
         setSelectedTask(task);
         setIsClaiming(true);
-        alert(task.task_url);
     };
 
     return (
