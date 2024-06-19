@@ -193,6 +193,7 @@ const Home = () => {
 
   // Render HomePage only when user data is loaded
   return (
+         
     <UserContext.Provider value={user}>
       <HomePage />
     </UserContext.Provider>
