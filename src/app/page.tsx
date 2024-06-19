@@ -32,7 +32,6 @@ const Home = () => {
               referral_code: userData.start_param ?? "",
               is_premium_user: userData.user.is_premium_user ?? false,
             };
-            alert(JSON.stringify(userInfo, null, 2));
             Register(userInfo)
               .then(async (e) => {
                 const dataToStore =
@@ -47,8 +46,6 @@ const Home = () => {
                     setUser(e);
                     const balance = e.balance;
                     localStorage.setItem('balance', String(balance));
-
-                    alert(JSON.stringify(e, null, 2));
                     setIsLoading(false);
                   })
                   .catch((e) => {
@@ -99,7 +96,6 @@ const Home = () => {
                           const balance = e.balance;
                           localStorage.setItem('balance', String(balance));
                           const b_toSave = localStorage.getItem('balance');
-                          alert(` Login Register ${b_toSave}`);
                           setIsLoading(false);
                         })
                         .catch((e) => {
