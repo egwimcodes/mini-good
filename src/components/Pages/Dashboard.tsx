@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { IoMdWallet, IoMdAdd } from 'react-icons/io';
 import Profile from './Profile';
@@ -70,7 +70,7 @@ export default function Dashboard() {
                 });
         }
     };
-
+console.log(charge)
     return (
         <>
             {showProfile === 'dashboard' && (
