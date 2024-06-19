@@ -26,6 +26,7 @@ export default function Dashboard() {
     const [isClaiming, setIsClaiming] = useState(false);
     const [charge, setCharge] = useState(5000);
     const [progressBar, setProgressBar] = useState(user.tap_energy);
+    const balanceString = balance.toString().length;
 
     useEffect(() => {
         if (user.user_id && user) {
@@ -94,7 +95,7 @@ export default function Dashboard() {
                                 <div className="balance-coin-amount flex-row flex-between h-[60%]">
                                     <div className="coin-balance w-[80%] h-[100%] flex-center">
                                         <Image src="/goodcoing.png" className="coin-icon sm:w-[17%]" width={25} height={25} alt="" />
-                                        <p className='text-2xl h-[100%] w-[70%] flex-row flex-evenly'>{balance}</p>
+                                        <p className={`text-2xl h-[100%] w-[70%] ${balanceString > 6 ? 'text-sm' : ''}flex-row flex-evenly`}>{balance}</p>
                                     </div>
                                     <div className="icon-add border-1 w-[20%] h-[80%] rounded-[5px] border-white p-1 bg-gradient-to-b from-slate-600 bg-slate-900 flex-center">
                                         <IoMdAdd className='text-main' />
