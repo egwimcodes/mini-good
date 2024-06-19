@@ -25,6 +25,7 @@ export default function Task() {
             .then((tasks) => {
                 setRetrievedTasks(tasks);
                 setStillFetching(false); // Set fetching to false after tasks are retrieved
+                alert(JSON.stringify(tasks))
             })
             .catch(() => {
                 alert('Error while fetching tasks');
