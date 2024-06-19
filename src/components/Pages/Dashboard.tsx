@@ -60,7 +60,7 @@ export default function Dashboard() {
     };
 
     const claimTaps = () => {
-        if (user.user_id && user) {
+        if (user.user_id && user && taps > 0) {
             const topUpData: TopUpCreateType = {
                 amount: taps, // Use the current value of balance
             };
