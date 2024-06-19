@@ -66,7 +66,6 @@ export default function DailyRewards() {
     };
 
     const renderReward = (day: number) => {
-        const currentDate = new Date().toISOString().split('T')[0];
         const isCurrentDay = streak?.current_streak === day;
         const canClaimDay = canClaim && isCurrentDay;
         const isClaimed = claimedDays.includes(day) || (streak && isSameDate(streak.last_checkin_date, new Date()));
