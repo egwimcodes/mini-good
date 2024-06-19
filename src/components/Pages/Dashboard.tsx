@@ -25,8 +25,40 @@ export default function Dashboard() {
     const [taps, setTaps] = useState(0);
     const [claimChange, setClaimChange] = useState(false);
     const [progressBar, setProgressBar] = useState(user.tap_energy);
+    const [earnPerTap, setEarnParTap] = useState(user.earn_per_tap)
     const balanceString = balance.toString().length;
 
+
+
+    useEffect(() => {
+        if (taps > 0) {
+            setClaimChange(false);
+        }
+
+        if (balance >= 10000 && balance < 20000) {
+            setEarnParTap(2);
+        } else if (balance >= 20000 && balance < 30000) {
+            setEarnParTap(3);
+        } else if (balance >= 30000 && balance < 40000) {
+            setEarnParTap(4);
+        } else if (balance >= 40000 && balance < 50000) {
+            setEarnParTap(5);
+        } else if (balance >= 50000 && balance < 60000) {
+            setEarnParTap(5);
+        } else if (balance >= 60000 && balance < 70000) {
+            setEarnParTap(6);
+        } else if (balance >= 70000 && balance < 80000) {
+            setEarnParTap(7);
+        } else if (balance >= 80000 && balance < 90000) {
+            setEarnParTap(8);
+        } else if (balance >= 90000 && balance < 100000) {
+            setEarnParTap(9);
+        } else if (balance >= 100000) {
+            setEarnParTap(10);
+        }
+
+
+    }, [taps, user.balance])
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const x = event.clientX - rect.left;
@@ -41,20 +73,16 @@ export default function Dashboard() {
 
         // Update taps and claimChange based on conditions
         if (progressBar > 0) {
-            setBalance(prev => prev + user.earn_per_tap);
-            setTaps(prev => prev + user.earn_per_tap);
-            setProgressBar(prev => prev - user.earn_per_tap);
+            setBalance(prev => prev + earnPerTap);
+            setTaps(prev => prev + earnPerTap);
+            setProgressBar(prev => prev - earnPerTap);
         }
         
         setCharge(prev => prev - 50);
 
         
     };
-    useEffect(() => {
-        if (taps > 0) {
-            setClaimChange(false);
-        }
-    }, [taps])
+  
    
     const claimTaps = () => {
         if (user.user_id && taps > 0) {
@@ -129,7 +157,7 @@ console.log(charge)
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                        {progressBar > 0 ? `+${user.earn_per_tap}` : ""}
+                                        {progressBar > 0 ? `+${earnPerTap}` : ""}
                                     </span>
                                 ))}
                             </div>

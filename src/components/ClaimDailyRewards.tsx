@@ -27,7 +27,6 @@ export default function ClaimDailyRewards({ isopen, isClose, amount }: PopUpComf
                 alert(`Error Updating Balance: ${JSON.stringify(error)}`);
             });
     };
-    alert(amount);
 
     return (
         <>
