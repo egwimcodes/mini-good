@@ -5,7 +5,7 @@ import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak } from '@/utils/requests';
 import { isStreakContinued } from '@/utils/dateUtils';
-
+import MiniPreloader from "./MiniPleloader";
 interface DailyStreakRetrival {
     id: number,
     current_streak: number,
@@ -20,6 +20,8 @@ export default function DailyRewards() {
     const [streak, setStreak] = useState<DailyStreakRetrival | null>(null);
     const [canClaim, setCanClaim] = useState(false);
     const [claimedDays, setClaimedDays] = useState<number[]>([]); // Track claimed days
+    const [stillFetching, setStillFetching] = useState<boolean>(true);
+    
 
     useEffect(() => {
         RetriveDailyStreak()
@@ -29,12 +31,14 @@ export default function DailyRewards() {
 
                 setCanClaim(canClaim);
                 setStreak(streak);
+                setStillFetching(false);
             })
             .catch(() => {
                 alert('Error while fetching streak data');
+                setStillFetching(false);
             });
     }, []);
-
+    if (stillFetching) return <MiniPreloader />;
     const handleClaim = (day: number) => {
         if (!claimedDays.includes(day)) {
             setClaimedDays([...claimedDays, day]);
@@ -67,7 +71,7 @@ export default function DailyRewards() {
             </div>
         );
     };
-
+    
     return (
         <div className="rewards-container w-100% h-[100%] flex flex-col items-center justify-evenly">
             <div className="rewards-header w-[100%] h-[20%] flex flex-col items-center justify-between">
