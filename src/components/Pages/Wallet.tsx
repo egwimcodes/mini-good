@@ -23,15 +23,7 @@ export default function Wallet({ setShowProfile }: WalletProps) {
 
 
     useEffect(() => {
-        try {
-            RetriveWallet().then((wallet) => {
-                setWallet(wallet)
-                setStillFetching(false);
-            })
-        }catch (error) {
-            console.log(error)
-            setStillFetching(false);
-        }
+       
     }, [])
     if (stillFetching) return <MiniPreloader />;
 

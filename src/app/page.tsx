@@ -93,9 +93,6 @@ const Home = () => {
                       RetriveMe()
                         .then((e) => {
                           setUser(e);
-                          const balance = e.balance;
-                          localStorage.setItem('balance', String(balance));
-                          const b_toSave = localStorage.getItem('balance');
                           setIsLoading(false);
                         })
                         .catch((e) => {
