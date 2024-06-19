@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { IoMdWallet, IoMdAdd } from 'react-icons/io';
 import Profile from './Profile';
@@ -45,14 +45,14 @@ export default function Dashboard() {
             setTaps(prev => prev + user.earn_per_tap);
             setProgressBar(prev => prev - user.earn_per_tap);
         }
-
+        
         setCharge(prev => prev - 50);
 
-        if (taps > 0) {
-            setClaimChange(false);
-        }
+        
     };
-
+    if (taps > 0) {
+        setClaimChange(false);
+    }
     const claimTaps = () => {
         if (user.user_id && taps > 0) {
             const topUpData: TopUpCreateType = {
@@ -70,7 +70,7 @@ export default function Dashboard() {
                 });
         }
     };
-console.log(charge)
+
     return (
         <>
             {showProfile === 'dashboard' && (
@@ -133,8 +133,8 @@ console.log(charge)
                         </div>
 
                         <div className='h-[20%] absolute bottom-0 w-[80%] flex flex-col'>
-                            <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[40%] rounded-[5px] p-1  bg-gradient-to-b from-slate-400 bg-slate-900 flex-center mx-auto flex-evenly " onClick={claimTaps}>
-                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{taps}</p>
+                            <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[40%] rounded-[5px] p-1  bg-gradient-to-b from-slate-400 bg-slate-900 flex-center mx-auto flex-evenly " onClick={progressBar > 0 ? claimTaps: console.log}>
+                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{taps}</p>  
                                 <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{claimChange ? "Claimed" : "Claim"}</p>
                             </div>
                             <div className="progress-text w-[100%] flex justify-between items-center">
@@ -160,3 +160,5 @@ console.log(charge)
         </>
     );
 }
+
+
