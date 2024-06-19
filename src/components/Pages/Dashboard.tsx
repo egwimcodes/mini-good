@@ -27,6 +27,25 @@ export default function Dashboard() {
     const [charge, setCharge] = useState(5000);
     const [progressBar, setProgressBar] = useState(100);
 
+    useEffect(() => {
+        if (user.user_id && user) {
+            const topUpData: TopUpCreateType = {
+                id: user.id,
+                username: user.username,
+                user_id: user.user_id ?? user.id,
+                amount: balance, // Use the current value of balance
+            };
+
+            // Call TopUpCreate with the latest topUpData
+            TopUpCreate(topUpData)
+                .then(() => {
+                    // Handle success if needed
+                })
+                .catch((error) => {
+                    alert(`Error Updating Balance: ${JSON.stringify(error)}`);
+                });
+        }
+    }, [balance, user]); // Include user as a dependency if user might change
 
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
@@ -51,24 +70,6 @@ export default function Dashboard() {
         
     };
     console.log(charge)
-    
-    useEffect(() => {
-        if (user.user_id && user) {
-            const topUpData: TopUpCreateType = {
-                id: user.id,
-                username: user.username,
-                user_id: user.user_id ?? user.id,
-                amount: balance,
-            };
-            TopUpCreate(topUpData).then(() => {
-            }).catch((e) => {
-                alert(`Error Updating Balance: ${JSON.stringify(e)}`);
-            })
-      
-
-        }
-
-    }, [balance]);
     return (
         <>
             {showProfile === 'dashboard' && (
