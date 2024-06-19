@@ -70,7 +70,7 @@ const Profile: React.FC<ProfileProps> = ({ setShowProfile }) => {
                         <p className="text-base text-gray font-bold text-main mx-1">{ stats?.total_coins_grabbed}</p>
                     </div>
                 </div>
-                <hr className="w-[30vw] border-1 my-3 border-main mx-auto" />
+                <hr className="w-[70vw] border-1 my-3 border-main mx-auto" />
             </div>
         </div>
     );
