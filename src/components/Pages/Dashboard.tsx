@@ -68,6 +68,7 @@ export default function Dashboard() {
             TopUpCreate(topUpData)
                 .then(() => {
                     setClaimChange(true);
+                    setTaps(0);
                     // Handle success if needed
                 })
                 .catch((error) => {
