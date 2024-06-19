@@ -27,6 +27,8 @@ export default function DailyRewards() {
         RetriveDailyStreak()
             .then((streak) => {
                 const lastCheckin = streak.last_checkin_date || streak.date_started;
+                alert(` last checkin ${streak.last_checkin_date}`);
+                alert(` Date started ${streak.date_started}`);
                 const canClaimStreak = isStreakContinued(lastCheckin) && !isWithin24Hours(lastCheckin);
 
                 setCanClaim(canClaimStreak);
