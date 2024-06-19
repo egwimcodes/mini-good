@@ -13,7 +13,6 @@ interface PopUpComfirmationProps {
 }
 
 export default function PopUpComfirmationTask({ isopen, isClose, title, avatar, reward, task_url }: PopUpComfirmationProps) {
-    alert(task_url)
     return (
         <>{
             isopen && (
