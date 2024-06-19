@@ -15,6 +15,7 @@ type WalletProps = {
 // }
 
 export default function Wallet({ setShowProfile }: WalletProps) {
+    const [copyWallet, setCopyWallet] = useState(false)
 
 
   return (
@@ -28,8 +29,8 @@ export default function Wallet({ setShowProfile }: WalletProps) {
                       <div className="level flex flex-row items-center justify-center flex-nowrap">
                           <p className="text-base text-gray font-bold text-main mx-1">{0} USDc</p>
                       </div>
-                      <div className="credit w-[50vw] mx-auto mt-1 flex-row flex-center h-[5vh] bg-main rounded-3xl" onClick={() => alert(`HellO your wallet address is ${wallet?.address}`)}>
-                          <h3>Connect Wallet</h3>
+                      <div className="credit w-[50vw] mx-auto mt-1 flex-row flex-center h-[5vh] bg-main rounded-3xl" onClick={() => alert(`HellO your wallet address is ${11111111}`)}>
+                          <h3>{ copyWallet ? "Connect Wallet" : "Wallet Connected"}</h3>
                       </div>
                       
                   </div>
