@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { MdNavigateNext } from 'react-icons/md';
 import { useUserContext } from '@/hooks/UserContext';
+import { RetriveStats } from '@/utils/requests';
+import MiniPreloader from "./MiniPleloader";
 
 type ProfileProps = {
     setShowProfile: (value: string) => void;
@@ -9,7 +11,21 @@ type ProfileProps = {
 
 const Profile: React.FC<ProfileProps> = ({ setShowProfile }) => {
     const user = useUserContext();
+    const [stillFetching, setStillFetching] = useState<boolean>(true);
 
+    useEffect(() => {
+        try {
+            RetriveStats().then((stat) => {
+                alert(`From Stat ${JSON.stringify(stat)}`)
+                setStillFetching(false);
+            })
+        } catch (error) {
+            console.log(error)
+            setStillFetching(false);
+        }
+    }, [])
+
+    if (stillFetching) return <MiniPreloader />;
     return (
         <div className='w-[100vw] h-[90vh] text-light flex-col' onClick={() => setShowProfile("profile")}>
             <div className="profile-content w-[95vw] h-[30vh] flex-col flex-center">

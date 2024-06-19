@@ -212,7 +212,22 @@ async function TopUpCreate({ amount}: TopUpCreateType) {
 }
 
 
+async function RetriveStats() {
+    try {
+    const requestMe= {
+        path: AuthRoutes.STATS,
+        method: 'GET',
+        contentType: 'application/json', // You can omit this if using the default
+        removeAuth: false // Assuming you need authentication
+    };
 
+        const response = await MakeRequest(requestMe);
+        return response;
+    } catch (error) {
+        alert(`{'Error from RetrivStats', ${error}}`);
+        throw error;
+    }
+}
 
 export {
     Register,
@@ -224,5 +239,6 @@ export {
     RetriveWallet,
     RetriveDailyStreak,
     DailyStreakCreate,
-    TopUpCreate
+    TopUpCreate,
+    RetriveStats
 }
