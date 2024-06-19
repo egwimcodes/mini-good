@@ -120,8 +120,6 @@ const Home = () => {
                 }
               } else {
                 await setAccessToken(e.access);
-                localStorage.setItem('accessToken', String(e.access));
-
                 // Retrieve user data after successful login
                 RetriveMe()
                   .then((res) => {

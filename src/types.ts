@@ -149,6 +149,7 @@ export interface TopUpCreateType {
   is_invited?: boolean;
   address?: string;
   is_premium_user?: boolean;
+  amount?: number;
 }
 
 

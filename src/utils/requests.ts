@@ -191,7 +191,7 @@ async function DailyStreakCreate({ last_checkin_date, owner }: DailyStreakCreate
 }
 
 
-async function TopUpCreate({ id, username, user_id, balance }: TopUpCreateType) {
+async function TopUpCreate({ id, username, user_id, amount}: TopUpCreateType) {
     try {
         const requestMe = {
             path: AuthRoutes.TOP_UP_CREATE,
@@ -202,7 +202,7 @@ async function TopUpCreate({ id, username, user_id, balance }: TopUpCreateType) 
                 id: id,               
                 username: username,
                 user_id: user_id,
-                balance: balance,
+                amount: amount
             },
         };
 
