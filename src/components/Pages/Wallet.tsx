@@ -41,6 +41,7 @@ export default function Wallet({ setShowProfile }: WalletProps) {
                   <p className='text-xxxs font-semibold'>creadit your goodcoin wallet</p>
               </div>
               <div className="profile-content w-[95vw] h-[50vh] flex-col flex-center">
+                  <hr className="w-[70vw] border-1 my-3 border-main mx-auto" />
                   <div className="profile-contnt-items flex-col flex-center">
                       <h4 className="text-1xl font-bold">USDT</h4>
                       <div className="children-body flex flex-row items-center justify-evenly w-[95vw]" >
@@ -49,24 +50,7 @@ export default function Wallet({ setShowProfile }: WalletProps) {
                           <BsCopy className='text-xl text-gray text-slate-400'/>
                       </div>
                   </div>
-                  <hr className="w-[70vw] border-1 my-3 border-main mx-auto" />
-                  <div className="profile-contnt-items flex-col flex-center">
-                      <h4 className="text-1xl font-bold">USDT</h4>
-                      <div className="children-body flex flex-row items-center justify-evenly w-[95vw]" >
-                          <Image className="w-5" width={50} height={50} src='/usdt.png' draggable="false" alt="" />
-                          <p className="text-xxxs text-gray font-bold text-main mx-1">1A1zP1eP5QGe***</p>
-                          <BsCopy className='text-xl text-gray text-slate-400' />
-                      </div>
-                  </div>
-                  <hr className="w-[70vw] border-1 my-3 border-main mx-auto" />
-                  <div className="profile-contnt-items flex-col flex-center">
-                      <h4 className="text-1xl font-bold">USDT</h4>
-                      <div className="children-body flex flex-row items-center justify-evenly w-[95vw]" >
-                          <Image className="w-5" width={50} height={50} src='/usdt.png' draggable="false" alt="" />
-                          <p className="text-xxxs text-gray font-bold text-main mx-1">1A1zP1eP5QGe***</p>
-                          <BsCopy className='text-xl text-gray text-slate-400' />
-                      </div>
-                  </div>
+                 
                   <hr className="w-[70vw] border-1 my-3 border-main mx-auto" />
               </div>
 
