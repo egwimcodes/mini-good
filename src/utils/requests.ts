@@ -68,7 +68,7 @@ async function RetriveMe() {
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error fetching daily streak data:', ${error}}`);
+        console.log(`{'Error fetching Me data:', ${error}}`);
         throw error;
     }
 }
