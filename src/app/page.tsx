@@ -14,7 +14,8 @@ const Home = () => {
   const webAppData = useWebApp();
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or undefined
+  const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or 
+  const [canRefetch, setCanRefetch] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -125,7 +126,7 @@ const Home = () => {
                   .then((res) => {
                     setUser(res);
                     setIsLoading(false);
-                    alert(JSON.stringify(res, null, 2));
+                    setCanRefetch(true);
                   })
                   .catch((e) => {
                     console.error("Error when retrieving me:", e);
@@ -148,6 +149,38 @@ const Home = () => {
       fetchData(); // Fetch data only if user is not already set
     }
   }, [user, webAppData]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
+
+
+if (canRefetch) {
+  const fetchData = () => {
+    setIsLoading(true); // Set loading state to true before fetching
+    RetriveMe()
+      .then((res) => {
+        setUser(res); // Update user state with API response
+        setIsLoading(false); // Set loading state to false after successful fetch
+        alert(JSON.stringify(res, null, 2)); // Alert to show fetched data (can be removed in production)
+      })
+      .catch((e) => {
+        console.error("Error when retrieving me:", e);
+        setIsLoading(false); // Handle error and stop loading
+      });
+  };
+
+  // useEffect to run fetchData initially and then every 5 seconds (adjust as needed)
+  useEffect(() => {
+    fetchData(); // Initial fetch when component mounts
+
+    const interval = setInterval(() => {
+      fetchData(); // Fetch data every 5 seconds (adjust interval as needed)
+    }, 2000); // Interval set to 5000 milliseconds (5 seconds)
+
+    return () => clearInterval(interval); // Cleanup function to clear interval when component unmounts
+  }, []); // Empty 
+}
+
+
+
+
 
   useEffect(() => {
     if (webAppData) {
