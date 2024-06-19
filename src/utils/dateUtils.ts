@@ -12,3 +12,10 @@ export const isStreakContinued = (lastCheckinDate: string): boolean => {
 
     return differenceInDays <= 1;  // Adjust the condition based on your requirement
 };
+
+export const isWithin24Hours = (lastCheckinDate: string): boolean => {
+    const lastCheckin = new Date(lastCheckinDate);
+    const now = new Date();
+    const timeDifference = now.getTime() - lastCheckin.getTime();
+    return timeDifference < 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+};

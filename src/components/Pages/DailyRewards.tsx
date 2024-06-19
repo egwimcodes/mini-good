@@ -4,7 +4,8 @@ import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak, DailyStreakCreate } from '@/utils/requests';
-import { isStreakContinued } from '@/utils/dateUtils';
+import { isStreakContinued, isWithin24Hours } from '@/utils/dateUtils';
+import MiniPreloader from "./MiniPleloader";
 
 interface DailyStreakRetrival {
     id: number,
@@ -20,35 +21,41 @@ export default function DailyRewards() {
     const [streak, setStreak] = useState<DailyStreakRetrival | null>(null);
     const [canClaim, setCanClaim] = useState(false);
     const [claimedDays, setClaimedDays] = useState<number[]>([]);
+    const [stillFetching, setStillFetching] = useState<boolean>(true);
 
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
                 const lastCheckin = streak.last_checkin_date || streak.date_started;
-                const canClaim = isStreakContinued(lastCheckin);
+                const canClaimStreak = isStreakContinued(lastCheckin) && !isWithin24Hours(lastCheckin);
 
-                setCanClaim(canClaim);
+                setCanClaim(canClaimStreak);
                 setStreak(streak);
+                setStillFetching(false);
             })
             .catch(() => {
                 alert('Error while fetching streak data');
+                setStillFetching(false);
             });
     }, []);
 
+    if (stillFetching) return <MiniPreloader />;
+
     const handleClaim = async (day: number) => {
-        if (!claimedDays.includes(day) && streak) {
+        if (!claimedDays.includes(day) && streak && canClaim) {
             try {
                 const currentDate = new Date().toISOString().split('T')[0];
                 await DailyStreakCreate({
-                    last_checkin_date: currentDate, // Using the current date for claim
-                    owner: streak.owner ?? 0, // Ensure streak is not null before accessing owner
+                    last_checkin_date: currentDate,
+                    owner: streak.owner ?? 0,
                 });
 
                 // Update the streak state with the new last_checkin_date
-                setStreak({ ...streak, last_checkin_date: currentDate });
+                setStreak({ ...streak, last_checkin_date: currentDate, current_streak: streak.current_streak + 1 });
 
                 setClaimedDays([...claimedDays, day]);
                 setDailyRewardsClaimed(true);
+                setCanClaim(false); // Prevent further claims until the next day
             } catch (error) {
                 console.error('Error claiming daily reward:', error);
                 alert('Error claiming daily reward');
