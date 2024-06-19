@@ -9,15 +9,20 @@ type ProfileProps = {
     setShowProfile: (value: string) => void;
 };
 
+interface statType {
+    users_count: number,
+    active_tappers: number,
+    total_coins_grabbed: number
+};
 const Profile: React.FC<ProfileProps> = ({ setShowProfile }) => {
     const user = useUserContext();
     const [stillFetching, setStillFetching] = useState<boolean>(true);
+    const [stats, setStat] = useState<statType>()
 
     useEffect(() => {
         try {
             RetriveStats().then((stat) => {
-                alert(`From Stat ${JSON.stringify(stat)}`)
-                setStillFetching(false);
+                setStat(stat)
             })
         } catch (error) {
             console.log(error)
@@ -47,21 +52,21 @@ const Profile: React.FC<ProfileProps> = ({ setShowProfile }) => {
                     <h4 className="text-1xl font-bold">Daily Earners</h4>
                     <div className="children-body flex flex-row items-center justify-center w-full">
                         <Image className="w-5" width={50} height={50} src='/goodcoing.png' draggable="false" alt="" />
-                        <p className="text-base text-gray font-bold text-main mx-1">900 Million</p>
+                        <p className="text-base text-gray font-bold text-main mx-1">{ stats?.users_count}</p>
                     </div>
                 </div>
                 <hr className="w-[70vw] border-1 my-3 border-main mx-auto" />
                 <div className="profile-content-items flex-col flex-center">
                     <h4 className="text-1xl font-bold">Active</h4>
                     <div className="children-body flex flex-row items-center justify-center w-full">
-                        <p className="text-base text-gray font-bold text-main mx-1">2455675</p>
+                        <p className="text-base text-gray font-bold text-main mx-1">{stats?.active_tappers }</p>
                     </div>
                 </div>
                 <hr className="w-[50vw] border-1 my-3 border-main mx-auto" />
                 <div className="profile-content-items flex-col flex-center">
                     <h4 className="text-1xl font-bold">All Taps</h4>
                     <div className="children-body flex flex-row items-center justify-center w-full">
-                        <p className="text-base text-gray font-bold text-main mx-1">100M</p>
+                        <p className="text-base text-gray font-bold text-main mx-1">{ stats?.total_coins_grabbed}</p>
                     </div>
                 </div>
                 <hr className="w-[30vw] border-1 my-3 border-main mx-auto" />
