@@ -15,7 +15,6 @@ const Home = () => {
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or 
-  const [canRefetch, setCanRefetch] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -126,7 +125,6 @@ const Home = () => {
                   .then((res) => {
                     setUser(res);
                     setIsLoading(false);
-                    setCanRefetch(true);
                   })
                   .catch((e) => {
                     console.error("Error when retrieving me:", e);
@@ -138,7 +136,6 @@ const Home = () => {
                     .then((res) => {
                       setUser(res);
                       setIsLoading(false);
-                      setCanRefetch(true);
                     })
                     .catch((e) => {
                       console.error("Error when retrieving me:", e);
