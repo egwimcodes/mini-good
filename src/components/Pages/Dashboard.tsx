@@ -73,7 +73,7 @@ export default function Dashboard() {
                 });
         }
     };
-
+console.log(charge)
     return (
         <>
             {showProfile === 'dashboard' && (
