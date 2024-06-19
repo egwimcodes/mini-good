@@ -191,7 +191,7 @@ async function DailyStreakCreate({ last_checkin_date, owner }: DailyStreakCreate
 }
 
 
-async function TopUpCreate({ id, username, user_id, amount}: TopUpCreateType) {
+async function TopUpCreate({ amount}: TopUpCreateType) {
     try {
         const requestMe = {
             path: AuthRoutes.TOP_UP_CREATE,
@@ -199,9 +199,6 @@ async function TopUpCreate({ id, username, user_id, amount}: TopUpCreateType) {
             contentType: 'application/json', // You can omit this if using the default
             removeAuth: false, // Assuming you need authentication
             data: {
-                id: id,               
-                username: username,
-                user_id: user_id,
                 amount: amount
             },
         };
