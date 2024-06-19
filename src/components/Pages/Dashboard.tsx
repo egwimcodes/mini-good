@@ -24,14 +24,14 @@ export default function Dashboard() {
     const [showProfile, setShowProfile] = useState('dashboard');
     const [balance, setBalance] = useState(user.balance);
     const [isClaiming, setIsClaiming] = useState(false);
-    const [charge, setCharge] = useState(5000); 
+    const [charge, setCharge] = useState(5000);
     const [taps, setTaps] = useState(0);
     const [claimChange, setClaimChange] = useState(false);
     const [progressBar, setProgressBar] = useState(user.tap_energy);
     const balanceString = balance.toString().length;
 
     useEffect(() => {
-        
+
     }, [balance, user]); // Include user as a dependency if user might change
 
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
@@ -52,28 +52,34 @@ export default function Dashboard() {
         if (progressBar > 0) {
             setBalance(prev => prev + user.earn_per_tap);
             setTaps(prev => prev + user.earn_per_tap);
+            if (taps > 0) {
+                setClaimChange(false);
+            }
         }
         setCharge(prev => prev - 50);
         setProgressBar(prev => prev - user.earn_per_tap);
-        
+
 
     };
 
     const claimTaps = () => {
-        if (user.user_id && user && taps > 0) {
-            const topUpData: TopUpCreateType = {
-                amount: taps, // Use the current value of balance
-            };
-            // Call TopUpCreate with the latest topUpData
-            TopUpCreate(topUpData)
-                .then(() => {
-                    setClaimChange(true);
-                    setTaps(0);
-                    // Handle success if needed
-                })
-                .catch((error) => {
-                    alert(`Error Updating Balance: ${JSON.stringify(error)}`);
-                });
+        if (user.user_id && user) {
+            if (taps > 0) {
+                const topUpData: TopUpCreateType = {
+                    amount: taps, // Use the current value of balance
+                };
+                // Call TopUpCreate with the latest topUpData
+                TopUpCreate(topUpData)
+                    .then(() => {
+                        setClaimChange(true);
+                        setTaps(0);
+                        // Handle success if needed
+                    })
+                    .catch((error) => {
+                        alert(`Error Updating Balance: ${JSON.stringify(error)}`);
+                    });
+            }
+
         }
     }
     console.log(charge)
