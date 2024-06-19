@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { BsCopy } from "react-icons/bs";
 import { RetriveWallet } from '@/utils/requests';
+import MiniPreloader from "./MiniPleloader";
 
 type WalletProps = {
     setShowProfile: (value: string) => void;
@@ -17,6 +18,7 @@ interface UserWalletType {
 
 export default function Wallet({ setShowProfile }: WalletProps) {
     const [wallet, setWallet] = useState<UserWalletType>()
+    const [stillFetching, setStillFetching] = useState<boolean>(true);
 
 
 
@@ -24,11 +26,15 @@ export default function Wallet({ setShowProfile }: WalletProps) {
         try {
             RetriveWallet().then((wallet) => {
                 setWallet(wallet)
+                setStillFetching(false);
             })
         }catch (error) {
             console.log(error)
+            setStillFetching(false);
         }
     })
+    if (stillFetching) return <MiniPreloader />;
+
   return (
       <>
           <div className='w-[100vw] h-[90vh] text-light flex-col ' onClick={() => setShowProfile("wallet")}>
