@@ -1,7 +1,6 @@
 import { IoCloseSharp } from "react-icons/io5";
 import Image from "next/image";
 import { MdNavigateNext } from "react-icons/md";
-import Link from "next/link";
 interface PopUpComfirmationProps {
     isopen: boolean;
     isClose: () => void;
