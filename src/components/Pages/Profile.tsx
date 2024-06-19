@@ -23,6 +23,7 @@ const Profile: React.FC<ProfileProps> = ({ setShowProfile }) => {
         try {
             RetriveStats().then((stat) => {
                 setStat(stat)
+                setStillFetching(false);
             })
         } catch (error) {
             console.log(error)
