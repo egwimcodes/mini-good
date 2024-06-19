@@ -34,14 +34,13 @@ export default function PopUpComfirmationTask({ isopen, isClose, title, avatar, 
                                 <p className="font-semibold text-orange-400">GoodCoin</p>
                             </div>
                         </div>
-                        <Link href={task_url ? task_url : "/"} />
+                        <a href={task_url} className="text-light font-semibold  ">
                         <div className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly">
                             <div></div>
-                            <a href={task_url} className="text-light font-semibold  ">
                             <h4 className="text-light font-semibold">Start</h4>
-                            </a>
                             <MdNavigateNext className="text-2xl text-light font-bold" />
-                        </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             )}
