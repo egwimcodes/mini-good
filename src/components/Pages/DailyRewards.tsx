@@ -6,6 +6,7 @@ import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak } from '@/utils/requests';
 import { isStreakContinued } from '@/utils/dateUtils';
 import MiniPreloader from "./MiniPleloader";
+
 interface DailyStreakRetrival {
     id: number,
     current_streak: number,
@@ -21,7 +22,7 @@ export default function DailyRewards() {
     const [canClaim, setCanClaim] = useState(false);
     const [claimedDays, setClaimedDays] = useState<number[]>([]); // Track claimed days
     const [stillFetching, setStillFetching] = useState<boolean>(true);
-    
+    const [coinAmountToClaim, setCoinAmountToClaim] = useState<number | undefined>(); // State for coin amount to claim
 
     useEffect(() => {
         RetriveDailyStreak()
@@ -38,11 +39,15 @@ export default function DailyRewards() {
                 setStillFetching(false);
             });
     }, []);
+
     if (stillFetching) return <MiniPreloader />;
+
     const handleClaim = (day: number) => {
         if (!claimedDays.includes(day)) {
             setClaimedDays([...claimedDays, day]);
             setDailyRewardsClaimed(true);
+            // Set the amount to claim
+            setCoinAmountToClaim(day * 500); // Example: Multiplying day by 100 as an example amount
         }
     };
 
@@ -53,8 +58,8 @@ export default function DailyRewards() {
 
         return (
             <div
-                id="diamond-narrow"
                 key={day}
+                id="diamond-narrow"
                 className={`z-10 relative ${canClaimDay ? 'bg-black' : ''}`}
                 onClick={() => { if (canClaimDay) handleClaim(day) }}
             >
@@ -71,7 +76,7 @@ export default function DailyRewards() {
             </div>
         );
     };
-    
+
     return (
         <div className="rewards-container w-100% h-[100%] flex flex-col items-center justify-evenly">
             <div className="rewards-header w-[100%] h-[20%] flex flex-col items-center justify-between">
@@ -113,7 +118,7 @@ export default function DailyRewards() {
                 <DailyPopUpComfirmation isopen={true} isClose={() => setDailyClaim(false)} />
             )}
             {dailyRewardsClaimed && (
-                <ClaimDailyRewards isopen={true} isClose={() => setDailyRewardsClaimed(false)} />
+                <ClaimDailyRewards isopen={true} isClose={() => setDailyRewardsClaimed(false)} amount={coinAmountToClaim} />
             )}
         </div>
     );
