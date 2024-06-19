@@ -1,31 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { BsCopy } from "react-icons/bs";
-import { RetriveWallet } from '@/utils/requests';
-import MiniPreloader from "./MiniPleloader";
 
 type WalletProps = {
     setShowProfile: (value: string) => void;
 };
 
-interface UserWalletType {
-    balance: number;
-    profit_per_hour: number;
-    daily_income: number;
-    address: string;
-    rank: string;
-}
+// interface UserWalletType {
+//     balance: number;
+//     profit_per_hour: number;
+//     daily_income: number;
+//     address: string;
+//     rank: string;
+// }
 
 export default function Wallet({ setShowProfile }: WalletProps) {
-    const [wallet, setWallet] = useState<UserWalletType>()
-    const [stillFetching, setStillFetching] = useState<boolean>(true);
 
-
-
-    useEffect(() => {
-       
-    }, [])
-    if (stillFetching) return <MiniPreloader />;
 
   return (
       <>
@@ -36,7 +26,7 @@ export default function Wallet({ setShowProfile }: WalletProps) {
                   <div className="children-body xsm:flex-2 flex-col items-center justify-center w-full" >
                       {/* <ChargeLevel level={100} availableGoodCoin={100} chargedGoodCoin={100} /> */}
                       <div className="level flex flex-row items-center justify-center flex-nowrap">
-                          <p className="text-base text-gray font-bold text-main mx-1">{wallet?.balance} USDT</p>
+                          <p className="text-base text-gray font-bold text-main mx-1">{0} USDc</p>
                       </div>
                       <div className="credit w-[50vw] mx-auto mt-1 flex-row flex-center h-[5vh] bg-main rounded-3xl" onClick={() => alert(`HellO your wallet address is ${wallet?.address}`)}>
                           <h3>Connect Wallet</h3>
