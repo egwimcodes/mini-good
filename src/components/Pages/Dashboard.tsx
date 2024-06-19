@@ -60,10 +60,7 @@ export default function Dashboard() {
                 user_id: user.user_id ?? user.id,
                 amount: balance,
             };
-            alert(`top up Data: ${JSON.stringify(topUpData)}`);
-            TopUpCreate(topUpData).then((e) => {
-                alert(`Balance Updated: ${balance}`);
-                alert(`top up Updated: ${JSON.stringify(e)}`);
+            TopUpCreate(topUpData).then(() => {
             }).catch((e) => {
                 alert(`Error Updating Balance: ${JSON.stringify(e)}`);
             })
