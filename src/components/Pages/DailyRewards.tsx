@@ -4,7 +4,7 @@ import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak } from '@/utils/requests';
-import { isStreakContinued } from '@/utils/dateUtils';
+import { isStreakContinued} from '@/utils/dateUtils';
 import MiniPreloader from "./MiniPleloader";
 
 interface DailyStreakRetrival {
@@ -20,9 +20,9 @@ export default function DailyRewards() {
     const [dailyRewardsClaimed, setDailyRewardsClaimed] = useState(false);
     const [streak, setStreak] = useState<DailyStreakRetrival | null>(null);
     const [canClaim, setCanClaim] = useState(false);
-    const [claimedDays, setClaimedDays] = useState<number[]>([]); // Track claimed days
+    const [claimedDays, setClaimedDays] = useState<number[]>([]);
     const [stillFetching, setStillFetching] = useState<boolean>(true);
-    const [coinAmountToClaim, setCoinAmountToClaim] = useState<number | undefined>(); // State for coin amount to claim
+    const [coinAmountToClaim, setCoinAmountToClaim] = useState<number | undefined>();
 
     useEffect(() => {
         RetriveDailyStreak()
@@ -43,11 +43,20 @@ export default function DailyRewards() {
     if (stillFetching) return <MiniPreloader />;
 
     const handleClaim = (day: number) => {
-        if (!claimedDays.includes(day)) {
+        if (!claimedDays.includes(day) && streak && canClaim && streak.current_streak === day) {
             setClaimedDays([...claimedDays, day]);
             setDailyRewardsClaimed(true);
-            // Set the amount to claim
-            setCoinAmountToClaim(day * 500); // Example: Multiplying day by 100 as an example amount
+            setCoinAmountToClaim(day * 500);
+
+            // Update the streak state to reflect the new claim
+            setStreak((prevStreak) => prevStreak ? {
+                ...prevStreak,
+                current_streak: prevStreak.current_streak + 1,
+                last_checkin_date: new Date().toISOString().split('T')[0]
+            } : null);
+
+            // Reset canClaim for the next day
+            setCanClaim(false);
         }
     };
 
@@ -123,3 +132,4 @@ export default function DailyRewards() {
         </div>
     );
 }
+

@@ -1,3 +1,4 @@
+// Utility Functions
 export const isStreakContinued = (lastCheckinDate: string): boolean => {
     const lastCheckin = new Date(lastCheckinDate);
     const today = new Date();
@@ -8,7 +9,7 @@ export const isStreakContinued = (lastCheckinDate: string): boolean => {
     const differenceInTime = today.getTime() - lastCheckin.getTime();
     const differenceInDays = differenceInTime / (1000 * 60 * 60 * 24);
 
-    return differenceInDays <= 1; // Adjust the condition based on your requirement
+    return differenceInDays <= 1; // Allows for the streak to be continued if the difference is 1 day or less
 };
 
 export const isSameDate = (date1: string, date2: Date): boolean => {
