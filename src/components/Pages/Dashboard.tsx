@@ -26,6 +26,7 @@ export default function Dashboard() {
     const [claimChange, setClaimChange] = useState(false);
     const [progressBar, setProgressBar] = useState(user.tap_energy);
     const [earnPerTap, setEarnParTap] = useState(user.earn_per_tap)
+    const [level, setLevel] = useState(user.tap_energy_level)
     const balanceString = balance.toString().length;
 
 
@@ -37,24 +38,34 @@ export default function Dashboard() {
 
         if (balance >= 10000 && balance < 20000) {
             setEarnParTap(2);
+            setLevel(2);
         } else if (balance >= 20000 && balance < 30000) {
             setEarnParTap(3);
+            setLevel(3);
         } else if (balance >= 30000 && balance < 40000) {
             setEarnParTap(4);
+            setLevel(4);
         } else if (balance >= 40000 && balance < 50000) {
             setEarnParTap(5);
+            setLevel(5);
         } else if (balance >= 50000 && balance < 60000) {
             setEarnParTap(5);
+            setLevel(5);
         } else if (balance >= 60000 && balance < 70000) {
             setEarnParTap(6);
+            setLevel(6);
         } else if (balance >= 70000 && balance < 80000) {
             setEarnParTap(7);
+            setLevel(7);
         } else if (balance >= 80000 && balance < 90000) {
             setEarnParTap(8);
+            setLevel(8);
         } else if (balance >= 90000 && balance < 100000) {
             setEarnParTap(9);
+            setLevel(9);
         } else if (balance >= 100000) {
             setEarnParTap(10);
+            setLevel(10);
         }
 
 
@@ -175,7 +186,7 @@ console.log(charge)
                                 </div>
                                 <div className="right-progress-text flex flex-row">
                                     <p className='text-sm font-semibold'>Level</p>
-                                    <p className='ml-1 text-sm font-semibold'>{user.tap_energy_level}/10</p>
+                                    <p className='ml-1 text-sm font-semibold'>{level}/10</p>
                                 </div>
                             </div>
                             <div className="leverl w-[100%] h-[16%] bg-slate-800 rounded-lg">
