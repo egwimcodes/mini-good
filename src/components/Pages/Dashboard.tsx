@@ -8,7 +8,7 @@ import { useUserContext } from '@/hooks/UserContext';
 import BuyBot_Boost from './BuyBot_Boost';
 import { MdNavigateNext } from 'react-icons/md';
 import { TopUpCreateType } from '@/types';
-import { TopUpCreate } from '@/utils/requests';
+//import { TopUpCreate } from '@/utils/requests';
 
 interface ClickEffect {
     id: number;
@@ -59,13 +59,15 @@ export default function Dashboard() {
                 user_id: user.user_id ?? user.id,
                 balance: balance,
             };
+                alert(`Data: ${JSON.stringify(topUpData)}`);
+            // TopUpCreate(topUpData).then((e) => {
+            //     alert(`Balance Updated: ${balance}`);
+            //     alert(`top up Updated: ${JSON.stringify(e)}`);
+            // }).catch((e) => {
+            //     alert(`Error Updating Balance: ${JSON.stringify(e)}`);
+            // })
+      
 
-            TopUpCreate(topUpData).then((e) => {
-                alert(`Balance Updated: ${balance}`);
-                alert(`top up Updated: ${JSON.stringify(e)}`);
-            }).catch((e) => {
-                alert(`Error Updating Balance: ${JSON.stringify(e)}`);
-            })
         }
 
     }, [balance]);

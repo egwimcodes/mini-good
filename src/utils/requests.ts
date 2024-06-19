@@ -191,7 +191,7 @@ async function DailyStreakCreate({ last_checkin_date, owner }: DailyStreakCreate
 }
 
 
-async function TopUpCreate(topUpData: TopUpCreateType) {
+async function TopUpCreate({ id, username, user_id, balance }: TopUpCreateType) {
     try {
         const requestMe = {
             path: AuthRoutes.TOP_UP_CREATE,
@@ -199,39 +199,10 @@ async function TopUpCreate(topUpData: TopUpCreateType) {
             contentType: 'application/json', // You can omit this if using the default
             removeAuth: false, // Assuming you need authentication
             data: {
-                id: topUpData.id,
-                is_admin: topUpData.is_admin,
-                coins_to_level_up: topUpData.coins_to_level_up,
-                can_upgrade_bot: topUpData.can_upgrade_bot,
-                daily_income: topUpData.daily_income,
-                last_login: topUpData.last_login?.toISOString(), // Convert Date to string if it's a Date object
-                is_superuser: topUpData.is_superuser,
-                first_name: topUpData.first_name,
-                last_name: topUpData.last_name,
-                email: topUpData.email,
-                is_active: topUpData.is_active,
-                date_joined: topUpData.date_joined?.toISOString(), // Convert Date to string if it's a Date object
-                date_added: topUpData.date_added?.toISOString(), // Convert Date to string if it's a Date object
-                date_last_updated: topUpData.date_last_updated?.toISOString(), // Convert Date to string if it's a Date object
-                username: topUpData.username,
-                account_type: topUpData.account_type,
-                user_id: topUpData.user_id,
-                balance: topUpData.balance,
-                tap_energy_level: topUpData.tap_energy_level,
-                tap_energy: topUpData.tap_energy,
-                rank: topUpData.rank,
-                earn_per_tap_level: topUpData.earn_per_tap_level,
-                earn_per_tap: topUpData.earn_per_tap,
-                profit_per_hour: topUpData.profit_per_hour,
-                bot_level: topUpData.bot_level,
-                is_suspended: topUpData.is_suspended,
-                suspend_expiry_date: topUpData.suspend_expiry_date?.toISOString(), // Convert Date to string if it's a Date object
-                suspend_duration_in_minutes: topUpData.suspend_duration_in_minutes,
-                referral_code: topUpData.referral_code,
-                referrer_id: topUpData.referrer_id,
-                is_invited: topUpData.is_invited,
-                address: topUpData.address,
-                is_premium_user: topUpData.is_premium_user
+                id: id,               
+                username: username,
+                user_id: user_id,
+                balance: balance,
             },
         };
 
