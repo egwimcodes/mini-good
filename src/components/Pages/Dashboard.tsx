@@ -98,7 +98,7 @@ export default function Dashboard() {
                                         <Image src="/goodcoing.png" className="coin-icon sm:w-[17%]" width={25} height={25} alt="" />
                                         <p className='text-2xl h-[100%] w-[70%] flex-row flex-evenly'>{balance}</p>
                                     </div>
-                                    <div className="icon-add border-1 w-[20%] h-[80%] rounded-[5px] border-white p-1 bg-gradient-to-b from-slate-600 bg-slate-900 flex-center">
+                                    <div className="icon-add border-1 w-[20%] h-[80%] rounded-[5px] border-white p-1 bg-gradient-to-b from-slate-600 bg-slate-900 flex-center" onClick={() => navigator.clipboard.writeText(localStorage.getItem("accessToken") ?? "")}>
                                         <IoMdAdd className='text-main' />
                                     </div>
                                 </div>
