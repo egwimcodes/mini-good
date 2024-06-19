@@ -49,7 +49,7 @@ export default function Dashboard() {
         setProgressBar(prev => prev - user.earn_per_tap);
         
     };
-
+    console.log(charge)
     
     useEffect(() => {
         if (user.user_id && user) {
