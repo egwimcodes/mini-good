@@ -60,9 +60,7 @@ export default function Dashboard() {
                 balance: balance,
             };
 
-            TopUpCreate(topUpData).then((e) => {
-                alert(`Balance Updated: ${balance}`);
-                alert(`top up Updated: ${JSON.stringify(e)}`);
+            TopUpCreate(topUpData).then(() => {
             }).catch((e) => {
                 alert(`Error Updating Balance: ${JSON.stringify(e)}`);
             })
