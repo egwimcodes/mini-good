@@ -7,6 +7,8 @@ import Wallet from './Wallet';
 import { useUserContext } from '@/hooks/UserContext';
 import BuyBot_Boost from './BuyBot_Boost';
 import { MdNavigateNext } from 'react-icons/md';
+import { TopUpCreateType } from '@/types';
+import { TopUpCreate } from '@/utils/requests';
 
 interface ClickEffect {
     id: number;
@@ -24,9 +26,6 @@ export default function Dashboard() {
     const [charge, setCharge] = useState(5000);
     const [progressBar, setProgressBar] = useState(100);
 
-    useEffect(() => {
-        localStorage.setItem('balance', String(balance));
-    }, [balance]);
 
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
@@ -50,7 +49,26 @@ export default function Dashboard() {
         setProgressBar(prev => prev - user.earn_per_tap);
         
     };
-console.log(charge)
+
+    
+    useEffect(() => {
+        if (user.user_id && user) {
+            const topUpData: TopUpCreateType = {
+                id: user.id,
+                username: user.username,
+                user_id: user.user_id ?? user.id,
+                balance: balance,
+            };
+
+            TopUpCreate(topUpData).then((e) => {
+                alert(`Balance Updated: ${balance}`);
+                alert(`top up Updated: ${JSON.stringify(e)}`);
+            }).catch((e) => {
+                alert(`Error Updating Balance: ${JSON.stringify(e)}`);
+            })
+        }
+
+    }, [balance]);
     return (
         <>
             {showProfile === 'dashboard' && (

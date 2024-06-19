@@ -115,6 +115,43 @@ export interface UserData {
   token: TokenAuth;
 }
 
+export interface TopUpCreateType {
+  id: bigint;
+  is_admin?: boolean;
+  coins_to_level_up?: number;
+  can_upgrade_bot?: boolean;
+  daily_income?: number;
+  last_login?: Date; // Assuming ISO date string
+  is_superuser?: boolean;
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  is_active?: boolean;
+  date_joined?: Date; // Assuming ISO date string
+  date_added?: Date; // Assuming ISO date string
+  date_last_updated?: Date; // Assuming ISO date string
+  username: string;
+  account_type?: AccountType; // You might want to replace this with a specific enum type
+  user_id: number;
+  balance?: number;
+  tap_energy_level?: number;
+  tap_energy?: number;
+  rank?: Rank; // You might want to replace this with a specific enum type
+  earn_per_tap_level?: number;
+  earn_per_tap?: number;
+  profit_per_hour?: number;
+  bot_level?: BotLevel; // You might want to replace this with a specific enum type
+  is_suspended?: boolean;
+  suspend_expiry_date?: Date | null; // Assuming ISO date string
+  suspend_duration_in_minutes?: number;
+  referral_code?: string;
+  referrer_id?: number;
+  is_invited?: boolean;
+  address?: string;
+  is_premium_user?: boolean;
+}
+
+
 export interface AuthLogin {
   username: string;
   password: string;
