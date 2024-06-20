@@ -86,28 +86,22 @@ export default function Dashboard() {
         }, 2000);
 
         // Update taps and claimChange based on conditions
-        if (charged > 0) {
-            if (recivedCharges !<= 0) {
-            setBalance(prev => prev + earnPerTap);
-            setRecivedCharges(prev => prev - earnPerTap);
-            setTaps(prev => prev + earnPerTap);
-            
-            }
-            setCharged(prev => prev - earnPerTap);
-        }
+        setBalance(prev => prev + earnPerTap);
+        setRecivedCharges(prev => prev - earnPerTap);
+        setTaps(prev => prev + earnPerTap);
 
     };
-  
-   
+
+
     const claimTaps = () => {
         if (user.user_id && taps > 0) {
             const topUpData: TopUpCreateType = {
-                amount: taps, 
+                amount: taps,
             };
             TopUpCreate(topUpData)
                 .then(() => {
                     setClaimChange(true);
-                    setTaps(0); 
+                    setTaps(0);
                 })
                 .catch((error) => {
                     alert(`Error Updating Balance: ${JSON.stringify(error)}`);
@@ -169,21 +163,21 @@ export default function Dashboard() {
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                       {charged > 0 ? `+${earnPerTap}` : ''}
+                                        {charged > 0 ? `+${earnPerTap}` : ''}
                                     </span>
                                 ))}
                             </div>
                         </div>
                         <div className='h-[20%] absolute top-0 right-0 w-[40vw] flex flex-row flex-center'>
-                            <Image src="/charge.png" className="shrink-on-click  w-5 h-5" width={20} height={10} alt=""/>
+                            <Image src="/charge.png" className="shrink-on-click  w-5 h-5" width={20} height={10} alt="" />
                             <div className="charge-stat flex-between">
-                                <p className='text-white flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{recivedCharges }</p>/
+                                <p className='text-white flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{recivedCharges}</p>/
                                 <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{charged}</p>
                             </div>
                         </div>
                         <div className='h-[20%] absolute bottom-0 w-[80%] flex flex-col'>
                             <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[40%] rounded-[5px] p-1  bg-gradient-to-b from-slate-400 bg-slate-900 flex-center mx-auto flex-evenly " onClick={claimTaps}>
-                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{taps}</p>  
+                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{taps}</p>
                                 <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{claimChange ? "Claimed" : "Claim"}</p>
                             </div>
                             <div className="progress-text w-[100%] flex justify-between items-center">
