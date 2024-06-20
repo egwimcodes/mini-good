@@ -88,7 +88,7 @@ export default function Dashboard() {
         // Update taps and claimChange based on conditions
         
      
-        if (recivedCharges > earnPerTap+1) {
+        if (recivedCharges >= earnPerTap) {
             setRecivedCharges(prev => prev - earnPerTap);
             setTaps(prev => prev + earnPerTap);
             setBalance(prev => prev + earnPerTap);
@@ -167,7 +167,7 @@ export default function Dashboard() {
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                        {recivedCharges > earnPerTap + 1 ? `+${earnPerTap}` : ''}
+                                        {recivedCharges >= earnPerTap ? `+${earnPerTap}` : ''}
                                     </span>
                                 ))}
                             </div>
