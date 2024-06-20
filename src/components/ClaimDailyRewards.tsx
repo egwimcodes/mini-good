@@ -1,7 +1,7 @@
 import { TopUpCreateType } from "@/types";
 import { TopUpCreate } from "@/utils/requests";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
 interface PopUpComfirmationProps {
@@ -13,8 +13,11 @@ interface PopUpComfirmationProps {
 export default function ClaimDailyRewards({ isopen, isClose, amount }: PopUpComfirmationProps) {
     const [showWin, setShowWin] = useState(false);
 
-    const handleClaim = () => {
+    useEffect(() => {
         alert(`Claiming ${amount}`);
+
+    })
+    const handleClaim = () => {
 
         const topUpData: TopUpCreateType = {
             amount: amount || 0, // Use the current value of balance
