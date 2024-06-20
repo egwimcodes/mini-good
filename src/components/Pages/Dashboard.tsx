@@ -86,10 +86,11 @@ export default function Dashboard() {
         }, 2000);
 
         // Update taps and claimChange based on conditions
-        setBalance(prev => prev + earnPerTap);
         
-        setTaps(prev => prev + earnPerTap);
+     
         if (recivedCharges > earnPerTap) {
+            setTaps(prev => prev + earnPerTap);
+            setBalance(prev => prev + earnPerTap);
             setRecivedCharges(prev => prev - earnPerTap);
         }
 
