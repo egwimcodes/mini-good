@@ -24,6 +24,7 @@ export default function Dashboard() {
     const [taps, setTaps] = useState(0);
     const [claimChange, setClaimChange] = useState(false);
     const [charged] = useState(user.tap_energy);
+    const [recivedCharges, setRecivedCharges] = useState(user.tap_energy);
     const [earnPerTap, setEarnParTap] = useState(user.earn_per_tap)
     const [level, setLevel] = useState(user.tap_energy_level)
     const balanceString = balance.toString().length;
@@ -87,6 +88,7 @@ export default function Dashboard() {
         // Update taps and claimChange based on conditions
         if (charged > 0) {
             setBalance(prev => prev + earnPerTap);
+            setRecivedCharges(prev => prev - earnPerTap);
             setTaps(prev => prev + earnPerTap);
         }
 
@@ -96,14 +98,12 @@ export default function Dashboard() {
     const claimTaps = () => {
         if (user.user_id && taps > 0) {
             const topUpData: TopUpCreateType = {
-                amount: taps, // Use the current value of balance
+                amount: taps, 
             };
-            // Call TopUpCreate with the latest topUpData
             TopUpCreate(topUpData)
                 .then(() => {
                     setClaimChange(true);
-                    setTaps(0); // Reset taps after claiming
-                    // Handle success if needed
+                    setTaps(0); 
                 })
                 .catch((error) => {
                     alert(`Error Updating Balance: ${JSON.stringify(error)}`);
@@ -165,7 +165,7 @@ export default function Dashboard() {
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                       {earnPerTap}
+                                       +{earnPerTap}
                                     </span>
                                 ))}
                             </div>
@@ -173,7 +173,7 @@ export default function Dashboard() {
                         <div className='h-[20%] absolute top-0 right-0 w-[40vw] flex flex-row flex-center'>
                             <Image src="/charge.png" className="shrink-on-click  w-5 h-5" width={20} height={10} alt=""/>
                             <div className="charge-stat flex-between">
-                                <p className='text-white flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>20000</p>/
+                                <p className='text-white flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{recivedCharges }</p>/
                                 <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{charged}</p>
                             </div>
                         </div>
