@@ -89,9 +89,9 @@ export default function Dashboard() {
         
      
         if (recivedCharges > earnPerTap+1) {
+            setRecivedCharges(prev => prev - earnPerTap);
             setTaps(prev => prev + earnPerTap);
             setBalance(prev => prev + earnPerTap);
-            setRecivedCharges(prev => prev - earnPerTap);
         }
 
     };
