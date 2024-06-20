@@ -21,7 +21,6 @@ export default function Dashboard() {
     const [showProfile, setShowProfile] = useState('dashboard');
     const [balance, setBalance] = useState(user.balance);
     const [isClaiming, setIsClaiming] = useState(false);
-    const [charge, setCharge] = useState(5000);
     const [taps, setTaps] = useState(0);
     const [claimChange, setClaimChange] = useState(false);
     const [progressBar, setProgressBar] = useState(user.tap_energy);
@@ -35,7 +34,10 @@ export default function Dashboard() {
         if (taps > 0) {
             setClaimChange(false);
         }
-
+        if (balance >= 1 && balance < 10000) {
+            setEarnParTap(2);
+            setLevel(1);
+        }
         if (balance >= 10000 && balance < 20000) {
             setEarnParTap(2);
             setLevel(2);
@@ -89,9 +91,6 @@ export default function Dashboard() {
             setProgressBar(prev => prev - earnPerTap);
         }
         
-        setCharge(prev => prev - 50);
-
-        
     };
   
    
@@ -112,7 +111,6 @@ export default function Dashboard() {
                 });
         }
     };
-console.log(charge)
     return (
         <>
             {showProfile === 'dashboard' && (
@@ -168,14 +166,14 @@ console.log(charge)
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                        {progressBar > 0 ? `+${earnPerTap}` : ""}
+                                       {earnPerTap}
                                     </span>
                                 ))}
                             </div>
                         </div>
 
                         <div className='h-[20%] absolute bottom-0 w-[80%] flex flex-col'>
-                            <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[40%] rounded-[5px] p-1  bg-gradient-to-b from-slate-400 bg-slate-900 flex-center mx-auto flex-evenly " onClick={progressBar >= 0 ? claimTaps: console.log}>
+                            <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[40%] rounded-[5px] p-1  bg-gradient-to-b from-slate-400 bg-slate-900 flex-center mx-auto flex-evenly " onClick={claimTaps}>
                                 <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{taps}</p>  
                                 <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{claimChange ? "Claimed" : "Claim"}</p>
                             </div>
@@ -190,7 +188,7 @@ console.log(charge)
                                 </div>
                             </div>
                             <div className="leverl w-[100%] h-[16%] bg-slate-800 rounded-lg">
-                                <div className={`level-child h-[100%]  progress rounded-lg`} style={{ width: `${progressBar}%` }}></div>
+                                <div className={`level-child h-[100%]  progress rounded-lg`} style={{ width: `${level}0%` }}></div>
                             </div>
                         </div>
                     </div>
