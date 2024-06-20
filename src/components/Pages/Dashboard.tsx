@@ -23,7 +23,8 @@ export default function Dashboard() {
     const [isClaiming, setIsClaiming] = useState(false);
     const [taps, setTaps] = useState(0);
     const [claimChange, setClaimChange] = useState(false);
-    const [progressBar, setProgressBar] = useState(user.tap_energy);
+    const [energy, setEnergy] = useState(user.tap_energy);
+    const [charged, setCharged] = useState(user.tap_energy);
     const [earnPerTap, setEarnParTap] = useState(user.earn_per_tap)
     const [level, setLevel] = useState(user.tap_energy_level)
     const balanceString = balance.toString().length;
@@ -85,12 +86,11 @@ export default function Dashboard() {
         }, 2000);
 
         // Update taps and claimChange based on conditions
-        if (progressBar > 0) {
+        if (charged > 0) {
             setBalance(prev => prev + earnPerTap);
             setTaps(prev => prev + earnPerTap);
-            setProgressBar(prev => prev - earnPerTap);
         }
-        
+
     };
   
    
@@ -171,7 +171,13 @@ export default function Dashboard() {
                                 ))}
                             </div>
                         </div>
-
+                        <div className='h-[20%] absolute top-0 right-0 w-[40vw] flex flex-row flex-center'>
+                            <Image src="/charge.png" className="shrink-on-click  w-5 h-5" width={20} height={10} alt=""/>
+                            <div className="charge-stat flex-between">
+                                <p className='text-white flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>20000</p>/
+                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{charged}</p>
+                            </div>
+                        </div>
                         <div className='h-[20%] absolute bottom-0 w-[80%] flex flex-col'>
                             <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[40%] rounded-[5px] p-1  bg-gradient-to-b from-slate-400 bg-slate-900 flex-center mx-auto flex-evenly " onClick={claimTaps}>
                                 <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{taps}</p>  
