@@ -23,7 +23,7 @@ export default function Dashboard() {
     const [isClaiming, setIsClaiming] = useState(false);
     const [taps, setTaps] = useState(0);
     const [claimChange, setClaimChange] = useState(false);
-    const [charged, setCharged] = useState(user.tap_energy);
+    const [charged] = useState(user.tap_energy);
     const [recivedCharges, setRecivedCharges] = useState(user.tap_energy);
     const [earnPerTap, setEarnParTap] = useState(user.earn_per_tap)
     const [level, setLevel] = useState(user.tap_energy_level)
