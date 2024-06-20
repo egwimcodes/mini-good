@@ -14,6 +14,7 @@ export default function ClaimDailyRewards({ isopen, isClose, amount }: PopUpComf
     const [showWin, setShowWin] = useState(false);
 
     const handleClaim = () => {
+        alert(`Claiming ${amount}`);
 
         const topUpData: TopUpCreateType = {
             amount: amount || 0, // Use the current value of balance
