@@ -6,8 +6,6 @@ import Wallet from './Wallet';
 import { useUserContext } from '@/hooks/UserContext';
 import BuyBot_Boost from './BuyBot_Boost';
 import { MdNavigateNext } from 'react-icons/md';
-import { TopUpCreateType } from '@/types';
-import { TopUpCreate } from '@/utils/requests';
 
 interface ClickEffect {
     id: number;
@@ -22,7 +20,6 @@ export default function Dashboard() {
     const [balance, setBalance] = useState(user.balance);
     const [isClaiming, setIsClaiming] = useState(false);
     const [taps, setTaps] = useState(0);
-    const [claimChange, setClaimChange] = useState(false);
     const [charged] = useState(user.tap_energy);
     const [recivedCharges, setRecivedCharges] = useState(user.tap_energy);
     const [earnPerTap, setEarnParTap] = useState(user.earn_per_tap)
@@ -32,9 +29,6 @@ export default function Dashboard() {
 
 
     useEffect(() => {
-        if (taps > 0) {
-            setClaimChange(false);
-        }
         if (balance >= 1 && balance < 10000) {
             setEarnParTap(2);
             setLevel(1);
@@ -96,22 +90,6 @@ export default function Dashboard() {
 
     };
 
-
-    const claimTaps = () => {
-        if (user.user_id && taps > 0) {
-            const topUpData: TopUpCreateType = {
-                amount: taps,
-            };
-            TopUpCreate(topUpData)
-                .then(() => {
-                    setClaimChange(true);
-                    setTaps(0);
-                })
-                .catch((error) => {
-                    alert(`Error Updating Balance: ${JSON.stringify(error)}`);
-                });
-        }
-    };
     return (
         <>
             {showProfile === 'dashboard' && (
@@ -180,10 +158,6 @@ export default function Dashboard() {
                             </div>
                         </div>
                         <div className='h-[20%] absolute bottom-0 w-[80%] flex flex-col'>
-                            <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[40%] rounded-[5px] p-1  bg-gradient-to-b from-slate-400 bg-slate-900 flex-center mx-auto flex-evenly " onClick={claimTaps}>
-                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{taps}</p>
-                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold' style={{ color: claimChange ? "orange" : "" }}>{claimChange ? "Claimed" : "Claim"}</p>
-                            </div>
                             <div className="progress-text w-[100%] flex justify-between items-center">
                                 <div className="left-progress-text flex flex-nowrap">
                                     <p className='text-sm font-semibold'>{user.rank}</p>
