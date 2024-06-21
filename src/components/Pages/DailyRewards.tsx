@@ -29,7 +29,7 @@ export default function DailyRewards() {
             .then((streak) => {
                 const lastCheckin = streak.last_checkin_date ?? streak.date_started;
                 const canClaim = isStreakContinued(lastCheckin);
-
+                alert(`c ${streak}`)
                 alert(`Day Started ${streak.date_started}`)
                 alert(`Last Check in ${streak.last_checkin_date}`)
                 alert(`Day Started....... ${streak.date_started}`)
