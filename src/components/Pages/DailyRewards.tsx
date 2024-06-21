@@ -26,6 +26,8 @@ export default function DailyRewards() {
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
+                alert(`${streak.date_started},,,,,,,,,${streak.last_checkin_date}`);
+
                 const lastCheckin = streak.last_checkin_date ?? streak.date_started;
                 const canClaim = checkLastCheckin(lastCheckin);
                 setCanClaim(canClaim);
