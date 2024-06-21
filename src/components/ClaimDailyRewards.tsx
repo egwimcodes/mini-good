@@ -1,6 +1,6 @@
 import { useUserContext } from "@/hooks/UserContext";
 import {DailyStreakCreateType, TopUpCreateType } from "@/types";
-import {DailyStreakCreate, TopUpCreate } from "@/utils/requests";
+import {DailyStreakCreate } from "@/utils/requests";
 import Image from "next/image";
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
@@ -17,10 +17,6 @@ export default function ClaimDailyRewards({ isopen, isClose, amount, last_checki
     const [showWin, setShowWin] = useState(false);
 
     const handleClaim = async () => {
-
-        const topUpData: TopUpCreateType = {
-            amount: amount || 0, // Use the current value of balance
-        };
 
         if (last_checkin_date && user.user_id) {
             const streakData: DailyStreakCreateType = {
