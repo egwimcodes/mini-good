@@ -22,7 +22,6 @@ export default function ClaimDailyRewards({ isopen, isClose, amount, last_checki
                 owner: user.user_id
             }
             DailyStreakCreate(streakData).then((e) => {
-                alert(`Claimed ress ${JSON.stringify(e)}`)
                 setShowWin(true)
             })
         }

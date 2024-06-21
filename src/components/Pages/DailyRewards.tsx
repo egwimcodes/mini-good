@@ -32,6 +32,7 @@ export default function DailyRewards() {
                 setCanClaim(canClaim);
                 setStreak(streak);
                 setStillFetching(false);
+                alert(canClaim)
             })
             .catch(() => {
                 alert('Error while fetching streak data');
