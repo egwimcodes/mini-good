@@ -13,7 +13,7 @@ interface PopUpComfirmationProps {
 export default function ClaimDailyRewards({ isopen, isClose, amount }: PopUpComfirmationProps) {
     const [showWin] = useState(false);
     const handleClaim = () => {
-        alert('hello')
+        alert('Claimed');
     }
     return (
         <>
