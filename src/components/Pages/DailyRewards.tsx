@@ -4,7 +4,7 @@ import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak } from '@/utils/requests';
-import { isStreakContinued } from '@/utils/dateUtils';
+import { isStreakContinued} from '@/utils/dateUtils';
 import MiniPreloader from "./MiniPleloader";
 
 interface DailyStreakRetrival {
@@ -23,17 +23,16 @@ export default function DailyRewards() {
     const [claimedDays, setClaimedDays] = useState<number[]>([]);
     const [stillFetching, setStillFetching] = useState<boolean>(true);
     const [coinAmountToClaim, setCoinAmountToClaim] = useState<number | undefined>();
-    const [lastCheck, setLastCheck] = useState<boolean>();
 
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
                 const lastCheckin = streak.last_checkin_date ?? streak.date_started;
                 const canClaim = isStreakContinued(lastCheckin);
-                setLastCheck(!canClaim)
                 setCanClaim(canClaim);
                 setStreak(streak);
                 setStillFetching(false);
+                alert(canClaim)
             })
             .catch(() => {
                 alert('Error while fetching streak data');
@@ -60,38 +59,38 @@ export default function DailyRewards() {
         }
     };
 
-        const renderReward = (day: number) => {
-            const isCurrentDay = streak?.current_streak === day;
-            const canClaimDay = canClaim && isCurrentDay;
-            const isClaimed = claimedDays.includes(day) && (streak && isStreakContinued(streak.last_checkin_date) && isCurrentDay);
+    const renderReward = (day: number) => {
+        const isCurrentDay = streak?.current_streak === day;
+        const canClaimDay = canClaim && isCurrentDay;
+        const isClaimed = claimedDays.includes(day) || (streak && isStreakContinued(streak.last_checkin_date) && isCurrentDay);
 
-            return (
-                <div
-                    key={day}
-                    id="diamond-narrow"
-                    className={`z-10 relative ${canClaimDay ? 'bg-black' : ''}`}
-                    onClick={() => { if (canClaimDay) handleClaim(day) }}
-                >
-                    <div className={`content ${canClaimDay ? 'bg-gradient-to-b from-cyan-600' : 'bg-orange-400'} w-[100%]`}>
-                        <p className="text-white text-xs font-bold">Day {day}</p>
-                        {isClaimed && (
-                            <div className="text-claim rounded-[40px]">
-                                <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
-                                    CLAIMED
-                                </h1>
-                            </div>
-                        )}
-                        {canClaimDay && !isClaimed && (
-                            <div className="text-claim rounded-[40px]">
-                                <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
-                                    Claim
-                                </h1>
-                            </div>
-                        )}
-                    </div>
+        return (
+            <div
+                key={day}
+                id="diamond-narrow"
+                className={`z-10 relative ${canClaimDay ? 'bg-black' : ''}`}
+                onClick={() => { if (canClaimDay) handleClaim(day) }}
+            >
+                <div className={`content ${canClaimDay ? 'bg-gradient-to-b from-cyan-600' : 'bg-orange-400'} w-[100%]`}>
+                    <p className="text-white text-xs font-bold">Day {day}</p>
+                    {isClaimed && (
+                        <div className="text-claim rounded-[40px]">
+                            <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
+                                CLAIMED
+                            </h1>
+                        </div>
+                    )}
+                    {canClaimDay && !isClaimed && (
+                        <div className="text-claim rounded-[40px]">
+                            <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
+                                Claim
+                            </h1>
+                        </div>
+                    )}
                 </div>
-            );
-        };
+            </div>
+        );
+    };
 
     return (
         <div className="rewards-container w-100% h-[100%] flex flex-col items-center justify-evenly">
