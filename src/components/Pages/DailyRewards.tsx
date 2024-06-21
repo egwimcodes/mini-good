@@ -23,16 +23,17 @@ export default function DailyRewards() {
     const [claimedDays, setClaimedDays] = useState<number[]>([]);
     const [stillFetching, setStillFetching] = useState<boolean>(true);
     const [coinAmountToClaim, setCoinAmountToClaim] = useState<number | undefined>();
+    const [lastCheck, setLastCheck] = useState<boolean>();
 
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
                 const lastCheckin = streak.last_checkin_date ?? streak.date_started;
                 const canClaim = isStreakContinued(lastCheckin);
+                setLastCheck(!canClaim)
                 setCanClaim(canClaim);
                 setStreak(streak);
                 setStillFetching(false);
-                alert(canClaim)
             })
             .catch(() => {
                 alert('Error while fetching streak data');
@@ -73,14 +74,14 @@ export default function DailyRewards() {
             >
                 <div className={`content ${canClaimDay ? 'bg-gradient-to-b from-cyan-600' : 'bg-orange-400'} w-[100%]`}>
                     <p className="text-white text-xs font-bold">Day {day}</p>
-                    {isClaimed && (
+                    {lastCheck && (
                         <div className="text-claim rounded-[40px]">
                             <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
                                 CLAIMED
                             </h1>
                         </div>
                     )}
-                    {canClaimDay && !isClaimed && (
+                    {canClaimDay && !isClaimed && lastCheck &&  (
                         <div className="text-claim rounded-[40px]">
                             <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
                                 Claim
