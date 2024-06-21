@@ -16,22 +16,22 @@ export default function ClaimDailyRewards({ isopen, isClose, amount, last_checki
     const user = useUserContext()
     const [showWin, setShowWin] = useState(false);
     console.log(last_checkin_date, user.user_id)
-    const handleClaim = () => {
-        alert("Claimed")
-        setShowWin(true)
+    // const handleClaim = () => {
+    //     alert("Claimed")
+    //     setShowWin(true)
 
-        //     if (last_checkin_date && user.user_id) {
-        //         const streakData: DailyStreakCreateType = {
-        //             last_checkin_date: last_checkin_date,
-        //             owner: user.user_id
-        //         }
+    //     //     if (last_checkin_date && user.user_id) {
+    //     //         const streakData: DailyStreakCreateType = {
+    //     //             last_checkin_date: last_checkin_date,
+    //     //             owner: user.user_id
+    //     //         }
 
-        //        await DailyStreakCreate(streakData).then((e) => {
-        //            alert(`After Claiming Streak  ${JSON.stringify(e)}`)
-        //            setShowWin(true)
-        //          })
-        //    }
-    };
+    //     //        await DailyStreakCreate(streakData).then((e) => {
+    //     //            alert(`After Claiming Streak  ${JSON.stringify(e)}`)
+    //     //            setShowWin(true)
+    //     //          })
+    //     //    }
+    // };
     return (
         <>
             {isopen && (
