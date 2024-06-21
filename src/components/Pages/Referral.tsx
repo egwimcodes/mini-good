@@ -51,7 +51,7 @@ export default function Referral() {
 
                                 <div className="coin-text h-[40%] flex flex-row items-center">
                                     <Image className="xxxsm:w-[20%] xxsm:w-[25%] xsm:w-[20%]  sm:w-[17%]" src="/good-coin.png" alt="" width={50} height={50} />
-                                    <h3 className="invite-text text-base sm:text-base md:text-lg lg:text-xl xl:text-2xl ml-1 font-bold text-main">+10000</h3>
+                                    <h3 className="invite-text text-base sm:text-base md:text-lg lg:text-xl xl:text-2xl ml-1 font-bold text-main">+5000</h3>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,4 @@
-//import {DailyStreakCreateType} from "@/types";
-//import {DailyStreakCreate } from "@/utils/requests";
+
 import Image from "next/image";
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
@@ -11,14 +10,9 @@ interface PopUpComfirmationProps {
     last_checkin_date?: string
 }
 
-export default function ClaimDailyRewards({ isopen, isClose, amount, last_checkin_date }: PopUpComfirmationProps) {
-    const [showWin, setShowWin] = useState(false);
+export default function ClaimDailyRewards({ isopen, isClose, amount }: PopUpComfirmationProps) {
+    const [showWin] = useState(false);
 
-
-    const me = () => {
-        alert(last_checkin_date)
-        setShowWin(true)
-    }
     return (
         <>
             {isopen && (
@@ -28,7 +22,7 @@ export default function ClaimDailyRewards({ isopen, isClose, amount, last_checki
                             <IoCloseSharp className="text-light" onClick={() => { isClose() }} />
                         </div>
                         <div className="claim-content daily h-[100%] ">
-                            <div className="claim-content-header w-full h-[30%] flex flex-col items-center justify-center" onClick={() => { me}}>
+                            <div className="claim-content-header w-full h-[30%] flex flex-col items-center justify-center">
                                 <h1 className="text-light text-3xl font-semibold">YOUR</h1>
                                 <h1 className="text-light text-3xl font-semibold">DAILY REWARDS</h1>
                                 <h4 className="text-neutral-500 text-sm font-semibold small-text">CLAIM REWARDS AND KEEP THE STREAK GOING!</h4>
