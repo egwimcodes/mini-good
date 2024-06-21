@@ -26,7 +26,9 @@ export default function Dashboard() {
     const [level, setLevel] = useState(user.tap_energy_level)
     const balanceString = balance.toString().length;
 
-
+    useEffect(() => { 
+        alert(process.env.API_END_POINT)
+    })
 
     useEffect(() => {
         if (user.earn_per_tap === 1) {
