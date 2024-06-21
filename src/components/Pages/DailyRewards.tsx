@@ -76,7 +76,6 @@ export default function DailyRewards() {
         const isClaimed = streak?.current_streak && streak?.current_streak >= day;
         //const canClaimDay = !isClaimed && canClaim > 1 && streak?.current_streak === day;
         const canClaimDay = canClaim > 1 && canClaim <= 2 && streak?.current_streak === day;
-        alert(`Can Claim${canClaim}`)
 
         return (
             <div
