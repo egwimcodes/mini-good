@@ -31,6 +31,15 @@ export default function DailyRewards() {
                 setCanClaim(canClaim);
                 setStreak(streak);
                 setStillFetching(false);
+                if (canClaim === 2) {
+                    const lastCheckinDate = new Date(lastCheckin);
+                    const currentDate = new Date();
+                    const timeDifference = currentDate.getTime() - lastCheckinDate.getTime();
+                    const hoursDifference = timeDifference / (1000 * 3600);
+                    if (hoursDifference > 24) {
+                        alert('You missed a day');
+                    }
+                }
             })
             .catch(() => {
                 alert('Error while fetching streak data');
@@ -41,32 +50,32 @@ export default function DailyRewards() {
     if (stillFetching) return <MiniPreloader />;
 
     const handleClaim = (day: number) => {
-        if (streak && canClaim === 2 && streak.current_streak === day) {
+        if (streak && canClaim === 1 && streak.current_streak + 1 === day) {
             setDailyRewardsClaimed(true);
             setCoinAmountToClaim(day * 500);
 
             // Update the streak state to reflect the new claim
             setStreak((prevStreak) => prevStreak ? {
                 ...prevStreak,
+                current_streak: prevStreak.current_streak + 1,
                 last_checkin_date: new Date().toISOString().split('T')[0]
             } : null);
 
             // Reset canClaim for the next day
-            setCanClaim(1);
+            setCanClaim(0);
         }
     };
 
     const renderReward = (day: number) => {
         const isClaimed = streak?.current_streak && streak?.current_streak >= day;
-        const isCurrentDay = streak?.current_streak === day;
-        const canClaimDay = isCurrentDay && canClaim === 2;
+        const canClaimDay = !isClaimed && canClaim === 1 && streak?.current_streak  === day;
 
         return (
             <div
                 key={day}
                 id="diamond-narrow"
-                className={`z-10 relative ${canClaimDay ? ' from-slate-600 bg-slate-900' : ''}`}
-                onClick={() => { if (canClaimDay) handleClaim(day) }}
+                className={`z-10 relative ${canClaimDay ? 'from-slate-600 bg-slate-900' : ''}`}
+                onClick={() => { if (canClaimDay) handleClaim(day); }}
             >
                 <div className={`content ${canClaimDay ? 'bg-gradient-to-b from-cyan-600' : 'bg-orange-400'} w-[100%]`}>
                     <p className="text-white text-xs font-bold">Day {day}</p>
@@ -77,16 +86,10 @@ export default function DailyRewards() {
                             </h1>
                         </div>
                     ) : (
-                        canClaimDay ? (
+                        canClaimDay && (
                             <div className="text-claim rounded-[40px]">
                                 <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
                                     Claim
-                                </h1>
-                            </div>
-                        ) : (
-                            <div className="text-claim rounded-[40px]">
-                                <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
-                                    Missed A day
                                 </h1>
                             </div>
                         )
