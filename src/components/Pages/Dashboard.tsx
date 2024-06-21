@@ -216,7 +216,7 @@ export default function Dashboard() {
                                 </div>
                             </div>
                             <div className="leverl w-[100%] h-[16%] bg-slate-800 rounded-lg">
-                                <div className={`level-child h-[100%]  progress rounded-lg`} style={{ width: `${level}0%` }}></div>
+                                <div className={`level-child h-[100%]  progress rounded-lg`} style={{ width: `${level}%` }}></div>
                             </div>
                         </div>
                     </div>
