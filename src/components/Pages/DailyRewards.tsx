@@ -4,7 +4,7 @@ import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak } from '@/utils/requests';
-import { isStreakContinued} from '@/utils/dateUtils';
+import { isStreakContinued } from '@/utils/dateUtils';
 import MiniPreloader from "./MiniPleloader";
 
 interface DailyStreakRetrival {
@@ -62,7 +62,7 @@ export default function DailyRewards() {
     const renderReward = (day: number) => {
         const isCurrentDay = streak?.current_streak === day;
         const canClaimDay = canClaim && isCurrentDay;
-        const isClaimed = claimedDays.includes(day);
+        const isClaimed = claimedDays.includes(day) || (streak && isStreakContinued(streak.last_checkin_date) && isCurrentDay);
 
         return (
             <div
@@ -73,10 +73,17 @@ export default function DailyRewards() {
             >
                 <div className={`content ${canClaimDay ? 'bg-gradient-to-b from-cyan-600' : 'bg-orange-400'} w-[100%]`}>
                     <p className="text-white text-xs font-bold">Day {day}</p>
-                    {canClaimDay && (
+                    {isClaimed && (
                         <div className="text-claim rounded-[40px]">
                             <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
-                                {isClaimed ? 'Claimed' : 'Claim'}
+                                CLAIMED
+                            </h1>
+                        </div>
+                    )}
+                    {canClaimDay && !isClaimed && (
+                        <div className="text-claim rounded-[40px]">
+                            <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
+                                Claim
                             </h1>
                         </div>
                     )}
@@ -131,4 +138,3 @@ export default function DailyRewards() {
         </div>
     );
 }
-
