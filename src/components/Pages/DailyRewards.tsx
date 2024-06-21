@@ -24,7 +24,7 @@ export default function DailyRewards() {
     const [coinAmountToClaim, setCoinAmountToClaim] = useState<number | undefined>();
 
     useEffect(() => {
-        RetriveDailyStreak()
+        const fetchStreakData = () => {RetriveDailyStreak()
             .then((streak) => {
                 alert(`${streak.date_started},,,,,,,,,${streak.last_checkin_date}`);
 
@@ -49,6 +49,10 @@ export default function DailyRewards() {
                 alert('Error while fetching streak data');
                 setStillFetching(false);
             });
+        };   
+        
+        const intervalid = setInterval(fetchStreakData, 1000);
+        return () => clearInterval(intervalid);
     }, []);
 
     if (stillFetching) return <MiniPreloader />;
