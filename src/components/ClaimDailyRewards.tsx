@@ -16,6 +16,7 @@ export default function ClaimDailyRewards({ isopen, isClose, amount, last_checki
     const user = useUserContext()
     const [showWin, setShowWin] = useState(false);
     console.log(last_checkin_date, user.user_id)
+    setShowWin(false)
     // const handleClaim = () => {
     //     alert("Claimed")
     //     setShowWin(true)
