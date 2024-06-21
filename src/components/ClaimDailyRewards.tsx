@@ -42,7 +42,7 @@ export default function ClaimDailyRewards({ isopen, isClose, amount, last_checki
                             <IoCloseSharp className="text-light" onClick={() => { isClose() }} />
                         </div>
                         <div className="claim-content daily h-[100%] ">
-                            <div className="claim-content-header w-full h-[30%] flex flex-col items-center justify-center">
+                            <div className="claim-content-header w-full h-[30%] flex flex-col items-center justify-center" onClick={() => { alert("Claimed") }}>
                                 <h1 className="text-light text-3xl font-semibold">YOUR</h1>
                                 <h1 className="text-light text-3xl font-semibold">DAILY REWARDS</h1>
                                 <h4 className="text-neutral-500 text-sm font-semibold small-text">CLAIM REWARDS AND KEEP THE STREAK GOING!</h4>
@@ -66,7 +66,7 @@ export default function ClaimDailyRewards({ isopen, isClose, amount, last_checki
                             </div>
 
                             <div className="daily-comfirmation-btn w-full h-[20%] flex flex-row items-center justify-evenly mb-4">
-                                <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[10vh] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center " onClick={() => { alert("Clicked....")}}>
+                                <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[10vh] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center ">
                                     <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem'>{showWin ? "CLAIMED" : "CLAIM NOW"}</p>
                                 </div>
                             </div>
