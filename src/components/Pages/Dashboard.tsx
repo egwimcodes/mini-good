@@ -204,7 +204,7 @@ export default function Dashboard() {
                                 <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{charged}</p>
                             </div>
                         </div>
-                        <div className='h-[20%] absolute bottom-0 w-[80%] flex flex-col'>
+                        <div className='h-[15%] absolute bottom-0 w-[80%] flex flex-col'>
                             <div className="progress-text w-[100%] flex justify-between items-center">
                                 <div className="left-progress-text flex flex-nowrap">
                                     <p className='text-sm font-semibold'>{user.rank}</p>
@@ -212,7 +212,7 @@ export default function Dashboard() {
                                 </div>
                                 <div className="right-progress-text flex flex-row">
                                     <p className='text-sm font-semibold'>Level</p>
-                                    <p className='ml-1 text-sm font-semibold'>{level}/20</p>
+                                    <p className='ml-1 text-sm font-semibold'>{user.earn_per_tap}/20</p>
                                 </div>
                             </div>
                             <div className="leverl w-[100%] h-[16%] bg-slate-800 rounded-lg">
