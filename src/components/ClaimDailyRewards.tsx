@@ -15,7 +15,6 @@ export default function ClaimDailyRewards({ isopen, isClose, amount }: PopUpComf
 
     useEffect(() => {
         alert(`Claiming ${amount}`);
-
     })
     const handleClaim = () => {
 
@@ -31,7 +30,6 @@ export default function ClaimDailyRewards({ isopen, isClose, amount }: PopUpComf
                 alert(`Error Updating Balance: ${JSON.stringify(error)}`);
             });
     };
-
     return (
         <>
             {isopen && (
