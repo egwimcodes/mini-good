@@ -32,6 +32,8 @@ export default function DailyRewards() {
 
                 alert(`Day Started ${streak.date_started}`)
                 alert(`Last Check in ${streak.last_checkin_date}`)
+                alert(`Day Started....... ${streak.date_started}`)
+
 
                 setCanClaim(canClaim);
                 setStreak(streak);
