@@ -8,13 +8,15 @@ interface PopUpComfirmationProps {
     isopen: boolean;
     isClose: () => void;
     amount?: number;
+    last_checkin_date?: string
 }
 
-export default function ClaimDailyRewards({ isopen, isClose, amount }: PopUpComfirmationProps) {
+export default function ClaimDailyRewards({ isopen, isClose, amount, last_checkin_date }: PopUpComfirmationProps) {
     const [showWin, setShowWin] = useState(false);
 
     useEffect(() => {
         alert(`Claiming ${amount}`);
+        alert(`Last ${last_checkin_date}`);
     })
     const handleClaim = () => {
 

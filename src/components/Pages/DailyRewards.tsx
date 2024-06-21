@@ -29,12 +29,6 @@ export default function DailyRewards() {
             .then((streak) => {
                 const lastCheckin = streak.last_checkin_date ?? streak.date_started;
                 const canClaim = isStreakContinued(lastCheckin);
-                alert(`c ${JSON.stringify(streak)}`)
-                alert(`Day Started ${streak.date_started}`)
-                alert(`Last Check in ${streak.last_checkin_date}`)
-                alert(`Day Started....... ${streak.date_started}`)
-
-
                 setCanClaim(canClaim);
                 setStreak(streak);
                 setStillFetching(false);
@@ -56,7 +50,6 @@ export default function DailyRewards() {
             // Update the streak state to reflect the new claim
             setStreak((prevStreak) => prevStreak ? {
                 ...prevStreak,
-                current_streak: prevStreak.current_streak + 1,
                 last_checkin_date: new Date().toISOString().split('T')[0]
             } : null);
 
@@ -132,7 +125,7 @@ export default function DailyRewards() {
                 <DailyPopUpComfirmation isopen={true} isClose={() => setDailyClaim(false)} />
             )}
             {dailyRewardsClaimed && (
-                <ClaimDailyRewards isopen={true} isClose={() => setDailyRewardsClaimed(false)} amount={coinAmountToClaim} />
+                <ClaimDailyRewards isopen={true} isClose={() => setDailyRewardsClaimed(false)} amount={coinAmountToClaim} last_checkin_date={streak?.last_checkin_date} />
             )}
         </div>
     );
