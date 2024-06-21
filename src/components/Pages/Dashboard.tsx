@@ -30,8 +30,8 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (user.earn_per_tap === 1) {
-           // const earn = user.earn_per_tap / 2;
-            setLevel(10);
+            const earn = user.earn_per_tap / 2;
+            setLevel(earn);
         }
         if (user.earn_per_tap === 2) {
             const earn = user.earn_per_tap / 4;
