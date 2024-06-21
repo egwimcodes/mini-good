@@ -4,7 +4,7 @@ import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak } from '@/utils/requests';
-import { isStreakContinued} from '@/utils/dateUtils';
+import { checkLastCheckin} from '@/utils/dateUtils';
 import MiniPreloader from "./MiniPleloader";
 
 interface DailyStreakRetrival {
@@ -19,8 +19,7 @@ export default function DailyRewards() {
     const [dailyClaim, setDailyClaim] = useState(false);
     const [dailyRewardsClaimed, setDailyRewardsClaimed] = useState(false);
     const [streak, setStreak] = useState<DailyStreakRetrival | null>(null);
-    const [canClaim, setCanClaim] = useState(false);
-    const [claimedDays, setClaimedDays] = useState<number[]>([]);
+    const [canClaim, setCanClaim] = useState<number>(0);
     const [stillFetching, setStillFetching] = useState<boolean>(true);
     const [coinAmountToClaim, setCoinAmountToClaim] = useState<number | undefined>();
 
@@ -28,7 +27,7 @@ export default function DailyRewards() {
         RetriveDailyStreak()
             .then((streak) => {
                 const lastCheckin = streak.last_checkin_date ?? streak.date_started;
-                const canClaim = isStreakContinued(lastCheckin);
+                const canClaim = checkLastCheckin(lastCheckin)
                 setCanClaim(canClaim);
                 setStreak(streak);
                 setStillFetching(false);
@@ -43,8 +42,7 @@ export default function DailyRewards() {
     if (stillFetching) return <MiniPreloader />;
 
     const handleClaim = (day: number) => {
-        if (!claimedDays.includes(day) && streak && canClaim && streak.current_streak === day) {
-            setClaimedDays([...claimedDays, day]);
+        if (streak && canClaim && streak.current_streak === day) {
             setDailyRewardsClaimed(true);
             setCoinAmountToClaim(day * 500);
 
@@ -55,35 +53,39 @@ export default function DailyRewards() {
             } : null);
 
             // Reset canClaim for the next day
-            setCanClaim(false);
         }
     };
 
     const renderReward = (day: number) => {
-        const isCurrentDay = streak?.current_streak === day;
-        const canClaimDay = canClaim && isCurrentDay;
-        const isClaimed = claimedDays.includes(day) || (streak && isStreakContinued(streak.last_checkin_date) && isCurrentDay);
+        const canClaimDay = canClaim > 1 && canClaim <= 2;
 
         return (
             <div
                 key={day}
                 id="diamond-narrow"
-                className={`z-10 relative ${canClaimDay ? 'bg-black' : ''}`}
-                onClick={() => { if (canClaimDay) handleClaim(day) }}
+                className={`z-10 relative ${canClaimDay ? ' from-slate-600 bg-slate-900' : ''}`}
+                onClick={() => { if (canClaim > 1 && canClaim <= 2) handleClaim(day) }}
             >
                 <div className={`content ${canClaimDay ? 'bg-gradient-to-b from-cyan-600' : 'bg-orange-400'} w-[100%]`}>
                     <p className="text-white text-xs font-bold">Day {day}</p>
-                    {isClaimed && (
+                    {(canClaim <= 1) && (
                         <div className="text-claim rounded-[40px]">
                             <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
                                 CLAIMED
                             </h1>
                         </div>
                     )}
-                    {canClaimDay && !isClaimed && (
+                    {(canClaim > 1 && canClaim <= 2) && (
                         <div className="text-claim rounded-[40px]">
                             <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
                                 Claim
+                            </h1>
+                        </div>
+                    )}
+                    {(canClaim > 2) && (
+                        <div className="text-claim rounded-[40px]">
+                            <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
+                               Missed A day
                             </h1>
                         </div>
                     )}
