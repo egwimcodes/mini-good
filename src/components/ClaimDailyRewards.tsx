@@ -21,7 +21,7 @@ export default function ClaimDailyRewards({ isopen, isClose, amount, last_checki
                 last_checkin_date: last_checkin_date,
                 owner: user.user_id
             }
-            DailyStreakCreate(streakData).then((e) => {
+            DailyStreakCreate(streakData).then(() => {
                 setShowWin(true)
             })
         }
