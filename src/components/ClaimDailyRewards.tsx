@@ -1,5 +1,6 @@
-import { TopUpCreateType } from "@/types";
-import { TopUpCreate } from "@/utils/requests";
+import { useUserContext } from "@/hooks/UserContext";
+import {TopUpCreateType } from "@/types";
+import {TopUpCreate } from "@/utils/requests";
 import Image from "next/image";
 import {useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
@@ -12,6 +13,7 @@ interface PopUpComfirmationProps {
 }
 
 export default function ClaimDailyRewards({ isopen, isClose, amount, last_checkin_date }: PopUpComfirmationProps) {
+    const user = useUserContext()
     const [showWin, setShowWin] = useState(false);
     const handleClaim = () => {
 
@@ -19,6 +21,15 @@ export default function ClaimDailyRewards({ isopen, isClose, amount, last_checki
             amount: amount || 0, // Use the current value of balance
         };
 
+        // const streakData: DailyStreakCreateType = {
+        //     last_checkin_date: last_checkin_date,
+        //     owner: user.user_id
+            
+        // }
+
+        // DailyStreakCreate(streakData).then(() => { })
+        alert(last_checkin_date)
+        alert(`owner ${user.user_id}`)
         TopUpCreate(topUpData)
             .then((e) => {
                 alert( `after claim ${JSON.stringify(e)}`)
