@@ -1,5 +1,5 @@
 import { useUserContext } from "@/hooks/UserContext";
-import {DailyStreakCreateType, TopUpCreateType } from "@/types";
+import {DailyStreakCreateType} from "@/types";
 import {DailyStreakCreate } from "@/utils/requests";
 import Image from "next/image";
 import { useState } from "react";
