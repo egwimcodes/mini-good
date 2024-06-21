@@ -27,7 +27,7 @@ export default function DailyRewards() {
     useEffect(() => {
         RetriveDailyStreak()
             .then((streak) => {
-                const lastCheckin = streak.last_checkin_date || streak.date_started;
+                const lastCheckin = streak.last_checkin_date ?? streak.date_started;
                 const canClaim = isStreakContinued(lastCheckin);
 
                 alert(`Day Started ${streak.date_started}`)

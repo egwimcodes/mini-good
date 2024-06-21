@@ -30,7 +30,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (balance >= 1 && balance < 10000) {
-            setEarnParTap(2);
+            setEarnParTap(1);
             setLevel(1);
         }
         if (balance >= 10000 && balance < 20000) {
