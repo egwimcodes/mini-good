@@ -1,6 +1,7 @@
 // Utility Functions
 export const isStreakContinued = (lastCheckinDate: string): boolean => {
     const lastCheckin = new Date(lastCheckinDate);
+    alert(`c ${lastCheckin}`)
     const today = new Date();
 
     lastCheckin.setUTCHours(0, 0, 0, 0);
