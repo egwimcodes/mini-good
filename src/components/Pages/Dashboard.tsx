@@ -22,49 +22,16 @@ export default function Dashboard() {
     const [taps, setTaps] = useState(0);
     const [charged] = useState(user.tap_energy);
     const [recivedCharges, setRecivedCharges] = useState(user.tap_energy);
-    const [earnPerTap, setEarnParTap] = useState(user.earn_per_tap)
+    const [earnPerTap] = useState(user.earn_per_tap)
     const [level, setLevel] = useState(user.tap_energy_level)
     const balanceString = balance.toString().length;
 
 
 
     useEffect(() => {
-        if (balance >= 1 && balance < 10000) {
-            setEarnParTap(1);
-            setLevel(1);
+        if (user.earn_per_tap) {
+            setLevel(user.earn_per_tap);
         }
-        if (balance >= 10000 && balance < 20000) {
-            setEarnParTap(2);
-            setLevel(2);
-        } else if (balance >= 20000 && balance < 30000) {
-            setEarnParTap(3);
-            setLevel(3);
-        } else if (balance >= 30000 && balance < 40000) {
-            setEarnParTap(4);
-            setLevel(4);
-        } else if (balance >= 40000 && balance < 50000) {
-            setEarnParTap(5);
-            setLevel(5);
-        } else if (balance >= 50000 && balance < 60000) {
-            setEarnParTap(5);
-            setLevel(5);
-        } else if (balance >= 60000 && balance < 70000) {
-            setEarnParTap(6);
-            setLevel(6);
-        } else if (balance >= 70000 && balance < 80000) {
-            setEarnParTap(7);
-            setLevel(7);
-        } else if (balance >= 80000 && balance < 90000) {
-            setEarnParTap(8);
-            setLevel(8);
-        } else if (balance >= 90000 && balance < 100000) {
-            setEarnParTap(9);
-            setLevel(9);
-        } else if (balance >= 100000) {
-            setEarnParTap(10);
-            setLevel(10);
-        }
-
 
     }, [taps, user.balance])
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
@@ -165,7 +132,7 @@ export default function Dashboard() {
                                 </div>
                                 <div className="right-progress-text flex flex-row">
                                     <p className='text-sm font-semibold'>Level</p>
-                                    <p className='ml-1 text-sm font-semibold'>{level}/10</p>
+                                    <p className='ml-1 text-sm font-semibold'>{level}/20</p>
                                 </div>
                             </div>
                             <div className="leverl w-[100%] h-[16%] bg-slate-800 rounded-lg">
