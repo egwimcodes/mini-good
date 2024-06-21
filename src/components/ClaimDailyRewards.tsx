@@ -2,7 +2,7 @@ import { useUserContext } from "@/hooks/UserContext";
 import {DailyStreakCreateType, TopUpCreateType } from "@/types";
 import {DailyStreakCreate, TopUpCreate } from "@/utils/requests";
 import Image from "next/image";
-import {useEffect, useState } from "react";
+import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
 interface PopUpComfirmationProps {
@@ -16,12 +16,6 @@ export default function ClaimDailyRewards({ isopen, isClose, amount, last_checki
     const user = useUserContext()
     const [showWin, setShowWin] = useState(false);
 
-    useEffect(() => {
-
-
-        alert(last_checkin_date)
-        alert(`owner ${user.user_id}`)
-    })
     const handleClaim = () => {
 
         const topUpData: TopUpCreateType = {
