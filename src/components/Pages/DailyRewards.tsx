@@ -83,7 +83,7 @@ export default function DailyRewards() {
                     <p className="text-white text-xs font-bold">Day {day}</p>
                     {isClaimed ? (
                         <div className="text-claim rounded-[40px]">
-                            <h1 className="text-white text-xl font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
+                            <h1 className="text-white text-xs font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
                                 CLAIMED
                             </h1>
                         </div>
