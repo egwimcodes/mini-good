@@ -1,4 +1,3 @@
-import { useUserContext } from "@/hooks/UserContext";
 //import {DailyStreakCreateType} from "@/types";
 //import {DailyStreakCreate } from "@/utils/requests";
 import Image from "next/image";
@@ -13,26 +12,13 @@ interface PopUpComfirmationProps {
 }
 
 export default function ClaimDailyRewards({ isopen, isClose, amount, last_checkin_date }: PopUpComfirmationProps) {
-    const user = useUserContext()
     const [showWin, setShowWin] = useState(false);
-    console.log(last_checkin_date, user.user_id)
-    setShowWin(false)
-    // const handleClaim = () => {
-    //     alert("Claimed")
-    //     setShowWin(true)
 
-    //     //     if (last_checkin_date && user.user_id) {
-    //     //         const streakData: DailyStreakCreateType = {
-    //     //             last_checkin_date: last_checkin_date,
-    //     //             owner: user.user_id
-    //     //         }
 
-    //     //        await DailyStreakCreate(streakData).then((e) => {
-    //     //            alert(`After Claiming Streak  ${JSON.stringify(e)}`)
-    //     //            setShowWin(true)
-    //     //          })
-    //     //    }
-    // };
+    const me = () => {
+        alert(last_checkin_date)
+        setShowWin(true)
+    }
     return (
         <>
             {isopen && (
@@ -42,7 +28,7 @@ export default function ClaimDailyRewards({ isopen, isClose, amount, last_checki
                             <IoCloseSharp className="text-light" onClick={() => { isClose() }} />
                         </div>
                         <div className="claim-content daily h-[100%] ">
-                            <div className="claim-content-header w-full h-[30%] flex flex-col items-center justify-center" onClick={() => { alert("Claimed") }}>
+                            <div className="claim-content-header w-full h-[30%] flex flex-col items-center justify-center" onClick={() => { me}}>
                                 <h1 className="text-light text-3xl font-semibold">YOUR</h1>
                                 <h1 className="text-light text-3xl font-semibold">DAILY REWARDS</h1>
                                 <h4 className="text-neutral-500 text-sm font-semibold small-text">CLAIM REWARDS AND KEEP THE STREAK GOING!</h4>
