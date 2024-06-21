@@ -28,10 +28,12 @@ export default function DailyRewards() {
             .then((streak) => {
                 alert(`${streak.date_started},,,,,,,,,${streak.last_checkin_date}`);
 
+
                 const lastCheckin = streak.last_checkin_date ?? streak.date_started;
                 const canClaim = checkLastCheckin(lastCheckin);
                 setCanClaim(canClaim);
                 setStreak(streak);
+                alert(`${streak.current_streak},,,,,,#,,,${streak.last_checkin_date}`);
                 setStillFetching(false);
                 if (canClaim === 2) {
                     const lastCheckinDate = new Date(lastCheckin);
