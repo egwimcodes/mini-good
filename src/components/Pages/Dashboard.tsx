@@ -215,7 +215,7 @@ export default function Dashboard() {
                                     <p className='ml-1 text-sm font-semibold'>{user.earn_per_tap}/20</p>
                                 </div>
                             </div>
-                            <div className="leverl w-[100%] h-[16%] bg-slate-800 rounded-lg">
+                            <div className="leverl w-[100%] h-[16%] bg-slate-600 rounded-lg">
                                 <div className={`level-child h-[100%]  progress rounded-lg`} style={{ width: `${level}%` }}></div>
                             </div>
                         </div>
