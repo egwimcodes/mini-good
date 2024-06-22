@@ -22,109 +22,113 @@ const Home = () => {
 
       try {
         if (response.data.accessToken.value === "") {
-          try {
-            const userData = webAppData.initDataUnsafe;
-            const userInfo = {
-              password: `${userData.user.id}`,
-              username: userData.user.username,
-              first_name: userData.user.first_name,
-              referral_code: userData.start_param ?? "",
-              is_premium_user: userData.user.is_premium_user ?? false,
-            };
-            Register(userInfo)
-              .then(async (e) => {
-                const dataToStore =
-                  typeof e === "string" ? e : JSON.stringify(e);
-                const accessTokenToStore =
-                  JSON.parse(dataToStore).token.access;
-                await setAccessToken(accessTokenToStore);
+          alert("Register")
+          alert(`${response.data.accessToken.value}`)
+          // try {
+          //   const userData = webAppData.initDataUnsafe;
+          //   const userInfo = {
+          //     password: `${userData.user.id}`,
+          //     username: userData.user.username,
+          //     first_name: userData.user.first_name,
+          //     referral_code: userData.start_param ?? "",
+          //     is_premium_user: userData.user.is_premium_user ?? false,
+          //   };
+          //   Register(userInfo)
+          //     .then(async (e) => {
+          //       const dataToStore =
+          //         typeof e === "string" ? e : JSON.stringify(e);
+          //       const accessTokenToStore =
+          //         JSON.parse(dataToStore).token.access;
+          //       await setAccessToken(accessTokenToStore);
 
-                // Retrieve user data after registration
-                RetriveMe()
-                  .then((e) => {
-                    setUser(e);
-                    const balance = e.balance;
-                    localStorage.setItem('balance', String(balance));
-                    setIsLoading(false);
-                  })
-                  .catch((e) => {
-                    console.error("Error when retrieving me:", e);
-                    setIsLoading(false); // Handle error and stop loading
-                  });
-              })
-              .catch((e) => {
-                console.error("Error from Register:", e);
-                setIsLoading(false); // Handle error and stop loading
-              });
-          } catch (error) {
-            console.error("Error from Register || login:", error);
-            setIsLoading(false); // Handle error and stop loading
-          }
+          //       // Retrieve user data after registration
+          //       RetriveMe()
+          //         .then((e) => {
+          //           setUser(e);
+          //           const balance = e.balance;
+          //           localStorage.setItem('balance', String(balance));
+          //           setIsLoading(false);
+          //         })
+          //         .catch((e) => {
+          //           console.error("Error when retrieving me:", e);
+          //           setIsLoading(false); // Handle error and stop loading
+          //         });
+          //     })
+          //     .catch((e) => {
+          //       console.error("Error from Register:", e);
+          //       setIsLoading(false); // Handle error and stop loading
+          //     });
+          // } catch (error) {
+          //   console.error("Error from Register || login:", error);
+          //   setIsLoading(false); // Handle error and stop loading
+          // }
         } else {
-          const userData = webAppData.initDataUnsafe;
-          const userLoginInfo = {
-            username: userData.user.username,
-            password: `${userData.user.id}`,
-          };
-          Login(userLoginInfo)
-            .then(async (e) => {
-              if (e.name === "AxiosError") {
-                try {
-                  const userInfo = {
-                    password: `${userData.user.id}`,
-                    username: userData.user.username,
-                    first_name: userData.user.first_name,
-                    referral_code: userData.start_param ?? "",
-                    is_premium_user: userData.user.is_premium_user ?? false,
-                  };
-                  Register(userInfo)
-                    .then(async (e) => {
-                      const dataToStore =
-                        typeof e === "string" ? e : JSON.stringify(e);
-                      const accessTokenToStore =
-                        JSON.parse(dataToStore).token.access;
-                      await setAccessToken(accessTokenToStore);
+          alert("Login")
+          alert(`${response.data.accessToken.value}`)
+          // const userData = webAppData.initDataUnsafe;
+          // const userLoginInfo = {
+          //   username: userData.user.username,
+          //   password: `${userData.user.id}`,
+          // };
+          // Login(userLoginInfo)
+          //   .then(async (e) => {
+          //     if (e.name === "AxiosError") {
+          //       try {
+          //         const userInfo = {
+          //           password: `${userData.user.id}`,
+          //           username: userData.user.username,
+          //           first_name: userData.user.first_name,
+          //           referral_code: userData.start_param ?? "",
+          //           is_premium_user: userData.user.is_premium_user ?? false,
+          //         };
+          //         Register(userInfo)
+          //           .then(async (e) => {
+          //             const dataToStore =
+          //               typeof e === "string" ? e : JSON.stringify(e);
+          //             const accessTokenToStore =
+          //               JSON.parse(dataToStore).token.access;
+          //             await setAccessToken(accessTokenToStore);
 
-                      // Retrieve user data after registration
-                      RetriveMe()
-                        .then((e) => {
-                          setUser(e);
-                          setIsLoading(false);
-                        })
-                        .catch((e) => {
-                          console.error(
-                            "Error when retrieving me after login fail:",
-                            e
-                          );
-                          setIsLoading(false); // Handle error and stop loading
-                        });
-                    })
-                    .catch((e) => {
-                      console.error("Error from Register:", e);
-                      setIsLoading(false); // Handle error and stop loading
-                    });
-                } catch (error) {
-                  console.error("Error from Register || login:", error);
-                  setIsLoading(false); // Handle error and stop loading
-                }
-              } else {
-                await setAccessToken(e.access);
-                // Retrieve user data after successful login
-                RetriveMe()
-                  .then((res) => {
-                    setUser(res);
-                    setIsLoading(false);
-                  })
-                  .catch((e) => {
-                    console.error("Error when retrieving me:", e);
-                    setIsLoading(false); // Handle error and stop loading
-                  });
-              }
-            })
-            .catch((e) => {
-              console.error("Error from Login call:", e);
-              setIsLoading(false); // Handle error and stop loading
-            });
+          //             // Retrieve user data after registration
+          //             RetriveMe()
+          //               .then((e) => {
+          //                 setUser(e);
+          //                 setIsLoading(false);
+          //               })
+          //               .catch((e) => {
+          //                 console.error(
+          //                   "Error when retrieving me after login fail:",
+          //                   e
+          //                 );
+          //                 setIsLoading(false); // Handle error and stop loading
+          //               });
+          //           })
+          //           .catch((e) => {
+          //             console.error("Error from Register:", e);
+          //             setIsLoading(false); // Handle error and stop loading
+          //           });
+          //       } catch (error) {
+          //         console.error("Error from Register || login:", error);
+          //         setIsLoading(false); // Handle error and stop loading
+          //       }
+          //     } else {
+          //       await setAccessToken(e.access);
+          //       // Retrieve user data after successful login
+          //       RetriveMe()
+          //         .then((res) => {
+          //           setUser(res);
+          //           setIsLoading(false);
+          //         })
+          //         .catch((e) => {
+          //           console.error("Error when retrieving me:", e);
+          //           setIsLoading(false); // Handle error and stop loading
+          //         });
+          //     }
+          //   })
+          //   .catch((e) => {
+          //     console.error("Error from Login call:", e);
+          //     setIsLoading(false); // Handle error and stop loading
+          //   });
         }
       } catch (error) {
         console.error("Error fetching login data in App:", error);
