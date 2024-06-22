@@ -5,6 +5,7 @@ import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak } from '@/utils/requests';
 import MiniPreloader from "./MiniPleloader";
+import { canClaim } from '@/utils/dateUtils';
 
 interface DailyStreakRetrival {
     id: number,
@@ -26,9 +27,10 @@ export default function DailyRewards() {
     useEffect(() => {
         const fetchStreakData = () => {RetriveDailyStreak()
             .then((streak) => {
+                const streak_data = streak.last_checkin_date ?? streak.current_streak;
                 setStreak(streak);
+                alert(canClaim(streak_data))
                 setStillFetching(false);
-                alert(streak.current_streak)
 
             })
             .catch(() => {
