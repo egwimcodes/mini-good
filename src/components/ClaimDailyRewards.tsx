@@ -18,7 +18,6 @@ export default function ClaimDailyRewards({ isopen, isClose, amount }: PopUpComf
     const [showWin, setShowWin] = useState(false);
     const handleClaim = () => {
         const currentData =  getCurrentDateFormatted()
-        alert(currentData)
         if (user.user_id ) {
             const streakData = {
                 last_checkin_date: currentData,
