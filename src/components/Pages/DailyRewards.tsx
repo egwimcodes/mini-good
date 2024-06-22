@@ -78,7 +78,7 @@ export default function DailyRewards() {
                                     onClick={() => { if (canClaimDay && streak?.current_streak) setDailyRewardsClaimed(true); setCoinAmountToClaim(streak?.current_streak ? streak?.current_streak * 500 : streak?.current_streak)  }}
                                 >
                                     <div className={`content bg-orange-400 w-[100%]`}>
-                                        <p className="text-white text-xs font-bold">Day 1</p>
+                                        <p className="text-white text-xs font-bold">Day { streak?.current_streak }</p>
                                         {isClaimed ? (
                                             <div className="text-claim rounded-[40px]">
                                                 <h1 className="text-white text-xs font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
