@@ -22,14 +22,6 @@ export default function Boost() {
                         </div>
                         <MdNavigateNext className="r-arrow text-2xl font-bold" />
                     </div>
-                    <div className="normal-boost w-[100%] h-[12vh] flex flex-row items-center justify-between mb-3 px-2 border-2 border-main rounded-[10px]"  onClick={() => setIsClaiming(true)}>
-                        <Image className="w-10" width={50} height={50} draggable="false" src="/robot.png" alt="" />
-                        <div className="boost-writeup flex flex-col items-center justify-center">
-                            <h3 className="text-main text-2xl font-bold">Buy Bots </h3>
-                            <h5 className="text-orange-400 text-sm"><span className="font-bold">level 1</span></h5>
-                        </div>
-                        <MdNavigateNext className="r-arrow text-2xl font-bold" />
-                    </div>
                 </div>
 
 
