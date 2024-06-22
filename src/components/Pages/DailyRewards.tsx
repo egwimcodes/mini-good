@@ -30,6 +30,7 @@ export default function DailyRewards() {
                 const streak_data = streak.last_checkin_date ?? streak.current_streak;
                 setStreak(streak);
                 alert(canClaim(streak_data))
+                alert(streak.last_checkin_date)
                 setStillFetching(false);
 
             })
