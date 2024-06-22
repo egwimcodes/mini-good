@@ -2,10 +2,10 @@
 
 import HomePage from "@/components/Pages/HomePage";
 import _404 from "@/components/Pages/_404";
-import { Login, Register, RetriveMe } from "@/utils/requests";
+import {RetriveMe } from "@/utils/requests";
 import { useWebApp } from "@vkruglikov/react-telegram-web-app";
 import React, { useState, useEffect } from "react";
-import { fetchAccessToken, setAccessToken } from "@/utils/api";
+import { fetchAccessToken,} from "@/utils/api";
 import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
 import { UserData } from "@/types";
