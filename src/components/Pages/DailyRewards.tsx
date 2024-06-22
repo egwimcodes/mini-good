@@ -50,7 +50,7 @@ export default function DailyRewards() {
                 <p className="xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-light">Check and Claim</p>
             </div>
 
-            <div className="rewards-content h-fit w-[100%] mx-auto flex flex-row flex-wrap justify-between rounded-xl px-3 pb-5 border-2 border-main">
+            <div className="rewards-content h-[60%] w-[100%] mx-auto flex flex-row flex-wrap justify-between rounded-xl px-3 pb-5 border-2 border-main">
                 <div className="boost-btn-container h-inherit w-inherit flex flex-col items-center">
                     <div className="reward-header w-[90vw] h-[20%] flex flex-row items-center justify-between mx-auto">
                         <h1 className="xxxsm:text-xs xxsm:text-2xl xsm:text-1rem sm:text-1rem font-bold text-light">DAILY CLAIM</h1>
@@ -73,7 +73,7 @@ export default function DailyRewards() {
                                     className={`z-10 relative from-slate-600 bg-slate-900`}
                                 >
                                     <div className={`content bg-orange-400 w-[100%]`}>
-                                        <p className="text-white text-xs font-bold">Day</p>
+                                        <p className="text-white text-xs font-bold">Day 1</p>
                                         {isClaimed ? (
                                             <div className="text-claim rounded-[40px]">
                                                 <h1 className="text-white text-xs font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
