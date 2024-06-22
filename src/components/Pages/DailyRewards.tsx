@@ -4,7 +4,6 @@ import { IoMdTime } from "react-icons/io";
 import DailyPopUpComfirmation from '../DailyPopUpComfirmation';
 import ClaimDailyRewards from '../ClaimDailyRewards';
 import { RetriveDailyStreak } from '@/utils/requests';
-import { checkLastCheckin } from '@/utils/dateUtils';
 import MiniPreloader from "./MiniPleloader";
 
 interface DailyStreakRetrival {
