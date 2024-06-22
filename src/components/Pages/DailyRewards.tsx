@@ -28,15 +28,17 @@ export default function DailyRewards() {
             .then((streak) => {
                 setStreak(streak);
                 setStillFetching(false);
+                alert(streak.current_streak)
+
             })
             .catch(() => {
                 alert('Error while fetching streak data');
                 setStillFetching(false);
             });
         };   
-        
-        const intervalid = setInterval(fetchStreakData, 1000);
-        return () => clearInterval(intervalid);
+        fetchStreakData();
+        // const intervalid = setInterval(fetchStreakData, 1000);
+        // return () => clearInterval(intervalid);
     }, []);
 
     if (stillFetching) return <MiniPreloader />;
