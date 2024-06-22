@@ -106,7 +106,7 @@ export default function DailyRewards() {
                         </div>
                         <div className="rewards-footer w-[100%] h-[10%] mx-auto flex-center">
                             <h1 className="text-main">
-                                Comeback Tomorrow
+                                Comeback Tomorrow <br /> and <br />keep Streak moving 
                             </h1>
                         </div>
                     </div>
