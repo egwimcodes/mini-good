@@ -21,7 +21,7 @@ export default function DailyRewards() {
     const [streak, setStreak] = useState<DailyStreakRetrival | null>(null);
     const [stillFetching, setStillFetching] = useState<boolean>(true);
     const [coinAmountToClaim] = useState<number | undefined>();
-    const [canClaimDay] = useState(true)
+    const [canClaimDay, setCanClaimDay] = useState(false)
     const [isClaimed]=useState(false)
 
     useEffect(() => {
@@ -29,8 +29,7 @@ export default function DailyRewards() {
             .then((streak) => {
                 const streak_data = streak.last_checkin_date ?? streak.current_streak;
                 setStreak(streak);
-                alert(canClaim(streak_data))
-                alert(streak.last_checkin_date)
+                setCanClaimDay(canClaim(streak_data))
                 setStillFetching(false);
 
             })
@@ -76,6 +75,7 @@ export default function DailyRewards() {
                                 <div
                                     id="diamond-narrow"
                                     className={`z-10 relative from-slate-600 bg-slate-900`}
+                                    onClick={() => { if (canClaimDay) setDailyRewardsClaimed(true); }}
                                 >
                                     <div className={`content bg-orange-400 w-[100%]`}>
                                         <p className="text-white text-xs font-bold">Day 1</p>
