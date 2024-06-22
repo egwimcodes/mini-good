@@ -18,9 +18,9 @@ interface DailyStreakRetrival {
 export default function DailyRewards() {
     const [dailyClaim, setDailyClaim] = useState(false);
     const [dailyRewardsClaimed, setDailyRewardsClaimed] = useState(false);
-    const [streak, setStreak] = useState<DailyStreakRetrival | null>(null);
+    const [streak, setStreak] = useState<DailyStreakRetrival>();
     const [stillFetching, setStillFetching] = useState<boolean>(true);
-    const [coinAmountToClaim] = useState<number | undefined>();
+    const [coinAmountToClaim, setCoinAmountToClaim] = useState<number | undefined>();
     const [canClaimDay, setCanClaimDay] = useState(false)
     const [isClaimed]=useState(false)
 
@@ -75,7 +75,7 @@ export default function DailyRewards() {
                                 <div
                                     id="diamond-narrow"
                                     className={`z-10 relative from-slate-600 bg-slate-900`}
-                                    onClick={() => { if (canClaimDay) setDailyRewardsClaimed(true); }}
+                                    onClick={() => { if (canClaimDay && streak?.current_streak) setDailyRewardsClaimed(true); setCoinAmountToClaim(streak?.current_streak ? streak?.current_streak * 500 : streak?.current_streak)  }}
                                 >
                                     <div className={`content bg-orange-400 w-[100%]`}>
                                         <p className="text-white text-xs font-bold">Day 1</p>
