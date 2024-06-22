@@ -1,5 +1,6 @@
 
 import { useUserContext } from "@/hooks/UserContext";
+import { getCurrentDateFormatted } from "@/utils/dateUtils";
 import { DailyStreakCreate } from "@/utils/requests";
 import Image from "next/image";
 import { useState } from "react";
@@ -9,16 +10,18 @@ interface PopUpComfirmationProps {
     isopen: boolean;
     isClose: () => void;
     amount?: number;
-    last_checkin_date?: string
+
 }
 
-export default function ClaimDailyRewards({ isopen, isClose, amount, last_checkin_date }: PopUpComfirmationProps) {
+export default function ClaimDailyRewards({ isopen, isClose, amount }: PopUpComfirmationProps) {
     const user = useUserContext()
     const [showWin, setShowWin] = useState(false);
     const handleClaim = () => {
-        if (user.user_id && last_checkin_date) {
+        const currentData =  getCurrentDateFormatted()
+        alert(currentData)
+        if (user.user_id ) {
             const streakData = {
-                last_checkin_date: last_checkin_date,
+                last_checkin_date: currentData,
                 owner: user.user_id
             }
             DailyStreakCreate(streakData).then(() => {

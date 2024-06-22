@@ -111,7 +111,7 @@ export default function DailyRewards() {
                 <DailyPopUpComfirmation isopen={true} isClose={() => setDailyClaim(false)} />
             )}
             {dailyRewardsClaimed && (
-                <ClaimDailyRewards isopen={true} isClose={() => setDailyRewardsClaimed(false)} amount={coinAmountToClaim} last_checkin_date={streak?.last_checkin_date} />
+                <ClaimDailyRewards isopen={true} isClose={() => setDailyRewardsClaimed(false)} amount={coinAmountToClaim}/>
             )}
         </div>
     );
