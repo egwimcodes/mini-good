@@ -20,7 +20,7 @@ export default function DailyRewards() {
     const [streak, setStreak] = useState<DailyStreakRetrival | null>(null);
     const [stillFetching, setStillFetching] = useState<boolean>(true);
     const [coinAmountToClaim] = useState<number | undefined>();
-    const [canClaimDay] = useState(false)
+    const [canClaimDay] = useState(true)
     const [isClaimed]=useState(false)
 
     useEffect(() => {
