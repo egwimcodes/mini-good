@@ -81,6 +81,7 @@ const Home = () => {
                     is_premium_user: userData.user.is_premium_user ?? false,
                   };
                   alert(`Error during login: ${e.message}`);
+                  alert(`Data to store: ${JSON.stringify(userInfo)}`);
                   Register(userInfo)
                     .then(async (e) => {
                       const dataToStore =
