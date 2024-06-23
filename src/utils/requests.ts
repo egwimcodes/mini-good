@@ -28,6 +28,7 @@ async function Register({ password, username, first_name, is_premium_user, refer
             },
         };
         const response = await MakeRequest(requestConfig);
+        alert("Registration successful!"+ JSON.stringify(response)); // Using alert to show success message
         return response;
     } catch (error) {
         alert("Error during Registration: " + error); // Using alert to show error message
