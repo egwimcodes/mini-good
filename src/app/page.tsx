@@ -22,7 +22,6 @@ const Home = () => {
 
       try {
         if (response.data.accessToken.value === "") {
-          localStorage.clear()
           try {
             const userData = webAppData.initDataUnsafe;
             const userInfo = {

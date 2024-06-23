@@ -30,7 +30,7 @@ async function Register({ password, username, first_name, is_premium_user, refer
         const response = await MakeRequest(requestConfig);
         return response;
     } catch (error) {
-        alert("Error during registration: " + error); // Using alert to show error message
+        alert("Error during Registration: " + error); // Using alert to show error message
         console.error("Error during registration:", error);
         throw error; // Optional: Re-throw the error to be handled by the caller
     }
