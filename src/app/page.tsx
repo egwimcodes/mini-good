@@ -66,12 +66,12 @@ const Home = () => {
             username: userData.user.username,
             password: `${userData.user.id}`,
           };
+          alert("Welcome back!" + userLoginInfo.username);
 
           Login(userLoginInfo)
             .then(async (e) => {
               if (e.name === "AxiosError") {
                 try {
-                  localStorage.clear()
                   const userInfo = {
                     password: `${userData.user.id}`,
                     username: userData.user.username,
@@ -79,7 +79,7 @@ const Home = () => {
                     referral_code: userData.start_param ?? "",
                     is_premium_user: userData.user.is_premium_user ?? false,
                   };
-
+                  alert(`Error during login: ${e.message}`);
                   Register(userInfo)
                     .then(async (e) => {
                       const dataToStore =
