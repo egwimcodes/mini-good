@@ -4,7 +4,7 @@ import { ApiRequestConfig } from "@/types";
 import { fetchAccessToken } from "./api";
 
 //const SERVER_HOST = "https://clownfish-app-lqqur.ondigitalocean.app";
-const SERVER_HOST =  "http://195.35.1.248:8000";
+const SERVER_HOST =  "http://195.35.1.248";
 const SERVER_VERSION = "v1";
 const baseURL: string = `${SERVER_HOST}`;
 
