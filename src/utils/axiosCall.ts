@@ -33,9 +33,9 @@ export async function MakeRequest(
         };
 
         const url = `${baseURL}/api/${SERVER_VERSION}${path}`;
-        alert(`Token: ${token}`);
 
         const response = await Axios({ url, method, headers, data, ...config });
+        alert(`Res: ${response} String ${JSON.stringify(response)}`);
 
         // Check response status and return result
         if (response.status === 200 || response.status === 201) {
