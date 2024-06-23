@@ -67,6 +67,7 @@ const Home = () => {
             password: `${userData.user.id}`,
           };
           alert("Welcome back!" + userLoginInfo.username);
+          alert("Welcome back! Details:" + userData.user);
 
           Login(userLoginInfo)
             .then(async (e) => {
