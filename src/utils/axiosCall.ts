@@ -33,7 +33,7 @@ export async function MakeRequest(
         };
 
         const url = `${baseURL}/api/${SERVER_VERSION}${path}`;
-
+        alert(`Before Res ..${url}.. ${method}..${headers}..${data}} `);
         const response = await Axios({ url, method, headers, data, ...config });
         alert(`Res: ${response} String ${JSON.stringify(response)}`);
 
