@@ -32,10 +32,8 @@ export async function MakeRequest(
             "Content-Type": contentType ? contentType : "application/json;charset=UTF-8",
         };
 
-        const url = `${baseURL}/api/${SERVER_VERSION}${path}`;
-        alert(`Before Res ..${url}.. ${method}..${JSON.stringify(headers)}..${(JSON.stringify(data))}} `);
+        const url = `${baseURL}/api/${SERVER_VERSION}${path}`
         const response = await Axios({ url, method, headers, data, ...config });
-        alert(`Res: ${response} String ${JSON.stringify(response)}`);
 
         // Check response status and return result
         if (response.status === 200 || response.status === 201) {
