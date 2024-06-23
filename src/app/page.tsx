@@ -66,9 +66,6 @@ const Home = () => {
             username: userData.user.username,
             password: `${userData.user.id}`,
           };
-          alert("Welcome back!" + userLoginInfo.username);
-          alert("Welcome back! Details:" + JSON.stringify(userData.user));
-
           Login(userLoginInfo)
             .then(async (e) => {
               if (e.name === "AxiosError") {
@@ -80,8 +77,6 @@ const Home = () => {
                     referral_code: userData.start_param ?? "",
                     is_premium_user: userData.user.is_premium_user ?? false,
                   };
-                  alert(`Error during login: ${e.message}`);
-                  alert(`Data to store: ${JSON.stringify(userInfo)}`);
                   Register(userInfo)
                     .then(async (e) => {
                       const dataToStore =
