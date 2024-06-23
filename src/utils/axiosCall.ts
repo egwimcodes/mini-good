@@ -33,7 +33,7 @@ export async function MakeRequest(
         };
 
         const url = `${baseURL}/api/${SERVER_VERSION}${path}`;
-        alert(url)
+        alert(`Token: ${token}`);
 
         const response = await Axios({ url, method, headers, data, ...config });
 
