@@ -21,7 +21,7 @@ const fetchAccessToken = async () => {
 };
 
 
-const setAccessToken = async (accessTokenToStore) => {
+const setAccessToken = async (accessTokenToStore: string) => {
     // Store access token
     try {
         const res = await fetch('/api/login', {

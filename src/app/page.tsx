@@ -2,7 +2,7 @@
 
 import HomePage from "@/components/Pages/HomePage";
 import _404 from "@/components/Pages/_404";
-import {RetriveMe } from "@/utils/requests";
+import {Login, RetriveMe } from "@/utils/requests";
 import { useWebApp } from "@vkruglikov/react-telegram-web-app";
 import React, { useState, useEffect } from "react";
 import { fetchAccessToken,} from "@/utils/api";
@@ -65,11 +65,14 @@ const Home = () => {
         } else {
           alert("Login")
           alert(`${response.data.accessToken.value}`)
-          // const userData = webAppData.initDataUnsafe;
-          // const userLoginInfo = {
-          //   username: userData.user.username,
-          //   password: `${userData.user.id}`,
-          // };
+          const userData = webAppData.initDataUnsafe;
+          const userLoginInfo = {
+            username: userData.user.username,
+            password: `${userData.user.id}`,
+          };
+          Login(userLoginInfo).then(
+            (e) => { alert(JSON.stringify(e))}
+          )
           // Login(userLoginInfo)
           //   .then(async (e) => {
           //     if (e.name === "AxiosError") {
