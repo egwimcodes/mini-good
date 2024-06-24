@@ -23,7 +23,7 @@ const Home = () => {
       try {
         if (response.data.accessToken.value === "") {
           alert("Register")
-          alert(`${response.data.accessToken.value}`)
+          alert(`${response.data.accessToken.value}\n${null}\n${2}`)
           // try {
           //   const userData = webAppData.initDataUnsafe;
           //   const userInfo = {
