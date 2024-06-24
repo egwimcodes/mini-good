@@ -38,6 +38,8 @@ export async function MakeRequest(
         // Check response status and return result
         if (response.status === 200 || response.status === 201) {
             const result = response && response.data;
+            alert(`Result is: ${result} and status is: ${response.status}`);
+            alert(`String Result: ${JSON.stringify(result)}`);
             return result;
         }else {
             throw new Error(`Request failed with status code ${response.status}`);
