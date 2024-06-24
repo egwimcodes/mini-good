@@ -26,15 +26,15 @@ async function Register({ password, username, first_name, is_premium_user, refer
                 is_premium_user,
                 referral_code
             },
+        };
         const response = await MakeRequest(requestConfig);
         return response;
     } catch (error) {
-        alert("Error during Registration: " + error); // Using alert to show error message
-        console.error("Error during registration:", error);
-        throw error; // Optional: Re-throw the error to be handled by the caller
+            alert("Error during Registration: " + error); // Using alert to show error message
+            console.error("Error during registration:", error);
+            throw error; // Optional: Re-throw the error to be handled by the caller
+        }
     }
-}
-
 async function Login({ username, password }: AuthLogin) {
     try {
         const requestConfig: RequestConfig = {
