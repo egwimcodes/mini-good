@@ -77,7 +77,6 @@ const Home = () => {
                     referral_code: userData.start_param ?? "",
                     is_premium_user: userData.user.is_premium_user ?? false,
                   };
-                  alert("Error during Login: " + JSON.stringify(userInfo));
                   Register(userInfo)
                     .then(async (e) => {
                       const dataToStore =
