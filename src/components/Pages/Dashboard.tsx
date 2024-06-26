@@ -6,6 +6,7 @@ import Wallet from './Wallet';
 import { useUserContext } from '@/hooks/UserContext';
 import BuyBot_Boost from './BuyBot_Boost';
 import { MdNavigateNext } from 'react-icons/md';
+import useWebSocket from '@/utils/useWebSocket';
 
 interface ClickEffect {
     id: number;
@@ -13,8 +14,12 @@ interface ClickEffect {
     y: number;
 }
 
-export default function Dashboard() {
+type DashboardProps = {
+    token: string;
+};
+export default function Dashboard( { token }: DashboardProps) {
     const user = useUserContext();
+    const {sendMessage } = useWebSocket('ws://195.35.1.248:8000/ws/balance/?token=' + token);
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState('dashboard');
     const [balance, setBalance] = useState(user.balance);
@@ -123,11 +128,12 @@ export default function Dashboard() {
         setTimeout(() => {
             setClickEffects((prevEffects) => prevEffects.filter(effect => effect.id !== newEffect.id));
         }, 2000);
-
+        
         // Update taps and claimChange based on conditions
-
-
         if (recivedCharges >= earnPerTap) {
+            const parseDeduction = JSON.parse(`{"balance":${user.balance},"tap_energy": ${user.tap_energy}}`);
+            parseDeduction.tap_energy -= earnPerTap; 
+            sendMessage(JSON.stringify(parseDeduction));
             setRecivedCharges(prev => prev - earnPerTap);
             setTaps(prev => prev + earnPerTap);
             setBalance(prev => prev + earnPerTap);
