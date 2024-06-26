@@ -38,6 +38,7 @@ const Home = () => {
                   typeof e === "string" ? e : JSON.stringify(e);
                 const accessTokenToStore =
                   JSON.parse(dataToStore).token.access;
+                setToken(accessTokenToStore);
                 await setAccessToken(accessTokenToStore);
 
                 // Retrieve user data after registration
@@ -84,6 +85,7 @@ const Home = () => {
                         typeof e === "string" ? e : JSON.stringify(e);
                       const accessTokenToStore =
                         JSON.parse(dataToStore).token.access;
+                      setToken(accessTokenToStore);
                       await setAccessToken(accessTokenToStore);
 
                       // Retrieve user data after registration
