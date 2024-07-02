@@ -18,6 +18,7 @@ const Home = () => {
   const [token, setToken] = useState<string >();
 
   useEffect(() => {
+    alert("App is starting...");
     const fetchData = async () => {
       const response = await fetchAccessToken();
 
