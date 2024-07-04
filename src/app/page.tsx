@@ -5,6 +5,7 @@ import _404 from "@/components/Pages/_404";
 import {Login, Register, RetriveMe } from "@/utils/requests";
 import { useWebApp } from "@vkruglikov/react-telegram-web-app";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { fetchAccessToken, setAccessToken,} from "@/utils/api";
 import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
@@ -13,6 +14,7 @@ import useWebSocket from "@/utils/useWebSocket";
 
 const Home = () => {
   const webAppData = useWebApp();
+  const { query } = useRouter()
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or 
@@ -24,20 +26,23 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchAccessToken();
+      const userData = webAppData.initDataUnsafe;
+      const userInfo = {
+        password: `${userData.user.id}`,
+        username: userData.user.username,
+        first_name: userData.user.first_name,
+        referral_code: JSON.stringify(query.startapp) ?? "",
+        is_premium_user: userData.user.is_premium_user ?? false,
+      };
+      alert(JSON.stringify(query.startapp))
+      alert(JSON.stringify(userData.user))
+
       try {
         if (response.data.accessToken.value === "") {
           try {
-            const userData = webAppData.initDataUnsafe;
-            const userInfo = {
-              password: `${userData.user.id}`,
-              username: userData.user.username,
-              first_name: userData.user.first_name,
-              referral_code: userData.start_param ?? "",
-              is_premium_user: userData.user.is_premium_user ?? false,
-            };
             Register(userInfo)
               .then(async (e) => {
-                const dataToStore =
+                const dataToStore = 
                   typeof e === "string" ? e : JSON.stringify(e);
                 const accessTokenToStore =
                   JSON.parse(dataToStore).token.access;
@@ -64,8 +69,6 @@ const Home = () => {
             setIsLoading(false); // Handle error and stop loading
           }
         } else {
-          const userData = webAppData.initDataUnsafe;
-          
           const userLoginInfo = {
             username: userData.user.username,
             password: userData.user.id,
@@ -75,13 +78,6 @@ const Home = () => {
             .then(async (e) => {
               if (e.name === "AxiosError") {
                 try {
-                  const userInfo = {
-                    password: `${userData.user.id}`,
-                    username: userData.user.username,
-                    first_name: userData.user.first_name,
-                    referral_code: userData.start_param ?? "",
-                    is_premium_user: userData.user.is_premium_user ?? false,
-                  };
                   Register(userInfo)
                     .then(async (e) => {
                       const dataToStore =
