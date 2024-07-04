@@ -32,12 +32,6 @@ const Home = () => {
         referral_code: userData.start_param ?? "",
         is_premium_user: userData.user.is_premium ?? false,
       };
-
-
-      alert(typeof userData.start_param)
-      alert(userData.start_param)
-      alert(JSON.stringify(userData))
-
       try {
         if (response.data.accessToken.value === "") {
           try {

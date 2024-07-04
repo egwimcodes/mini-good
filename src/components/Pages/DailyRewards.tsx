@@ -52,7 +52,7 @@ export default function DailyRewards() {
 
     return (
         <div className="rewards-container w-100% h-[100%] flex flex-col items-center justify-evenly">
-            <div className="rewards-header w-[100%] h-[20%] flex flex-col items-center justify-between">
+            <div className="rewards-header w-[100%] h-[30%] flex flex-col items-center justify-between">
                 <Image className="xxxsm:w-[25%] xxsm:w-[30%] xsm:w-[25%] sm:w-[17%]" draggable="false" src="/daily.png" width={100} height={100} alt="" />
                 <h1 className="xxxsm:text-xs xxsm:text-2xl xsm:text-1rem sm:text-1rem text-light">Daily Rewards</h1>
                 <p className="xxxsm:text-xxs xxsm:text-xs xsm:text-xs sm:text-xs text-light">Claim Good coin daily without missing a day</p>
