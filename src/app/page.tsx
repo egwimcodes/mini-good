@@ -9,6 +9,7 @@ import { fetchAccessToken, setAccessToken,} from "@/utils/api";
 import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
 import { UserData } from "@/types";
+import useWebSocket from "@/utils/useWebSocket";
 
 const Home = () => {
   const webAppData = useWebApp();
@@ -16,6 +17,9 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or 
   const [token, setToken] = useState<string>();
+  const { message } = useWebSocket('wss://api.goodcoin.tech/ws/balance/?token=' + token);
+ 
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -162,6 +166,19 @@ const Home = () => {
       }
     }
   }, [webAppData]); // Include webAppData in dependency array
+
+  useEffect(() => {
+    if (message) {
+      const updatedBalanceParsed = JSON.parse(message);
+      setUser(prevUser => { 
+        if (!prevUser) return prevUser; // Handle the case where prevUser is null or undefined
+        return {
+          ...prevUser,
+          balance: updatedBalanceParsed.balance,
+        };
+      });
+    }
+  }, [message]);
 
   useEffect(() => {
     const handleContextMenu = (event: MouseEvent) => {
