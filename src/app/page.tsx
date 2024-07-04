@@ -5,7 +5,7 @@ import _404 from "@/components/Pages/_404";
 import { Login, Register, RetriveMe } from "@/utils/requests";
 import { useWebApp } from "@vkruglikov/react-telegram-web-app";
 import React, { useState, useEffect } from "react";
-import { useParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { fetchAccessToken, setAccessToken, } from "@/utils/api";
 import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
@@ -14,7 +14,8 @@ import useWebSocket from "@/utils/useWebSocket";
 
 const Home = () => {
   const webAppData = useWebApp();
-  const params = useParams()
+  const searchParams = useSearchParams()
+  const referralId = searchParams.get('startapp')
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or 
@@ -31,12 +32,12 @@ const Home = () => {
         password: `${userData.user.id}`,
         username: userData.user.username,
         first_name: userData.user.first_name,
-        referral_code: JSON.stringify(params.startapp) ?? "",
+        referral_code: referralId ?? "",
         is_premium_user: userData.user.is_premium ?? false,
       };
 
 
-      alert(JSON.stringify(params.startapp))
+      alert(referralId)
       alert(JSON.stringify(userData.user))
 
       try {
