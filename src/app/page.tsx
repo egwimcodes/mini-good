@@ -2,11 +2,11 @@
 
 import HomePage from "@/components/Pages/HomePage";
 import _404 from "@/components/Pages/_404";
-import {Login, Register, RetriveMe } from "@/utils/requests";
+import { Login, Register, RetriveMe } from "@/utils/requests";
 import { useWebApp } from "@vkruglikov/react-telegram-web-app";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { fetchAccessToken, setAccessToken,} from "@/utils/api";
+//import { useRouter } from "next/router";
+import { fetchAccessToken, setAccessToken, } from "@/utils/api";
 import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
 import { UserData } from "@/types";
@@ -14,13 +14,13 @@ import useWebSocket from "@/utils/useWebSocket";
 
 const Home = () => {
   const webAppData = useWebApp();
-  const { query } = useRouter()
+  const { query } = {query: {startapp: "nothing yet"}}
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or 
   const [token, setToken] = useState<string>();
   const { message } = useWebSocket('wss://api.goodcoin.tech/ws/balance/?token=' + token);
- 
+
 
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const Home = () => {
         is_premium_user: userData.user.is_premium_user ?? false,
       };
 
-      
+
       alert(JSON.stringify(query.startapp))
       alert(JSON.stringify(userData.user))
 
@@ -44,7 +44,7 @@ const Home = () => {
           try {
             Register(userInfo)
               .then(async (e) => {
-                const dataToStore = 
+                const dataToStore =
                   typeof e === "string" ? e : JSON.stringify(e);
                 const accessTokenToStore =
                   JSON.parse(dataToStore).token.access;
@@ -168,7 +168,7 @@ const Home = () => {
   useEffect(() => {
     if (message) {
       const updatedBalanceParsed = JSON.parse(message);
-      setUser(prevUser => { 
+      setUser(prevUser => {
         if (!prevUser) return prevUser; // Handle the case where prevUser is null or undefined
         return {
           ...prevUser,
@@ -201,9 +201,9 @@ const Home = () => {
 
   // Render HomePage only when user data is loaded
   return (
-         
+
     <UserContext.Provider value={user}>
-      <HomePage token={ token ? token : "" } />
+      <HomePage token={token ? token : ""} />
     </UserContext.Provider>
   );
 };
