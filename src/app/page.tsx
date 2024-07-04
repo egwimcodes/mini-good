@@ -34,8 +34,8 @@ const Home = () => {
       };
 
 
-      alert(userData.start_param)
-      alert(JSON.stringify(userData.user))
+      alert(typeof userData.start_param)
+      alert(JSON.stringify(userData))
 
       try {
         if (response.data.accessToken.value === "") {
