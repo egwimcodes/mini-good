@@ -140,7 +140,7 @@ export default function Dashboard( { token }: DashboardProps) {
         // Update taps and claimChange based on conditions
         if (recivedCharges >= earnPerTap) {
             const updatedTapEnergy = JSON.parse(`{"tap_energy": ${- earnPerTap}}`);
-            alert(`You have earned ${updatedTapEnergy} tap energy.`);
+            alert(`You have earned ${JSON.stringify(updatedTapEnergy)} tap energy.`);
             sendMessage(JSON.stringify(updatedTapEnergy));
             setRecivedCharges(prev => prev - earnPerTap);
             setTaps(prev => prev + earnPerTap);
