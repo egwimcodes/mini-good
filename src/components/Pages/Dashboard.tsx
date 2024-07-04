@@ -31,12 +31,7 @@ export default function Dashboard( { token }: DashboardProps) {
     const [level, setLevel] = useState(user.tap_energy_level)
     const balanceString = balance.toString().length;
 
-    useEffect(() => {
-        if (message) {
-            const parsedMessage = JSON.parse(message);
-            setBalance(parsedMessage.balance);
-        }
-    }, [message]);
+   
 
 
     useEffect(() => {
@@ -148,7 +143,12 @@ export default function Dashboard( { token }: DashboardProps) {
 
     };
 
-
+    useEffect(() => {
+        if (message) {
+            const parsedMessage = JSON.parse(message);
+            setBalance(parsedMessage.balance);
+        }
+    }, [message]);
     return (
         <>
             {showProfile === 'dashboard' && (
