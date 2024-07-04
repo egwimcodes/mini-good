@@ -37,6 +37,7 @@ const useWebSocket = (url: string): WebSocketHook => {
 
    const sendMessage = (msg: string) => {
        if (ws.current && isConnected) {
+           alert(`Message received: ${msg}`);
         ws.current.send(msg);
     }
 }

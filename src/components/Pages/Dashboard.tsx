@@ -19,7 +19,7 @@ type DashboardProps = {
 };
 export default function Dashboard( { token }: DashboardProps) {
     const user = useUserContext();
-    const { sendMessage, message } = useWebSocket('wss://api.goodcoin.tech/ws/balance/?token=' + token);
+    const {message, sendMessage } = useWebSocket('wss://api.goodcoin.tech/ws/balance/?token=' + token);
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState('dashboard');
     const [balance, setBalance] = useState(user.balance);
@@ -30,8 +30,6 @@ export default function Dashboard( { token }: DashboardProps) {
     const [earnPerTap] = useState(user.earn_per_tap)
     const [level, setLevel] = useState(user.tap_energy_level)
     const balanceString = balance.toString().length;
-
-
 
     useEffect(() => {
         if (message) {
@@ -142,6 +140,7 @@ export default function Dashboard( { token }: DashboardProps) {
         // Update taps and claimChange based on conditions
         if (recivedCharges >= earnPerTap) {
             const updatedTapEnergy = JSON.parse(`{"tap_energy": ${- earnPerTap}}`);
+            alert(`You have earned ${updatedTapEnergy} tap energy.`);
             sendMessage(JSON.stringify(updatedTapEnergy));
             setRecivedCharges(prev => prev - earnPerTap);
             setTaps(prev => prev + earnPerTap);
