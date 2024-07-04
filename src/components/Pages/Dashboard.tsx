@@ -19,7 +19,7 @@ type DashboardProps = {
 };
 export default function Dashboard( { token }: DashboardProps) {
     const user = useUserContext();
-    const { sendMessage } = useWebSocket('wss://api.goodcoin.tech/ws/balance/?token=' + token);
+    const { sendMessage, message } = useWebSocket('wss://api.goodcoin.tech/ws/balance/?token=' + token);
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState('dashboard');
     const [balance, setBalance] = useState(user.balance);
@@ -140,6 +140,13 @@ export default function Dashboard( { token }: DashboardProps) {
         }
 
     };
+
+    useEffect(() => {
+        if (message) {
+            alert(`Message received: ${JSON.stringify(message)}`);
+            console.log('Received message:', message);
+        }
+    }, [message]);
 
     return (
         <>
