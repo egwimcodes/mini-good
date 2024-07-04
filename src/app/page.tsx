@@ -141,24 +141,19 @@ const Home = () => {
   }, [user, webAppData]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
 
 
-  useEffect(() => {
-  if (user !== null) {
-    const fetchUpdatedData = async () => {
-      RetriveMe()
-        .then((e) => {
-          setUser(e);
-          setIsLoading(false);
-        })
-        .catch((e) => {
-          console.error("Error when retrieving  updated me:", e);
-          setIsLoading(false); // Handle error and stop loading
-        });
-    }
-    const intervalid = setInterval(fetchUpdatedData, 1000);
-    return () => clearInterval(intervalid);
-    
-  }
-})
+//   useEffect(() => {
+//   if (user !== null) {
+//       RetriveMe()
+//         .then((e) => {
+//           setUser(e);
+//           setIsLoading(false);
+//         })
+//         .catch((e) => {
+//           console.error("Error when retrieving  updated me:", e);
+//           setIsLoading(false); // Handle error and stop loading
+//         });
+//   }
+// })
 
   useEffect(() => {
     if (webAppData) {
