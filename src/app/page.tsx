@@ -15,7 +15,7 @@ const Home = () => {
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or 
-  const [token, setToken] = useState<string >();
+  const [token, setToken] = useState<string>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -111,6 +111,7 @@ const Home = () => {
                 }
               } else {
                 await setAccessToken(e.access);
+                alert(e.access);
                 // Retrieve user data after successful login
                 RetriveMe()
                   .then((res) => {
