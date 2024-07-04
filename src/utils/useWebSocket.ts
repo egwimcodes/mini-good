@@ -18,7 +18,7 @@ const useWebSocket = (url: string): WebSocketHook => {
 
         ws.current.onopen = () => {
             setIsConnected(true);
-            console.log('WebSocket connected');
+            alert('WebSocket connected');
         };
 
         ws.current.onmessage = (event: MessageEvent) => {
@@ -27,7 +27,7 @@ const useWebSocket = (url: string): WebSocketHook => {
 
         ws.current.onclose = () => {
             setIsConnected(false);
-            console.log('WebSocket disconnected');
+            alert('WebSocket disconnected');
         };
 
         return () => {
