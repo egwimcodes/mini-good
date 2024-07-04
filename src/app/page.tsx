@@ -111,7 +111,7 @@ const Home = () => {
                 }
               } else {
                 await setAccessToken(e.access);
-                alert(e.access);
+                setToken(e.access);
                 // Retrieve user data after successful login
                 RetriveMe()
                   .then((res) => {
