@@ -5,7 +5,7 @@ import _404 from "@/components/Pages/_404";
 import { Login, Register, RetriveMe } from "@/utils/requests";
 import { useWebApp } from "@vkruglikov/react-telegram-web-app";
 import React, { useState, useEffect } from "react";
-//import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { fetchAccessToken, setAccessToken, } from "@/utils/api";
 import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
@@ -14,7 +14,7 @@ import useWebSocket from "@/utils/useWebSocket";
 
 const Home = () => {
   const webAppData = useWebApp();
-  const { query } = {query: {startapp: "nothing yet"}}
+  const router  = useRouter();
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or 
@@ -31,12 +31,12 @@ const Home = () => {
         password: `${userData.user.id}`,
         username: userData.user.username,
         first_name: userData.user.first_name,
-        referral_code: JSON.stringify(query.startapp) ?? "",
-        is_premium_user: userData.user.is_premium_user ?? false,
+        referral_code: JSON.stringify(router.query.startapp) ?? "",
+        is_premium_user: userData.user.is_premium ?? false,
       };
 
 
-      alert(JSON.stringify(query.startapp))
+      alert(JSON.stringify(router.query.startapp))
       alert(JSON.stringify(userData.user))
 
       try {
