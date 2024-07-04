@@ -33,10 +33,8 @@ export default function Dashboard( { token }: DashboardProps) {
 
     useEffect(() => {
         if (message) {
-            alert(message);
-            alert(JSON.stringify(message));
-            alert(JSON.parse(message));
-            //setBalance(JSON.parse(message).balance);
+            const parsedMessage = JSON.parse(message);
+            setBalance(parsedMessage.balance);
         }
     }, [message]);
 
