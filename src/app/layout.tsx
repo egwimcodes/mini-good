@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,11 +26,7 @@ export default function RootLayout({
         <script src="https://telegram.org/js/telegram-web-app.js"  />
       </head>
 
-      <body className={`${inter.className} body`}>
-        <Suspense>
-        {children}
-          </Suspense>
-      </body>
+      <body className={`${inter.className} body`}>{children}</body>
     </html>
   );
 }
