@@ -34,6 +34,8 @@ const Home = () => {
         referral_code: JSON.stringify(query.startapp) ?? "",
         is_premium_user: userData.user.is_premium_user ?? false,
       };
+
+      
       alert(JSON.stringify(query.startapp))
       alert(JSON.stringify(userData.user))
 
