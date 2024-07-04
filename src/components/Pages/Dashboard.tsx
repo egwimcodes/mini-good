@@ -19,7 +19,6 @@ type DashboardProps = {
 };
 export default function Dashboard( { token }: DashboardProps) {
     const user = useUserContext();
-    alert(token);
     const {message, sendMessage } = useWebSocket('wss://api.goodcoin.tech/ws/balance/?token=' + token);
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState('dashboard');
