@@ -4,7 +4,7 @@ import HomePage from "@/components/Pages/HomePage";
 import _404 from "@/components/Pages/_404";
 import { Login, Register, RetriveMe } from "@/utils/requests";
 import { useWebApp } from "@vkruglikov/react-telegram-web-app";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from 'next/navigation'
 import { fetchAccessToken, setAccessToken, } from "@/utils/api";
 import LoadingPage from "@/components/Pages/LoadingPage";
@@ -16,6 +16,7 @@ const Home = () => {
   const webAppData = useWebApp();
   const searchParams = useSearchParams()
   const referralId = searchParams.get('startapp')
+  console.log(referralId)
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or 
@@ -204,7 +205,7 @@ const Home = () => {
   return (
 
     <UserContext.Provider value={user}>
-      <HomePage token={token ? token : ""} />
+        <HomePage token={token ? token : ""} />
     </UserContext.Provider>
   );
 };
