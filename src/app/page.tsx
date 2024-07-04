@@ -21,8 +21,6 @@ const Home = () => {
     alert("App is starting...");
     const fetchData = async () => {
       const response = await fetchAccessToken();
-      alert("Aceess token: " + response.data.accessToken.value);
-
       try {
         if (response.data.accessToken.value === "") {
           try {
