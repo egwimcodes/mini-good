@@ -4,7 +4,7 @@ import { ApiRequestConfig } from "@/types";
 import { fetchAccessToken } from "./api";
 
 //const SERVER_HOST = "https://clownfish-app-lqqur.ondigitalocean.app";
-const SERVER_HOST =  "https://backend.goodcoins.org/";
+const SERVER_HOST =  "https://api.goodcoin.tech/";
 const SERVER_VERSION = "v1";
 const baseURL: string = `${SERVER_HOST}`;
 
