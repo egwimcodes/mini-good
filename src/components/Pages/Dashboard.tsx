@@ -33,8 +33,7 @@ export default function Dashboard( { token }: DashboardProps) {
 
     useEffect(() => {
         if (message) {
-            alert(`Message received: ${JSON.stringify(message)}`);
-            console.log('Received message:', message);
+            setBalance(JSON.parse(message).balance);
         }
     }, [message]);
 
