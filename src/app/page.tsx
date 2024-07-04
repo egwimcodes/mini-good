@@ -175,6 +175,7 @@ const Home = () => {
         return {
           ...prevUser,
           balance: updatedBalanceParsed.balance,
+          tap_energy: updatedBalanceParsed.tap_energy
         };
       });
     }
