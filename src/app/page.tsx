@@ -35,6 +35,7 @@ const Home = () => {
 
 
       alert(typeof userData.start_param)
+      alert(userData.start_param)
       alert(JSON.stringify(userData))
 
       try {
