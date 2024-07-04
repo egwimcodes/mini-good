@@ -31,6 +31,16 @@ export default function Dashboard( { token }: DashboardProps) {
     const [level, setLevel] = useState(user.tap_energy_level)
     const balanceString = balance.toString().length;
 
+
+
+    useEffect(() => {
+        if (message) {
+            alert(`Message received: ${JSON.stringify(message)}`);
+            console.log('Received message:', message);
+        }
+    }, [message]);
+
+
     useEffect(() => {
         if (user.earn_per_tap === 1) {
             const earn = user.earn_per_tap / 2;
@@ -131,9 +141,8 @@ export default function Dashboard( { token }: DashboardProps) {
         
         // Update taps and claimChange based on conditions
         if (recivedCharges >= earnPerTap) {
-            const parseDeduction = JSON.parse(`{"balance":${user.balance},"tap_energy": ${user.tap_energy}}`);
-            parseDeduction.tap_energy -= earnPerTap; 
-            sendMessage(JSON.stringify(parseDeduction));
+            const updatedTapEnergy = JSON.parse(`{"tap_energy": ${- earnPerTap}}`);
+            sendMessage(JSON.stringify(updatedTapEnergy));
             setRecivedCharges(prev => prev - earnPerTap);
             setTaps(prev => prev + earnPerTap);
             setBalance(prev => prev + earnPerTap);
@@ -141,12 +150,6 @@ export default function Dashboard( { token }: DashboardProps) {
 
     };
 
-    useEffect(() => {
-        if (message) {
-            alert(`Message received: ${JSON.stringify(message)}`);
-            console.log('Received message:', message);
-        }
-    }, [message]);
 
     return (
         <>
