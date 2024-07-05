@@ -13,7 +13,7 @@ export default function LoadingPage() {
   return (
     <>
       <div className="w-full h-screen flex flex-col items-center justify-center relative bg-gradient-to-br from-gray-800">
-        <Image className='coin-svg w-[30%]' src="/goodcoing.png" alt="" width={100} height={100} />
+        <Image className='coin-svg w-[30%]' src="https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578" alt="" width={100} height={100} />
         <div className="absolute">
           <div className="loader "></div>
 

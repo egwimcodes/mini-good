@@ -47,7 +47,7 @@ export default function ClaimDailyRewards({ isopen, isClose, amount }: PopUpComf
                                     <div className="streak w-[25vw] min-w-[25vw] h-[23%] relative flex flex-col item justify-center mr-1">
                                         {showWin ? (
                                             <div className="coin-stack-content flex flex-col items-center mb-5">
-                                                <Image className="shine-coin w-[100%]" width={200} height={200} src="/win.png" alt="" />
+                                                <Image className="shine-coin w-[100%]" width={200} height={200} src="https://ik.imagekit.io/egwimcodes/win.png?updatedAt=1720197419669" alt="" />
                                             </div>
                                         ) : (
                                             <div className="coin-stack-content flex flex-col items-center mb-5">

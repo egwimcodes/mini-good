@@ -250,7 +250,7 @@ input[type="checkbox"]:checked::before {
     width: 100px; /* Adjust width as needed */
     height: 100px; /* Adjust height as needed */
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    background-image: url('/goodcoing.png');
+    background-image: url('https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578');
      /* Replace with your background image URL */
     background-size: cover;
     background-position: center;

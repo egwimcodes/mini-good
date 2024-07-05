@@ -152,7 +152,7 @@ export default function Dashboard({ token }: DashboardProps) {
                         <div className="dashbord-up h-[40%] flex-between flex-row">
                             <div className="left-child flex flex-row items-center w-[50%]" onClick={() => setShowProfile("profile")}>
                                 <div className="profile w-[10vw]">
-                                    <Image className='profile-avatar p-1' src="/robot.png" width={50} height={50} alt="" />
+                                    <Image className='profile-avatar p-1' src="https://ik.imagekit.io/egwimcodes/robot.png?updatedAt=1720197417330" width={50} height={50} alt="" />
                                 </div>
                                 <p className='text-base font-semibold ml-1'>{user.username}</p>
                             </div>
@@ -167,7 +167,7 @@ export default function Dashboard({ token }: DashboardProps) {
                                 <h1 className='text-sm'>Balance</h1>
                                 <div className="balance-coin-amount flex-row flex-between h-[60%]">
                                     <div className="coin-balance w-[80%] h-[100%] flex-center">
-                                        <Image src="/goodcoing.png" className="coin-icon sm:w-[17%]" width={25} height={25} alt="" />
+                                        <Image src="https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578" className="coin-icon sm:w-[17%]" width={25} height={25} alt="" />
                                         <p className={`text-2xl h-[100%] w-[70%] flex-row flex-evenly`} style={{ fontSize: balanceString > 6 ? 'smaller' : 'inherit' }}>{balance}</p>
                                     </div>
                                     <div className="icon-add border-1 w-[20%] h-[80%] rounded-[5px] border-white p-1 bg-gradient-to-b from-slate-600 bg-slate-900 flex-center">
@@ -187,7 +187,7 @@ export default function Dashboard({ token }: DashboardProps) {
                     
                     <div className="tap-section w-[100%] h-[70%] relative rounded-[20px] border-2 border-main flex justify-center items-center justify-self-start mx-auto">
                         <div className="tap w-[60%] relative">
-                            <Image src="/goodcoing.svg" className="coin-svg mx-auto sm:w-[40%]" width={500} height={100} alt="" />
+                            <Image src="https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578" className="coin-svg mx-auto sm:w-[40%]" width={500} height={100} alt="" />
                             <div className="png-coin w-[100%] h-[100%] bg-red-800">
                                 <Image src="https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578" className="coin-png shrink-on-click absolute sm:w-[40%]" width={500} height={100} alt="" onClick={handleImageClick} />
                                 {clickEffects.map(effect => (
@@ -203,7 +203,7 @@ export default function Dashboard({ token }: DashboardProps) {
                             </div>
                         </div>
                         <div className='h-[20%] absolute top-0 right-0 w-[40vw] flex flex-row flex-center'>
-                            <Image src="/charge.png" className="shrink-on-click  w-5 h-5" width={20} height={10} alt="" />
+                            <Image src="https://ik.imagekit.io/egwimcodes/charge.png?updatedAt=1720197415406" className="shrink-on-click  w-5 h-5" width={20} height={10} alt="" />
                             <div className="charge-stat flex-between">
                                 <p className='text-white flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{recivedCharges}</p>/
                                 <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{charged}</p>
