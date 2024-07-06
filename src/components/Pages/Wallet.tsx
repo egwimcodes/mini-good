@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import Image from 'next/image'
-import { BsCopy } from "react-icons/bs";
 
 type WalletProps = {
     setShowProfile: (value: string) => void;
