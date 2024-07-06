@@ -19,7 +19,7 @@ export default function Referral() {
     useEffect(() => {
         async function fetchData() {
             RetriveReferrals().then(
-                (e) => { setTotalReferrals(e); setStillFetching(false); alert(JSON.stringify(e)) }
+                (e) => { setTotalReferrals(e); setStillFetching(false) }
             ).catch((e) => { `Error Fetching Referrals: ${alert(JSON.stringify(e))}` })
         }
         fetchData()
