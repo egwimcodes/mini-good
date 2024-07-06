@@ -32,8 +32,6 @@ const Home = () => {
         referral_code: userData.start_param ?? "",
         is_premium_user: userData.user.is_premium ?? false,
       };
-      alert(`Raw data from initDataUnsafe: ${JSON.stringify(webAppData.initDataUnsafe)}`)
-      alert(`Raw data from useWebApp: ${JSON.stringify(webAppData.initDataUnsafe)}`)
       try {
         if (response.data.accessToken.value === "") {
           try {
@@ -70,8 +68,6 @@ const Home = () => {
             username: userData.user.username,
             password: userData.user.id,
           };
-          alert(JSON.stringify(userLoginInfo))
-
           Login(userLoginInfo)
             .then(async (e) => {
               if (e.name === "AxiosError") {
