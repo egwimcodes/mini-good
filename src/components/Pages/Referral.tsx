@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { RetriveReferrals } from '@/utils/requests'
 import { useUserContext } from '@/hooks/UserContext'
 import MiniPreloader from "./MiniPleloader";
+import { json } from 'stream/consumers';
 
 interface ReferralType {
     refer_link: string
@@ -19,7 +20,7 @@ export default function Referral() {
     useEffect(() => {
         async function fetchData() {
             RetriveReferrals().then(
-                (e) => { setTotalReferrals(e); setStillFetching(false) }
+                (e) => { setTotalReferrals(e); setStillFetching(false); alert(JSON.stringify(e)) }
             ).catch((e) => { `Error Fetching Referrals: ${alert(JSON.stringify(e))}` })
         }
         fetchData()
