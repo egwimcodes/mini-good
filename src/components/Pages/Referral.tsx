@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { RetriveReferrals } from '@/utils/requests'
 import { useUserContext } from '@/hooks/UserContext'
 import MiniPreloader from "./MiniPleloader";
-import { json } from 'stream/consumers';
 
 interface ReferralType {
     refer_link: string
