@@ -32,7 +32,7 @@ const Home = () => {
         referral_code: userData.start_param ?? "",
         is_premium_user: userData.user.is_premium ?? false,
       };
-      alert(JSON.stringify(userData.start_param))
+      alert(JSON.stringify(userInfo))
       try {
         if (response.data.accessToken.value === "") {
           try {
@@ -69,6 +69,7 @@ const Home = () => {
             username: userData.user.username,
             password: userData.user.id,
           };
+          alert(JSON.stringify(userLoginInfo))
 
           Login(userLoginInfo)
             .then(async (e) => {
