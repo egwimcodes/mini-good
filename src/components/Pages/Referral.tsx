@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { RetriveReferrals } from '@/utils/requests'
-import { useUserContext } from '@/hooks/UserContext'
 import MiniPreloader from "./MiniPleloader";
 
 interface ReferralType {
@@ -10,7 +9,6 @@ interface ReferralType {
     referrals: []
 }
 export default function Referral() {
-    const user = useUserContext()
     const [totalReferrals, setTotalReferrals] = useState<ReferralType>()
     const [copy, setCopy] = useState('Copy Link');
     const [stillFetching, setStillFetching] = useState<boolean>(true);
