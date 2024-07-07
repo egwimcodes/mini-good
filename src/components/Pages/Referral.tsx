@@ -66,13 +66,11 @@ export default function Referral() {
                         </div>
                         {(totalReferrals?.referrals && totalReferrals?.referrals?.length > 0 )?(
                             <div className="referal-body w-inherit h-[15vh] w-[100%] flex flex-col overflow-y-auto">
-                                <ul className='list-disc'>
                                 {totalReferrals.referrals.map((e: { username: string }, i) => (
                                     <li key={i} className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-main">
                                         {e.username}
                                     </li>
                                 ))}
-                                </ul>
                             </div>
                         ) : (
                             <div className="referal-body w-inherit h-[15vh] flex flex-col items-center justify-center">
