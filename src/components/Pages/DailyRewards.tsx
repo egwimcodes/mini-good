@@ -63,7 +63,7 @@ export default function DailyRewards() {
                 <div className="boost-btn-container h-inherit w-inherit flex flex-col items-center">
                     <div className="reward-header w-[90vw] h-[20%] flex flex-row items-center justify-between mx-auto">
                         <h1 className="xxxsm:text-xs xxsm:text-2xl xsm:text-1rem sm:text-1rem font-bold text-light">DAILY CLAIM</h1>
-                        <div className="time-remaining flex flex-row items-center flex-nowrap">
+                        {/* <div className="time-remaining flex flex-row items-center flex-nowrap">
                             <div className="time-remainig-header h-[3vh]">
                                 <p className="text-sm timing-show text-light">Available in</p>
                                 <p className="xxxsm:text-xxxs xxsm:text-xsxs xsm:text-1rem sm:text-1rem timing-show text-light font-semibold">9:00:00 PM</p>
@@ -71,7 +71,7 @@ export default function DailyRewards() {
                             <div className="timing ml-3">
                                 <IoMdTime className="text-light" />
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="reward-content flex flex-col w-[90%] h-[80%] mx-auto flex-center">
                         <div className="h-[100%] flex justify-center items-center">
