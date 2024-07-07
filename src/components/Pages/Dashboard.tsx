@@ -25,7 +25,7 @@ export default function Dashboard({ token }: DashboardProps) {
     const [balance, setBalance] = useState(user.balance);
     const [isClaiming, setIsClaiming] = useState(false);
     const [taps, setTaps] = useState(0);
-    const [charged] = useState(user.tap_energy);
+   // const [charged] = useState(user.tap_energy);
     const [recivedCharges, setRecivedCharges] = useState(user.tap_energy);
     const [earnPerTap] = useState(user.earn_per_tap)
     const [level, setLevel] = useState(user.tap_energy_level)
@@ -212,7 +212,7 @@ export default function Dashboard({ token }: DashboardProps) {
                             <Image src="https://ik.imagekit.io/egwimcodes/charge.png?updatedAt=1720197415406" className="shrink-on-click  w-5 h-5" width={20} height={10} alt="" />
                             <div className="charge-stat flex-between">
                                 <p className='text-white flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{recivedCharges}</p>/
-                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{charged}</p>
+                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>1500</p>
                             </div>
                         </div>
                         <div className='h-[15%] absolute bottom-0 w-[80%] flex flex-col'>
