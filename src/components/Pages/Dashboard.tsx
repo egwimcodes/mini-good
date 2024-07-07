@@ -34,74 +34,99 @@ export default function Dashboard({ token }: DashboardProps) {
 
 
 
+    // useEffect(() => {
+    //     if (user.earn_per_tap === 1) {
+    //         const earn = user.earn_per_tap / 2;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 2) {
+    //         const earn = user.earn_per_tap / 4;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 3) {
+    //         const earn = user.earn_per_tap / 6;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 4) {
+    //         const earn = user.earn_per_tap / 8;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 5) {
+    //         const earn = user.earn_per_tap / 10;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 6) {
+    //         const earn = user.earn_per_tap / 12;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 7) {
+    //         const earn = user.earn_per_tap / 14;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 8) {
+    //         const earn = user.earn_per_tap / 16;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 9) {
+    //         const earn = user.earn_per_tap / 18;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 10) {
+    //         const earn = user.earn_per_tap / 20;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 11) {
+    //         const earn = user.earn_per_tap / 22;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 12) {
+    //         const earn = user.earn_per_tap / 24;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 13) {
+    //         const earn = user.earn_per_tap / 26;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 14) {
+    //         const earn = user.earn_per_tap / 28;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 15) {
+    //         const earn = user.earn_per_tap / 30;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 16) {
+    //         const earn = user.earn_per_tap / 32;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 17) {
+    //         const earn = user.earn_per_tap / 34;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 18) {
+    //         const earn = user.earn_per_tap / 36;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 19) {
+    //         const earn = user.earn_per_tap / 38;
+    //         setLevel(earn);
+    //     }
+    //     if (user.earn_per_tap === 20) {
+    //         const earn = user.earn_per_tap / 40;
+    //         setLevel(earn);
+    //     }
+
+
+
+
+    // }, [taps, user.balance])
+
     useEffect(() => {
-        if (user.earn_per_tap === 1) {
-            setLevel(5);
+        if (user.earn_per_tap > 0 && user.earn_per_tap <= 20) {
+            const earn = user.earn_per_tap / 2;
+            setLevel(earn);
         }
-        if (user.earn_per_tap === 2) {
-            setLevel(10);
-        }
-        if (user.earn_per_tap === 3) {
-            setLevel(15);
-        }
-        if (user.earn_per_tap === 4) {
-            setLevel(20);
-        }
-        if (user.earn_per_tap === 5) {
-            setLevel(25);
-        }
-        if (user.earn_per_tap === 6) {
-            setLevel(30);
-        }
-        if (user.earn_per_tap === 7) {
-            setLevel(35);
-        }
-        if (user.earn_per_tap === 8) {
-            setLevel(40);
-        }
-        if (user.earn_per_tap === 9) {
-            setLevel(45);
-        }
-        if (user.earn_per_tap === 10) {
-            setLevel(50);
-        }
-        if (user.earn_per_tap === 11) {
-            setLevel(55);
-        }
-        if (user.earn_per_tap === 12) {
-            setLevel(60);
-        }
-        if (user.earn_per_tap === 13) {
-            setLevel(65);
-        }
-        if (user.earn_per_tap === 14) {
-            setLevel(70);
-        }
-        if (user.earn_per_tap === 15) {
-            setLevel(75);
-        }
-        if (user.earn_per_tap === 16) {
-            setLevel(80);
-        }
-        if (user.earn_per_tap === 17) {
-            setLevel(85);
-        }
-        if (user.earn_per_tap === 18) {
-            setLevel(90);
-        }
-        if (user.earn_per_tap === 19) {
-            setLevel(95);
-        }
-        if (user.earn_per_tap === 20) {
-            setLevel(100);
-        }
-
-
-
-
-    }, [taps, user.balance])
-
-
+    }, [taps, user.balance]);
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const x = event.clientX - rect.left;
