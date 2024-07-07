@@ -23,7 +23,7 @@ export default function BuyUSDTBoostNow({ isopen, isClose }: BuyBoostNowProps) {
                                 <h1 className="text-light xxxsm:text-xs xxsm:text-2xl xsm:text-0.5rem sm:text-1rem font-semibold w-[80%]">BOOST</h1>
                                 <IoCloseSharp className="text-main text-3xl w-[20%] " onClick={() => { isClose && isClose() }} />
                             </div>
-                            <Image src="/boost_battery.png" width={100} height={100} alt="" />
+                            <Image src="https://ik.imagekit.io/egwimcodes/boost_battery.png?updatedAt=1720353194317" width={100} height={100} alt="" />
 
                             <div className="claim-guild text-center">
                                 {btnText ? (<div>

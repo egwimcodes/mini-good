@@ -4,14 +4,14 @@ import { useState } from "react";
 interface BuyBoostNowProps {
     isopen: boolean;
     isClose?: () => void;
+    balance?: number;
 
 }
 
 
 
-export default function BuyBoostNow({ isopen, isClose }: BuyBoostNowProps) {
+export default function BuyBoostNow({ isopen, isClose, balance }: BuyBoostNowProps) {
     const [btnText, setBtnText] = useState(false);
-    const balance = 5000;
     const buyNow = () => {
 setBtnText(true)
         
@@ -27,14 +27,14 @@ setBtnText(true)
                               <IoCloseSharp className="text-main text-3xl w-[20%] " onClick={() => { isClose && isClose() }} />
                           </div>
                           <h1 className="text-main xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs  font-semibold">Balnce: {balance} GoodCoin</h1>
-                          <Image src="/boost_battery.png" width={100} height={100} alt="" />
+                          <Image src="https://ik.imagekit.io/egwimcodes/boost_battery.png?updatedAt=1720353194317" width={100} height={100} alt="" />
 
                           <div className="claim-guild text-center">
                               {btnText ? (<div>
                                   <h4 className="text-main xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs font-semibold">Successfull</h4>
                               </div>) : (<div>
                                       <h4 className="text-orange-400 xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs font-semibold">pending...</h4>
-                                      {balance >= 5000 ? (
+                                      {balance && balance >= 5000 ? (
                                           <h1 className="text-light xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-main font-semibold">5000 GoodCoin Charge</h1>
                                       ) : (
                                               <div>
@@ -45,7 +45,7 @@ setBtnText(true)
                               </div>)}
                               
                           </div>
-                          <div className={`claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] ${ balance >= 5000 ? 'bg-main' : 'bg-red-700'} rounded-[10px] flex-evenly`} onClick={() => {balance >= 5000 ? buyNow() : null}}>
+                          <div className={`claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] ${ balance && balance >= 5000 ? 'bg-main' : 'bg-red-700'} rounded-[10px] flex-evenly`} onClick={() => {balance && balance >= 5000 ? buyNow() : null}}>
                               <h4 className="text-light font-semibold">{ btnText ? "Claimed" : "Buy Now"}</h4>
                           </div>
                       </div>

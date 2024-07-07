@@ -4,6 +4,7 @@ import { MdNavigateNext } from "react-icons/md";
 import { useState } from "react";
 import BuyGCBoostNow from "../BuyGCBoostNow";
 import BuyUSDTBoostNow from "../BuyUSDTBoostNow";
+import { useUserContext } from "@/hooks/UserContext";
 interface PopUpComfirmationProps {
     isopen: boolean;
     isClose: () => void;
@@ -15,11 +16,11 @@ interface PopUpComfirmationProps {
 }
 
 export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps) {
+    const user = useUserContext();
     const [buyGCNow, setBuyGCNow] = useState(false);
     const [buyUSDTNow, setBuyUSDTNow] = useState(false);
     const handleBuyGCNow = () => {
         setBuyGCNow(true);
-
     }
     const handleBuyUSDTNow = () => {
         setBuyUSDTNow(true);
@@ -41,7 +42,7 @@ export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps
                         </div>
 
                         <div className="claim-gift w-[100%] h-[20%] min-h[max-content] bg-emerald-700 flex items-center justify-evenly px-2 xsm:mb-2 rounded-[10px]" onClick={() => { handleBuyGCNow() }}>
-                            <Image className="shine-coin w-10" width={50} height={50} src={"/good-coin.png"} alt="" />
+                            <Image className="shine-coin w-10" width={50} height={50} src={"https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578"} alt="" />
                             <div className="amount-to-claim ml-2 text-center">
                                 <p className="font-semibold text-white">GOODCOIN (GC)</p>
                                 <h3 className="text-light xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-orange-500 font-semibold">Buy with 5000 GC</h3>
@@ -49,7 +50,7 @@ export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps
                             <MdNavigateNext className="text-2xl text-light font-bold" />
                         </div>
                         <div className="claim-gift w-[100%] h-[20%] min-h[max-content] bg-emerald-700 flex items-center justify-evenly px-2 xsm:mb-2 rounded-[10px]" onClick={() => { handleBuyUSDTNow() }}>
-                            <Image className="shine-coin w-10" width={50} height={50} src={"/usdt.png"} alt="" />
+                            <Image className="shine-coin w-10" width={50} height={50} src={"https://ik.imagekit.io/egwimcodes/usdt.png?updatedAt=1720353087479"} alt="" />
                             <div className="amount-to-claim ml-2 text-center">
                                 <p className="font-semibold text-white">USDT (USDt)</p>
                                 <h3 className="text-light xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-orange-500 font-semibold">Buy with 1 USDT</h3>
@@ -68,10 +69,10 @@ export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps
             )}
 
             {buyGCNow && (
-                <BuyGCBoostNow isopen={true} isClose={() => { isClose() }} />
+                <BuyGCBoostNow isopen={true} isClose={() => { isClose() }} balance={user?.balance} />
             )}
             {buyUSDTNow && (
-                <BuyUSDTBoostNow isopen={true} isClose={() => { isClose() }} />
+                <BuyUSDTBoostNow isopen={true} isClose={() => { isClose() }}/>
             )}
         </>
     )
