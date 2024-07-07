@@ -28,7 +28,7 @@ export default function Dashboard({ token }: DashboardProps) {
    // const [charged] = useState(user.tap_energy);
     const [recivedCharges, setRecivedCharges] = useState(user.tap_energy);
     const [earnPerTap] = useState(user.earn_per_tap)
-    const [level, setLevel] = useState((user.balance / 10000));
+    const [level] = useState((user.balance / 10000));
     const balanceString = balance.toString().length;
 
     useEffect(() => {
