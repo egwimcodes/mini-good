@@ -28,18 +28,12 @@ export default function Dashboard({ token }: DashboardProps) {
    // const [charged] = useState(user.tap_energy);
     const [recivedCharges, setRecivedCharges] = useState(user.tap_energy);
     const [earnPerTap] = useState(user.earn_per_tap)
-    const [level, setLevel] = useState<number>();
+    const [level, setLevel] = useState((user.balance / 10000));
     const balanceString = balance.toString().length;
 
-    useEffect(() => {
-            if (user.earn_per_tap === 1) {
-                setLevel(user.balance / 1000000)
-        }else if (user.earn_per_tap === 2) {
-            setLevel(user.balance / 200000)
-        }
-        
-       alert(level)
-    }, [taps, user.balance]);
+    // useEffect(() => {
+       
+    // }, [taps, user.balance]);
 
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
