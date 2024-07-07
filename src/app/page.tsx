@@ -117,6 +117,27 @@ const Home = () => {
   }, [user, webAppData, message]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
 
   useEffect(() => {
+    const fetchData = async () => {
+      RetriveMe()
+        .then((res) => {
+          setUser(res);
+          setIsLoading(false);
+        })
+        .catch((e) => {
+          console.error("Error when retrieving me:", e);
+          setIsLoading(false); // Handle error and stop loading
+        });
+    }
+
+    if (!user) {
+      fetchData(); // Fetch data only if user is not already set
+      // interval 
+      const intervalId = setInterval(fetchData, 1000);
+      return () => clearInterval(intervalId);
+    }
+
+  })
+  useEffect(() => {
     if (webAppData) {
       if (
         webAppData.platform &&
