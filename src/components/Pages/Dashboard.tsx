@@ -123,7 +123,7 @@ export default function Dashboard({ token }: DashboardProps) {
 
     useEffect(() => {
         if (user.earn_per_tap > 0 && user.earn_per_tap <= 20) {
-            const earn = user.earn_per_tap / (user.earn_per_tap * 2);
+            const earn = user.earn_per_tap / 2;
             setLevel(earn);
         }
     }, [taps, user.balance]);
