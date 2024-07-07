@@ -18,9 +18,16 @@ export default function Referral() {
         async function fetchData() {
             RetriveReferrals().then(
                 (e) => { setTotalReferrals(e); setStillFetching(false) }
-            ).catch((e) => { `Error Fetching Referrals: ${alert(JSON.stringify(e))}` })
+            ).catch((e) => { `Error Fetching Referrals: ${console.log(JSON.stringify(e))}` })
         }
-        fetchData()
+        // Fetch data initially
+        fetchData();
+
+        // Set up interval to fetch data every 1 second
+        const intervalId = setInterval(fetchData, 1000);
+
+        // Clean up the interval on component unmount
+        return () => clearInterval(intervalId);
     })
     if (stillFetching) return <MiniPreloader />;
     return (
@@ -64,7 +71,7 @@ export default function Referral() {
                         <div className="referal-item">
                             <p className="text-light text-xl font-bold">MY REFERALS <span className="text-2xl text-purple-600">( {totalReferrals?.total_refers} )</span></p>
                         </div>
-                        {(totalReferrals?.referrals && totalReferrals?.referrals?.length > 0 )?(
+                        {(totalReferrals?.referrals && totalReferrals?.referrals?.length > 0) ? (
                             <div className="referal-body w-inherit h-[15vh] w-[100%] flex flex-col overflow-y-auto">
                                 {totalReferrals.referrals.map((e: { username: string }, i) => (
                                     <li key={i} className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-main">
@@ -80,7 +87,7 @@ export default function Referral() {
                             </div>
                         )}
                     </div>
-                    <div className="referal-btn flex w-[95vw] h-[17%] flex-col justify-center items-center border-2 border-main  rounded-[20px] bg-gradient-to-b from-gray-800 " onClick={() => { navigator.clipboard.writeText(totalReferrals ? totalReferrals?.refer_link : ''); setCopy('Copied!')}}>
+                    <div className="referal-btn flex w-[95vw] h-[17%] flex-col justify-center items-center border-2 border-main  rounded-[20px] bg-gradient-to-b from-gray-800 " onClick={() => { navigator.clipboard.writeText(totalReferrals ? totalReferrals?.refer_link : ''); setCopy('Copied!') }}>
                         <p className='text-main text-xl font-bold'>{copy}</p>
                     </div>
                 </div>

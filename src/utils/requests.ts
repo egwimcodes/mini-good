@@ -30,7 +30,7 @@ async function Register({ password, username, first_name, is_premium_user, refer
         const response = await MakeRequest(requestConfig);
         return response;
     } catch (error) {
-            alert("Error during Registration: " + error); // Using alert to show error message
+            console.log("Error during Registration: " + error); // Using console.log to show error message
             console.error("Error during registration:", error);
             throw error; // Optional: Re-throw the error to be handled by the caller
         }
@@ -85,7 +85,7 @@ async function RetriveReferrals() {
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error from RetriveReferrals data:', ${error}}`);
+        console.log(`{'Error from RetriveReferrals data:', ${error}}`);
         throw error;
     }
 }
@@ -103,7 +103,7 @@ async function RetriveTasks() {
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error from RetriveTasks :', ${error}}`);
+        console.log(`{'Error from RetriveTasks :', ${error}}`);
         throw error;
     }
 }
@@ -126,7 +126,7 @@ async function TaskCompletion({ title, reward, task_url, avater }: TaskCompletio
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error from RetriveTasksCompletion :', ${error}}`);
+        console.log(`{'Error from RetriveTasksCompletion :', ${error}}`);
         throw error;
     }
 }
@@ -144,7 +144,7 @@ async function RetriveWallet() {
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error from RetriveWallet:', ${error}}`);
+        console.log(`{'Error from RetriveWallet:', ${error}}`);
         throw error;
     }
 }
@@ -162,7 +162,7 @@ async function RetriveDailyStreak() {
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error from RetrivDailyStreak:', ${error}}`);
+        console.log(`{'Error from RetrivDailyStreak:', ${error}}`);
         throw error;
     }
 }
@@ -184,7 +184,7 @@ async function DailyStreakCreate({ last_checkin_date, owner }: DailyStreakCreate
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error from RetriveTasksCompletion :', ${error}}`);
+        console.log(`{'Error from RetriveTasksCompletion :', ${error}}`);
         throw error;
     }
 }
@@ -205,7 +205,7 @@ async function TopUpCreate({ amount}: TopUpCreateType) {
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error from TopUpCreate: ${error}}`);
+        console.log(`{'Error from TopUpCreate: ${error}}`);
         throw error;
     }
 }
@@ -223,7 +223,7 @@ async function RetriveStats() {
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error from RetrivStats', ${error}}`);
+        console.log(`{'Error from RetrivStats', ${error}}`);
         throw error;
     }
 }
@@ -241,7 +241,7 @@ async function BuyBoost({}) {
         const response = await MakeRequest(requestMe);
         return response;
     } catch (error) {
-        alert(`{'Error from Buy boost: ${error}}`);
+        console.log(`{'Error from Buy boost: ${error}}`);
         throw error;
     }
 }

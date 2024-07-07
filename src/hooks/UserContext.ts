@@ -7,7 +7,7 @@ export function useUserContext() {
     const user = useContext(UserContext);
 
     if (user === undefined) {
-       alert("UserContext is undefined in useUserContext function");
+       console.log("UserContext is undefined in useUserContext function");
        throw new Error("UserContext is undefined");
     }
     return user

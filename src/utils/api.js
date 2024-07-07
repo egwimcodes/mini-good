@@ -35,14 +35,14 @@ const setAccessToken = async (accessTokenToStore) => {
         });
 
         if (!res.ok) {
-            alert('Network response was not ok....');
+            console.log('Network response was not ok....');
             throw new Error('Network response was not ok');
         }
 
     } catch (error) {
-        alert(`Error storing data: and Posting ${error}`);
+        console.log(`Error storing data: and Posting ${error}`);
     }
- }
+}
 
 
 

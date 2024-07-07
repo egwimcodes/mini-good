@@ -27,7 +27,7 @@ export default function Task() {
                 setStillFetching(false); // Set fetching to false after tasks are retrieved
             })
             .catch(() => {
-                alert('Error while fetching tasks');
+                console.log('Error while fetching tasks');
                 setStillFetching(false); // Set fetching to false in case of an error
             });
     }, []);

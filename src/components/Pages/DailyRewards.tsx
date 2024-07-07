@@ -21,10 +21,11 @@ export default function DailyRewards() {
     const [stillFetching, setStillFetching] = useState<boolean>(true);
     const [coinAmountToClaim, setCoinAmountToClaim] = useState<number | undefined>();
     const [canClaimDay, setCanClaimDay] = useState(false)
-    const [isClaimed, setIsClaimed]=useState(false)
+    const [isClaimed, setIsClaimed] = useState(false)
 
     useEffect(() => {
-        const fetchStreakData = () => {RetriveDailyStreak()
+        const fetchStreakData = () => {
+            RetriveDailyStreak()
             .then((streak) => {
                 const streak_data = streak.last_checkin_date ?? streak.current_streak;
                 setStreak(streak);
@@ -38,10 +39,10 @@ export default function DailyRewards() {
 
             })
             .catch(() => {
-                alert('Error while fetching streak data');
+                console.log('Error while fetching streak data');
                 setStillFetching(false);
             });
-        };   
+        };
         fetchStreakData();
         // const intervalid = setInterval(fetchStreakData, 1000);
         // return () => clearInterval(intervalid);
@@ -79,10 +80,10 @@ export default function DailyRewards() {
                                 <div
                                     id="diamond-narrow"
                                     className={`z-10 relative from-slate-600 bg-slate-900`}
-                                    onClick={() => { if (canClaimDay && streak?.current_streak) setDailyRewardsClaimed(true); setCoinAmountToClaim(streak?.current_streak ? streak?.current_streak * 500 : streak?.current_streak)  }}
+                                    onClick={() => { if (canClaimDay && streak?.current_streak) setDailyRewardsClaimed(true); setCoinAmountToClaim(streak?.current_streak ? streak?.current_streak * 500 : streak?.current_streak) }}
                                 >
                                     <div className={`content bg-orange-400 w-[100%]`}>
-                                        <p className="text-white text-xs font-bold">Day { streak?.current_streak }</p>
+                                        <p className="text-white text-xs font-bold">Day {streak?.current_streak}</p>
                                         {isClaimed ? (
                                             <div className="text-claim rounded-[40px]">
                                                 <h1 className="text-white text-xs font-bold bg-green-400 w-fit mx-auto p-1 rounded-[40px]">
@@ -105,7 +106,7 @@ export default function DailyRewards() {
                         </div>
                         <div className="rewards-footer w-[100%] h-[10%] mx-auto flex-center">
                             <h1 className="text-main text-center xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs">
-                                Comeback Tomorrow <br /> and <br />keep Streak moving 
+                                Comeback Tomorrow <br /> and <br />keep Streak moving
                             </h1>
                         </div>
                     </div>
@@ -115,7 +116,7 @@ export default function DailyRewards() {
                 <DailyPopUpComfirmation isopen={true} isClose={() => setDailyClaim(false)} />
             )}
             {dailyRewardsClaimed && (
-                <ClaimDailyRewards isopen={true} isClose={() => setDailyRewardsClaimed(false)} amount={coinAmountToClaim}/>
+                <ClaimDailyRewards isopen={true} isClose={() => setDailyRewardsClaimed(false)} amount={coinAmountToClaim} />
             )}
         </div>
     );
