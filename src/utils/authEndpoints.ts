@@ -13,5 +13,6 @@ export const AuthRoutes = Object.freeze({
     TOKEN_REFRESH: "/token/refresh/",
     TOP_UP_CREATE: "/top-up/",
     WALLET: "/wallet/",
+    BOOSTWITHCOIN: "/boost_with_coin/",
 
 })

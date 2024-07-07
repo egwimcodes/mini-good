@@ -228,6 +228,26 @@ async function RetriveStats() {
     }
 }
 
+async function BuyBoost() {
+    try {
+        const requestMe = {
+            path: AuthRoutes.BOOSTWITHCOIN,
+            method: 'POST',
+            contentType: 'application/json', // You can omit this if using the default
+            removeAuth: false, // Assuming you need authentication
+            data: {
+        
+            },
+        };
+
+        const response = await MakeRequest(requestMe);
+        return response;
+    } catch (error) {
+        alert(`{'Error from Buy boost: ${error}}`);
+        throw error;
+    }
+}
+
 export {
     Register,
     Login,
@@ -239,5 +259,6 @@ export {
     RetriveDailyStreak,
     DailyStreakCreate,
     TopUpCreate,
-    RetriveStats
+    RetriveStats,
+    BuyBoost
 }
