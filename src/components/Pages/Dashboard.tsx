@@ -28,10 +28,16 @@ export default function Dashboard({ token }: DashboardProps) {
    // const [charged] = useState(user.tap_energy);
     const [recivedCharges, setRecivedCharges] = useState(user.tap_energy);
     const [earnPerTap] = useState(user.earn_per_tap)
-    const [level] = useState((user.balance / 10000));
+    const [level, setLevel] = useState<number>();
     const balanceString = balance.toString().length;
 
     useEffect(() => {
+            if (user.earn_per_tap === 1) {
+                setLevel(user.balance / 1000000)
+        }else if (user.earn_per_tap === 2) {
+            setLevel(user.balance / 200000)
+        }
+        
        alert(level)
     }, [taps, user.balance]);
 
