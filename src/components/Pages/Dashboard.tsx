@@ -31,9 +31,9 @@ export default function Dashboard({ token }: DashboardProps) {
     const [level, setLevel] = useState((user.balance / 10000));
     const balanceString = balance.toString().length;
 
-    // useEffect(() => {
+    useEffect(() => {
        
-    // }, [taps, user.balance]);
+    }, [taps, user.balance]);
 
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
