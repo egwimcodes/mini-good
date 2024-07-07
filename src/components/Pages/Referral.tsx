@@ -62,7 +62,7 @@ export default function Referral() {
                 <div className="ref-btn-container h-[50%] flex flex-col items-center justify-between ">
                     <div className="my-referals w-[100%] h-[75%] p-5 border-2 border-main rounded-[30px] bg-gradient-to-b from-gray-800 ">
                         <div className="referal-item">
-                            <p className="text-light text-xl font-bold">MY REFERALS <span className="text-2xl text-purple-600">{totalReferrals?.total_refers}</span></p>
+                            <p className="text-light text-xl font-bold">MY REFERALS <span className="text-2xl text-purple-600">( {totalReferrals?.total_refers} )</span></p>
                         </div>
                         {(totalReferrals?.referrals && totalReferrals?.referrals?.length > 0 )?(
                             <div className="referal-body w-inherit h-[15vh] w-[100%] flex flex-col overflow-y-auto">
