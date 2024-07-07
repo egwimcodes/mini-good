@@ -26,7 +26,7 @@ export default function Boost() {
 
 
             </div>
-            {isClaiming && <BuyBot_Boost isClose={() => setIsClaiming(false)} isopen={true} title={"Buy Boost"} content={"Buy Boost"} avatar={"https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg"} />}
+            {isClaiming && <BuyBot_Boost isClose={() => setIsClaiming(false)} isopen={true} />}
 
         </>
     );
