@@ -6,7 +6,7 @@ import MiniPreloader from "./MiniPleloader";
 interface ReferralType {
     refer_link: string
     total_refers: number
-    referrals: []
+    referrals: any []
 }
 export default function Referral() {
     const [totalReferrals, setTotalReferrals] = useState<ReferralType>()
@@ -68,7 +68,7 @@ export default function Referral() {
                             <div className="referal-body w-inherit h-[15vh] w-[100%] flex flex-col overflow-y-auto">
                                 {totalReferrals.referrals.map((e, i) => (
                                     <p key={i} className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-main">
-                                        {JSON.stringify(e)}
+                                        {JSON.stringify(e.username)}
                                     </p>
                                 ))}
                             </div>
