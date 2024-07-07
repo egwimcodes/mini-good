@@ -15,7 +15,7 @@ export default function BuyBoostNow({ isopen, isClose, balance }: BuyBoostNowPro
     const [btnText, setBtnText] = useState(false);
     const buyNow = () => {
         setBtnText(true)
-        BuyBoost()
+        BuyBoost({})
     }
   return (
       <>

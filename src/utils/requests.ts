@@ -228,16 +228,14 @@ async function RetriveStats() {
     }
 }
 
-async function BuyBoost() {
+async function BuyBoost({}) {
     try {
         const requestMe = {
             path: AuthRoutes.BOOSTWITHCOIN,
             method: 'POST',
             contentType: 'application/json', // You can omit this if using the default
             removeAuth: false, // Assuming you need authentication
-            data: {
-        
-            },
+            data: {},
         };
 
         const response = await MakeRequest(requestMe);
