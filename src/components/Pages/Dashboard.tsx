@@ -32,6 +32,7 @@ export default function Dashboard({ token }: DashboardProps) {
     const balanceString = balance.toString().length;
 
     useEffect(() => {
+        alert(level)
         if (level > 100) {
             setLevel(0);
         }else {
