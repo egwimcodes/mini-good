@@ -118,11 +118,6 @@ const Home = () => {
   }, [user, webAppData, message]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
 
   useEffect(() => {
-    { isConnected && alert("Connected!") };
-    { isConnected && alert("Connected!...") };
-    { isConnected === false && alert("Disconnected!...") };
-  }, [isConnected]);
-  useEffect(() => {
     const fetchData = async () => {
       RetriveMe()
         .then((res) => {
