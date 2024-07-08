@@ -3,10 +3,15 @@ import Axios from "axios";
 import { ApiRequestConfig } from "@/types";
 import { fetchAccessToken } from "./api";
 
+import WebSocket from 'isomorphic-ws';
 //const SERVER_HOST = "https://clownfish-app-lqqur.ondigitalocean.app";
 const SERVER_HOST =  "https://api.goodcoin.tech";
 const SERVER_VERSION = "v1";
 const baseURL: string = `${SERVER_HOST}`;
+
+// WEB SOCKET
+const SOCKET_URL: string = "wss://api.goodcoin.tech/ws/balance/?token=";
+
 
 export async function MakeRequest(
     requestObj: ApiRequestConfig,
@@ -19,10 +24,22 @@ export async function MakeRequest(
 
         let token: string | null = null;
         if (!removeAuth) {
-          
+            
             const accessToken = await fetchAccessToken();
             const tokenData = accessToken.data.accessToken.value;
             token = tokenData !== null ? tokenData : null;
+
+            const ws = new WebSocket(SOCKET_URL + tokenData);
+
+            ws.onopen = () => {
+                alert("Websocket connection established");
+            };
+
+            ws.onmessage = (event: MessageEvent) => {
+                const message = JSON.parse(event.data);
+                alert(JSON.stringify(message, null, 2));
+            };
+
         }
 
         // Set up headers
