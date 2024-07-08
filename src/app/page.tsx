@@ -120,7 +120,7 @@ const Home = () => {
   useEffect(() => {
     { isConnected && alert("Connected!") };
     { isConnected && alert("Connected!...") };
-    { isConnected === false && alert("Connected!...") };
+    { isConnected === false && alert("Disconnected!...") };
   }, [isConnected]);
   useEffect(() => {
     const fetchData = async () => {
