@@ -10,6 +10,7 @@ import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
 import { UserData } from "@/types";
 import useWebSocket from "@/utils/useWebSocket";
+import MiniPleloader from "@/components/Pages/MiniPleloader";
 
 const Home = () => {
   const webAppData = useWebApp();
@@ -49,16 +50,16 @@ const Home = () => {
             RetriveMe()
               .then((e) => {
                 setUser(e);
-                setIsLoading(!isConnected);
+                setIsLoading(false);
               })
               .catch((e) => {
                 console.error("Error when retrieving me:", e);
-                setIsLoading(!isConnected); // Handle error and stop loading
+                setIsLoading(false); // Handle error and stop loading
               });
           })
           .catch((e) => {
             console.error("Error from Register:", e);
-            setIsLoading(!isConnected); // Handle error and stop loading
+            setIsLoading(false); // Handle error and stop loading
           });
       };
 
@@ -69,7 +70,7 @@ const Home = () => {
             registerFunc();
           } catch (error) {
             console.error("Error from Register || login:", error);
-            setIsLoading(!isConnected);; // Handle error and stop loading
+            setIsLoading(false); // Handle error and stop loading
           }
         } else {
           const userLoginInfo = {
@@ -83,7 +84,7 @@ const Home = () => {
                   registerFunc();
                 } catch (error) {
                   console.error("Error from Register || login:", error);
-                  setIsLoading(!isConnected); // Handle error and stop loading
+                  setIsLoading(false); // Handle error and stop loading
                 }
               } else {
                 await setAccessToken(e.access);
@@ -114,7 +115,7 @@ const Home = () => {
     if (!user) {
       fetchData(); // Fetch data only if user is not already set
     }
-  }, [user, webAppData, message, isConnected]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
+  }, [user, webAppData, message]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
 
   useEffect(() => {
     const fetchData = async () => {
@@ -188,7 +189,7 @@ const Home = () => {
   // Render HomePage only when user data is loaded
   return (
     <UserContext.Provider value={user}>
-      <HomePage token={token ? token : ""} />
+      {user && isConnected ? <HomePage token={token ? token : ""} /> : <MiniPleloader />}
     </UserContext.Provider>
   );
 };
