@@ -25,12 +25,12 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
    // const [charged] = useState(user.tap_energy);
     const [recivedCharges, setRecivedCharges] = useState(user.tap_energy);
     const [earnPerTap] = useState(user.earn_per_tap)
-    const [level] = useState();
+    const [level, setLevel] = useState<number>();
     const [progress, setPregress] = useState<number>();
     const balanceString = balance.toString().length;
 
     useEffect(() => {
-        const level = Math.floor(user.balance / 10000);
+        setLevel(Math.floor(user.balance / 10000));
         setPregress((user.balance % 10000) / 10000 * 100);
     }, [taps, user.balance]);
 
