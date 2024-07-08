@@ -88,8 +88,7 @@ const Home = () => {
               } else {
                 await setAccessToken(e.access);
                 setToken(e.access);
-                { isConnected && alert("Connected!") };
-                { isConnected && alert("Connected!...") };
+               
                 // Retrieve user data after successful login
                 RetriveMe()
                   .then((res) => {
@@ -116,8 +115,13 @@ const Home = () => {
     if (!user) {
       fetchData(); // Fetch data only if user is not already set
     }
-  }, [user, webAppData, message, isConnected]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
+  }, [user, webAppData, message]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
 
+  useEffect(() => {
+    { isConnected && alert("Connected!") };
+    { isConnected && alert("Connected!...") };
+    { isConnected === false && alert("Connected!...") };
+  }, [isConnected]);
   useEffect(() => {
     const fetchData = async () => {
       RetriveMe()
