@@ -10,7 +10,6 @@ import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
 import { UserData } from "@/types";
 import useWebSocket from "@/utils/useWebSocket";
-import MiniPleloader from "@/components/Pages/MiniPleloader";
 
 const Home = () => {
   const webAppData = useWebApp();
