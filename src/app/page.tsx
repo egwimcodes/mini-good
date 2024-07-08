@@ -17,7 +17,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or
   const [token, setToken] = useState<string>();
-  const { message, sendMessage, isConnected } = useWebSocket(
+  const { message, sendMessage } = useWebSocket(
     "wss://api.goodcoin.tech/ws/balance/?token=" + token
   );
 
