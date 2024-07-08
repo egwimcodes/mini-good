@@ -17,7 +17,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or
   const [token, setToken] = useState<string>();
-  const { message, sendMessage } = useWebSocket(
+  const { message, sendMessage, isConnected } = useWebSocket(
     "wss://api.goodcoin.tech/ws/balance/?token=" + token
   );
 
@@ -88,6 +88,8 @@ const Home = () => {
               } else {
                 await setAccessToken(e.access);
                 setToken(e.access);
+                { isConnected && alert("Connected!") };
+                { isConnected && alert("Connected!...") };
                 // Retrieve user data after successful login
                 RetriveMe()
                   .then((res) => {
