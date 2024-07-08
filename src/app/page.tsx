@@ -167,9 +167,6 @@ const Home = () => {
   }, [message]);
 
   useEffect(() => {
-    { user && isConnected === true && setIsLoading(false) } 
-  }, [isConnected]);
-  useEffect(() => {
     
 
     const handleContextMenu = (event: MouseEvent) => {
@@ -187,7 +184,7 @@ const Home = () => {
     return <_404 />;
   }
 
-  if (isLoading || !user) {
+  if (isLoading && isConnected === false || !user) {
     return <LoadingPage />;
   }
 
