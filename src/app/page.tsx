@@ -92,7 +92,7 @@ const Home = () => {
                 RetriveMe()
                   .then((res) => {
                     setUser(res);
-                    setTimeout(() => setIsLoading(false), 1000);
+                    setTimeout(() => setIsLoading(false), 5000);
                     ;
                   })
                   .catch((e) => {
