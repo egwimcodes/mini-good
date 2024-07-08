@@ -164,9 +164,6 @@ const Home = () => {
   }, [message]);
 
   useEffect(() => {
-    { isConnected === true ? alert("Connected") : alert(" Disconnected ") } 
-  }, [isConnected]);
-  useEffect(() => {
     
 
     const handleContextMenu = (event: MouseEvent) => {
