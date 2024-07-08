@@ -26,10 +26,12 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const [recivedCharges, setRecivedCharges] = useState(user.tap_energy);
     const [earnPerTap] = useState(user.earn_per_tap)
     const [level] = useState();
+    const [progress, setPregress] = useState<number>();
     const balanceString = balance.toString().length;
 
     useEffect(() => {
-        //const userLevel = (user.balance / 100).toFixed(100)
+        const level = Math.floor(user.balance / 10000);
+        setPregress((user.balance % 10000) / 10000 * 100);
     }, [taps, user.balance]);
 
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
@@ -134,11 +136,11 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
                                 </div>
                                 <div className="right-progress-text flex flex-row">
                                     <p className='text-sm font-semibold'>Level</p>
-                                    <p className='ml-1 text-sm font-semibold'>{user.earn_per_tap}/20</p>
+                                    <p className='ml-1 text-sm font-semibold'>{level}/20</p>
                                 </div>
                             </div>
                             <div className="leverl w-[100%] h-[16%] bg-slate-600 rounded-lg">
-                                <div className={`level-child h-[100%]  progress rounded-lg`} style={{ width: `${level}%` }}></div>
+                                <div className={`level-child h-[100%]  progress rounded-lg`} style={{ width: `${progress}%` }}></div>
                             </div>
                         </div>
                     </div>
