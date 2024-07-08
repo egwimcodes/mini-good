@@ -92,8 +92,7 @@ const Home = () => {
                 RetriveMe()
                   .then((res) => {
                     setUser(res);
-                    setTimeout(() => setIsLoading(false), 5000);
-                    ;
+                    setIsLoading(false);
                   })
                   .catch((e) => {
                     console.error("Error when retrieving me:", e);
