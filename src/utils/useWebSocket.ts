@@ -23,6 +23,7 @@ const useWebSocket = (url: string): WebSocketHook => {
 
         ws.current.onmessage = (event: MessageEvent) => {
             setMessage(event.data);
+            setIsConnected(true);
         };
 
         // ws.current.onclose = () => {

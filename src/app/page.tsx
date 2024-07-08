@@ -17,7 +17,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or
   const [token, setToken] = useState<string>();
-  const { message } = useWebSocket(
+  const { message, isConnected } = useWebSocket(
     "wss://api.goodcoin.tech/ws/balance/?token=" + token
   );
 
@@ -49,16 +49,16 @@ const Home = () => {
             RetriveMe()
               .then((e) => {
                 setUser(e);
-                setIsLoading(false);
+                setIsLoading(!isConnected);
               })
               .catch((e) => {
                 console.error("Error when retrieving me:", e);
-                setIsLoading(false); // Handle error and stop loading
+                setIsLoading(!isConnected); // Handle error and stop loading
               });
           })
           .catch((e) => {
             console.error("Error from Register:", e);
-            setIsLoading(false); // Handle error and stop loading
+            setIsLoading(!isConnected); // Handle error and stop loading
           });
       };
 
@@ -69,7 +69,7 @@ const Home = () => {
             registerFunc();
           } catch (error) {
             console.error("Error from Register || login:", error);
-            setIsLoading(false); // Handle error and stop loading
+            setIsLoading(!isConnected);; // Handle error and stop loading
           }
         } else {
           const userLoginInfo = {
@@ -83,7 +83,7 @@ const Home = () => {
                   registerFunc();
                 } catch (error) {
                   console.error("Error from Register || login:", error);
-                  setIsLoading(false); // Handle error and stop loading
+                  setIsLoading(!isConnected); // Handle error and stop loading
                 }
               } else {
                 await setAccessToken(e.access);
@@ -114,7 +114,7 @@ const Home = () => {
     if (!user) {
       fetchData(); // Fetch data only if user is not already set
     }
-  }, [user, webAppData, message]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
+  }, [user, webAppData, message, isConnected]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
 
   useEffect(() => {
     const fetchData = async () => {
