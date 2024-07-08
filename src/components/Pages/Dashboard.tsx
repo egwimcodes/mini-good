@@ -30,7 +30,9 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const balanceString = balance.toString().length;
 
     useEffect(() => {
-        setLevel(Math.floor(user.balance / 10000));
+        const levelUpdate = Math.floor(user.balance / 10000);
+        const levelCheck = levelUpdate <= 20 ? levelUpdate : 20
+        setLevel(levelCheck);
         setPregress((user.balance % 10000) / 10000 * 100);
     }, [taps, user.balance]);
 
