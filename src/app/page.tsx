@@ -10,7 +10,6 @@ import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
 import { UserData } from "@/types";
 import useWebSocket from "@/utils/useWebSocket";
-//import MiniPleloader from "@/components/Pages/MiniPleloader";
 
 const Home = () => {
   const webAppData = useWebApp();
@@ -18,7 +17,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or
   const [token, setToken] = useState<string>();
-  const { message, isConnected } = useWebSocket(
+  const { message } = useWebSocket(
     "wss://api.goodcoin.tech/ws/balance/?token=" + token
   );
 
@@ -54,7 +53,7 @@ const Home = () => {
               })
               .catch((e) => {
                 console.error("Error when retrieving me:", e);
-                //setIsLoading(false); // Handle error and stop loading
+                setIsLoading(false); // Handle error and stop loading
               });
           })
           .catch((e) => {
@@ -84,7 +83,7 @@ const Home = () => {
                   registerFunc();
                 } catch (error) {
                   console.error("Error from Register || login:", error);
-                  //setIsLoading(false); // Handle error and stop loading
+                  setIsLoading(false); // Handle error and stop loading
                 }
               } else {
                 await setAccessToken(e.access);
@@ -122,7 +121,7 @@ const Home = () => {
       RetriveMe()
         .then((res) => {
           setUser(res);
-          //setIsLoading(false);
+          setIsLoading(false);
         })
         .catch((e) => {
           console.error("Error when retrieving me:", e);
@@ -167,8 +166,6 @@ const Home = () => {
   }, [message]);
 
   useEffect(() => {
-    
-
     const handleContextMenu = (event: MouseEvent) => {
       event.preventDefault();
     };
@@ -184,14 +181,14 @@ const Home = () => {
     return <_404 />;
   }
 
-  if (isLoading && isConnected === false || !user) {
+  if (isLoading || !user) {
     return <LoadingPage />;
   }
 
   // Render HomePage only when user data is loaded
   return (
     <UserContext.Provider value={user}>
- <HomePage token={token ? token : ""} />
+      <HomePage token={token ? token : ""} />
     </UserContext.Provider>
   );
 };
