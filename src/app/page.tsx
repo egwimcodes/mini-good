@@ -16,10 +16,7 @@ const Home = () => {
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or
-  const [token, setToken] = useState<string>();
-  const { message, sendMessage } = useWebSocket(
-    "wss://api.goodcoin.tech/ws/balance/?token=" + token
-  );
+  const { message, sendMessage } = useWebSocket();
 
 
 // Authentication Check  
@@ -42,7 +39,6 @@ const Home = () => {
           .then(async (e) => {
             const dataToStore = typeof e === "string" ? e : JSON.stringify(e);
             const accessTokenToStore = JSON.parse(dataToStore).token.access;
-            setToken(accessTokenToStore);
             await setAccessToken(accessTokenToStore);
 
             // Retrieve user data after registration
@@ -87,8 +83,6 @@ const Home = () => {
                 }
               } else {
                 await setAccessToken(e.access);
-                setToken(e.access);
-               
                 // Retrieve user data after successful login
                 RetriveMe()
                   .then((res) => {
