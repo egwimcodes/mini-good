@@ -6,7 +6,7 @@ import Wallet from './Wallet';
 import { useUserContext } from '@/hooks/UserContext';
 import BuyBot_Boost from './BuyBot_Boost';
 import { MdNavigateNext } from 'react-icons/md';
-import useWebSocket from '@/utils/useWebSocket';
+import { DashboardProps } from '@/types';
 
 interface ClickEffect {
     id: number;
@@ -14,12 +14,9 @@ interface ClickEffect {
     y: number;
 }
 
-type DashboardProps = {
-    token: string;
-};
-export default function Dashboard({ token }: DashboardProps) {
+
+export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const user = useUserContext();
-    const {message, sendMessage } = useWebSocket('wss://api.goodcoin.tech/ws/balance/?token=' + token);
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState('dashboard');
     const [balance, setBalance] = useState(user.balance);

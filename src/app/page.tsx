@@ -17,7 +17,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or
   const [token, setToken] = useState<string>();
-  const { message } = useWebSocket(
+  const { message, sendMessage } = useWebSocket(
     "wss://api.goodcoin.tech/ws/balance/?token=" + token
   );
 
@@ -188,7 +188,7 @@ const Home = () => {
   // Render HomePage only when user data is loaded
   return (
     <UserContext.Provider value={user}>
-      <HomePage token={token ? token : ""} />
+      <HomePage sendMessage={sendMessage} message={message} />
     </UserContext.Provider>
   );
 };

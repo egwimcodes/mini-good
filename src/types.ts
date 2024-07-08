@@ -136,3 +136,8 @@ export type DailyStreakCreateType = {
   last_checkin_date: string,
   owner: number,
 }
+
+export type DashboardProps = {
+    sendMessage: (msg: string) => void;
+    message: string | null;
+};
