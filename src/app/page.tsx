@@ -136,7 +136,7 @@ const Home = () => {
       return () => clearInterval(intervalId);
     }
 
-  }, [user?.balance])
+  })
   useEffect(() => {
     if (webAppData) {
       if (
