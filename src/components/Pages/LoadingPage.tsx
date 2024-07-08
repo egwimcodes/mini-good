@@ -7,9 +7,6 @@ export default function LoadingPage() {
   const [text] = useTypewriter({
     words: ['Loading...', 'GoodCoin',],
     loop: 1,
-    delaySpeed: 9000, 
-
-    
   })
 
   return (

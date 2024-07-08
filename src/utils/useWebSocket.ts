@@ -25,10 +25,10 @@ const useWebSocket = (url: string): WebSocketHook => {
             setMessage(event.data);
         };
 
-        ws.current.onclose = () => {
-            setIsConnected(false);
-            console.log('WebSocket disconnected');
-        };
+        // ws.current.onclose = () => {
+        //     setIsConnected(false);
+        //     console.log('WebSocket disconnected');
+        // };
 
         return () => {
             ws.current?.close();
