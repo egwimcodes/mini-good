@@ -38,7 +38,7 @@ const Profile: React.FC<ProfileProps> = ({ setShowProfile }) => {
                 <div className="avatar-profile w-[20vw] border-2 border-main rounded-[50%]">
                     <Image src="https://ik.imagekit.io/egwimcodes/robot.png?updatedAt=1720197417330" width={100} height={100} alt="" />
                 </div>
-                <p className='text-3xl font-bold'>{user.username}</p>
+                <p className='text-3xl font-bold'>{user.first_name}</p>
                 <div className="children-body xsm:flex-2 flex-col items-center justify-center w-full">
                     <div className="level flex flex-row items-center justify-center flex-nowrap">
                         <Image className="w-8" width={100} height={100} src='https://ik.imagekit.io/egwimcodes/regendcup.png?updatedAt=1720197417374' draggable="false" alt="" />

@@ -75,7 +75,7 @@ export default function Dashboard({ token }: DashboardProps) {
                                 <div className="profile w-[10vw]">
                                     <Image className='profile-avatar p-1' src="https://ik.imagekit.io/egwimcodes/robot.png?updatedAt=1720197417330" width={50} height={50} alt="" />
                                 </div>
-                                <p className='text-base font-semibold ml-1'>{user.username}</p>
+                                <p className='text-base font-semibold ml-1'>{user.first_name}</p>
                             </div>
                             <div className="right-child w-[35%] flex-end">
                                 <div className="icon-container p-1">

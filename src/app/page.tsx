@@ -33,7 +33,7 @@ const Home = () => {
       const registerFunc = async () => {
         const userInfo = {
           password: `${userData.user.id}`,
-          username: userData.user.username,
+          username: userData.user.id,
           first_name: userData.user.first_name,
           referral_code: userData.start_param ?? "",
           is_premium_user: userData.user.is_premium ?? false,
@@ -73,7 +73,7 @@ const Home = () => {
           }
         } else {
           const userLoginInfo = {
-            username: userData.user.username,
+            username: userData.user.id,
             password: userData.user.id,
           };
           Login(userLoginInfo)
@@ -147,15 +147,6 @@ const Home = () => {
         setShow404(true);
       } else {
         webAppData.expand();
-        const userData = webAppData.initDataUnsafe;
-        const userInfo = {
-          password: `${userData.user.id}`,
-          username: userData.user.username,
-          first_name: userData.user.first_name,
-          referral_code: userData.start_param ?? "",
-          is_premium_user: userData.user.is_premium_user ?? false,
-        };
-        console.log(userInfo);
       }
     }
   }, [webAppData]); // Include webAppData in dependency array
