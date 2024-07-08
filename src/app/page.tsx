@@ -10,6 +10,7 @@ import LoadingPage from "@/components/Pages/LoadingPage";
 import { UserContext } from "@/hooks/UserContext";
 import { UserData } from "@/types";
 import useWebSocket from "@/utils/useWebSocket";
+//import MiniPleloader from "@/components/Pages/MiniPleloader";
 
 const Home = () => {
   const webAppData = useWebApp();
@@ -49,11 +50,11 @@ const Home = () => {
             RetriveMe()
               .then((e) => {
                 setUser(e);
-                { isConnected === true ? setIsLoading(false) : null } 
+                setIsLoading(false);
               })
               .catch((e) => {
                 console.error("Error when retrieving me:", e);
-                setIsLoading(false); // Handle error and stop loading
+                //setIsLoading(false); // Handle error and stop loading
               });
           })
           .catch((e) => {
@@ -83,7 +84,7 @@ const Home = () => {
                   registerFunc();
                 } catch (error) {
                   console.error("Error from Register || login:", error);
-                  { isConnected === true ? setIsLoading(false) : null } 
+                  //setIsLoading(false); // Handle error and stop loading
                 }
               } else {
                 await setAccessToken(e.access);
@@ -92,7 +93,7 @@ const Home = () => {
                 RetriveMe()
                   .then((res) => {
                     setUser(res);
-                    { isConnected === true ? setIsLoading(false) : null } 
+                    setIsLoading(false);
                   })
                   .catch((e) => {
                     console.error("Error when retrieving me:", e);
@@ -121,9 +122,11 @@ const Home = () => {
       RetriveMe()
         .then((res) => {
           setUser(res);
+          //setIsLoading(false);
         })
         .catch((e) => {
           console.error("Error when retrieving me:", e);
+          setIsLoading(false); // Handle error and stop loading
         });
     }
 
@@ -164,6 +167,9 @@ const Home = () => {
   }, [message]);
 
   useEffect(() => {
+    { user && isConnected === true && setIsLoading(false) } 
+  }, [isConnected]);
+  useEffect(() => {
     
 
     const handleContextMenu = (event: MouseEvent) => {
@@ -188,7 +194,7 @@ const Home = () => {
   // Render HomePage only when user data is loaded
   return (
     <UserContext.Provider value={user}>
-      <HomePage token={token ? token : ""} />
+ <HomePage token={token ? token : ""} />
     </UserContext.Provider>
   );
 };
