@@ -116,7 +116,7 @@ const Home = () => {
     if (!user) {
       fetchData(); // Fetch data only if user is not already set
     }
-  }, [user, webAppData, message]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
+  }, [user, webAppData, message, isConnected]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
 
   useEffect(() => {
     const fetchData = async () => {
