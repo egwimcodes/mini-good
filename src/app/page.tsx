@@ -16,7 +16,6 @@ const Home = () => {
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or
-  const { message, sendMessage } = useWebSocket();
 
 
 // Authentication Check  
@@ -111,7 +110,11 @@ const Home = () => {
     if (!user) {
       fetchData(); // Fetch data only if user is not already set
     }
-  }, [user, webAppData, message]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
+  }, [user, webAppData]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
+
+
+  
+  const { message, sendMessage } = useWebSocket();
 
   // useEffect(() => {
   //   const fetchData = async () => {
