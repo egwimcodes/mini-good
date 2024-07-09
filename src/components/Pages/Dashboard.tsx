@@ -7,7 +7,6 @@ import { useUserContext } from '@/hooks/UserContext';
 import BuyBot_Boost from './BuyBot_Boost';
 import { MdNavigateNext } from 'react-icons/md';
 import { DashboardProps } from '@/types';
-import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 
 interface ClickEffect {
     id: number;
