@@ -146,9 +146,6 @@ const Home = () => {
     }
   }, [webAppData]); // Include webAppData in dependency array
 
-  webAppData.isClosingConfirmationEnabled(true);
-  webAppData.isVerticalSwipesEnabled(true);
-  
   useEffect(() => {
     if (message) {
       const updatedBalanceParsed = JSON.parse(message);
