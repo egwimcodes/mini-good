@@ -142,12 +142,13 @@ const Home = () => {
         setShow404(true);
       } else {
         webAppData.expand();
-        webAppData.isClosingConfirmationEnabled(true);
-        webAppData.isVerticalSwipesEnabled(true);
       }
     }
   }, [webAppData]); // Include webAppData in dependency array
 
+  webAppData.isClosingConfirmationEnabled(true);
+  webAppData.isVerticalSwipesEnabled(true);
+  
   useEffect(() => {
     if (message) {
       const updatedBalanceParsed = JSON.parse(message);
