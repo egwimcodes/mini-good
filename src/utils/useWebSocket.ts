@@ -15,7 +15,6 @@ const useWebSocket = (): WebSocketHook => {
     const [token, setToken] = useState<string | null>(null);
     const ws = useRef<WebSocket | null>(null);
     const sendToken = (msg: string) => {
-        alert("Token sent: " + msg);
         setToken(msg);
     };
     useEffect(() => {
