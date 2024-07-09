@@ -51,7 +51,9 @@ export default function Task() {
                         >
                             <div className="boost-writeup flex flex-row items-center justify-center">
                                 <div className="icon-container">
-                                    <Image className="w-10" draggable={false} width={50} height={50} src={task.avater ?? ``} alt={task.title} />
+                                    {task.avater && (
+                                        <Image className="w-10" draggable={false} width={50} height={50} src={task.avater} alt={task.title} />
+                                    )}
                                 </div>
                                 <div className="task-writeup ml-3 min-w-[60%] flex flex-col justify-between">
                                     <h3 className="text-light font-semibold">{task.title}</h3>
