@@ -11,44 +11,54 @@ interface WebSocketHook {
 const useWebSocket = (): WebSocketHook => {
     const [message, setMessage] = useState<string | null>(null);
     const [isConnected, setIsConnected] = useState(false);
-    const [token, setToken] = useState<string | null>(null);
     const ws = useRef<WebSocket | null>(null);
 
     useEffect(() => {
-        const fetchToken = async () => {
-            const accessToken = await fetchAccessToken();
-            const tokenData = accessToken.data.accessToken.value;
-            setToken(tokenData);
+        let intervalId: NodeJS.Timeout;
+
+        const fetchTokenAndConnect = async () => {
+            try {
+                const accessToken = await fetchAccessToken();
+                const tokenData = accessToken.data.accessToken.value;
+                const url = `wss://api.goodcoin.tech/ws/balance/?token=${tokenData}`;
+
+                // Close the existing WebSocket connection if it exists
+                if (ws.current) {
+                    ws.current.close();
+                }
+
+                ws.current = new WebSocket(url);
+
+                ws.current.onopen = () => {
+                    setIsConnected(true);
+                    console.log('WebSocket connected');
+                };
+
+                ws.current.onmessage = (event: MessageEvent) => {
+                    setMessage(event.data);
+                };
+
+                ws.current.onclose = () => {
+                    setIsConnected(false);
+                    console.log('WebSocket disconnected');
+                };
+            } catch (error) {
+                console.error("Error fetching token or connecting WebSocket:", error);
+            }
         };
 
-        fetchToken();
-    }, []);
-
-    useEffect(() => {
-        if (!token) return;
-
-        const url = `wss://api.goodcoin.tech/ws/balance/?token=${token}`;
-        ws.current = new WebSocket(url);
-
-        ws.current.onopen = () => {
-            setIsConnected(true);
-            console.log('WebSocket connected');
-        };
-
-        ws.current.onmessage = (event: MessageEvent) => {
-            setMessage(event.data);
-            setIsConnected(true);
-        };
-
-        ws.current.onclose = () => {
-            setIsConnected(false);
-            console.log('WebSocket disconnected');
-        };
+        fetchTokenAndConnect();
+        intervalId = setInterval(fetchTokenAndConnect, 1000);
 
         return () => {
-            ws.current?.close();
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+            if (ws.current) {
+                ws.current.close();
+            }
         };
-    }, [token]);
+    }, []);
 
     const sendMessage = (msg: string) => {
         if (ws.current && isConnected) {
