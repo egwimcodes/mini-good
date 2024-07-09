@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { RetriveTasks } from "@/utils/requests";
 import { MdNavigateNext } from "react-icons/md";
 // import PopUpComfirmationTask from "@/components/PopUpComfirmation";
-//import Image from "next/image";
+import Image from "next/image";
 // import MiniPreloader from "./MiniPleloader";
 
 interface Task {
@@ -62,7 +62,7 @@ export default function Task() {
                                 <div className="task-writeup ml-3 min-w-[60%] flex flex-col justify-between">
                                     <h3 className="text-light font-semibold">{task.title}</h3>
                                     <div className="coin-task-container flex flex-row items-center">
-                                        {/* <Image className="w-5" draggable={false} width={50} height={50} src="/good-coin.png" alt="Reward" /> */}
+                                        <Image className="w-5" draggable={false} width={50} height={50} src="/good-coin.png" alt="Reward" />
                                         <h3 className="text-main text-sm ml-1">+{task.reward}</h3>
                                     </div>
                                 </div>
