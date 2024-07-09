@@ -34,7 +34,7 @@ export default function PopUpComfirmationTask({ isopen, isClose, title, avater, 
                         </div>
 
                         <div className="claim-gift w-[100%] h-[20%] bg-emerald-700 flex items-center justify-start px-2 xsm:mb-2 rounded-[10px]">
-                            <Image className="shine-coin w-10" width={50} height={50} src={avater ? avater : "/good-coin.png"} alt="" />
+                            <Image className="shine-coin w-10" width={50} height={50} src={avater ? avater : "https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578"} alt="" />
                             <div className="amount-to-claim ml-2">
                                 <h3 className="text-light">+{reward}</h3>
                                 <p className="font-semibold text-orange-400">GoodCoin</p>
