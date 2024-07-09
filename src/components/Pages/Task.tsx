@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { RetriveTasks } from "@/utils/requests";
 import { MdNavigateNext } from "react-icons/md";
-import PopUpComfirmationTask from "@/components/PopUpComfirmation";
+//import PopUpComfirmationTask from "@/components/PopUpComfirmation";
 import Image from "next/image";
-import MiniPreloader from "./MiniPleloader";
+//import MiniPreloader from "./MiniPleloader";
 
 interface Task {
     id: number;
-    completed_users?: []; // Adjust type if you know the exact type
+    completed_users: []; // Adjust type if you know the exact type
     title: string;
     reward: number;
     task_url: string;
@@ -15,28 +15,29 @@ interface Task {
 }
 
 export default function Task() {
-    const [isClaiming, setIsClaiming] = useState(false);
+  //  const [isClaiming, setIsClaiming] = useState(false);
     const [retrievedTasks, setRetrievedTasks] = useState<Task[]>([]);
-    const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
-    const [stillFetching, setStillFetching] = useState<boolean>(false);
+ //   const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
+   // const [stillFetching, setStillFetching] = useState<boolean>(true);
 
     useEffect(() => {
         RetriveTasks()
             .then((tasks) => {
                 setRetrievedTasks(tasks);
-                setStillFetching(false); // Set fetching to false after tasks are retrieved
+               // setStillFetching(false); // Set fetching to false after tasks are retrieved
             })
             .catch(() => {
                 console.log('Error while fetching tasks');
-                setStillFetching(false); // Set fetching to false in case of an error
+              //  setStillFetching(false); // Set fetching to false in case of an error
             });
     }, []);
 
-    if (stillFetching) return <MiniPreloader />;
+   // if (stillFetching) return <MiniPreloader />;
 
     const selectedTaskFunc = (task: Task) => {
-        setSelectedTask(task);
-        setIsClaiming(true);
+        console.log("selected task", task);
+     //   setSelectedTask(task);
+       // setIsClaiming(true);
     };
 
     return (
@@ -65,7 +66,7 @@ export default function Task() {
                         </div>
                     ))}
                 </div>
-                {isClaiming && selectedTask && (
+                {/* {isClaiming && selectedTask && (
                     <PopUpComfirmationTask
                         isClose={() => setIsClaiming(false)}
                         isopen={true}
@@ -75,7 +76,7 @@ export default function Task() {
                         task_url={selectedTask.task_url}
                         content={"Are you sure you want to claim this task?"}
                     />
-                )}
+                )} */}
             </div>
         </>
     );
