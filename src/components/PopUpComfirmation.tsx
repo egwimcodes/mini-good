@@ -1,7 +1,7 @@
 import { IoCloseSharp } from "react-icons/io5";
 import Image from "next/image";
 import { MdNavigateNext } from "react-icons/md";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { TaskCompletion } from "@/utils/requests";
 interface PopUpComfirmationProps {
     isopen: boolean;
@@ -15,13 +15,23 @@ interface PopUpComfirmationProps {
 }
 
 export default function PopUpComfirmationTask({ isopen, isClose, title, avater, reward, task_url }: PopUpComfirmationProps) {
+    const [isClaim, setIsClaim] = useState(false);
+
+    const handleClaim = () => {
+        setIsClaim(true);
+    }
+
     useEffect(() => {
-        TaskCompletion({title, avater, reward, task_url})
-            .then()
-            .catch(() => {
-                console.log('Error while posting task');
-            });
-    }, []);
+        if (isClaim) {
+            TaskCompletion({ title, avater, reward, task_url })
+                .then()
+                .catch(() => {
+                    console.log('Error while posting task');
+                });
+        }
+    }, [isClaim]);
+
+
     return (
         <>{
             isopen && (
@@ -41,8 +51,8 @@ export default function PopUpComfirmationTask({ isopen, isClose, title, avater, 
                             </div>
                         </div>
                         <a target='_blank'
-                            rel='noopener noreferrer' href={task_url} className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly">
-                            <h4 className="text-light font-semibold">Start</h4>
+                            rel='noopener noreferrer' href={task_url} className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly" onClick={() => { handleClaim() }}>
+                            <h4 className="text-light font-semibold">{isClaim ? 'Claimed' : 'Start Task'}</h4>
                             <MdNavigateNext className="text-2xl text-light font-bold" />
                         </a>
                     </div>
