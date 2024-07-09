@@ -15,7 +15,6 @@ interface ClickEffect {
     y: number;
 }
 
-
 export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const user = useUserContext();
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
@@ -29,7 +28,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const [level, setLevel] = useState<number>();
     const [progress, setPregress] = useState<number>();
     const balanceString = balance.toString().length;
-    
+
     useEffect(() => {
         const levelUpdate = Math.floor(user.balance / 10000);
         const levelCheck = levelUpdate <= 20 ? levelUpdate : 20
