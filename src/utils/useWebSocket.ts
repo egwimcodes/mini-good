@@ -17,6 +17,7 @@ const useWebSocket = (): WebSocketHook => {
         const initializeWebSocket = async () => {
             const accessToken = await fetchAccessToken();
             const tokenData = accessToken.data.accessToken.value;
+            alert(tokenData);
             const url = `wss://api.goodcoin.tech/ws/balance/?token=${tokenData}`;
 
             ws.current = new WebSocket(url);
