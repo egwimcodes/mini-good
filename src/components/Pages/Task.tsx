@@ -7,7 +7,7 @@ import MiniPreloader from "./MiniPleloader";
 
 interface Task {
     id: number;
-    completed_users: []; // Adjust type if you know the exact type
+    completed_users?: []; // Adjust type if you know the exact type
     title: string;
     reward: number;
     task_url: string;
@@ -18,12 +18,11 @@ export default function Task() {
     const [isClaiming, setIsClaiming] = useState(false);
     const [retrievedTasks, setRetrievedTasks] = useState<Task[]>([]);
     const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
-    const [stillFetching, setStillFetching] = useState<boolean>(true);
+    const [stillFetching, setStillFetching] = useState<boolean>(false);
 
     useEffect(() => {
         RetriveTasks()
             .then((tasks) => {
-                alert(JSON.stringify(tasks));
                 setRetrievedTasks(tasks);
                 setStillFetching(false); // Set fetching to false after tasks are retrieved
             })
