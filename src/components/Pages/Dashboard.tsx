@@ -111,7 +111,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
                         <div className="tap w-[60%] relative">
                             <Image src="https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578" className="coin-svg mx-auto sm:w-[40%]" width={500} height={100} alt="" />
                             <div className="png-coin w-[100%] h-[100%] bg-red-800">
-                                <Image src="https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578" className="coin-png shrink-on-click absolute sm:w-[40%]" width={500} height={100} alt="" onClick={handleImageClick} />
+                                <Image src="https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578" className="coin-png absolute sm:w-[40%]" width={500} height={100} alt="" onClick={handleImageClick} />
                                 {clickEffects.map(effect => (
                                     <span
                                         key={effect.id}

@@ -17,6 +17,9 @@ body {
   overflow: hidden; /* Prevent scrolling */
   box-sizing: border-box;
   background: #000000;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .loader {
@@ -158,6 +161,9 @@ Image, .png-coin{
   transform: translate(-50%, -50%);
   -webkit-tap-highlight-color: transparent;
   outline: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .coin-png:active {
