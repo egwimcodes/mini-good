@@ -52,10 +52,10 @@ export default function Task() {
                     (
                         <div
                             key={task.id}
-                            className="task-claim min-w-[95%] h-13% flex flex-row items-center justify-between px-2 py-2 mb-1 cursor-pointer"
+                            className="task-claim min-w-[95%] h-[13%] flex flex-row items-center justify-between px-2 py-2 mb-1 cursor-pointer"
                             // onClick={() => selectedTaskFunc(task)}
                         >
-                            <div className="boost-writeup flex flex-row items-center justify-center">
+                            {/* <div className="boost-writeup flex flex-row items-center justify-center">
                                 <div className="icon-container">
                                     <Image className="w-10" draggable={false} width={50} height={50} src={task.avater} alt={task.title} />
                                 </div>
@@ -66,7 +66,8 @@ export default function Task() {
                                         <h3 className="text-main text-sm ml-1">+{task.reward}</h3>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
+                            <li>{task.title}</li>
                             <MdNavigateNext className="r-arrow text-2xl font-bold" />
                         </div>
                     )
