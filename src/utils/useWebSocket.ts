@@ -11,35 +11,28 @@ interface WebSocketHook {
 const useWebSocket = (): WebSocketHook => {
     const [message, setMessage] = useState<string | null>(null);
     const [isConnected, setIsConnected] = useState(false);
-    const [token, setToken] = useState<string | null>(null);
     const ws = useRef<WebSocket | null>(null);
-
-    
 
     useEffect(() => {
         const initializeWebSocket = async () => {
             const accessToken = await fetchAccessToken();
             const tokenData = accessToken.data.accessToken.value;
-            setToken(tokenData);
-            alert(tokenData);
+            alert(`WS token ${tokenData}`);
             const url = `wss://api.goodcoin.tech/ws/balance/?token=${tokenData}`;
 
             ws.current = new WebSocket(url);
 
             ws.current.onopen = () => {
                 setIsConnected(true);
-                alert('WebSocket connected');
                 console.log('WebSocket connected');
             };
 
             ws.current.onmessage = (event: MessageEvent) => {
-                alert('WebSocket message received');
                 setMessage(event.data);
                 setIsConnected(true);
             };
 
             ws.current.onclose = () => {
-                alert('WebSocket disconnected');
                 setIsConnected(false);
                 console.log('WebSocket disconnected');
             };
@@ -50,7 +43,7 @@ const useWebSocket = (): WebSocketHook => {
         return () => {
             ws.current?.close();
         };
-    }, [token]);
+    }, []);
 
     const sendMessage = (msg: string) => {
         if (ws.current && isConnected) {
