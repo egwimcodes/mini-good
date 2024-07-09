@@ -23,6 +23,7 @@ export default function Task() {
     useEffect(() => {
         RetriveTasks()
             .then((tasks) => {
+                alert(JSON.stringify(tasks));
                 setRetrievedTasks(tasks);
                 setStillFetching(false); // Set fetching to false after tasks are retrieved
             })
