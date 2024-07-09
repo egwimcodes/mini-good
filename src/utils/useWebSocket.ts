@@ -15,6 +15,7 @@ const useWebSocket = (): WebSocketHook => {
     const [token, setToken] = useState<string | null>(null);
     const ws = useRef<WebSocket | null>(null);
     const sendToken = (msg: string) => {
+        alert("Token sent: " + msg);
         setToken(msg);
     };
     useEffect(() => {
@@ -46,7 +47,7 @@ const useWebSocket = (): WebSocketHook => {
         return () => {
             ws.current?.close();
         };
-    }, []);
+    }, [token]);
 
     const sendMessage = (msg: string) => {
         if (ws.current && isConnected) {
