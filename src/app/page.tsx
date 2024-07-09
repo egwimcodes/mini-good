@@ -16,7 +16,7 @@ const Home = () => {
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or
-  const { message, sendMessage } = useWebSocket();
+  const { message, sendMessage, sendToken } = useWebSocket();
 
 
 // Authentication Check  
@@ -39,6 +39,7 @@ const Home = () => {
           .then(async (e) => {
             const dataToStore = typeof e === "string" ? e : JSON.stringify(e);
             const accessTokenToStore = JSON.parse(dataToStore).token.access;
+            sendToken(accessTokenToStore);
             await setAccessToken(accessTokenToStore);
 
             // Retrieve user data after registration
