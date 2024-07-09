@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { RetriveTasks } from "@/utils/requests";
 import { MdNavigateNext } from "react-icons/md";
 // import PopUpComfirmationTask from "@/components/PopUpComfirmation";
-import Image from "next/image";
+//import Image from "next/image";
 // import MiniPreloader from "./MiniPleloader";
 
 interface Task {
