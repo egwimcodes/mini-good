@@ -1,18 +1,27 @@
 import { IoCloseSharp } from "react-icons/io5";
 import Image from "next/image";
 import { MdNavigateNext } from "react-icons/md";
+import { useEffect } from "react";
+import { TaskCompletion } from "@/utils/requests";
 interface PopUpComfirmationProps {
     isopen: boolean;
     isClose: () => void;
-    title?: string;
+    title: string;
     content?: string;
-    avatar?: string;
-    reward?: number;
-    task_url?: string;
+    avater: string;
+    reward: number;
+    task_url: string;
 
 }
 
-export default function PopUpComfirmationTask({ isopen, isClose, title, avatar, reward, task_url }: PopUpComfirmationProps) {
+export default function PopUpComfirmationTask({ isopen, isClose, title, avater, reward, task_url }: PopUpComfirmationProps) {
+    useEffect(() => {
+        TaskCompletion({title, avater, reward, task_url})
+            .then()
+            .catch(() => {
+                console.log('Error while posting task');
+            });
+    }, []);
     return (
         <>{
             isopen && (
@@ -25,7 +34,7 @@ export default function PopUpComfirmationTask({ isopen, isClose, title, avatar, 
                         </div>
 
                         <div className="claim-gift w-[100%] h-[20%] bg-emerald-700 flex items-center justify-start px-2 xsm:mb-2 rounded-[10px]">
-                            <Image className="shine-coin w-10" width={50} height={50} src={avatar ? avatar : "/good-coin.png"} alt="" />
+                            <Image className="shine-coin w-10" width={50} height={50} src={avater ? avater : "/good-coin.png"} alt="" />
                             <div className="amount-to-claim ml-2">
                                 <h3 className="text-light">+{reward}</h3>
                                 <p className="font-semibold text-orange-400">GoodCoin</p>

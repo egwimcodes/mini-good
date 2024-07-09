@@ -70,7 +70,7 @@ export default function Task() {
                         isClose={() => setIsClaiming(false)}
                         isopen={true}
                         title={selectedTask.title}
-                        avatar={selectedTask.avater}
+                        avater={selectedTask.avater}
                         reward={selectedTask.reward}
                         task_url={selectedTask.task_url}
                         content={"Are you sure you want to claim this task?"}
