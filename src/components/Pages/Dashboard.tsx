@@ -18,7 +18,6 @@ interface ClickEffect {
 
 export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const user = useUserContext();
-    const webAppData = useWebApp();
     const [clickEffects, setClickEffects] = useState<ClickEffect[]>([]);
     const [showProfile, setShowProfile] = useState('dashboard');
     const [balance, setBalance] = useState(user.balance);
@@ -30,20 +29,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const [level, setLevel] = useState<number>();
     const [progress, setPregress] = useState<number>();
     const balanceString = balance.toString().length;
-
-    useEffect(() => {
-        if (webAppData) {
-            webAppData.isClosingConfirmationEnabled(true);
-            webAppData.isVerticalSwipesEnabled(true);
-
-            // Optionally, you could handle cleanup if needed
-            return () => {
-                webAppData.isClosingConfirmationEnabled(false);
-                webAppData.isVerticalSwipesEnabled(false);
-            };
-        }
-    }, [webAppData]);
-
+    
     useEffect(() => {
         const levelUpdate = Math.floor(user.balance / 10000);
         const levelCheck = levelUpdate <= 20 ? levelUpdate : 20
