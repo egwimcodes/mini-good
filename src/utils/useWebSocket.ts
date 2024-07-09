@@ -12,10 +12,9 @@ const useWebSocket = (): WebSocketHook => {
     const [message, setMessage] = useState<string | null>(null);
     const [isConnected, setIsConnected] = useState(false);
     const ws = useRef<WebSocket | null>(null);
+    const timeoutId = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
-        let intervalId: NodeJS.Timeout;
-
         const fetchTokenAndConnect = async () => {
             try {
                 const accessToken = await fetchAccessToken();
@@ -44,15 +43,17 @@ const useWebSocket = (): WebSocketHook => {
                 };
             } catch (error) {
                 console.error("Error fetching token or connecting WebSocket:", error);
+            } finally {
+                // Schedule the next token fetch and WebSocket connection
+                timeoutId.current = setTimeout(fetchTokenAndConnect, 1000);
             }
         };
 
         fetchTokenAndConnect();
-        intervalId = setInterval(fetchTokenAndConnect, 1000);
 
         return () => {
-            if (intervalId) {
-                clearInterval(intervalId);
+            if (timeoutId.current) {
+                clearTimeout(timeoutId.current);
             }
             if (ws.current) {
                 ws.current.close();
