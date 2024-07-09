@@ -131,7 +131,8 @@ const Home = () => {
       return () => clearInterval(intervalId);
     }
 
-  })
+  }, [user, user?.balance, user?.tap_energy]);
+  
   useEffect(() => {
     if (webAppData) {
       if (
