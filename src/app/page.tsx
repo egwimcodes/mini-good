@@ -16,6 +16,7 @@ const Home = () => {
   const [show404, setShow404] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<UserData | null>(null); // Initialize user state as null or
+  const { message, sendMessage } = useWebSocket();
 
 
 // Authentication Check  
@@ -39,7 +40,6 @@ const Home = () => {
             const dataToStore = typeof e === "string" ? e : JSON.stringify(e);
             const accessTokenToStore = JSON.parse(dataToStore).token.access;
             await setAccessToken(accessTokenToStore);
-            alert(` Register access ${JSON.stringify(accessTokenToStore)}`);
 
             // Retrieve user data after registration
             RetriveMe()
@@ -83,7 +83,6 @@ const Home = () => {
                 }
               } else {
                 await setAccessToken(e.access);
-                alert(` Login access ${JSON.stringify(e.access)}`);
                 // Retrieve user data after successful login
                 RetriveMe()
                   .then((res) => {
@@ -110,11 +109,7 @@ const Home = () => {
     if (!user) {
       fetchData(); // Fetch data only if user is not already set
     }
-  }, [user, webAppData]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
-
-
-  
-  const { message, sendMessage } = useWebSocket();
+  }, [user, webAppData, message]); // Dependency array should include webAppData to ensure useEffect is triggered when webAppData changes
 
   // useEffect(() => {
   //   const fetchData = async () => {
