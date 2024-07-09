@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { RetriveTasks } from "@/utils/requests";
 import { MdNavigateNext } from "react-icons/md";
-// import PopUpComfirmationTask from "@/components/PopUpComfirmation";
+import PopUpComfirmationTask from "@/components/PopUpComfirmation";
 import Image from "next/image";
-// import MiniPreloader from "./MiniPleloader";
+import MiniPreloader from "./MiniPleloader";
 
 interface Task {
     id: number;
@@ -15,49 +15,43 @@ interface Task {
 }
 
 export default function Task() {
-   // const [isClaiming, setIsClaiming] = useState(false);
+    const [isClaiming, setIsClaiming] = useState(false);
     const [retrievedTasks, setRetrievedTasks] = useState<Task[]>([]);
-    //const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
-   // const [stillFetching, setStillFetching] = useState<boolean>(true);
+    const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
+    const [stillFetching, setStillFetching] = useState<boolean>(true);
 
     useEffect(() => {
-       async function fetchData() {
-           RetriveTasks()
-               .then((tasks) => {
-                   setRetrievedTasks(tasks);
-                  // setStillFetching(false); // Set fetching to false after tasks are retrieved
-               })
-               .catch(() => {
-                   alert('Error while fetching tasks');
-                 //  setStillFetching(false); // Set fetching to false in case of an error
-               });
-        }
+        RetriveTasks()
+            .then((tasks) => {
+                setRetrievedTasks(tasks);
+                setStillFetching(false); // Set fetching to false after tasks are retrieved
+            })
+            .catch(() => {
+                console.log('Error while fetching tasks');
+                setStillFetching(false); // Set fetching to false in case of an error
+            });
+    }, []);
 
-        // Fetch data initially
-        fetchData();
-    });
+    if (stillFetching) return <MiniPreloader />;
 
-    // if (stillFetching) return <MiniPreloader />;
-
-    // const selectedTaskFunc = (task: Task) => {
-    //     setSelectedTask(task);
-    //     setIsClaiming(true);
-    // };
+    const selectedTaskFunc = (task: Task) => {
+        setSelectedTask(task);
+        setIsClaiming(true);
+    };
 
     return (
         <>
             <div className="task-container w-full h-full overflow-y-scroll scroll-smooth bg-transparent mt-4 bg-slate-800">
                 <div className="boost-btn-container h-full w-full flex flex-col items-center bg-transparent">
-                    {retrievedTasks.map((task) => 
-                    (
+                    {retrievedTasks.map((task) => (
                         <div
                             key={task.id}
-                            className="task-claim min-w-[95%] h-[13%] flex flex-row items-center justify-between px-2 py-2 mb-1 cursor-pointer"
-                            // onClick={() => selectedTaskFunc(task)}
+                            className="task-claim min-w-[95%] h-13% flex flex-row items-center justify-between px-2 py-2 mb-1 cursor-pointer"
+                            onClick={() => selectedTaskFunc(task)}
                         >
                             <div className="boost-writeup flex flex-row items-center justify-center">
                                 <div className="icon-container">
-                                    {/* <Image className="w-10" draggable={false} width={50} height={50} src={task.avater} alt={task.title} /> */}
+                                    <Image className="w-10" draggable={false} width={50} height={50} src={task.avater ?? ``} alt={task.title} />
                                 </div>
                                 <div className="task-writeup ml-3 min-w-[60%] flex flex-col justify-between">
                                     <h3 className="text-light font-semibold">{task.title}</h3>
@@ -69,11 +63,9 @@ export default function Task() {
                             </div>
                             <MdNavigateNext className="r-arrow text-2xl font-bold" />
                         </div>
-                    )
-                    
-                    )}
+                    ))}
                 </div>
-                {/* {isClaiming && selectedTask && (
+                {isClaiming && selectedTask && (
                     <PopUpComfirmationTask
                         isClose={() => setIsClaiming(false)}
                         isopen={true}
@@ -83,7 +75,7 @@ export default function Task() {
                         task_url={selectedTask.task_url}
                         content={"Are you sure you want to claim this task?"}
                     />
-                )} */}
+                )}
             </div>
         </>
     );
