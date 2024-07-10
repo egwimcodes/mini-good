@@ -1,6 +1,6 @@
 import { IoCloseSharp } from "react-icons/io5";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TaskCompletion } from "@/utils/requests";
 interface PopUpComfirmationProps {
     isopen: boolean;
