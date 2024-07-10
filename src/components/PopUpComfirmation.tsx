@@ -26,6 +26,8 @@ export default function PopUpComfirmationTask({ isopen, isClose, id, title, avat
                 setShowHold(true);
                 return "Pending";
             } else if (btnStatus === "completed") {
+                setShowHold(false);
+                setBtnText("Completed");
                 return "Completed";
             } else {
                 return "Start Task"
@@ -48,7 +50,7 @@ export default function PopUpComfirmationTask({ isopen, isClose, id, title, avat
                     console.log('Error while posting task');
                 });
         }
-    }, [btnText]);
+    }, [btnText, btnStatus]);
     return (
         <>{
             isopen && (
