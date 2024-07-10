@@ -19,7 +19,6 @@ export default function PopUpComfirmationTask({ isopen, isClose, id, title, avat
     const [showHold, setShowHold] = useState(false);
     const [btnStatus, setBtnStatus] = useState<String>();
     const [btnText, setBtnText] = useState("Start Task");
-    const [isConfirm, setIsConfirm] = useState(false);
     
     useEffect(() => {
         const checkState = () => {
@@ -41,6 +40,7 @@ export default function PopUpComfirmationTask({ isopen, isClose, id, title, avat
             TaskCompletion({ task_id: id })
                 .then(() => {
                     setTimeout(() => {
+                        setHasClaimed(true);
                         setBtnText("Completed");
                     }, 3000)
                 })
