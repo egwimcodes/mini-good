@@ -36,7 +36,7 @@ export default function Wallet({ setShowProfile }: WalletProps) {
               <hr className="w-[95vw] border-1 border-main mx-auto" />
               <div className="credit  mx-auto flex-col flex-center h-[10vh] ">
                   <h3 className='text-1xl font-semibold'>Credit Your Wallet</h3>
-                  <p className='text-xxxs font-semibold'>creadit your goodcoin wallet</p>
+                  <p className='text-xxxs font-semibold'>credit your goodcoin wallet</p>
               </div>
               <div className="profile-content w-[95vw] h-[50vh] flex-col flex-center">
                   {/* <hr className="w-[70vw] border-1 my-3 border-main mx-auto" />
