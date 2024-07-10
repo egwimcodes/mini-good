@@ -76,6 +76,7 @@ export default function Task() {
                         reward={selectedTask.reward}
                         task_url={selectedTask.task_url}
                         content={"Are you sure you want to claim this task?"}
+                        id={selectedTask.id}
                     />
                 )}
             </div>
