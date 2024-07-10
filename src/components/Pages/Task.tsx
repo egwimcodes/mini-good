@@ -46,7 +46,9 @@ export default function Task() {
             <div className="task-container w-full h-full overflow-y-scroll scroll-smooth bg-transparent mt-4 bg-slate-800">
                 <div className="boost-btn-container h-full w-full flex flex-col items-center bg-transparent">
                     {retrievedTasks.map((task) => {
-                        const userCompleted = task.completed_users.some((user) => String(user.user.id) === String(user_id.user_id));
+                        // const userCompleted = task.completed_users.some((user) => String(user.user.id) === String(user_id.user_id));
+                        const userCompleted = task.completed_users.some((user) =>{ alert(user.user.id) ; alert(user_id.user_id)});
+
 
                         return userCompleted ? null : (
                             <div
