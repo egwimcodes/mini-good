@@ -28,7 +28,7 @@ export default function PopUpComfirmationTask({ isopen, isClose, id, title, avat
                         setHasClaimed(true);
                         setBtnStatus("Completed");
                         setShowHold(false);
-                    }, 3000);
+                    }, 5000); // 5-second delay before showing "Completed"
                 })
                 .catch(() => {
                     console.log('Error while posting task');
@@ -39,7 +39,9 @@ export default function PopUpComfirmationTask({ isopen, isClose, id, title, avat
 
     const handleClick = () => {
         if (btnStatus === "Start Task") {
-            setBtnStatus("Pending");
+            setTimeout(() => {
+                setBtnStatus("Pending");
+            }, 3000); // 3-second delay before showing "Pending"
         }
     };
 
