@@ -64,7 +64,7 @@ export default function PopUpComfirmationTask({ isopen, isClose, id, title, avat
                             <p className="text-orange-400t xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs font-semibold">We are checking your task.</p></>)}
 
                         <a target='_blank'
-                            rel='noopener noreferrer' href={task_url} className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly" onClick={() => { isClaim ? handleTimer() : handleClaim() }}>
+                            rel='noopener noreferrer' href={task_url} className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly" onClick={() => { isClaim ? handleClaim() : handleTimer()}}>
                             <h4 className="text-light font-semibold">{isClaim ? 'Claim' : 'Start Task'}</h4>
                         </a>
                     </div>
