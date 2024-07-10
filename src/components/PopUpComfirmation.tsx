@@ -71,15 +71,25 @@ export default function PopUpComfirmationTask({ isopen, isClose, id, title, avat
                                 <p className="text-orange-400 xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs font-semibold">We are checking your task.</p>
                             </>
                         )}
-                        <a
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            href={btnStatus === "Start Task" ? task_url : '#'}
-                            className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly"
-                            onClick={handleClick}
-                        >
-                            <h4 className="text-light font-semibold">{btnStatus}</h4>
-                        </a>
+                        {btnStatus === "Completed" ? (
+                            <div
+                                className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly"
+                            >
+                                <h4 className="text-light font-semibold">{btnStatus}</h4>
+                            </div>
+                        ) : (
+                                <a
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    href={btnStatus === "Start Task" ? task_url : '#'}
+                                    className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly"
+                                    onClick={handleClick}
+                                >
+                                    <h4 className="text-light font-semibold">{btnStatus}</h4>
+                                </a>   
+                        )}
+                        
+                        
                     </div>
                 </div>
             )}
