@@ -21,27 +21,36 @@ export default function PopUpComfirmationTask({ isopen, isClose, id, title, avat
 
     useEffect(() => {
         if (btnStatus === "Pending") {
+            setShowHold(true);
             TaskCompletion({ task_id: id })
                 .then(() => {
                     setTimeout(() => {
                         setHasClaimed(true);
                         setBtnStatus("Completed");
+                        setShowHold(false);
                     }, 3000);
                 })
                 .catch(() => {
                     console.log('Error while posting task');
+                    setShowHold(false);
                 });
         }
     }, [btnStatus, id]);
 
+    const handleClick = () => {
+        if (btnStatus === "Start Task") {
+            setBtnStatus("Pending");
+        }
+    };
+
     return (
-        <>
-            {isopen && (
+        <>{
+            isopen && (
                 <div className="absolute top-0 left-0 h-screen w-screen bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="claim-content h-[60vh] w-[90%] bg-black border-2 border-main rounded-[10px] flex flex-col items-center justify-evenly p-3 relative text-center">
                         <div className="claim-content-header w-[100%] flex flex-row items-center justify-between">
                             <h1 className="text-light xxxsm:text-xs xxsm:text-2xl xsm:text-0.5rem sm:text-1rem font-semibold w-[80%]">{title}</h1>
-                            <IoCloseSharp className="text-main text-3xl w-[20%]" onClick={isClose} />
+                            <IoCloseSharp className="text-main text-3xl w-[20%] " onClick={isClose} />
                         </div>
                         {hasClaimed ? (
                             <Image src="https://ik.imagekit.io/egwimcodes/win.png?updatedAt=1720197419669" className="w-[100%]" width={200} height={200} alt="" />
@@ -63,14 +72,9 @@ export default function PopUpComfirmationTask({ isopen, isClose, id, title, avat
                         <a
                             target='_blank'
                             rel='noopener noreferrer'
-                            href={btnStatus === "Start Task" ? task_url : ""}
+                            href={btnStatus === "Start Task" ? task_url : '#'}
                             className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly"
-                            onClick={() => {
-                                if (btnStatus === "Start Task") {
-                                    setShowHold(true);
-                                    setBtnStatus("Pending");
-                                }
-                            }}
+                            onClick={handleClick}
                         >
                             <h4 className="text-light font-semibold">{btnStatus}</h4>
                         </a>
