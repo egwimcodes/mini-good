@@ -1,6 +1,6 @@
 import { IoCloseSharp } from "react-icons/io5";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TaskCompletion } from "@/utils/requests";
 interface PopUpComfirmationProps {
     isopen: boolean;
@@ -15,30 +15,40 @@ interface PopUpComfirmationProps {
 }
 
 export default function PopUpComfirmationTask({ isopen, isClose, id, title, avater, reward, task_url }: PopUpComfirmationProps) {
-    const [isClaim, setIsClaim] = useState(false);
     const [hasClaimed, setHasClaimed] = useState(false);
     const [showHold, setShowHold] = useState(false);
+    const [btnStatus, setBtnStatus] = useState<String>();
+    const [btnText, setBtnText] = useState("Start Task");
+    const [isConfirm, setIsConfirm] = useState(false);
+    
+    useEffect(() => {
+        const checkState = () => {
+            if (btnStatus === "Pending") {
+                setShowHold(true);
+                return "Pending";
+            } else if (btnStatus === "completed") {
+                return "Completed";
+            } else {
+                return "Start Task"
+            }
+        }
 
-    const handleTimer = () => {
-        setTimeout(() => {
-            setIsClaim(true);
-            setShowHold(true);
-        }, 10000);
-    }
-    const handleClaim = () => {
-        if (isClaim) {
+        setBtnText(checkState());
+    }, [btnStatus, btnText]);
+
+    useEffect(() => {
+        if (btnText === "Pending") { 
             TaskCompletion({ task_id: id })
                 .then(() => {
-                    setShowHold(false);
-                    setHasClaimed(true);
+                    setTimeout(() => {
+                        setBtnText("Completed");
+                    }, 3000)
                 })
                 .catch(() => {
                     console.log('Error while posting task');
                 });
         }
-
-    }
-
+    }, [btnText]);
     return (
         <>{
             isopen && (
@@ -61,11 +71,16 @@ export default function PopUpComfirmationTask({ isopen, isClose, id, title, avat
                         {/* PERFOMING TASK CHECK */}
                         {showHold && (<>
                             <h4 className="text-orange-400 xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs font-semibold">Hold on a sec!</h4>
-                            <p className="text-orange-400t xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs font-semibold">We are checking your task.</p></>)}
+                            <p className="text-orange-400 xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs font-semibold">We are checking your task.</p></>)}
 
                         <a target='_blank'
-                            rel='noopener noreferrer' href={task_url} className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly" onClick={() => { isClaim ? handleClaim() : handleTimer()}}>
-                            <h4 className="text-light font-semibold">{isClaim ? 'Claim' : 'Start Task'}</h4>
+                            rel='noopener noreferrer' href={btnText === "Start Task" ? task_url : ''} className="claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] bg-main rounded-[10px] flex-evenly" onClick={() => { btnText === "Start Task" && 
+                                setTimeout(() => {
+                                    setBtnStatus("Pending");
+                                }, 3000)
+                            }}
+                            >
+                            <h4 className="text-light font-semibold">{btnText}</h4>
                         </a>
                     </div>
                 </div>
