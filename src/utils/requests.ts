@@ -109,7 +109,7 @@ async function RetriveTasks() {
 }
 
 
-async function TaskCompletion({ title, reward, task_url, avater }: TaskCompletionType) {
+async function TaskCompletion({ task_id }: TaskCompletionType) {
     try {
     const requestMe= {
         path: AuthRoutes.TASKS_COMPLETE,
@@ -117,10 +117,7 @@ async function TaskCompletion({ title, reward, task_url, avater }: TaskCompletio
         contentType: 'application/json', // You can omit this if using the default
         removeAuth: false, // Assuming you need authentication
         data: {
-            title, 
-            reward, 
-            task_url, 
-            avater
+            task_id
     },
     };
         const response = await MakeRequest(requestMe);

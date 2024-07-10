@@ -125,10 +125,7 @@ export interface AuthLogin {
   password: string;
 }
 export type TaskCompletionType = {
-  title: string,
-  reward: number,
-  task_url: string,
-  avater: string
+  task_id: number;
 }
 
 
