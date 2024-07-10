@@ -17,7 +17,7 @@ interface PopUpComfirmationProps {
 export default function PopUpComfirmationTask({ isopen, isClose, id, title, avater, reward, task_url }: PopUpComfirmationProps) {
     const [hasClaimed, setHasClaimed] = useState(false);
     const [showHold, setShowHold] = useState(false);
-    const [btnStatus, setBtnStatus] = useState<String>();
+    const [btnStatus, setBtnStatus] = useState<"Pending" | "completed" | "Start Task">();
     const [btnText, setBtnText] = useState("Start Task");
     
     useEffect(() => {
