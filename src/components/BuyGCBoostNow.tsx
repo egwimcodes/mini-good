@@ -14,8 +14,11 @@ interface BuyBoostNowProps {
 export default function BuyBoostNow({ isopen, isClose, balance }: BuyBoostNowProps) {
     const [btnText, setBtnText] = useState(false);
     const buyNow = () => {
-        setBtnText(true)
-        BuyBoost({})
+        if (btnText === false) {
+            BuyBoost({}).then(() => {
+                setBtnText(true)
+            })
+        }
     }
   return (
       <>
