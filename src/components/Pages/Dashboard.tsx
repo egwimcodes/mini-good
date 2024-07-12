@@ -21,7 +21,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const [balance, setBalance] = useState(user.balance);
     const [isClaiming, setIsClaiming] = useState(false);
     const [taps, setTaps] = useState(0);
-   // const [charged] = useState(user.tap_energy);
+    // const [charged] = useState(user.tap_energy);
     const [recivedCharges, setRecivedCharges] = useState(user.tap_energy);
     const [earnPerTap] = useState(user.earn_per_tap)
     const [level, setLevel] = useState<number>();
@@ -31,15 +31,13 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const [tapConditions, setTapConditions] = useState<boolean>()
 
     useEffect(() => {
-        useEffect(() => {
-            if (recivedCharges > earnPerTap) {
-                setTapConditions(true);
-            } else if (recivedCharges < earnPerTap) {
-                setTapConditions(false);
-            }
-        }, [recivedCharges, earnPerTap]);
-
+        if (recivedCharges > earnPerTap) {
+            setTapConditions(true);
+        } else if (recivedCharges < earnPerTap) {
+            setTapConditions(false);
+        }
     }, [recivedCharges, earnPerTap]);
+
 
     useEffect(() => {
         const levelUpdate = Math.floor(user.balance / 10000);
@@ -74,11 +72,11 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
         if (message) {
             const updatedBalanceParsed = JSON.parse(message);
             setRecivedCharges(updatedBalanceParsed.tap_energy);
-          
+
         }
     }, [message]);
 
- 
+
     return (
         <>
             {showProfile === 'dashboard' && (
@@ -119,7 +117,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className="tap-section w-[100%] h-[70%] relative rounded-[20px] border-2 border-main flex justify-center items-center justify-self-start mx-auto">
                         <div className="tap w-[60%] relative">
                             <Image src="https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578" className="coin-svg mx-auto sm:w-[40%]" width={500} height={100} alt="" />
