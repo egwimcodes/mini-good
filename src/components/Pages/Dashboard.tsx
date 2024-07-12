@@ -28,6 +28,14 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const [progress, setPregress] = useState<number>();
     const balanceString = balance.toString().length;
 
+    const [tapConditions, setTapConditions] = useState<boolean>()
+
+    useEffect(() => {
+       if (recivedCharges > earnPerTap && recivedCharges < earnPerTap) {
+        setTapConditions(true)
+       }
+    }, [recivedCharges, earnPerTap]);
+
     useEffect(() => {
         const levelUpdate = Math.floor(user.balance / 10000);
         const levelCheck = levelUpdate <= 20 ? levelUpdate : 20
@@ -48,7 +56,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
         }, 2000);
 
         // Update taps and claimChange based on conditions
-        if (recivedCharges > earnPerTap) {
+        if (tapConditions) {
             const updatedTapEnergy = JSON.parse(`{"balance": ${earnPerTap},"tap_energy": ${- earnPerTap}}`);
             sendMessage(JSON.stringify(updatedTapEnergy));
             setRecivedCharges(prev => prev - earnPerTap);
@@ -119,7 +127,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                        {recivedCharges > earnPerTap ? `+${earnPerTap}` : ''}
+                                        {earnPerTap && `+${earnPerTap}`}
                                     </span>
                                 ))}
                             </div>
