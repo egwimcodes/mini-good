@@ -31,9 +31,14 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const [tapConditions, setTapConditions] = useState<boolean>()
 
     useEffect(() => {
-       if (recivedCharges > earnPerTap && recivedCharges < earnPerTap) {
-        setTapConditions(true)
-       }
+        useEffect(() => {
+            if (recivedCharges > earnPerTap) {
+                setTapConditions(true);
+            } else if (recivedCharges < earnPerTap) {
+                setTapConditions(false);
+            }
+        }, [recivedCharges, earnPerTap]);
+
     }, [recivedCharges, earnPerTap]);
 
     useEffect(() => {
@@ -127,7 +132,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                        {earnPerTap && `+${earnPerTap}`}
+                                        {tapConditions && `+${earnPerTap}`}
                                     </span>
                                 ))}
                             </div>
