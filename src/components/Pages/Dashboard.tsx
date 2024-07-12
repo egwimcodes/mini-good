@@ -36,8 +36,6 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
     }, [taps, user.balance]);
 
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
-        alert(earnPerTap);
-        alert(recivedCharges);
         const rect = event.currentTarget.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
@@ -50,7 +48,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
         }, 2000);
 
         // Update taps and claimChange based on conditions
-        if (earnPerTap >= recivedCharges) {
+        if (recivedCharges > earnPerTap) {
             const updatedTapEnergy = JSON.parse(`{"balance": ${earnPerTap},"tap_energy": ${- earnPerTap}}`);
             sendMessage(JSON.stringify(updatedTapEnergy));
             setRecivedCharges(prev => prev - earnPerTap);
@@ -121,7 +119,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                        {recivedCharges >= earnPerTap ? `+${earnPerTap}` : ''}
+                                        {recivedCharges > earnPerTap ? `+${earnPerTap}` : ''}
                                     </span>
                                 ))}
                             </div>
