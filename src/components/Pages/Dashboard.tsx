@@ -36,6 +36,8 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
     }, [taps, user.balance]);
 
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+        alert(earnPerTap);
+        alert(recivedCharges);
         const rect = event.currentTarget.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
