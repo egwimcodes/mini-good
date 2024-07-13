@@ -139,7 +139,7 @@ const Home = () => {
         };
       });
     }
-  }, [message, user?.balance, user?.tap_energy]);
+  }, [message, user?.balance, user?.tap_energy, user?.earn_per_tap]);
 
   useEffect(() => {
     const handleContextMenu = (event: MouseEvent) => {
