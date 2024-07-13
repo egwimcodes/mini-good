@@ -40,6 +40,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
         setPregress((user.balance % 10000) / 10000 * 100);
     }, [taps, user.balance]);
 
+    
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const x = event.clientX - rect.left;
