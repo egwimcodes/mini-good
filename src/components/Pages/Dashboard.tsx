@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { IoMdWallet, IoMdAdd } from 'react-icons/io';
 import Profile from './Profile';
@@ -27,6 +27,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const [level, setLevel] = useState<number>();
     const [progress, setPregress] = useState<number>();
     const balanceString = balance.toString().length;
+    const [checkNegetivity, setCheckNegetivity] = useState(user.tap_energy - user.earn_per_tap > 0 ? true : false);
 
 
 
@@ -52,7 +53,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
         }, 2000);
 
         // Update taps and claimChange based on conditions
-        if (true) {
+        if (checkNegetivity) {
             const updatedTapEnergy = JSON.parse(`{"balance": ${earnPerTap},"tap_energy": ${- earnPerTap}}`);
             sendMessage(JSON.stringify(updatedTapEnergy));
             setRecivedCharges(prev => prev - earnPerTap);
@@ -123,7 +124,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                        {true &&  `+${earnPerTap}`}
+                                        {checkNegetivity &&  `+${earnPerTap}`}
                                     </span>
                                 ))}
                             </div>
