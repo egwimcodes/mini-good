@@ -40,7 +40,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
         setPregress((user.balance % 10000) / 10000 * 100);
     }, [taps, user.balance]);
 
-    
+
     const handleImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const x = event.clientX - rect.left;
@@ -54,6 +54,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
         }, 2000);
 
         // Update taps and claimChange based on conditions
+        alert(user.tap_energy);
         if (checkNegetivity) {
             const updatedTapEnergy = JSON.parse(`{"balance": ${earnPerTap},"tap_energy": ${- earnPerTap}}`);
             sendMessage(JSON.stringify(updatedTapEnergy));
