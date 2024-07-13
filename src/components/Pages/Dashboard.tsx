@@ -59,6 +59,8 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
             setRecivedCharges(prev => prev - earnPerTap);
             setTaps(prev => prev + earnPerTap);
             setBalance(prev => prev + earnPerTap);
+        }else{
+            
         }
     };
 
@@ -124,7 +126,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                        {recivedCharges - earnPerTap > 0 ? `+${earnPerTap}` : ''}
+                                        {recivedCharges - earnPerTap > 0  ? `+${earnPerTap}` : ''}
                                     </span>
                                 ))}
                             </div>
