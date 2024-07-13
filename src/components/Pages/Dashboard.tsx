@@ -53,7 +53,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
         }, 2000);
 
         // Update taps and claimChange based on conditions
-        if (recivedCharges - earnPerTap > 0) {
+        if (recivedCharges > 0 && recivedCharges - earnPerTap > 0) {
             const updatedTapEnergy = JSON.parse(`{"balance": ${earnPerTap},"tap_energy": ${- earnPerTap}}`);
             sendMessage(JSON.stringify(updatedTapEnergy));
             setRecivedCharges(prev => prev - earnPerTap);
@@ -134,7 +134,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
                         <div className='h-[20%] absolute top-0 right-0 w-[40vw] flex flex-row flex-center'>
                             <Image src="https://ik.imagekit.io/egwimcodes/charge.png?updatedAt=1720197415406" className="shrink-on-click  w-5 h-5" width={20} height={10} alt="" />
                             <div className="charge-stat flex-between">
-                                <p className='text-white flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{recivedCharges}</p>/
+                                <p className='text-white flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{recivedCharges < 0 ? 0 : recivedCharges}</p>/
                                 <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>1500</p>
                             </div>
                         </div>
