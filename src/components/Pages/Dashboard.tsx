@@ -27,7 +27,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
     const [level, setLevel] = useState<number>();
     const [progress, setPregress] = useState<number>();
     const balanceString = balance.toString().length;
-    const [checkNegetivity] = useState(user.tap_energy - user.earn_per_tap > 0 ? true : false);
+    const [checkNegetivity] = useState(user.tap_energy > 0 ? true : false);
 
 
 
