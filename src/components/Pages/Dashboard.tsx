@@ -53,7 +53,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
         }, 2000);
 
         // Update taps and claimChange based on conditions
-        if (!(earnPerTap > user.tap_energy)) {
+        if (user.earn_per_tap  > user.tap_energy && user.tap_energy - earnPerTap > 0) {
             const updatedTapEnergy = JSON.parse(`{"balance": ${earnPerTap},"tap_energy": ${- earnPerTap}}`);
             sendMessage(JSON.stringify(updatedTapEnergy));
             setRecivedCharges(prev => prev - earnPerTap);
@@ -124,7 +124,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                        {earnPerTap > user.tap_energy ? '' :  `+${earnPerTap}`}
+                                        {user.earn_per_tap > user.tap_energy && user.tap_energy - earnPerTap > 0 ? `+${earnPerTap}` : ''}
                                     </span>
                                 ))}
                             </div>
