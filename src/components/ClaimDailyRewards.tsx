@@ -61,7 +61,7 @@ export default function ClaimDailyRewards({ isopen, isClose, amount }: PopUpComf
                                 </div>
 
                                 <div className="daily-comfirmation-btn w-full h-[20%] flex flex-row items-center justify-evenly mb-4">
-                                    <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[10vh] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center " onClick={() => { handleClaim() }}>
+                                    <div className="border-1 xxxsm:w-[50%] xxsm:w-[60%] xsm:w-[50%] h-[10vh] rounded-[5px] border-white p-1  bg-gradient-to-b from-slate-600 bg-slate-900 flex-center " onClick={() => { showWin ? isClose() : handleClaim() }}>
                                         <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem'>{showWin ? "CLAIMED" : "CLAIM NOW"}</p>
                                     </div>
                                 </div>
