@@ -48,17 +48,10 @@ export default function DailyRewards() {
         if (canClaimDay && streak?.current_streak) {
             setDailyRewardsClaimed(true);
             setCoinAmountToClaim(streak.current_streak * 500);
-            // Mark as claimed immediately
-            setIsClaimed(true);
-            // Optionally, update the backend to reflect the claim here
-        }
-    };
-
-    useEffect(() => {
-        if (dailyRewardsClaimed) {
+            // After claiming, refresh the streak data
             fetchStreakData();
         }
-    }, [dailyRewardsClaimed]);
+    };
 
     if (stillFetching) return <MiniPreloader />;
 
@@ -79,6 +72,7 @@ export default function DailyRewards() {
                     <div className="reward-content flex flex-col w-[90%] h-[80%] mx-auto flex-center">
                         <div className="h-[100%] flex justify-center items-center">
                             <div className="reward-child w-[100%] h-[100%] z-10 flex-col justify-center">
+
                                 <div
                                     id="diamond-narrow"
                                     className={`z-10 relative from-slate-600 bg-slate-900`}
@@ -103,6 +97,7 @@ export default function DailyRewards() {
                                         )}
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                         <div className="rewards-footer w-[100%] h-[10%] mx-auto flex-center">
