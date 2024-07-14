@@ -46,7 +46,7 @@ export default function DailyRewards() {
         fetchStreakData();
         // const intervalid = setInterval(fetchStreakData, 1000);
         // return () => clearInterval(intervalid);
-    }, []);
+    }, [isClaimed]);
 
     if (stillFetching) return <MiniPreloader />;
 
@@ -113,7 +113,7 @@ export default function DailyRewards() {
                 </div>
             </div>
             {dailyClaim && (
-                <DailyPopUpComfirmation isopen={true} isClose={() => setDailyClaim(false)} />
+                <DailyPopUpComfirmation isopen={true} isClose={() => {setDailyClaim(false);  setIsClaimed(true) }} />
             )}
             {dailyRewardsClaimed && (
                 <ClaimDailyRewards isopen={true} isClose={() => setDailyRewardsClaimed(false)} amount={coinAmountToClaim} />
