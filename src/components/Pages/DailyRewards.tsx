@@ -20,33 +20,38 @@ export default function DailyRewards() {
     const [streak, setStreak] = useState<DailyStreakRetrival>();
     const [stillFetching, setStillFetching] = useState<boolean>(true);
     const [coinAmountToClaim, setCoinAmountToClaim] = useState<number | undefined>();
-    const [canClaimDay, setCanClaimDay] = useState(false)
-    const [isClaimed, setIsClaimed] = useState(false)
+    const [canClaimDay, setCanClaimDay] = useState(false);
+    const [isClaimed, setIsClaimed] = useState(false);
 
-    useEffect(() => {
-        const fetchStreakData = () => {
-            RetriveDailyStreak()
+    const fetchStreakData = () => {
+        setStillFetching(true);
+        RetriveDailyStreak()
             .then((streak) => {
                 const streak_data = streak.last_checkin_date ?? streak.current_streak;
                 setStreak(streak);
-                setCanClaimDay(canClaim(streak_data))
-
-
-                if (canClaim(streak_data) === false) {
-                    setIsClaimed(true)
-                }
+                const canClaimStatus = canClaim(streak_data);
+                setCanClaimDay(canClaimStatus);
+                setIsClaimed(!canClaimStatus);
                 setStillFetching(false);
-
             })
             .catch(() => {
                 console.log('Error while fetching streak data');
                 setStillFetching(false);
             });
-        };
+    };
+
+    useEffect(() => {
         fetchStreakData();
-        // const intervalid = setInterval(fetchStreakData, 1000);
-        // return () => clearInterval(intervalid);
-    }, [isClaimed]);
+    }, []);
+
+    const handleClaimClick = () => {
+        if (canClaimDay && streak?.current_streak) {
+            setDailyRewardsClaimed(true);
+            setCoinAmountToClaim(streak.current_streak * 500);
+            // After claiming, refresh the streak data
+            fetchStreakData();
+        }
+    };
 
     if (stillFetching) return <MiniPreloader />;
 
@@ -63,15 +68,6 @@ export default function DailyRewards() {
                 <div className="boost-btn-container h-inherit w-inherit flex flex-col items-center">
                     <div className="reward-header w-[90vw] h-[20%] flex flex-row items-center justify-between mx-auto">
                         <h1 className="xxxsm:text-xs xxsm:text-2xl xsm:text-1rem sm:text-1rem font-bold text-light">DAILY CLAIM</h1>
-                        {/* <div className="time-remaining flex flex-row items-center flex-nowrap">
-                            <div className="time-remainig-header h-[3vh]">
-                                <p className="text-sm timing-show text-light">Available in</p>
-                                <p className="xxxsm:text-xxxs xxsm:text-xsxs xsm:text-1rem sm:text-1rem timing-show text-light font-semibold">9:00:00 PM</p>
-                            </div>
-                            <div className="timing ml-3">
-                                <IoMdTime className="text-light" />
-                            </div>
-                        </div> */}
                     </div>
                     <div className="reward-content flex flex-col w-[90%] h-[80%] mx-auto flex-center">
                         <div className="h-[100%] flex justify-center items-center">
@@ -80,7 +76,7 @@ export default function DailyRewards() {
                                 <div
                                     id="diamond-narrow"
                                     className={`z-10 relative from-slate-600 bg-slate-900`}
-                                    onClick={() => { if (canClaimDay && streak?.current_streak) setDailyRewardsClaimed(true); setCoinAmountToClaim(streak?.current_streak ? streak?.current_streak * 500 : streak?.current_streak) }}
+                                    onClick={handleClaimClick}
                                 >
                                     <div className={`content bg-orange-400 w-[100%]`}>
                                         <p className="text-white text-xs font-bold">Day {streak?.current_streak}</p>
@@ -113,7 +109,7 @@ export default function DailyRewards() {
                 </div>
             </div>
             {dailyClaim && (
-                <DailyPopUpComfirmation isopen={true} isClose={() => {setDailyClaim(false);  setIsClaimed(true) }} />
+                <DailyPopUpComfirmation isopen={true} isClose={() => setDailyClaim(false)} />
             )}
             {dailyRewardsClaimed && (
                 <ClaimDailyRewards isopen={true} isClose={() => setDailyRewardsClaimed(false)} amount={coinAmountToClaim} />
