@@ -28,7 +28,6 @@ export default function PopUpComfirmationTask({ isopen, isClose, id, title, avat
                         setHasClaimed(true);
                         setBtnStatus("Completed");
                         setShowHold(false);
-                        alert("Task Completed");
                     }, 5000); // 5-second delay before showing "Completed"
                 })
                 .catch(() => {
