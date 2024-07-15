@@ -21,7 +21,6 @@ export default function Task() {
     const [retrievedTasks, setRetrievedTasks] = useState<Task[]>([]);
     const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
     const [stillFetching, setStillFetching] = useState<boolean>(true);
-    const [hasTask, setHasTask] = useState<boolean>(false);
 
     useEffect(() => {
         RetriveTasks()
@@ -52,7 +51,7 @@ export default function Task() {
 
         return () => clearInterval(intervalId); // Cleanup on component unmount
     }, []);
-    
+
     if (stillFetching) return <MiniPreloader />;
 
     const selectedTaskFunc = (task: Task) => {
