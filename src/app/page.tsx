@@ -127,6 +127,31 @@ const Home = () => {
   }, [webAppData]); // Include webAppData in dependency array
 
   useEffect(() => {
+    const fetchUser = () => {
+      RetriveMe()
+        .then((res) => {
+          setUser((prevUser) => {
+            if (!prevUser) return prevUser; // Handle the case where prevUser is null or undefined
+            return {
+              ...prevUser,
+              balance: res.balance,
+            };
+          });
+        })
+        .catch((e) => {
+          console.error("Error when retrieving me:", e);
+          setIsLoading(false); // Handle error and stop loading
+        });
+    };
+
+    fetchUser(); // Initial fetch
+
+    const intervalId = setInterval(fetchUser, 1000); // Fetch every 1 second
+
+    return () => clearInterval(intervalId); // Cleanup on component unmount
+  }, []);
+
+  useEffect(() => {
     if (message) {
       const updatedBalanceParsed = JSON.parse(message);
       setUser((prevUser) => {
