@@ -23,15 +23,24 @@ export default function Task() {
     const [stillFetching, setStillFetching] = useState<boolean>(true);
 
     useEffect(() => {
-        RetriveTasks()
-            .then((tasks) => {
-                setRetrievedTasks(tasks);
-                setStillFetching(false); // Set fetching to false after tasks are retrieved
-            })
-            .catch(() => {
-                console.log('Error while fetching tasks');
-                setStillFetching(false); // Set fetching to false in case of an error
-            });
+        const fetchTasks = () => {
+            setStillFetching(true);
+            RetriveTasks()
+                .then((tasks) => {
+                    setRetrievedTasks(tasks);
+                    setStillFetching(false); // Set fetching to false after tasks are retrieved
+                })
+                .catch(() => {
+                    console.log('Error while fetching tasks');
+                    setStillFetching(false); // Set fetching to false in case of an error
+                });
+        };
+
+        fetchTasks(); // Initial fetch
+
+        const intervalId = setInterval(fetchTasks, 1000); // Fetch every 1 second
+
+        return () => clearInterval(intervalId); // Cleanup on component unmount
     }, []);
 
     if (stillFetching) return <MiniPreloader />;
