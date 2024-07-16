@@ -115,18 +115,31 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
                     </div>
 
                     <div className="tap-section w-[100%] h-[70%] relative rounded-[20px] border-2 border-main flex justify-center items-center justify-self-start mx-auto">
-                        <div className="tap w-[60%] relative">
-                            <Image src="https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578" className="coin-svg mx-auto sm:w-[40%]" width={500} height={100} alt="" />
-                            <div className="png-coin w-[100%] h-[100%] bg-red-800">
-                                <Image src="https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578" className="coin-png absolute sm:w-[40%]" width={500} height={100} alt="" onClick={handleImageClick} />
+                        <div className="tap w-full sm:w-[60%] relative">
+                            <Image
+                                src="https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578"
+                                className="coin-svg mx-auto w-[80%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%]"
+                                width={500}
+                                height={100}
+                                alt=""
+                            />
+                            <div className="png-coin w-full h-full bg-red-800 relative">
+                                <Image
+                                    src="https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578"
+                                    className="coin-png absolute w-[80%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%]"
+                                    width={500}
+                                    height={100}
+                                    alt=""
+                                    onClick={handleImageClick}
+                                />
                                 {clickEffects.map(effect => (
                                     <span
                                         key={effect.id}
-                                        className="click-effect text-2xl text-light font-bold"
+                                        className="click-effect text-2xl text-light font-bold absolute"
                                         style={{ left: `${effect.x}px`, top: `${effect.y}px` }}
                                         draggable="false"
                                     >
-                                        {recivedCharges - earnPerTap > 0  ? `+${earnPerTap}` : ''}
+                                        {recivedCharges - earnPerTap > 0 ? `+${earnPerTap}` : ''}
                                     </span>
                                 ))}
                             </div>
