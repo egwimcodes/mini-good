@@ -160,7 +160,8 @@ const Home = () => {
           ...prevUser,
           balance: updatedBalanceParsed.balance,
           tap_energy: updatedBalanceParsed.tap_energy,
-          earn_per_tap: updatedBalanceParsed.earn_per_tap
+          earn_per_tap: updatedBalanceParsed.earn_per_tap,
+          tap_energy_level: updatedBalanceParsed.tap_energy_level
         };
       });
     }

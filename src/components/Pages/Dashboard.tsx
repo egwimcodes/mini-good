@@ -135,7 +135,7 @@ export default function Dashboard({ sendMessage, message }: DashboardProps) {
                             <Image src="https://ik.imagekit.io/egwimcodes/charge.png?updatedAt=1720197415406" className="shrink-on-click  w-5 h-5" width={20} height={10} alt="" />
                             <div className="charge-stat flex-between">
                                 <p className='text-white flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{recivedCharges < 0 ? 0 : recivedCharges}</p>/
-                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>1500</p>
+                                <p className='text-main flex flex-center xxxsm:text-xs xxsm:text-text-sm xsm:text-0.5rem sm:text-1rem font-semibold'>{user.tap_energy_level}</p>
                             </div>
                         </div>
                         <div className='h-[15%] absolute bottom-0 w-[80%] flex flex-col'>
