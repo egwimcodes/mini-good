@@ -2,9 +2,9 @@ import { IoCloseSharp } from "react-icons/io5";
 import Image from "next/image";
 import { MdNavigateNext } from "react-icons/md";
 import { useState } from "react";
-import BuyGCBoostNow from "../BuyGCBoostNow";
 //import BuyUSDTBoostNow from "../BuyUSDTBoostNow";
 import { useUserContext } from "@/hooks/UserContext";
+import BuyGCEnergyNow from "../BuyGCEnergyNow";
 interface PopUpComfirmationProps {
     isopen: boolean;
     isClose: () => void;
@@ -69,7 +69,7 @@ export default function BuyBot_Energy({ isopen, isClose }: PopUpComfirmationProp
             )}
 
             {buyGCNow && (
-                <BuyGCBoostNow isopen={true} isClose={() => { isClose() }} balance={user?.balance} />
+                <BuyGCEnergyNow isopen={true} isClose={() => { isClose() }} balance={user?.balance} />
             )}
             {/* {buyUSDTNow && (
                 <BuyUSDTBoostNow isopen={true} isClose={() => { isClose() }}/>
