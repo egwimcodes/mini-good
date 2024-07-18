@@ -243,6 +243,24 @@ async function BuyBoost({}) {
     }
 }
 
+async function BuyEnergy({}) {
+    try {
+        const requestMe = {
+            path: AuthRoutes.ENERGYWITHCOIN,
+            method: 'POST',
+            contentType: 'application/json', // You can omit this if using the default
+            removeAuth: false, // Assuming you need authentication
+            data: {},
+        };
+
+        const response = await MakeRequest(requestMe);
+        return response;
+    } catch (error) {
+        console.log(`{'Error from Buy boost: ${error}}`);
+        throw error;
+    }
+}
+
 export {
     Register,
     Login,
@@ -255,5 +273,6 @@ export {
     DailyStreakCreate,
     TopUpCreate,
     RetriveStats,
-    BuyBoost
+    BuyBoost,
+    BuyEnergy
 }

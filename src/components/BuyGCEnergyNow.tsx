@@ -1,7 +1,7 @@
 import { IoCloseSharp } from "react-icons/io5";
 import Image from "next/image";
 import { useState } from "react";
-import { BuyBoost } from "@/utils/requests";
+import { BuyEnergy } from "@/utils/requests";
 interface BuyEnergyNowProps {
     isopen: boolean;
     isClose?: () => void;
@@ -15,7 +15,7 @@ export default function BuyGCEnergyNow({ isopen, isClose, balance }: BuyEnergyNo
     const [btnText, setBtnText] = useState(false);
     const buyNow = () => {
         if (btnText === false) {
-            BuyBoost({}).then(() => {
+            BuyEnergy({}).then(() => {
                 setBtnText(true)
             })
         }
