@@ -28,7 +28,7 @@ export default function Boost() {
                     </div>
 
                     <div className="normal-boost w-[100%] h-[12vh] flex flex-row items-center justify-between mb-3 px-2 border-2 border-main rounded-[10px] mt-1" onClick={() => setIsClaimingEnergy(true)}>
-                        <Image className="w-10" width={100} height={100} draggable="false" src="https://ik.imagekit.io/egwimcodes/energy.png?updatedAt=1721337904809" alt="" />
+                        <Image className="w-12" width={100} height={100} draggable="false" src="https://ik.imagekit.io/egwimcodes/energy.png?updatedAt=1721337904809" alt="" />
                         <div className="boost-writeup flex flex-col items-center justify-center">
                             <h3 className="text-main text-2xl font-bold">Buy Energy</h3>
                             <h5 className="text-orange-400 text-sm"><span className="font-bold">level 1</span></h5>
