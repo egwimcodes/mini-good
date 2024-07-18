@@ -22,7 +22,6 @@ export default function Boost() {
                         <Image className="w-10" width={50} height={50} draggable="false" src="https://ik.imagekit.io/egwimcodes/rocket.png?updatedAt=1720197417327" alt="" />
                         <div className="boost-writeup flex flex-col items-center justify-center">
                             <h3 className="text-main text-2xl font-bold">Buy Boost</h3>
-                            <h5 className="text-orange-400 text-sm"><span className="font-bold">level 1</span></h5>
                         </div>
                         <MdNavigateNext className="r-arrow text-2xl font-bold" />
                     </div>
@@ -31,7 +30,6 @@ export default function Boost() {
                         <Image className="w-12" width={100} height={100} draggable="false" src="https://ik.imagekit.io/egwimcodes/energy.png?updatedAt=1721337904809" alt="" />
                         <div className="boost-writeup flex flex-col items-center justify-center">
                             <h3 className="text-main text-2xl font-bold">Buy Energy</h3>
-                            <h5 className="text-orange-400 text-sm"><span className="font-bold">level 1</span></h5>
                         </div>
                         <MdNavigateNext className="r-arrow text-2xl font-bold" />
                     </div>
