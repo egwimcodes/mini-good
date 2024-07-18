@@ -17,7 +17,7 @@ export default function Boost() {
                 <div className="boost-head w-full h-[15vh] flex flex-col items-center mt-20">
                     <h1 className="text-3xl font-bold text-light mt-4">Boost</h1>
                 </div>
-                <div className="boost-btn-container h-[300vh] w-[90vw] mx-auto flex flex-col items-center" >
+                <div className="boost-btn-container h-[80vh] w-[90vw] mx-auto flex flex-col items-center" >
                     <div className="normal-boost w-[100%] h-[12vh] flex flex-row items-center justify-between mb-3 px-2 border-2 border-main rounded-[10px]" onClick={() => setIsClaimingBoost(true)}>
                         <Image className="w-10" width={50} height={50} draggable="false" src="https://ik.imagekit.io/egwimcodes/rocket.png?updatedAt=1720197417327" alt="" />
                         <div className="boost-writeup flex flex-col items-center justify-center">
