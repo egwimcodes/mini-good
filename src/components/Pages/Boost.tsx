@@ -10,6 +10,7 @@ export default function Boost() {
     const [isClaimingBoost, setIsClaimingBoost] = useState(false);
     const [isClaimingEnergy, setIsClaimingEnergy] = useState(false);
     
+    
     return (
         <>
             <div className="boost-container w-full max-h-[90vh] ">
