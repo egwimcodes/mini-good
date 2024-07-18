@@ -10,7 +10,7 @@ export default function Boost() {
     const [isClaimingBoost, setIsClaimingBoost] = useState(false);
     const [isClaimingEnergy, setIsClaimingEnergy] = useState(false);
     
-    
+
     return (
         <>
             <div className="boost-container w-full max-h-[90vh] ">
@@ -22,7 +22,7 @@ export default function Boost() {
                         <Image className="w-10" width={50} height={50} draggable="false" src="https://ik.imagekit.io/egwimcodes/rocket.png?updatedAt=1720197417327" alt="" />
                         <div className="boost-writeup flex flex-col items-center justify-center">
                             <h3 className="text-main text-2xl font-bold">Buy Boost</h3>
-                            <h5 className="text-orange-400 text-sm"><span className="font-bold">level 1</span></h5>
+                            <h5 className="text-orange-400 text-sm"><span className="font-bold">level 12</span></h5>
                         </div>
                         <MdNavigateNext className="r-arrow text-2xl font-bold" />
                     </div>
