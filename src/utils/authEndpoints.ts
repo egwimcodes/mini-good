@@ -15,6 +15,6 @@ export const AuthRoutes = Object.freeze({
     WALLET: "/wallet/",
     BOOSTWITHCOIN: "/boost_with_coin/",
     ENERGYWITHCOIN: "/boost_energy/",
-    BOOSTSTATUS: "/boost_energy/"
+    BOOSTSTATUS: "/boost_status/"
 
 })
