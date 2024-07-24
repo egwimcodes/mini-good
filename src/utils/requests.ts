@@ -261,6 +261,23 @@ async function BuyEnergy({}) {
     }
 }
 
+async function Boost_status() {
+    try {
+        const requestMe = {
+            path: AuthRoutes.BOOSTSTATUS,
+            method: 'GET',
+            contentType: 'application/json', // You can omit this if using the default
+            removeAuth: false, // Assuming you need authentication
+        };
+
+        const response = await MakeRequest(requestMe);
+        return response;
+    } catch (error) {
+        console.log(`{'Error from BOOST STATUS: ${error}}`);
+        throw error;
+    }
+}
+
 export {
     Register,
     Login,
@@ -274,5 +291,6 @@ export {
     TopUpCreate,
     RetriveStats,
     BuyBoost,
-    BuyEnergy
+    BuyEnergy,
+    Boost_status
 }

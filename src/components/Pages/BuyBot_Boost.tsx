@@ -1,10 +1,11 @@
 import { IoCloseSharp } from "react-icons/io5";
 import Image from "next/image";
 import { MdNavigateNext } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BuyGCBoostNow from "../BuyGCBoostNow";
 //import BuyUSDTBoostNow from "../BuyUSDTBoostNow";
 import { useUserContext } from "@/hooks/UserContext";
+import { Boost_status } from "@/utils/requests";
 interface PopUpComfirmationProps {
     isopen: boolean;
     isClose: () => void;
@@ -15,13 +16,29 @@ interface PopUpComfirmationProps {
 
 }
 
+interface canBoostProps { 
+    can_boost_energy: boolean;
+    can_boost_taps: boolean;
+    energy_level: number;
+    tap_level: number;
+}
+
 export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps) {
     const user = useUserContext();
     const [buyGCNow, setBuyGCNow] = useState(false);
+    const [status, setStatus] = useState<canBoostProps>();
     // const [buyUSDTNow, setBuyUSDTNow] = useState(false);
     const handleBuyGCNow = () => {
         setBuyGCNow(true);
     }
+
+    useEffect(() => {
+        Boost_status().then((res) => {
+            setStatus(res)
+            alert(JSON.stringify(res))
+            
+        })
+    })
     // const handleBuyUSDTNow = () => {
     //     setBuyUSDTNow(true);
 
@@ -45,7 +62,7 @@ export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps
                             <Image className="shine-coin w-10" width={50} height={50} src={"https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578"} alt="" />
                             <div className="amount-to-claim ml-2 text-center">
                                 <p className="font-semibold text-white">GOODCOIN (GC)</p>
-                                <h3 className="text-light xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-orange-500 font-semibold">Buy with 5000 GC</h3>
+                                <h3 className="text-light xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-orange-500 font-semibold">Buy with {status?.energy_level && status?.energy_level * 5000} GC</h3>
                             </div>
                             <MdNavigateNext className="text-2xl text-light font-bold" />
                         </div>
