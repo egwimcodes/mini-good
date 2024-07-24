@@ -35,7 +35,6 @@ export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps
     useEffect(() => {
         Boost_status().then((res) => {
             setStatus(res)
-            alert(JSON.stringify(res))
             
         })
     })
@@ -86,7 +85,7 @@ export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps
             )}
 
             {buyGCNow && (
-                <BuyGCBoostNow isopen={true} isClose={() => { isClose() }} balance={user?.balance} />
+                <BuyGCBoostNow isopen={true} isClose={() => { isClose() }} balance={user?.balance} energy_level={(status?.energy_level ?? 0) * 5000} />
             )}
             {/* {buyUSDTNow && (
                 <BuyUSDTBoostNow isopen={true} isClose={() => { isClose() }}/>
