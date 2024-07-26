@@ -6,12 +6,13 @@ interface BuyEnergyNowProps {
     isopen: boolean;
     isClose?: () => void;
     balance?: number;
+    energy_level: number;
 
 }
 
 
 
-export default function BuyGCEnergyNow({ isopen, isClose, balance }: BuyEnergyNowProps) {
+export default function BuyGCEnergyNow({ isopen, isClose, balance, energy_level }: BuyEnergyNowProps) {
     const [btnText, setBtnText] = useState(false);
     const buyNow = () => {
         if (btnText === false) {
@@ -39,8 +40,8 @@ export default function BuyGCEnergyNow({ isopen, isClose, balance }: BuyEnergyNo
                                     <h4 className="text-main xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs font-semibold">Boost</h4>
                                 </div>) : (<div>
                                     <h4 className="text-orange-400 xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs font-semibold">pending...</h4>
-                                    {balance && balance >= 5000 ? (
-                                        <h1 className="text-light xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-main font-semibold">5000 GoodCoin Charge</h1>
+                                        {balance && balance >= energy_level ? (
+                                            <h1 className="text-light xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-main font-semibold">{energy_level} GoodCoin Charge</h1>
                                     ) : (
                                         <div>
                                             <h1 className="text-light xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-orange-400 font-semibold">Sorry you don't have enough GC</h1>
@@ -51,11 +52,11 @@ export default function BuyGCEnergyNow({ isopen, isClose, balance }: BuyEnergyNo
 
                             </div>
                             {btnText ? (
-                                <div className={`claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] ${balance && balance >= 5000 ? 'bg-main' : 'bg-red-700'} rounded-[10px] flex-evenly`} onClick={() => { isClose && isClose() }}>
+                                <div className={`claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] ${balance && balance >= energy_level ? 'bg-main' : 'bg-red-700'} rounded-[10px] flex-evenly`} onClick={() => { isClose && isClose() }}>
                                     <h4 className="text-light font-semibold">{btnText ? "Close" : "Buy Now"}</h4>
                                 </div>
                             ) : (
-                                <div className={`claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] ${balance && balance >= 5000 ? 'bg-main' : 'bg-red-700'} rounded-[10px] flex-evenly`} onClick={() => { balance && balance >= 5000 ? buyNow() : null }}>
+                                    <div className={`claim-gift-btn w-[100%] bg-orange flex items-center justify-center h-[8vh] ${balance && balance >= energy_level ? 'bg-main' : 'bg-red-700'} rounded-[10px] flex-evenly`} onClick={() => { balance && balance >= energy_level ? buyNow() : null }}>
                                     <h4 className="text-light font-semibold">{btnText ? "Claimed" : "Buy Now"}</h4>
                                 </div>
                             )}

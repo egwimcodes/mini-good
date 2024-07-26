@@ -138,3 +138,10 @@ export type DashboardProps = {
     sendMessage: (msg: string) => void;
     message: string | null;
 };
+
+export interface CanBoostProps { 
+    can_boost_energy: boolean;
+    can_boost_taps: boolean;
+    energy_level: number;
+    tap_level: number;
+}

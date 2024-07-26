@@ -1,10 +1,13 @@
 import { IoCloseSharp } from "react-icons/io5";
 import Image from "next/image";
 import { MdNavigateNext } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //import BuyUSDTBoostNow from "../BuyUSDTBoostNow";
 import { useUserContext } from "@/hooks/UserContext";
 import BuyGCEnergyNow from "../BuyGCEnergyNow";
+import { CanBoostProps } from "@/types";
+import { Boost_status } from "@/utils/requests";
+import MiniPleloader from "./MiniPleloader";
 interface PopUpComfirmationProps {
     isopen: boolean;
     isClose: () => void;
@@ -18,14 +21,25 @@ interface PopUpComfirmationProps {
 export default function BuyBot_Energy({ isopen, isClose }: PopUpComfirmationProps) {
     const user = useUserContext();
     const [buyGCNow, setBuyGCNow] = useState(false);
+    const [status, setStatus] = useState<CanBoostProps>();
+    const [isLoading, setIsLoading] = useState(true);
     // const [buyUSDTNow, setBuyUSDTNow] = useState(false);
     const handleBuyGCNow = () => {
         setBuyGCNow(true);
     }
+    useEffect(() => {
+        Boost_status().then((res) => {
+            setStatus(res)
+            setIsLoading(false)
+        })
+    }, [isLoading, status])
     // const handleBuyUSDTNow = () => {
     //     setBuyUSDTNow(true);
 
     // }
+    if (isLoading) {
+        return <MiniPleloader />;
+    }
     return (
         <>{
             isopen && (
@@ -45,7 +59,7 @@ export default function BuyBot_Energy({ isopen, isClose }: PopUpComfirmationProp
                             <Image className="shine-coin w-10" width={50} height={50} src={"https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578"} alt="" />
                             <div className="amount-to-claim ml-2 text-center">
                                 <p className="font-semibold text-white">GOODCOIN (GC)</p>
-                                <h3 className="text-light xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-orange-500 font-semibold">Buy with 5000 GC</h3>
+                                <h3 className="text-light xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-orange-500 font-semibold">Buy with {status?.energy_level && status?.energy_level * 5000} GC</h3>
                             </div>
                             <MdNavigateNext className="text-2xl text-light font-bold" />
                         </div>
@@ -69,7 +83,7 @@ export default function BuyBot_Energy({ isopen, isClose }: PopUpComfirmationProp
             )}
 
             {buyGCNow && (
-                <BuyGCEnergyNow isopen={true} isClose={() => { isClose() }} balance={user?.balance} />
+                <BuyGCEnergyNow isopen={true} isClose={() => { isClose() }} balance={user?.balance} energy_level={(status?.energy_level ?? 0) * 5000} />
             )}
             {/* {buyUSDTNow && (
                 <BuyUSDTBoostNow isopen={true} isClose={() => { isClose() }}/>

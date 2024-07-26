@@ -7,6 +7,7 @@ import BuyGCBoostNow from "../BuyGCBoostNow";
 import { useUserContext } from "@/hooks/UserContext";
 import { Boost_status } from "@/utils/requests";
 import MiniPleloader from "./MiniPleloader";
+import { CanBoostProps } from "@/types";
 interface PopUpComfirmationProps {
     isopen: boolean;
     isClose: () => void;
@@ -17,17 +18,11 @@ interface PopUpComfirmationProps {
 
 }
 
-interface canBoostProps { 
-    can_boost_energy: boolean;
-    can_boost_taps: boolean;
-    energy_level: number;
-    tap_level: number;
-}
 
 export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps) {
     const user = useUserContext();
     const [buyGCNow, setBuyGCNow] = useState(false);
-    const [status, setStatus] = useState<canBoostProps>();
+    const [status, setStatus] = useState<CanBoostProps>();
     const [isLoading, setIsLoading] = useState(true);
     // const [buyUSDTNow, setBuyUSDTNow] = useState(false);
     const handleBuyGCNow = () => {
