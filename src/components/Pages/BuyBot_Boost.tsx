@@ -6,6 +6,7 @@ import BuyGCBoostNow from "../BuyGCBoostNow";
 //import BuyUSDTBoostNow from "../BuyUSDTBoostNow";
 import { useUserContext } from "@/hooks/UserContext";
 import { Boost_status } from "@/utils/requests";
+import MiniPleloader from "./MiniPleloader";
 interface PopUpComfirmationProps {
     isopen: boolean;
     isClose: () => void;
@@ -27,6 +28,7 @@ export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps
     const user = useUserContext();
     const [buyGCNow, setBuyGCNow] = useState(false);
     const [status, setStatus] = useState<canBoostProps>();
+    const [isLoading, setIsLoading] = useState(true);
     // const [buyUSDTNow, setBuyUSDTNow] = useState(false);
     const handleBuyGCNow = () => {
         setBuyGCNow(true);
@@ -35,13 +37,18 @@ export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps
     useEffect(() => {
         Boost_status().then((res) => {
             setStatus(res)
-            
+            setIsLoading(false)
         })
-    })
+    }, [isLoading, status])
     // const handleBuyUSDTNow = () => {
     //     setBuyUSDTNow(true);
 
     // }
+
+    if (isLoading) {
+        return <MiniPleloader />;
+    }
+    
     return (
         <>{
             isopen && (
