@@ -144,4 +144,5 @@ export interface CanBoostProps {
     can_boost_taps: boolean;
     energy_level: number;
     tap_level: number;
+  tap_fee: number;
 }
