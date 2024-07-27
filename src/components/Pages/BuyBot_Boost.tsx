@@ -63,7 +63,7 @@ export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps
                             <Image className="shine-coin w-10" width={50} height={50} src={"https://ik.imagekit.io/egwimcodes/goodcoing.png?updatedAt=1720197417578"} alt="" />
                             <div className="amount-to-claim ml-2 text-center">
                                 <p className="font-semibold text-white">GOODCOIN (GC)</p>
-                                <h3 className="text-light xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-orange-500 font-semibold">Buy with {status?.energy_level && status?.energy_level * 5000} GC</h3>
+                                <h3 className="text-light xxxsm:text-xxxs xxsm:text-xs xsm:text-xs sm:text-xs text-orange-500 font-semibold">Buy with {status?.tap_fee && status?.tap_fee} GC</h3>
                             </div>
                             <MdNavigateNext className="text-2xl text-light font-bold" />
                         </div>
@@ -87,7 +87,7 @@ export default function BuyBot_Boost({ isopen, isClose }: PopUpComfirmationProps
             )}
 
             {buyGCNow && (
-                <BuyGCBoostNow isopen={true} isClose={() => { isClose() }} balance={user?.balance} energy_level={(status?.energy_level ?? 0) * 5000} />
+                <BuyGCBoostNow isopen={true} isClose={() => { isClose() }} balance={user?.balance} tap_fee={ status?.tap_fee ?? 0 } />
             )}
             {/* {buyUSDTNow && (
                 <BuyUSDTBoostNow isopen={true} isClose={() => { isClose() }}/>
