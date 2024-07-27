@@ -8,7 +8,8 @@ const nextConfig = {
                 pathname: '/egwimcodes/**',
             },
         ]
-    }
+    },
+    output: 'standalone'
 };
 
 export default nextConfig;
